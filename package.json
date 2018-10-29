@@ -12,7 +12,7 @@
     "url": "https://github.com/zaproxy/zap-api-nodejs.git"
   },
   "bugs": {
-    "url": "https://github.com/zaproxy/zap-api-nodejs/issues"
+    "url": "https://github.com/zaproxy/zaproxy/issues"
   },
   "licenses": [
     {
