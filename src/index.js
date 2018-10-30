@@ -17,12 +17,8 @@
  * limitations under the License.
  */
 
-'use strict';
-
 const request = require('request');
 const requestPromise = require('request-promise-native');
-const _ = require('lodash');
-
 
 const Acsrf = require('./acsrf');
 const AjaxSpider = require('./ajaxSpider');
@@ -52,19 +48,13 @@ const BASE = 'http://zap/JSON';
 const BASE_OTHER = 'http://zap/OTHER';
 
 function ClientApi(options) {
-  options = options || {};
-  _.defaults(options, {
-    proxy: 'http://127.0.0.1:8080'
-  });
-
   const requestOptions = {
+    proxy: { ...{ proxy: 'http://127.0.0.1:8080' }, ...options }.proxy,
     method: 'GET',
     json: true,
-    proxy: options.proxy
+    headers: options.apiKey ? { 'X-ZAP-API-Key': options.apiKey } : {}
   };
   
-  if (options.apiKey) requestOptions.headers = { 'X-ZAP-API-Key': options.apiKey };
-
   this.req = request.defaults(requestOptions);
   this.reqPromise = requestPromise.defaults(requestOptions);
   this.acsrf = new Acsrf(this);
