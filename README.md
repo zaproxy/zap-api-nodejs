@@ -12,7 +12,7 @@
   <img src="https://img.shields.io/badge/license-Apache%202-4EB1BA.svg" alt="License"/>
 </a>
 
-<br/><br/><br/>
+<br/><br/>
 </div>
 
 The NodeJS implementation to access the [OWASP ZAP API](https://github.com/zaproxy/zaproxy/wiki/ApiDetails). For more information
@@ -71,8 +71,8 @@ The Node.js API methods have the same signature as the API documentation, Featur
 
 The API key is no longer explicitly required on any requests. Unless you have disabled the API key when running Zap, simply provide it on Node API instantiation as mentioned in the [Usage](#usage) section and it will be provided with each request.
 
-*Callback mode*: If you provide a callback as the last parameter, the callback will be called with error and response arguments, with the response being the an object that corresponds to the JSON output of the API call.  
-*Promise mode*: If you wish to use the modern approach, simply don't provide a callback, and a native promise will be returned for you to deal with as you wish.
+**Callback mode**: If you provide a callback as the last parameter, the callback will be called with error and response arguments, with the response being the an object that corresponds to the JSON output of the API call.  
+**Promise mode**: If you wish to use the modern approach, simply don't provide a callback, and a native promise will be returned for you to deal with as you wish.
 
 ## Getting Help
 
