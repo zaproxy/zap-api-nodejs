@@ -76,17 +76,6 @@ HttpSessions.prototype.sessionTokens = function (site, callback) {
 };
 
 /**
- * Gets the default session tokens.
- **/
-HttpSessions.prototype.defaultSessionTokens = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/httpSessions/view/defaultSessionTokens/', callback);
-    return;
-  }
-  return this.api.requestPromise('/httpSessions/view/defaultSessionTokens/');
-};
-
-/**
  * Creates an empty session for the given site. Optionally with the given name.
  **/
 HttpSessions.prototype.createEmptySession = function (site, session, callback) {
@@ -176,43 +165,6 @@ HttpSessions.prototype.renameSession = function (site, oldsessionname, newsessio
     return;
   }
   return this.api.requestPromise('/httpSessions/action/renameSession/', {'site' : site, 'oldSessionName' : oldsessionname, 'newSessionName' : newsessionname});
-};
-
-/**
- * Adds a default session token with the given name and enabled state.
- **/
-HttpSessions.prototype.addDefaultSessionToken = function (sessiontoken, tokenenabled, callback) {
-  const params = {'sessionToken' : sessiontoken};
-  if (tokenenabled && tokenenabled !== null) {
-    params['tokenEnabled'] = tokenenabled;
-  }
-  if (typeof callback === 'function') {
-    this.api.request('/httpSessions/action/addDefaultSessionToken/', params, callback);
-    return;
-  }
-  return this.api.requestPromise('/httpSessions/action/addDefaultSessionToken/', params);
-};
-
-/**
- * Sets whether or not the default session token with the given name is enabled.
- **/
-HttpSessions.prototype.setDefaultSessionTokenEnabled = function (sessiontoken, tokenenabled, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/httpSessions/action/setDefaultSessionTokenEnabled/', {'sessionToken' : sessiontoken, 'tokenEnabled' : tokenenabled}, callback);
-    return;
-  }
-  return this.api.requestPromise('/httpSessions/action/setDefaultSessionTokenEnabled/', {'sessionToken' : sessiontoken, 'tokenEnabled' : tokenenabled});
-};
-
-/**
- * Removes the default session token with the given name.
- **/
-HttpSessions.prototype.removeDefaultSessionToken = function (sessiontoken, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/httpSessions/action/removeDefaultSessionToken/', {'sessionToken' : sessiontoken}, callback);
-    return;
-  }
-  return this.api.requestPromise('/httpSessions/action/removeDefaultSessionToken/', {'sessionToken' : sessiontoken});
 };
 
 module.exports = HttpSessions;

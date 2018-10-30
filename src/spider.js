@@ -156,9 +156,6 @@ Spider.prototype.optionMaxChildren = function (callback) {
   return this.api.requestPromise('/spider/view/optionMaxChildren/');
 };
 
-/**
- * Gets the maximum depth the spider can crawl, 0 if unlimited.
- **/
 Spider.prototype.optionMaxDepth = function (callback) {
   if (typeof callback === 'function') {
     this.api.request('/spider/view/optionMaxDepth/', callback);
@@ -614,9 +611,6 @@ Spider.prototype.setOptionMaxChildren = function (integer, callback) {
   return this.api.requestPromise('/spider/action/setOptionMaxChildren/', {'Integer' : integer});
 };
 
-/**
- * Sets the maximum depth the spider can crawl, 0 for unlimited depth.
- **/
 Spider.prototype.setOptionMaxDepth = function (integer, callback) {
   if (typeof callback === 'function') {
     this.api.request('/spider/action/setOptionMaxDepth/', {'Integer' : integer}, callback);

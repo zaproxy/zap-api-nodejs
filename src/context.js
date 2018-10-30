@@ -105,17 +105,6 @@ Context.prototype.excludedTechnologyList = function (contextname, callback) {
 };
 
 /**
- * Lists the URLs accessed through/by ZAP, that belong to the context with the given name.
- **/
-Context.prototype.urls = function (contextname, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/context/view/urls/', {'contextName' : contextname}, callback);
-    return;
-  }
-  return this.api.requestPromise('/context/view/urls/', {'contextName' : contextname});
-};
-
-/**
  * Add exclude regex to context
  **/
 Context.prototype.excludeFromContext = function (contextname, regex, callback) {
@@ -135,17 +124,6 @@ Context.prototype.includeInContext = function (contextname, regex, callback) {
     return;
   }
   return this.api.requestPromise('/context/action/includeInContext/', {'contextName' : contextname, 'regex' : regex});
-};
-
-/**
- * Set the regexs to include and exclude for a context, both supplied as JSON string arrays
- **/
-Context.prototype.setContextRegexs = function (contextname, incregexs, excregexs, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/context/action/setContextRegexs/', {'contextName' : contextname, 'incRegexs' : incregexs, 'excRegexs' : excregexs}, callback);
-    return;
-  }
-  return this.api.requestPromise('/context/action/setContextRegexs/', {'contextName' : contextname, 'incRegexs' : incregexs, 'excRegexs' : excregexs});
 };
 
 /**

@@ -28,6 +28,74 @@ function Core(clientApi) {
 }
 
 /**
+ * Gets the alert with the given ID, the corresponding HTTP message can be obtained with the 'messageId' field and 'message' API method
+ **/
+Core.prototype.alert = function (id, callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/core/view/alert/', {'id' : id}, callback);
+    return;
+  }
+  return this.api.requestPromise('/core/view/alert/', {'id' : id});
+};
+
+/**
+ * Gets the alerts raised by ZAP, optionally filtering by URL or riskId, and paginating with 'start' position and 'count' of alerts
+ **/
+Core.prototype.alerts = function (baseurl, start, count, riskid, callback) {
+  const params = {};
+  if (baseurl && baseurl !== null) {
+    params['baseurl'] = baseurl;
+  }
+  if (start && start !== null) {
+    params['start'] = start;
+  }
+  if (count && count !== null) {
+    params['count'] = count;
+  }
+  if (riskid && riskid !== null) {
+    params['riskId'] = riskid;
+  }
+  if (typeof callback === 'function') {
+    this.api.request('/core/view/alerts/', params, callback);
+    return;
+  }
+  return this.api.requestPromise('/core/view/alerts/', params);
+};
+
+/**
+ * Gets number of alerts grouped by each risk level, optionally filtering by URL
+ **/
+Core.prototype.alertsSummary = function (baseurl, callback) {
+  const params = {};
+  if (baseurl && baseurl !== null) {
+    params['baseurl'] = baseurl;
+  }
+  if (typeof callback === 'function') {
+    this.api.request('/core/view/alertsSummary/', params, callback);
+    return;
+  }
+  return this.api.requestPromise('/core/view/alertsSummary/', params);
+};
+
+/**
+ * Gets the number of alerts, optionally filtering by URL or riskId
+ **/
+Core.prototype.numberOfAlerts = function (baseurl, riskid, callback) {
+  const params = {};
+  if (baseurl && baseurl !== null) {
+    params['baseurl'] = baseurl;
+  }
+  if (riskid && riskid !== null) {
+    params['riskId'] = riskid;
+  }
+  if (typeof callback === 'function') {
+    this.api.request('/core/view/numberOfAlerts/', params, callback);
+    return;
+  }
+  return this.api.requestPromise('/core/view/numberOfAlerts/', params);
+};
+
+/**
  * Gets the name of the hosts accessed through/by ZAP
  **/
 Core.prototype.hosts = function (callback) {
@@ -62,21 +130,6 @@ Core.prototype.urls = function (baseurl, callback) {
     return;
   }
   return this.api.requestPromise('/core/view/urls/', params);
-};
-
-/**
- * Gets the child nodes underneath the specified URL in the Sites tree
- **/
-Core.prototype.childNodes = function (url, callback) {
-  const params = {};
-  if (url && url !== null) {
-    params['url'] = url;
-  }
-  if (typeof callback === 'function') {
-    this.api.request('/core/view/childNodes/', params, callback);
-    return;
-  }
-  return this.api.requestPromise('/core/view/childNodes/', params);
 };
 
 /**
@@ -278,74 +331,6 @@ Core.prototype.optionAlertOverridesFilePath = function (callback) {
 };
 
 /**
- * Gets the alert with the given ID, the corresponding HTTP message can be obtained with the 'messageId' field and 'message' API method
- **/
-Core.prototype.alert = function (id, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/core/view/alert/', {'id' : id}, callback);
-    return;
-  }
-  return this.api.requestPromise('/core/view/alert/', {'id' : id});
-};
-
-/**
- * Gets the alerts raised by ZAP, optionally filtering by URL or riskId, and paginating with 'start' position and 'count' of alerts
- **/
-Core.prototype.alerts = function (baseurl, start, count, riskid, callback) {
-  const params = {};
-  if (baseurl && baseurl !== null) {
-    params['baseurl'] = baseurl;
-  }
-  if (start && start !== null) {
-    params['start'] = start;
-  }
-  if (count && count !== null) {
-    params['count'] = count;
-  }
-  if (riskid && riskid !== null) {
-    params['riskId'] = riskid;
-  }
-  if (typeof callback === 'function') {
-    this.api.request('/core/view/alerts/', params, callback);
-    return;
-  }
-  return this.api.requestPromise('/core/view/alerts/', params);
-};
-
-/**
- * Gets number of alerts grouped by each risk level, optionally filtering by URL
- **/
-Core.prototype.alertsSummary = function (baseurl, callback) {
-  const params = {};
-  if (baseurl && baseurl !== null) {
-    params['baseurl'] = baseurl;
-  }
-  if (typeof callback === 'function') {
-    this.api.request('/core/view/alertsSummary/', params, callback);
-    return;
-  }
-  return this.api.requestPromise('/core/view/alertsSummary/', params);
-};
-
-/**
- * Gets the number of alerts, optionally filtering by URL or riskId
- **/
-Core.prototype.numberOfAlerts = function (baseurl, riskid, callback) {
-  const params = {};
-  if (baseurl && baseurl !== null) {
-    params['baseurl'] = baseurl;
-  }
-  if (riskid && riskid !== null) {
-    params['riskId'] = riskid;
-  }
-  if (typeof callback === 'function') {
-    this.api.request('/core/view/numberOfAlerts/', params, callback);
-    return;
-  }
-  return this.api.requestPromise('/core/view/numberOfAlerts/', params);
-};
-
-/**
  * Gets the user agent that ZAP should use when creating HTTP messages (for example, spider messages or CONNECT requests to outgoing proxy).
  **/
 Core.prototype.optionDefaultUserAgent = function (callback) {
@@ -415,9 +400,6 @@ Core.prototype.optionProxyChainUserName = function (callback) {
   return this.api.requestPromise('/core/view/optionProxyChainUserName/');
 };
 
-/**
- * Gets the connection time out, in seconds.
- **/
 Core.prototype.optionTimeoutInSecs = function (callback) {
   if (typeof callback === 'function') {
     this.api.request('/core/view/optionTimeoutInSecs/', callback);
@@ -536,22 +518,12 @@ Core.prototype.saveSession = function (name, overwrite, callback) {
   return this.api.requestPromise('/core/action/saveSession/', params);
 };
 
-/**
- * Snapshots the session, optionally with the given name, and overwriting existing files. If no name is specified the name of the current session with a timestamp appended is used. If a relative path is specified it will be resolved against the "session" directory in ZAP "home" dir.
- **/
-Core.prototype.snapshotSession = function (name, overwrite, callback) {
-  const params = {};
-  if (name && name !== null) {
-    params['name'] = name;
-  }
-  if (overwrite && overwrite !== null) {
-    params['overwrite'] = overwrite;
-  }
+Core.prototype.snapshotSession = function (callback) {
   if (typeof callback === 'function') {
-    this.api.request('/core/action/snapshotSession/', params, callback);
+    this.api.request('/core/action/snapshotSession/', callback);
     return;
   }
-  return this.api.requestPromise('/core/action/snapshotSession/', params);
+  return this.api.requestPromise('/core/action/snapshotSession/');
 };
 
 /**
@@ -619,6 +591,28 @@ Core.prototype.sendRequest = function (request, followredirects, callback) {
     return;
   }
   return this.api.requestPromise('/core/action/sendRequest/', params);
+};
+
+/**
+ * Deletes all alerts of the current session.
+ **/
+Core.prototype.deleteAllAlerts = function (callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/core/action/deleteAllAlerts/', callback);
+    return;
+  }
+  return this.api.requestPromise('/core/action/deleteAllAlerts/');
+};
+
+/**
+ * Deletes the alert with the given ID. 
+ **/
+Core.prototype.deleteAlert = function (id, callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/core/action/deleteAlert/', {'id' : id}, callback);
+    return;
+  }
+  return this.api.requestPromise('/core/action/deleteAlert/', {'id' : id});
 };
 
 Core.prototype.runGarbageCollection = function (callback) {
@@ -757,28 +751,6 @@ Core.prototype.setOptionAlertOverridesFilePath = function (filepath, callback) {
 };
 
 /**
- * Deletes all alerts of the current session.
- **/
-Core.prototype.deleteAllAlerts = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/core/action/deleteAllAlerts/', callback);
-    return;
-  }
-  return this.api.requestPromise('/core/action/deleteAllAlerts/');
-};
-
-/**
- * Deletes the alert with the given ID. 
- **/
-Core.prototype.deleteAlert = function (id, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/core/action/deleteAlert/', {'id' : id}, callback);
-    return;
-  }
-  return this.api.requestPromise('/core/action/deleteAlert/', {'id' : id});
-};
-
-/**
  * Sets the user agent that ZAP should use when creating HTTP messages (for example, spider messages or CONNECT requests to outgoing proxy).
  **/
 Core.prototype.setOptionDefaultUserAgent = function (string, callback) {
@@ -875,9 +847,6 @@ Core.prototype.setOptionSingleCookieRequestHeader = function (bool, callback) {
   return this.api.requestPromise('/core/action/setOptionSingleCookieRequestHeader/', {'Boolean' : bool});
 };
 
-/**
- * Sets the connection time out, in seconds.
- **/
 Core.prototype.setOptionTimeoutInSecs = function (integer, callback) {
   if (typeof callback === 'function') {
     this.api.request('/core/action/setOptionTimeoutInSecs/', {'Integer' : integer}, callback);

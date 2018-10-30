@@ -27,9 +27,6 @@ function Users(clientApi) {
   this.api = clientApi;
 }
 
-/**
- * Gets a list of users that belong to the context with the given ID, or all users if none provided.
- **/
 Users.prototype.usersList = function (contextid, callback) {
   const params = {};
   if (contextid && contextid !== null) {
@@ -42,20 +39,21 @@ Users.prototype.usersList = function (contextid, callback) {
   return this.api.requestPromise('/users/view/usersList/', params);
 };
 
-/**
- * Gets the data of the user with the given ID that belongs to the context with the given ID.
- **/
 Users.prototype.getUserById = function (contextid, userid, callback) {
+  const params = {};
+  if (contextid && contextid !== null) {
+    params['contextId'] = contextid;
+  }
+  if (userid && userid !== null) {
+    params['userId'] = userid;
+  }
   if (typeof callback === 'function') {
-    this.api.request('/users/view/getUserById/', {'contextId' : contextid, 'userId' : userid}, callback);
+    this.api.request('/users/view/getUserById/', params, callback);
     return;
   }
-  return this.api.requestPromise('/users/view/getUserById/', {'contextId' : contextid, 'userId' : userid});
+  return this.api.requestPromise('/users/view/getUserById/', params);
 };
 
-/**
- * Gets the configuration parameters for the credentials of the context with the given ID.
- **/
 Users.prototype.getAuthenticationCredentialsConfigParams = function (contextid, callback) {
   if (typeof callback === 'function') {
     this.api.request('/users/view/getAuthenticationCredentialsConfigParams/', {'contextId' : contextid}, callback);
@@ -64,9 +62,6 @@ Users.prototype.getAuthenticationCredentialsConfigParams = function (contextid, 
   return this.api.requestPromise('/users/view/getAuthenticationCredentialsConfigParams/', {'contextId' : contextid});
 };
 
-/**
- * Gets the authentication credentials of the user with given ID that belongs to the context with the given ID.
- **/
 Users.prototype.getAuthenticationCredentials = function (contextid, userid, callback) {
   if (typeof callback === 'function') {
     this.api.request('/users/view/getAuthenticationCredentials/', {'contextId' : contextid, 'userId' : userid}, callback);
@@ -75,9 +70,6 @@ Users.prototype.getAuthenticationCredentials = function (contextid, userid, call
   return this.api.requestPromise('/users/view/getAuthenticationCredentials/', {'contextId' : contextid, 'userId' : userid});
 };
 
-/**
- * Creates a new user with the given name for the context with the given ID.
- **/
 Users.prototype.newUser = function (contextid, name, callback) {
   if (typeof callback === 'function') {
     this.api.request('/users/action/newUser/', {'contextId' : contextid, 'name' : name}, callback);
@@ -86,9 +78,6 @@ Users.prototype.newUser = function (contextid, name, callback) {
   return this.api.requestPromise('/users/action/newUser/', {'contextId' : contextid, 'name' : name});
 };
 
-/**
- * Removes the user with the given ID that belongs to the context with the given ID.
- **/
 Users.prototype.removeUser = function (contextid, userid, callback) {
   if (typeof callback === 'function') {
     this.api.request('/users/action/removeUser/', {'contextId' : contextid, 'userId' : userid}, callback);
@@ -97,9 +86,6 @@ Users.prototype.removeUser = function (contextid, userid, callback) {
   return this.api.requestPromise('/users/action/removeUser/', {'contextId' : contextid, 'userId' : userid});
 };
 
-/**
- * Sets whether or not the user, with the given ID that belongs to the context with the given ID, should be enabled.
- **/
 Users.prototype.setUserEnabled = function (contextid, userid, enabled, callback) {
   if (typeof callback === 'function') {
     this.api.request('/users/action/setUserEnabled/', {'contextId' : contextid, 'userId' : userid, 'enabled' : enabled}, callback);
@@ -108,9 +94,6 @@ Users.prototype.setUserEnabled = function (contextid, userid, enabled, callback)
   return this.api.requestPromise('/users/action/setUserEnabled/', {'contextId' : contextid, 'userId' : userid, 'enabled' : enabled});
 };
 
-/**
- * Renames the user with the given ID that belongs to the context with the given ID.
- **/
 Users.prototype.setUserName = function (contextid, userid, name, callback) {
   if (typeof callback === 'function') {
     this.api.request('/users/action/setUserName/', {'contextId' : contextid, 'userId' : userid, 'name' : name}, callback);
@@ -119,9 +102,6 @@ Users.prototype.setUserName = function (contextid, userid, name, callback) {
   return this.api.requestPromise('/users/action/setUserName/', {'contextId' : contextid, 'userId' : userid, 'name' : name});
 };
 
-/**
- * Sets the authentication credentials for the user with the given ID that belongs to the context with the given ID.
- **/
 Users.prototype.setAuthenticationCredentials = function (contextid, userid, authcredentialsconfigparams, callback) {
   const params = {'contextId' : contextid, 'userId' : userid};
   if (authcredentialsconfigparams && authcredentialsconfigparams !== null) {

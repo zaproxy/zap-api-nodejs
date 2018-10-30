@@ -100,9 +100,6 @@ Ascan.prototype.excludedFromScan = function (callback) {
   return this.api.requestPromise('/ascan/view/excludedFromScan/');
 };
 
-/**
- * Gets the scanners, optionally, of the given scan policy and/or scanner policy/category ID.
- **/
 Ascan.prototype.scanners = function (scanpolicyname, policyid, callback) {
   const params = {};
   if (scanpolicyname && scanpolicyname !== null) {
@@ -276,17 +273,6 @@ Ascan.prototype.optionThreadPerHost = function (callback) {
     return;
   }
   return this.api.requestPromise('/ascan/view/optionThreadPerHost/');
-};
-
-/**
- * Tells whether or not the active scanner should add a query parameter to GET request that don't have parameters to start with.
- **/
-Ascan.prototype.optionAddQueryParam = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/ascan/view/optionAddQueryParam/', callback);
-    return;
-  }
-  return this.api.requestPromise('/ascan/view/optionAddQueryParam/');
 };
 
 Ascan.prototype.optionAllowAttackOnStart = function (callback) {
@@ -503,9 +489,6 @@ Ascan.prototype.excludeFromScan = function (regex, callback) {
   return this.api.requestPromise('/ascan/action/excludeFromScan/', {'regex' : regex});
 };
 
-/**
- * Enables all scanners of the scan policy with the given name, or the default if none given.
- **/
 Ascan.prototype.enableAllScanners = function (scanpolicyname, callback) {
   const params = {};
   if (scanpolicyname && scanpolicyname !== null) {
@@ -518,9 +501,6 @@ Ascan.prototype.enableAllScanners = function (scanpolicyname, callback) {
   return this.api.requestPromise('/ascan/action/enableAllScanners/', params);
 };
 
-/**
- * Disables all scanners of the scan policy with the given name, or the default if none given.
- **/
 Ascan.prototype.disableAllScanners = function (scanpolicyname, callback) {
   const params = {};
   if (scanpolicyname && scanpolicyname !== null) {
@@ -533,9 +513,6 @@ Ascan.prototype.disableAllScanners = function (scanpolicyname, callback) {
   return this.api.requestPromise('/ascan/action/disableAllScanners/', params);
 };
 
-/**
- * Enables the scanners with the given IDs (comma separated list of IDs) of the scan policy with the given name, or the default if none given.
- **/
 Ascan.prototype.enableScanners = function (ids, scanpolicyname, callback) {
   const params = {'ids' : ids};
   if (scanpolicyname && scanpolicyname !== null) {
@@ -548,9 +525,6 @@ Ascan.prototype.enableScanners = function (ids, scanpolicyname, callback) {
   return this.api.requestPromise('/ascan/action/enableScanners/', params);
 };
 
-/**
- * Disables the scanners with the given IDs (comma separated list of IDs) of the scan policy with the given name, or the default if none given.
- **/
 Ascan.prototype.disableScanners = function (ids, scanpolicyname, callback) {
   const params = {'ids' : ids};
   if (scanpolicyname && scanpolicyname !== null) {
@@ -747,17 +721,6 @@ Ascan.prototype.setOptionDefaultPolicy = function (string, callback) {
     return;
   }
   return this.api.requestPromise('/ascan/action/setOptionDefaultPolicy/', {'String' : string});
-};
-
-/**
- * Sets whether or not the active scanner should add a query param to GET requests which do not have parameters to start with.
- **/
-Ascan.prototype.setOptionAddQueryParam = function (bool, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/ascan/action/setOptionAddQueryParam/', {'Boolean' : bool}, callback);
-    return;
-  }
-  return this.api.requestPromise('/ascan/action/setOptionAddQueryParam/', {'Boolean' : bool});
 };
 
 Ascan.prototype.setOptionAllowAttackOnStart = function (bool, callback) {

@@ -27,9 +27,6 @@ function Authentication(clientApi) {
   this.api = clientApi;
 }
 
-/**
- * Gets the name of the authentication methods.
- **/
 Authentication.prototype.getSupportedAuthenticationMethods = function (callback) {
   if (typeof callback === 'function') {
     this.api.request('/authentication/view/getSupportedAuthenticationMethods/', callback);
@@ -38,9 +35,6 @@ Authentication.prototype.getSupportedAuthenticationMethods = function (callback)
   return this.api.requestPromise('/authentication/view/getSupportedAuthenticationMethods/');
 };
 
-/**
- * Gets the configuration parameters for the authentication method with the given name.
- **/
 Authentication.prototype.getAuthenticationMethodConfigParams = function (authmethodname, callback) {
   if (typeof callback === 'function') {
     this.api.request('/authentication/view/getAuthenticationMethodConfigParams/', {'authMethodName' : authmethodname}, callback);
@@ -49,9 +43,6 @@ Authentication.prototype.getAuthenticationMethodConfigParams = function (authmet
   return this.api.requestPromise('/authentication/view/getAuthenticationMethodConfigParams/', {'authMethodName' : authmethodname});
 };
 
-/**
- * Gets the name of the authentication method for the context with the given ID.
- **/
 Authentication.prototype.getAuthenticationMethod = function (contextid, callback) {
   if (typeof callback === 'function') {
     this.api.request('/authentication/view/getAuthenticationMethod/', {'contextId' : contextid}, callback);
@@ -60,9 +51,6 @@ Authentication.prototype.getAuthenticationMethod = function (contextid, callback
   return this.api.requestPromise('/authentication/view/getAuthenticationMethod/', {'contextId' : contextid});
 };
 
-/**
- * Gets the logged in indicator for the context with the given ID.
- **/
 Authentication.prototype.getLoggedInIndicator = function (contextid, callback) {
   if (typeof callback === 'function') {
     this.api.request('/authentication/view/getLoggedInIndicator/', {'contextId' : contextid}, callback);
@@ -71,9 +59,6 @@ Authentication.prototype.getLoggedInIndicator = function (contextid, callback) {
   return this.api.requestPromise('/authentication/view/getLoggedInIndicator/', {'contextId' : contextid});
 };
 
-/**
- * Gets the logged out indicator for the context with the given ID.
- **/
 Authentication.prototype.getLoggedOutIndicator = function (contextid, callback) {
   if (typeof callback === 'function') {
     this.api.request('/authentication/view/getLoggedOutIndicator/', {'contextId' : contextid}, callback);
@@ -82,9 +67,6 @@ Authentication.prototype.getLoggedOutIndicator = function (contextid, callback) 
   return this.api.requestPromise('/authentication/view/getLoggedOutIndicator/', {'contextId' : contextid});
 };
 
-/**
- * Sets the authentication method for the context with the given ID.
- **/
 Authentication.prototype.setAuthenticationMethod = function (contextid, authmethodname, authmethodconfigparams, callback) {
   const params = {'contextId' : contextid, 'authMethodName' : authmethodname};
   if (authmethodconfigparams && authmethodconfigparams !== null) {
@@ -97,9 +79,6 @@ Authentication.prototype.setAuthenticationMethod = function (contextid, authmeth
   return this.api.requestPromise('/authentication/action/setAuthenticationMethod/', params);
 };
 
-/**
- * Sets the logged in indicator for the context with the given ID.
- **/
 Authentication.prototype.setLoggedInIndicator = function (contextid, loggedinindicatorregex, callback) {
   if (typeof callback === 'function') {
     this.api.request('/authentication/action/setLoggedInIndicator/', {'contextId' : contextid, 'loggedInIndicatorRegex' : loggedinindicatorregex}, callback);
@@ -108,9 +87,6 @@ Authentication.prototype.setLoggedInIndicator = function (contextid, loggedinind
   return this.api.requestPromise('/authentication/action/setLoggedInIndicator/', {'contextId' : contextid, 'loggedInIndicatorRegex' : loggedinindicatorregex});
 };
 
-/**
- * Sets the logged out indicator for the context with the given ID.
- **/
 Authentication.prototype.setLoggedOutIndicator = function (contextid, loggedoutindicatorregex, callback) {
   if (typeof callback === 'function') {
     this.api.request('/authentication/action/setLoggedOutIndicator/', {'contextId' : contextid, 'loggedOutIndicatorRegex' : loggedoutindicatorregex}, callback);

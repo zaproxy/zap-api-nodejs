@@ -39,17 +39,6 @@ Script.prototype.listEngines = function (callback) {
 };
 
 /**
- * Lists the script types available.
- **/
-Script.prototype.listTypes = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/script/view/listTypes/', callback);
-    return;
-  }
-  return this.api.requestPromise('/script/view/listTypes/');
-};
-
-/**
  * Lists the scripts available, with its engine, name, description, type and error state.
  **/
 Script.prototype.listScripts = function (callback) {
@@ -58,50 +47,6 @@ Script.prototype.listScripts = function (callback) {
     return;
   }
   return this.api.requestPromise('/script/view/listScripts/');
-};
-
-/**
- * Gets the value of the global variable with the given key. Returns an API error (DOES_NOT_EXIST) if no value was previously set.
- **/
-Script.prototype.globalVar = function (varkey, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/script/view/globalVar/', {'varKey' : varkey}, callback);
-    return;
-  }
-  return this.api.requestPromise('/script/view/globalVar/', {'varKey' : varkey});
-};
-
-/**
- * Gets all the global variables (key/value pairs).
- **/
-Script.prototype.globalVars = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/script/view/globalVars/', callback);
-    return;
-  }
-  return this.api.requestPromise('/script/view/globalVars/');
-};
-
-/**
- * Gets the value of the variable with the given key for the given script. Returns an API error (DOES_NOT_EXIST) if no script with the given name exists or if no value was previously set.
- **/
-Script.prototype.scriptVar = function (scriptname, varkey, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/script/view/scriptVar/', {'scriptName' : scriptname, 'varKey' : varkey}, callback);
-    return;
-  }
-  return this.api.requestPromise('/script/view/scriptVar/', {'scriptName' : scriptname, 'varKey' : varkey});
-};
-
-/**
- * Gets all the variables (key/value pairs) of the given script. Returns an API error (DOES_NOT_EXIST) if no script with the given name exists.
- **/
-Script.prototype.scriptVars = function (scriptname, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/script/view/scriptVars/', {'scriptName' : scriptname}, callback);
-    return;
-  }
-  return this.api.requestPromise('/script/view/scriptVars/', {'scriptName' : scriptname});
 };
 
 /**
@@ -156,7 +101,7 @@ Script.prototype.remove = function (scriptname, callback) {
 };
 
 /**
- * Runs the stand alone script with the given name
+ * Runs the stand alone script with the give name
  **/
 Script.prototype.runStandAloneScript = function (scriptname, callback) {
   if (typeof callback === 'function') {
@@ -164,80 +109,6 @@ Script.prototype.runStandAloneScript = function (scriptname, callback) {
     return;
   }
   return this.api.requestPromise('/script/action/runStandAloneScript/', {'scriptName' : scriptname});
-};
-
-/**
- * Clears the global variable with the given key.
- **/
-Script.prototype.clearGlobalVar = function (varkey, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/script/action/clearGlobalVar/', {'varKey' : varkey}, callback);
-    return;
-  }
-  return this.api.requestPromise('/script/action/clearGlobalVar/', {'varKey' : varkey});
-};
-
-/**
- * Clears the global variables.
- **/
-Script.prototype.clearGlobalVars = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/script/action/clearGlobalVars/', callback);
-    return;
-  }
-  return this.api.requestPromise('/script/action/clearGlobalVars/');
-};
-
-/**
- * Clears the variable with the given key of the given script. Returns an API error (DOES_NOT_EXIST) if no script with the given name exists.
- **/
-Script.prototype.clearScriptVar = function (scriptname, varkey, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/script/action/clearScriptVar/', {'scriptName' : scriptname, 'varKey' : varkey}, callback);
-    return;
-  }
-  return this.api.requestPromise('/script/action/clearScriptVar/', {'scriptName' : scriptname, 'varKey' : varkey});
-};
-
-/**
- * Clears the variables of the given script. Returns an API error (DOES_NOT_EXIST) if no script with the given name exists.
- **/
-Script.prototype.clearScriptVars = function (scriptname, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/script/action/clearScriptVars/', {'scriptName' : scriptname}, callback);
-    return;
-  }
-  return this.api.requestPromise('/script/action/clearScriptVars/', {'scriptName' : scriptname});
-};
-
-/**
- * Sets the value of the variable with the given key of the given script. Returns an API error (DOES_NOT_EXIST) if no script with the given name exists.
- **/
-Script.prototype.setScriptVar = function (scriptname, varkey, varvalue, callback) {
-  const params = {'scriptName' : scriptname, 'varKey' : varkey};
-  if (varvalue && varvalue !== null) {
-    params['varValue'] = varvalue;
-  }
-  if (typeof callback === 'function') {
-    this.api.request('/script/action/setScriptVar/', params, callback);
-    return;
-  }
-  return this.api.requestPromise('/script/action/setScriptVar/', params);
-};
-
-/**
- * Sets the value of the global variable with the given key.
- **/
-Script.prototype.setGlobalVar = function (varkey, varvalue, callback) {
-  const params = {'varKey' : varkey};
-  if (varvalue && varvalue !== null) {
-    params['varValue'] = varvalue;
-  }
-  if (typeof callback === 'function') {
-    this.api.request('/script/action/setGlobalVar/', params, callback);
-    return;
-  }
-  return this.api.requestPromise('/script/action/setGlobalVar/', params);
 };
 
 module.exports = Script;

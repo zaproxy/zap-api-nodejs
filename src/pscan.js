@@ -61,17 +61,6 @@ Pscan.prototype.scanners = function (callback) {
 };
 
 /**
- * Show information about the passive scan rule currently being run (if any).
- **/
-Pscan.prototype.currentRule = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/pscan/view/currentRule/', callback);
-    return;
-  }
-  return this.api.requestPromise('/pscan/view/currentRule/');
-};
-
-/**
  * Sets whether or not the passive scanning is enabled (Note: the enabled state is not persisted).
  **/
 Pscan.prototype.setEnabled = function (enabled, callback) {
