@@ -1,7 +1,7 @@
 <div align="center">
   <br/>
   <a href="https://github.com/zaproxy/zap-api-nodejs" title="zaproxy">
-    <img width=186px src="https://github.com/zaproxy/zap-api-nodejs/assets/images/ZapNodeApi.png" alt="zap-api-nodejs logo">
+    <img width=186px src="assets/images/ZapNodeApi.png" alt="zap-api-nodejs logo">
   </a>
   <br/>
 <br/>
