@@ -56,15 +56,14 @@ function ClientApi(options) {
   _.defaults(options, {
     proxy: 'http://127.0.0.1:8080'
   });
-  
-  if (!options.apiKey) throw new Error('An apiKey must be provided for the Zap API.');
 
   const requestOptions = {
     method: 'GET',
     json: true,
-    apiKey: options.apiKey,
     proxy: options.proxy
   };
+  
+  if (options.apiKey) requestOptions.headers = { 'X-ZAP-API-Key': options.apiKey };
 
   this.req = request.defaults(requestOptions);
   this.reqPromise = requestPromise.defaults(requestOptions);
