@@ -1,6 +1,19 @@
-# OWASP ZAP Node API
+<div align="center">
+  <br/>
+  <a href="https://github.com/zaproxy/zap-api-nodejs" title="zaproxy">
+    <img width=186px src="https://github.com/zaproxy/zap-api-nodejs/assets/images/ZapNodeApi.png" alt="zap-api-nodejs logo">
+  </a>
+  <br/>
+<br/>
+<h2>OWASP ZAP Node API</h2>
+<br/><br/>
 
-[![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
+<a href="https://www.apache.org/licenses/LICENSE-2.0.html" title="License">
+  <img src="https://img.shields.io/badge/license-Apache%202-4EB1BA.svg" alt="License"/>
+</a>
+
+<br/><br/><br/>
+</div>
 
 The NodeJS implementation to access the [OWASP ZAP API](https://github.com/zaproxy/zaproxy/wiki/ApiDetails). For more information
 about OWASP ZAP consult the (main) [OWASP ZAP project](https://github.com/zaproxy/zaproxy/).
