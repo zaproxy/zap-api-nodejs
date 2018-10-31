@@ -26,7 +26,7 @@ npm install zaproxy
 
 ## Usage
 
-By default Zap requires an API key to be sent with every request. This is done automatically providing you supply the same API key when you instantiate the `ZapClient` that you use to run Zap with. All following API requests will use this same API key.  
+By default Zap [requires an API key](https://github.com/zaproxy/zaproxy/wiki/FAQapikey) to be sent with every request. This is done automatically providing you supply the same API key when you instantiate the `ZapClient` that you use to run Zap with. All following API requests will use this same API key.  
 You can dissable the API key when running Zap if you are on a trusted network and understand the risks. If you choose to do so, you may omit the `apiKey` property of the `zapOptions` object supplied to `ZapClient`.
 
 ### Instantiate the client API:
