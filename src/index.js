@@ -21,7 +21,7 @@ const request = require('request');
 const requestPromise = require('request-promise-native');
 
 const Acsrf = require('./acsrf');
-// const AjaxSpider = require('./ajaxSpider');
+const AjaxSpider = require('./ajaxSpider');
 const Ascan = require('./ascan');
 const Authentication = require('./authentication');
 const Authorization = require('./authorization');
@@ -31,16 +31,23 @@ const Context = require('./context');
 const Core = require('./core');
 const ForcedUser = require('./forcedUser');
 const HttpSessions = require('./httpSessions');
-// const ImportLogFiles = require('./importLogFiles');
+const ImportLogFiles = require('./importLogFiles');
+const Importurls = require('./importurls');
+const Openapi = require('./openapi');
 const Params = require('./params');
-// const Pnh = require('./pnh');
+const Pnh = require('./pnh');
 const Pscan = require('./pscan');
+const Replacer = require('./replacer');
+const Reveal = require('./reveal');
 const Script = require('./script');
 const Search = require('./search');
+const Selenium = require('./selenium');
 const SessionManagement = require('./sessionManagement');
+const Soap = require('./soap');
 const Spider = require('./spider');
 const Stats = require('./stats');
 const Users = require('./users');
+const Websocket = require('./websocket');
 
 // base JSON api url
 const BASE = 'http://zap/JSON';
@@ -58,7 +65,7 @@ function ClientApi(options) {
   this.req = request.defaults(requestOptions);
   this.reqPromise = requestPromise.defaults(requestOptions);
   this.acsrf = new Acsrf(this);
-  // this.ajaxSpider = new AjaxSpider(this);
+  this.ajaxSpider = new AjaxSpider(this);
   this.ascan = new Ascan(this);
   this.authentication = new Authentication(this);
   this.authorization = new Authorization(this);
@@ -68,16 +75,23 @@ function ClientApi(options) {
   this.core = new Core(this);
   this.forcedUser = new ForcedUser(this);
   this.httpSessions = new HttpSessions(this);
-  // this.importLogFiles = new ImportLogFiles(this);
+  this.importLogFiles = new ImportLogFiles(this);
+  this.importurls = new Importurls(this);
+  this.openapi = new Openapi(this);
   this.params = new Params(this);
-  // this.pnh = new Pnh(this);
+  this.pnh = new Pnh(this);
   this.pscan = new Pscan(this);
+  this.replacer = new Replacer(this);
+  this.reveal = new Reveal(this);
   this.script = new Script(this);
   this.search = new Search(this);
+  this.selenium = new Selenium(this);
   this.sessionManagement = new SessionManagement(this);
+  this.soap = new Soap(this);
   this.spider = new Spider(this);
   this.stats = new Stats(this);
   this.users = new Users(this);
+  this.websocket = new Websocket(this);
 }
 
 // Legacy for callbacks.
