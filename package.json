@@ -1,0 +1,38 @@
+{
+  "name": "zaproxy",
+  "description": "ZAProxy Client API for Node.js",
+  "version": "0.3.0",
+  "homepage": "https://github.com/zaproxy/zap-api-nodejs",
+  "author": {
+    "name": "Kim Carter",
+    "email": "services@binarymist.net"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zaproxy/zap-api-nodejs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/zaproxy/zaproxy/issues"
+  },
+  "licenses": [
+    {
+      "type": "Apache",
+      "url": "https://github.com/zaproxy/zap-api-nodejs/blob/master/LICENSE"
+    }
+  ],
+  "main": "src/index.js",
+  "engines": {
+    "node": ">=8.6.0"
+  },
+  "dependencies": {
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.5"
+  },
+  "keywords": [
+    "zaproxy",
+    "api",
+    "wrapper",
+    "security",
+    "infosec"
+  ]
+}
