@@ -11,6 +11,9 @@
 <a href="https://www.apache.org/licenses/LICENSE-2.0.html" title="License">
   <img src="https://img.shields.io/badge/license-Apache%202-4EB1BA.svg" alt="License"/>
 </a>
+<a href="https://snyk.io/test/github/zaproxy/zap-api-nodejs?targetFile=package.json">
+  <img src="https://snyk.io/test/github/zaproxy/zap-api-nodejs/badge.svg?targetFile=package.json" alt="Known Vulnerabilities"/>
+</a>
 
 <br/><br/>
 </div>
