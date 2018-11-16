@@ -3,13 +3,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
-## [Unreleased] - Requiring major [semver](https://semver.org/) change
+## [1.0.0-rc.1] - 2018-11-16 - Requiring major [semver](https://semver.org/) change
 
 ### Added
 
 * Support for promises via [request-promise-native](https://github.com/request/request-promise-native), while retaining backwards compatibility for those wishing to use callbacks
-* Ability to add the `apiKey` once only when instantiating the `ZapClient`. See example in [README](https://github.com/zaproxy/zap-api-nodejs/README.md#instantiate-the-client-api)
-* Brand new [README](https://github.com/zaproxy/zap-api-nodejs/README.md)
+* Ability to add the `apiKey` once only when instantiating the `ZapClient`. See example in [README](README.md#instantiate-the-node-api)
+* Brand new [README](README.md)
 
 ### Changed
 
@@ -29,3 +29,5 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## 0.3.0 - 2017-12-04
 
+
+[1.0.0-rc.1]: https://github.com/zaproxy/zap-api-nodejs/compare/ccad7bac914e3572dba4e9d09fc2114bb5208d8d...v1.0.0-rc.1
