@@ -50,7 +50,8 @@ const Users = require('./users');
 const Websocket = require('./websocket');
 
 // base JSON api url
-const BASE = 'http://zap/JSON';
+const BASE_URL = process.env.ZAP_ENDPOINT | 'http://zap'
+const BASE = `${BASE_URL}/JSON`;
 // base OTHER api url
 const BASE_OTHER = 'http://zap/OTHER';
 
@@ -61,7 +62,7 @@ function ClientApi(options) {
     json: true,
     headers: options.apiKey ? { 'X-ZAP-API-Key': options.apiKey } : {}
   };
-  
+
   this.req = request.defaults(requestOptions);
   this.reqPromise = requestPromise.defaults(requestOptions);
   this.acsrf = new Acsrf(this);
