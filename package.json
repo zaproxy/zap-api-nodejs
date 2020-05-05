@@ -26,7 +26,8 @@
   },
   "dependencies": {
     "request": "^2.88.0",
-    "request-promise-native": "^1.0.5"
+    "request-promise-native": "^1.0.5",
+    "snyk": "^1.319.0"
   },
   "keywords": [
     "zaproxy",
@@ -34,5 +35,10 @@
     "wrapper",
     "security",
     "infosec"
-  ]
+  ],
+  "scripts": {
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
+  },
+  "snyk": true
 }
