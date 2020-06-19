@@ -81,9 +81,8 @@ The API key is no longer explicitly required on any Node API method invocations.
 
 For help using the OWASP ZAP API refer to:
 
-  * [Wiki](https://github.com/zaproxy/zaproxy/wiki/ApiDetails)
+  * [API Documentation](https://www.zaproxy.org/docs/api/);
   * [OWASP ZAP User Group](https://groups.google.com/group/zaproxy-users) - for asking questions;
-  * IRC: irc.mozilla.org #websectools (eg [using Mibbit](http://chat.mibbit.com/?server=irc.mozilla.org%3A%2B6697&channel=%23websectools)) - chat with core ZAP developers (European office hours usually best)
 
 For specific help with this Node API, contact [@binarymist](https://github.com/binarymist) (the maintainer).
   
