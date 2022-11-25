@@ -2,7 +2,7 @@
  *
  * ZAP is an HTTP/HTTPS proxy for assessing web application security.
  *
- * Copyright 2018 the ZAP development team
+ * Copyright 2022 the ZAP development team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -61,7 +61,7 @@ Stats.prototype.allSitesStats = function (keyprefix, callback) {
  * Gets all of the global statistics, optionally filtered by a key prefix
  **/
 Stats.prototype.siteStats = function (site, keyprefix, callback) {
-  const params = {'site' : site};
+  const params = {'site': site};
   if (keyprefix && keyprefix !== null) {
     params['keyPrefix'] = keyprefix;
   }
@@ -147,10 +147,10 @@ Stats.prototype.clearStats = function (keyprefix, callback) {
  **/
 Stats.prototype.setOptionStatsdHost = function (string, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/stats/action/setOptionStatsdHost/', {'String' : string}, callback);
+    this.api.request('/stats/action/setOptionStatsdHost/', {'String': string}, callback);
     return;
   }
-  return this.api.requestPromise('/stats/action/setOptionStatsdHost/', {'String' : string});
+  return this.api.requestPromise('/stats/action/setOptionStatsdHost/', {'String': string});
 };
 
 /**
@@ -158,10 +158,10 @@ Stats.prototype.setOptionStatsdHost = function (string, callback) {
  **/
 Stats.prototype.setOptionStatsdPrefix = function (string, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/stats/action/setOptionStatsdPrefix/', {'String' : string}, callback);
+    this.api.request('/stats/action/setOptionStatsdPrefix/', {'String': string}, callback);
     return;
   }
-  return this.api.requestPromise('/stats/action/setOptionStatsdPrefix/', {'String' : string});
+  return this.api.requestPromise('/stats/action/setOptionStatsdPrefix/', {'String': string});
 };
 
 /**
@@ -169,10 +169,10 @@ Stats.prototype.setOptionStatsdPrefix = function (string, callback) {
  **/
 Stats.prototype.setOptionInMemoryEnabled = function (bool, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/stats/action/setOptionInMemoryEnabled/', {'Boolean' : bool}, callback);
+    this.api.request('/stats/action/setOptionInMemoryEnabled/', {'Boolean': bool}, callback);
     return;
   }
-  return this.api.requestPromise('/stats/action/setOptionInMemoryEnabled/', {'Boolean' : bool});
+  return this.api.requestPromise('/stats/action/setOptionInMemoryEnabled/', {'Boolean': bool});
 };
 
 /**
@@ -180,10 +180,10 @@ Stats.prototype.setOptionInMemoryEnabled = function (bool, callback) {
  **/
 Stats.prototype.setOptionStatsdPort = function (integer, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/stats/action/setOptionStatsdPort/', {'Integer' : integer}, callback);
+    this.api.request('/stats/action/setOptionStatsdPort/', {'Integer': integer}, callback);
     return;
   }
-  return this.api.requestPromise('/stats/action/setOptionStatsdPort/', {'Integer' : integer});
+  return this.api.requestPromise('/stats/action/setOptionStatsdPort/', {'Integer': integer});
 };
 
 module.exports = Stats;

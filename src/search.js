@@ -2,7 +2,7 @@
  *
  * ZAP is an HTTP/HTTPS proxy for assessing web application security.
  *
- * Copyright 2018 the ZAP development team
+ * Copyright 2022 the ZAP development team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,8 +27,11 @@ function Search(clientApi) {
   this.api = clientApi;
 }
 
+/**
+ * Returns the URLs of the HTTP messages that match the given regular expression in the URL optionally filtered by URL and paginated with 'start' position and 'count' of messages.
+ **/
 Search.prototype.urlsByUrlRegex = function (regex, baseurl, start, count, callback) {
-  const params = {'regex' : regex};
+  const params = {'regex': regex};
   if (baseurl && baseurl !== null) {
     params['baseurl'] = baseurl;
   }
@@ -45,8 +48,11 @@ Search.prototype.urlsByUrlRegex = function (regex, baseurl, start, count, callba
   return this.api.requestPromise('/search/view/urlsByUrlRegex/', params);
 };
 
+/**
+ * Returns the URLs of the HTTP messages that match the given regular expression in the request optionally filtered by URL and paginated with 'start' position and 'count' of messages.
+ **/
 Search.prototype.urlsByRequestRegex = function (regex, baseurl, start, count, callback) {
-  const params = {'regex' : regex};
+  const params = {'regex': regex};
   if (baseurl && baseurl !== null) {
     params['baseurl'] = baseurl;
   }
@@ -63,8 +69,11 @@ Search.prototype.urlsByRequestRegex = function (regex, baseurl, start, count, ca
   return this.api.requestPromise('/search/view/urlsByRequestRegex/', params);
 };
 
+/**
+ * Returns the URLs of the HTTP messages that match the given regular expression in the response optionally filtered by URL and paginated with 'start' position and 'count' of messages.
+ **/
 Search.prototype.urlsByResponseRegex = function (regex, baseurl, start, count, callback) {
-  const params = {'regex' : regex};
+  const params = {'regex': regex};
   if (baseurl && baseurl !== null) {
     params['baseurl'] = baseurl;
   }
@@ -81,8 +90,11 @@ Search.prototype.urlsByResponseRegex = function (regex, baseurl, start, count, c
   return this.api.requestPromise('/search/view/urlsByResponseRegex/', params);
 };
 
+/**
+ * Returns the URLs of the HTTP messages that match the given regular expression in the header(s) optionally filtered by URL and paginated with 'start' position and 'count' of messages.
+ **/
 Search.prototype.urlsByHeaderRegex = function (regex, baseurl, start, count, callback) {
-  const params = {'regex' : regex};
+  const params = {'regex': regex};
   if (baseurl && baseurl !== null) {
     params['baseurl'] = baseurl;
   }
@@ -99,8 +111,11 @@ Search.prototype.urlsByHeaderRegex = function (regex, baseurl, start, count, cal
   return this.api.requestPromise('/search/view/urlsByHeaderRegex/', params);
 };
 
+/**
+ * Returns the HTTP messages that match the given regular expression in the URL optionally filtered by URL and paginated with 'start' position and 'count' of messages.
+ **/
 Search.prototype.messagesByUrlRegex = function (regex, baseurl, start, count, callback) {
-  const params = {'regex' : regex};
+  const params = {'regex': regex};
   if (baseurl && baseurl !== null) {
     params['baseurl'] = baseurl;
   }
@@ -117,8 +132,11 @@ Search.prototype.messagesByUrlRegex = function (regex, baseurl, start, count, ca
   return this.api.requestPromise('/search/view/messagesByUrlRegex/', params);
 };
 
+/**
+ * Returns the HTTP messages that match the given regular expression in the request optionally filtered by URL and paginated with 'start' position and 'count' of messages.
+ **/
 Search.prototype.messagesByRequestRegex = function (regex, baseurl, start, count, callback) {
-  const params = {'regex' : regex};
+  const params = {'regex': regex};
   if (baseurl && baseurl !== null) {
     params['baseurl'] = baseurl;
   }
@@ -135,8 +153,11 @@ Search.prototype.messagesByRequestRegex = function (regex, baseurl, start, count
   return this.api.requestPromise('/search/view/messagesByRequestRegex/', params);
 };
 
+/**
+ * Returns the HTTP messages that match the given regular expression in the response optionally filtered by URL and paginated with 'start' position and 'count' of messages.
+ **/
 Search.prototype.messagesByResponseRegex = function (regex, baseurl, start, count, callback) {
-  const params = {'regex' : regex};
+  const params = {'regex': regex};
   if (baseurl && baseurl !== null) {
     params['baseurl'] = baseurl;
   }
@@ -153,8 +174,11 @@ Search.prototype.messagesByResponseRegex = function (regex, baseurl, start, coun
   return this.api.requestPromise('/search/view/messagesByResponseRegex/', params);
 };
 
+/**
+ * Returns the HTTP messages that match the given regular expression in the header(s) optionally filtered by URL and paginated with 'start' position and 'count' of messages.
+ **/
 Search.prototype.messagesByHeaderRegex = function (regex, baseurl, start, count, callback) {
-  const params = {'regex' : regex};
+  const params = {'regex': regex};
   if (baseurl && baseurl !== null) {
     params['baseurl'] = baseurl;
   }
@@ -171,8 +195,11 @@ Search.prototype.messagesByHeaderRegex = function (regex, baseurl, start, count,
   return this.api.requestPromise('/search/view/messagesByHeaderRegex/', params);
 };
 
+/**
+ * Returns the HTTP messages, in HAR format, that match the given regular expression in the URL optionally filtered by URL and paginated with 'start' position and 'count' of messages.
+ **/
 Search.prototype.harByUrlRegex = function (regex, baseurl, start, count, callback) {
-  const params = {'regex' : regex};
+  const params = {'regex': regex};
   if (baseurl && baseurl !== null) {
     params['baseurl'] = baseurl;
   }
@@ -189,8 +216,11 @@ Search.prototype.harByUrlRegex = function (regex, baseurl, start, count, callbac
   return this.api.requestPromiseOther('/search/other/harByUrlRegex/', params);
 };
 
+/**
+ * Returns the HTTP messages, in HAR format, that match the given regular expression in the request optionally filtered by URL and paginated with 'start' position and 'count' of messages.
+ **/
 Search.prototype.harByRequestRegex = function (regex, baseurl, start, count, callback) {
-  const params = {'regex' : regex};
+  const params = {'regex': regex};
   if (baseurl && baseurl !== null) {
     params['baseurl'] = baseurl;
   }
@@ -207,8 +237,11 @@ Search.prototype.harByRequestRegex = function (regex, baseurl, start, count, cal
   return this.api.requestPromiseOther('/search/other/harByRequestRegex/', params);
 };
 
+/**
+ * Returns the HTTP messages, in HAR format, that match the given regular expression in the response optionally filtered by URL and paginated with 'start' position and 'count' of messages.
+ **/
 Search.prototype.harByResponseRegex = function (regex, baseurl, start, count, callback) {
-  const params = {'regex' : regex};
+  const params = {'regex': regex};
   if (baseurl && baseurl !== null) {
     params['baseurl'] = baseurl;
   }
@@ -225,8 +258,11 @@ Search.prototype.harByResponseRegex = function (regex, baseurl, start, count, ca
   return this.api.requestPromiseOther('/search/other/harByResponseRegex/', params);
 };
 
+/**
+ * Returns the HTTP messages, in HAR format, that match the given regular expression in the header(s) optionally filtered by URL and paginated with 'start' position and 'count' of messages.
+ **/
 Search.prototype.harByHeaderRegex = function (regex, baseurl, start, count, callback) {
-  const params = {'regex' : regex};
+  const params = {'regex': regex};
   if (baseurl && baseurl !== null) {
     params['baseurl'] = baseurl;
   }

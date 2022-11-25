@@ -2,7 +2,7 @@
  *
  * ZAP is an HTTP/HTTPS proxy for assessing web application security.
  *
- * Copyright 2018 the ZAP development team
+ * Copyright 2022 the ZAP development team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,17 +32,17 @@ function Authorization(clientApi) {
  **/
 Authorization.prototype.getAuthorizationDetectionMethod = function (contextid, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/authorization/view/getAuthorizationDetectionMethod/', {'contextId' : contextid}, callback);
+    this.api.request('/authorization/view/getAuthorizationDetectionMethod/', {'contextId': contextid}, callback);
     return;
   }
-  return this.api.requestPromise('/authorization/view/getAuthorizationDetectionMethod/', {'contextId' : contextid});
+  return this.api.requestPromise('/authorization/view/getAuthorizationDetectionMethod/', {'contextId': contextid});
 };
 
 /**
  * Sets the authorization detection method for a context as one that identifies un-authorized messages based on: the message's status code or a regex pattern in the response's header or body. Also, whether all conditions must match or just some can be specified via the logicalOperator parameter, which accepts two values: "AND" (default), "OR".  
  **/
 Authorization.prototype.setBasicAuthorizationDetectionMethod = function (contextid, headerregex, bodyregex, statuscode, logicaloperator, callback) {
-  const params = {'contextId' : contextid};
+  const params = {'contextId': contextid};
   if (headerregex && headerregex !== null) {
     params['headerRegex'] = headerregex;
   }

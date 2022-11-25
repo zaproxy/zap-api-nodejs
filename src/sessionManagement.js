@@ -2,7 +2,7 @@
  *
  * ZAP is an HTTP/HTTPS proxy for assessing web application security.
  *
- * Copyright 2018 the ZAP development team
+ * Copyright 2022 the ZAP development team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,9 @@ function SessionManagement(clientApi) {
   this.api = clientApi;
 }
 
+/**
+ * Gets the name of the session management methods.
+ **/
 SessionManagement.prototype.getSupportedSessionManagementMethods = function (callback) {
   if (typeof callback === 'function') {
     this.api.request('/sessionManagement/view/getSupportedSessionManagementMethods/', callback);
@@ -35,24 +38,33 @@ SessionManagement.prototype.getSupportedSessionManagementMethods = function (cal
   return this.api.requestPromise('/sessionManagement/view/getSupportedSessionManagementMethods/');
 };
 
+/**
+ * Gets the configuration parameters for the session management method with the given name.
+ **/
 SessionManagement.prototype.getSessionManagementMethodConfigParams = function (methodname, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/sessionManagement/view/getSessionManagementMethodConfigParams/', {'methodName' : methodname}, callback);
+    this.api.request('/sessionManagement/view/getSessionManagementMethodConfigParams/', {'methodName': methodname}, callback);
     return;
   }
-  return this.api.requestPromise('/sessionManagement/view/getSessionManagementMethodConfigParams/', {'methodName' : methodname});
+  return this.api.requestPromise('/sessionManagement/view/getSessionManagementMethodConfigParams/', {'methodName': methodname});
 };
 
+/**
+ * Gets the name of the session management method for the context with the given ID.
+ **/
 SessionManagement.prototype.getSessionManagementMethod = function (contextid, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/sessionManagement/view/getSessionManagementMethod/', {'contextId' : contextid}, callback);
+    this.api.request('/sessionManagement/view/getSessionManagementMethod/', {'contextId': contextid}, callback);
     return;
   }
-  return this.api.requestPromise('/sessionManagement/view/getSessionManagementMethod/', {'contextId' : contextid});
+  return this.api.requestPromise('/sessionManagement/view/getSessionManagementMethod/', {'contextId': contextid});
 };
 
+/**
+ * Sets the session management method for the context with the given ID.
+ **/
 SessionManagement.prototype.setSessionManagementMethod = function (contextid, methodname, methodconfigparams, callback) {
-  const params = {'contextId' : contextid, 'methodName' : methodname};
+  const params = {'contextId': contextid, 'methodName': methodname};
   if (methodconfigparams && methodconfigparams !== null) {
     params['methodConfigParams'] = methodconfigparams;
   }

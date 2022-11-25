@@ -2,7 +2,7 @@
  *
  * ZAP is an HTTP/HTTPS proxy for assessing web application security.
  *
- * Copyright 2018 the ZAP development team
+ * Copyright 2022 the ZAP development team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -43,10 +43,10 @@ ForcedUser.prototype.isForcedUserModeEnabled = function (callback) {
  **/
 ForcedUser.prototype.getForcedUser = function (contextid, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/forcedUser/view/getForcedUser/', {'contextId' : contextid}, callback);
+    this.api.request('/forcedUser/view/getForcedUser/', {'contextId': contextid}, callback);
     return;
   }
-  return this.api.requestPromise('/forcedUser/view/getForcedUser/', {'contextId' : contextid});
+  return this.api.requestPromise('/forcedUser/view/getForcedUser/', {'contextId': contextid});
 };
 
 /**
@@ -54,10 +54,10 @@ ForcedUser.prototype.getForcedUser = function (contextid, callback) {
  **/
 ForcedUser.prototype.setForcedUser = function (contextid, userid, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/forcedUser/action/setForcedUser/', {'contextId' : contextid, 'userId' : userid}, callback);
+    this.api.request('/forcedUser/action/setForcedUser/', {'contextId': contextid, 'userId': userid}, callback);
     return;
   }
-  return this.api.requestPromise('/forcedUser/action/setForcedUser/', {'contextId' : contextid, 'userId' : userid});
+  return this.api.requestPromise('/forcedUser/action/setForcedUser/', {'contextId': contextid, 'userId': userid});
 };
 
 /**
@@ -65,10 +65,10 @@ ForcedUser.prototype.setForcedUser = function (contextid, userid, callback) {
  **/
 ForcedUser.prototype.setForcedUserModeEnabled = function (bool, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/forcedUser/action/setForcedUserModeEnabled/', {'boolean' : bool}, callback);
+    this.api.request('/forcedUser/action/setForcedUserModeEnabled/', {'boolean': bool}, callback);
     return;
   }
-  return this.api.requestPromise('/forcedUser/action/setForcedUserModeEnabled/', {'boolean' : bool});
+  return this.api.requestPromise('/forcedUser/action/setForcedUserModeEnabled/', {'boolean': bool});
 };
 
 module.exports = ForcedUser;
