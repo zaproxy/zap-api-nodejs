@@ -2,7 +2,7 @@
  *
  * ZAP is an HTTP/HTTPS proxy for assessing web application security.
  *
- * Copyright 2018 the ZAP development team
+ * Copyright 2022 the ZAP development team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,14 +28,267 @@ function Core(clientApi) {
 }
 
 /**
+ * Gets the name of the hosts accessed through/by ZAP
+ **/
+Core.prototype.hosts = function (callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/core/view/hosts/', callback);
+    return;
+  }
+  return this.api.requestPromise('/core/view/hosts/');
+};
+
+/**
+ * Gets the sites accessed through/by ZAP (scheme and domain)
+ **/
+Core.prototype.sites = function (callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/core/view/sites/', callback);
+    return;
+  }
+  return this.api.requestPromise('/core/view/sites/');
+};
+
+/**
+ * Gets the URLs accessed through/by ZAP, optionally filtering by (base) URL.
+ **/
+Core.prototype.urls = function (baseurl, callback) {
+  const params = {};
+  if (baseurl && baseurl !== null) {
+    params['baseurl'] = baseurl;
+  }
+  if (typeof callback === 'function') {
+    this.api.request('/core/view/urls/', params, callback);
+    return;
+  }
+  return this.api.requestPromise('/core/view/urls/', params);
+};
+
+/**
+ * Gets the child nodes underneath the specified URL in the Sites tree
+ **/
+Core.prototype.childNodes = function (url, callback) {
+  const params = {};
+  if (url && url !== null) {
+    params['url'] = url;
+  }
+  if (typeof callback === 'function') {
+    this.api.request('/core/view/childNodes/', params, callback);
+    return;
+  }
+  return this.api.requestPromise('/core/view/childNodes/', params);
+};
+
+/**
+ * Gets the HTTP message with the given ID. Returns the ID, request/response headers and bodies, cookies, note, type, RTT, and timestamp.
+ **/
+Core.prototype.message = function (id, callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/core/view/message/', {'id': id}, callback);
+    return;
+  }
+  return this.api.requestPromise('/core/view/message/', {'id': id});
+};
+
+/**
+ * Gets the HTTP messages sent by ZAP, request and response, optionally filtered by URL and paginated with 'start' position and 'count' of messages
+ **/
+Core.prototype.messages = function (baseurl, start, count, callback) {
+  const params = {};
+  if (baseurl && baseurl !== null) {
+    params['baseurl'] = baseurl;
+  }
+  if (start && start !== null) {
+    params['start'] = start;
+  }
+  if (count && count !== null) {
+    params['count'] = count;
+  }
+  if (typeof callback === 'function') {
+    this.api.request('/core/view/messages/', params, callback);
+    return;
+  }
+  return this.api.requestPromise('/core/view/messages/', params);
+};
+
+/**
+ * Gets the HTTP messages with the given IDs.
+ **/
+Core.prototype.messagesById = function (ids, callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/core/view/messagesById/', {'ids': ids}, callback);
+    return;
+  }
+  return this.api.requestPromise('/core/view/messagesById/', {'ids': ids});
+};
+
+/**
+ * Gets the number of messages, optionally filtering by URL
+ **/
+Core.prototype.numberOfMessages = function (baseurl, callback) {
+  const params = {};
+  if (baseurl && baseurl !== null) {
+    params['baseurl'] = baseurl;
+  }
+  if (typeof callback === 'function') {
+    this.api.request('/core/view/numberOfMessages/', params, callback);
+    return;
+  }
+  return this.api.requestPromise('/core/view/numberOfMessages/', params);
+};
+
+/**
+ * Gets the mode
+ **/
+Core.prototype.mode = function (callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/core/view/mode/', callback);
+    return;
+  }
+  return this.api.requestPromise('/core/view/mode/');
+};
+
+/**
+ * Gets ZAP version
+ **/
+Core.prototype.version = function (callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/core/view/version/', callback);
+    return;
+  }
+  return this.api.requestPromise('/core/view/version/');
+};
+
+/**
+ * Gets the regular expressions, applied to URLs, to exclude from the local proxies.
+ **/
+Core.prototype.excludedFromProxy = function (callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/core/view/excludedFromProxy/', callback);
+    return;
+  }
+  return this.api.requestPromise('/core/view/excludedFromProxy/');
+};
+
+/**
+ * Gets the location of the current session file
+ **/
+Core.prototype.sessionLocation = function (callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/core/view/sessionLocation/', callback);
+    return;
+  }
+  return this.api.requestPromise('/core/view/sessionLocation/');
+};
+
+/**
+ * Gets all the domains that are excluded from the outgoing proxy. For each domain the following are shown: the index, the value (domain), if enabled, and if specified as a regex.
+ **/
+Core.prototype.proxyChainExcludedDomains = function (callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/core/view/proxyChainExcludedDomains/', callback);
+    return;
+  }
+  return this.api.requestPromise('/core/view/proxyChainExcludedDomains/');
+};
+
+/**
+ * Gets the path to ZAP's home directory.
+ **/
+Core.prototype.zapHomePath = function (callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/core/view/zapHomePath/', callback);
+    return;
+  }
+  return this.api.requestPromise('/core/view/zapHomePath/');
+};
+
+/**
+ * Gets the maximum number of alert instances to include in a report.
+ **/
+Core.prototype.optionMaximumAlertInstances = function (callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/core/view/optionMaximumAlertInstances/', callback);
+    return;
+  }
+  return this.api.requestPromise('/core/view/optionMaximumAlertInstances/');
+};
+
+/**
+ * Gets whether or not related alerts will be merged in any reports generated.
+ **/
+Core.prototype.optionMergeRelatedAlerts = function (callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/core/view/optionMergeRelatedAlerts/', callback);
+    return;
+  }
+  return this.api.requestPromise('/core/view/optionMergeRelatedAlerts/');
+};
+
+/**
+ * Gets the path to the file with alert overrides.
+ **/
+Core.prototype.optionAlertOverridesFilePath = function (callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/core/view/optionAlertOverridesFilePath/', callback);
+    return;
+  }
+  return this.api.requestPromise('/core/view/optionAlertOverridesFilePath/');
+};
+
+/**
+ * 
+ **/
+Core.prototype.homeDirectory = function (callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/core/view/homeDirectory/', callback);
+    return;
+  }
+  return this.api.requestPromise('/core/view/homeDirectory/');
+};
+
+/**
+ * Use view proxyChainExcludedDomains instead.
+ **/
+Core.prototype.optionProxyChainSkipName = function (callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/core/view/optionProxyChainSkipName/', callback);
+    return;
+  }
+  return this.api.requestPromise('/core/view/optionProxyChainSkipName/');
+};
+
+/**
+ * Use view proxyChainExcludedDomains instead.
+ **/
+Core.prototype.optionProxyExcludedDomains = function (callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/core/view/optionProxyExcludedDomains/', callback);
+    return;
+  }
+  return this.api.requestPromise('/core/view/optionProxyExcludedDomains/');
+};
+
+/**
+ * Use view proxyChainExcludedDomains instead.
+ **/
+Core.prototype.optionProxyExcludedDomainsEnabled = function (callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/core/view/optionProxyExcludedDomainsEnabled/', callback);
+    return;
+  }
+  return this.api.requestPromise('/core/view/optionProxyExcludedDomainsEnabled/');
+};
+
+/**
  * Gets the alert with the given ID, the corresponding HTTP message can be obtained with the 'messageId' field and 'message' API method
  **/
 Core.prototype.alert = function (id, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/core/view/alert/', {'id' : id}, callback);
+    this.api.request('/core/view/alert/', {'id': id}, callback);
     return;
   }
-  return this.api.requestPromise('/core/view/alert/', {'id' : id});
+  return this.api.requestPromise('/core/view/alert/', {'id': id});
 };
 
 /**
@@ -96,241 +349,6 @@ Core.prototype.numberOfAlerts = function (baseurl, riskid, callback) {
 };
 
 /**
- * Gets the name of the hosts accessed through/by ZAP
- **/
-Core.prototype.hosts = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/core/view/hosts/', callback);
-    return;
-  }
-  return this.api.requestPromise('/core/view/hosts/');
-};
-
-/**
- * Gets the sites accessed through/by ZAP (scheme and domain)
- **/
-Core.prototype.sites = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/core/view/sites/', callback);
-    return;
-  }
-  return this.api.requestPromise('/core/view/sites/');
-};
-
-/**
- * Gets the URLs accessed through/by ZAP, optionally filtering by (base) URL.
- **/
-Core.prototype.urls = function (baseurl, callback) {
-  const params = {};
-  if (baseurl && baseurl !== null) {
-    params['baseurl'] = baseurl;
-  }
-  if (typeof callback === 'function') {
-    this.api.request('/core/view/urls/', params, callback);
-    return;
-  }
-  return this.api.requestPromise('/core/view/urls/', params);
-};
-
-/**
- * Gets the HTTP message with the given ID. Returns the ID, request/response headers and bodies, cookies, note, type, RTT, and timestamp.
- **/
-Core.prototype.message = function (id, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/core/view/message/', {'id' : id}, callback);
-    return;
-  }
-  return this.api.requestPromise('/core/view/message/', {'id' : id});
-};
-
-/**
- * Gets the HTTP messages sent by ZAP, request and response, optionally filtered by URL and paginated with 'start' position and 'count' of messages
- **/
-Core.prototype.messages = function (baseurl, start, count, callback) {
-  const params = {};
-  if (baseurl && baseurl !== null) {
-    params['baseurl'] = baseurl;
-  }
-  if (start && start !== null) {
-    params['start'] = start;
-  }
-  if (count && count !== null) {
-    params['count'] = count;
-  }
-  if (typeof callback === 'function') {
-    this.api.request('/core/view/messages/', params, callback);
-    return;
-  }
-  return this.api.requestPromise('/core/view/messages/', params);
-};
-
-/**
- * Gets the HTTP messages with the given IDs.
- **/
-Core.prototype.messagesById = function (ids, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/core/view/messagesById/', {'ids' : ids}, callback);
-    return;
-  }
-  return this.api.requestPromise('/core/view/messagesById/', {'ids' : ids});
-};
-
-/**
- * Gets the number of messages, optionally filtering by URL
- **/
-Core.prototype.numberOfMessages = function (baseurl, callback) {
-  const params = {};
-  if (baseurl && baseurl !== null) {
-    params['baseurl'] = baseurl;
-  }
-  if (typeof callback === 'function') {
-    this.api.request('/core/view/numberOfMessages/', params, callback);
-    return;
-  }
-  return this.api.requestPromise('/core/view/numberOfMessages/', params);
-};
-
-/**
- * Gets the mode
- **/
-Core.prototype.mode = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/core/view/mode/', callback);
-    return;
-  }
-  return this.api.requestPromise('/core/view/mode/');
-};
-
-/**
- * Gets ZAP version
- **/
-Core.prototype.version = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/core/view/version/', callback);
-    return;
-  }
-  return this.api.requestPromise('/core/view/version/');
-};
-
-/**
- * Gets the regular expressions, applied to URLs, to exclude from the local proxies.
- **/
-Core.prototype.excludedFromProxy = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/core/view/excludedFromProxy/', callback);
-    return;
-  }
-  return this.api.requestPromise('/core/view/excludedFromProxy/');
-};
-
-Core.prototype.homeDirectory = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/core/view/homeDirectory/', callback);
-    return;
-  }
-  return this.api.requestPromise('/core/view/homeDirectory/');
-};
-
-/**
- * Gets the location of the current session file
- **/
-Core.prototype.sessionLocation = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/core/view/sessionLocation/', callback);
-    return;
-  }
-  return this.api.requestPromise('/core/view/sessionLocation/');
-};
-
-/**
- * Gets all the domains that are excluded from the outgoing proxy. For each domain the following are shown: the index, the value (domain), if enabled, and if specified as a regex.
- **/
-Core.prototype.proxyChainExcludedDomains = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/core/view/proxyChainExcludedDomains/', callback);
-    return;
-  }
-  return this.api.requestPromise('/core/view/proxyChainExcludedDomains/');
-};
-
-/**
- * Use view proxyChainExcludedDomains instead.
- **/
-Core.prototype.optionProxyChainSkipName = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/core/view/optionProxyChainSkipName/', callback);
-    return;
-  }
-  return this.api.requestPromise('/core/view/optionProxyChainSkipName/');
-};
-
-/**
- * Use view proxyChainExcludedDomains instead.
- **/
-Core.prototype.optionProxyExcludedDomains = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/core/view/optionProxyExcludedDomains/', callback);
-    return;
-  }
-  return this.api.requestPromise('/core/view/optionProxyExcludedDomains/');
-};
-
-/**
- * Use view proxyChainExcludedDomains instead.
- **/
-Core.prototype.optionProxyExcludedDomainsEnabled = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/core/view/optionProxyExcludedDomainsEnabled/', callback);
-    return;
-  }
-  return this.api.requestPromise('/core/view/optionProxyExcludedDomainsEnabled/');
-};
-
-/**
- * Gets the path to ZAP's home directory.
- **/
-Core.prototype.zapHomePath = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/core/view/zapHomePath/', callback);
-    return;
-  }
-  return this.api.requestPromise('/core/view/zapHomePath/');
-};
-
-/**
- * Gets the maximum number of alert instances to include in a report.
- **/
-Core.prototype.optionMaximumAlertInstances = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/core/view/optionMaximumAlertInstances/', callback);
-    return;
-  }
-  return this.api.requestPromise('/core/view/optionMaximumAlertInstances/');
-};
-
-/**
- * Gets whether or not related alerts will be merged in any reports generated.
- **/
-Core.prototype.optionMergeRelatedAlerts = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/core/view/optionMergeRelatedAlerts/', callback);
-    return;
-  }
-  return this.api.requestPromise('/core/view/optionMergeRelatedAlerts/');
-};
-
-/**
- * Gets the path to the file with alert overrides.
- **/
-Core.prototype.optionAlertOverridesFilePath = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/core/view/optionAlertOverridesFilePath/', callback);
-    return;
-  }
-  return this.api.requestPromise('/core/view/optionAlertOverridesFilePath/');
-};
-
-/**
  * Gets the user agent that ZAP should use when creating HTTP messages (for example, spider messages or CONNECT requests to outgoing proxy).
  **/
 Core.prototype.optionDefaultUserAgent = function (callback) {
@@ -352,6 +370,9 @@ Core.prototype.optionDnsTtlSuccessfulQueries = function (callback) {
   return this.api.requestPromise('/core/view/optionDnsTtlSuccessfulQueries/');
 };
 
+/**
+ * 
+ **/
 Core.prototype.optionHttpState = function (callback) {
   if (typeof callback === 'function') {
     this.api.request('/core/view/optionHttpState/', callback);
@@ -360,54 +381,9 @@ Core.prototype.optionHttpState = function (callback) {
   return this.api.requestPromise('/core/view/optionHttpState/');
 };
 
-Core.prototype.optionProxyChainName = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/core/view/optionProxyChainName/', callback);
-    return;
-  }
-  return this.api.requestPromise('/core/view/optionProxyChainName/');
-};
-
-Core.prototype.optionProxyChainPassword = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/core/view/optionProxyChainPassword/', callback);
-    return;
-  }
-  return this.api.requestPromise('/core/view/optionProxyChainPassword/');
-};
-
-Core.prototype.optionProxyChainPort = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/core/view/optionProxyChainPort/', callback);
-    return;
-  }
-  return this.api.requestPromise('/core/view/optionProxyChainPort/');
-};
-
-Core.prototype.optionProxyChainRealm = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/core/view/optionProxyChainRealm/', callback);
-    return;
-  }
-  return this.api.requestPromise('/core/view/optionProxyChainRealm/');
-};
-
-Core.prototype.optionProxyChainUserName = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/core/view/optionProxyChainUserName/', callback);
-    return;
-  }
-  return this.api.requestPromise('/core/view/optionProxyChainUserName/');
-};
-
-Core.prototype.optionTimeoutInSecs = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/core/view/optionTimeoutInSecs/', callback);
-    return;
-  }
-  return this.api.requestPromise('/core/view/optionTimeoutInSecs/');
-};
-
+/**
+ * 
+ **/
 Core.prototype.optionHttpStateEnabled = function (callback) {
   if (typeof callback === 'function') {
     this.api.request('/core/view/optionHttpStateEnabled/', callback);
@@ -416,6 +392,42 @@ Core.prototype.optionHttpStateEnabled = function (callback) {
   return this.api.requestPromise('/core/view/optionHttpStateEnabled/');
 };
 
+/**
+ * 
+ **/
+Core.prototype.optionProxyChainName = function (callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/core/view/optionProxyChainName/', callback);
+    return;
+  }
+  return this.api.requestPromise('/core/view/optionProxyChainName/');
+};
+
+/**
+ * 
+ **/
+Core.prototype.optionProxyChainPassword = function (callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/core/view/optionProxyChainPassword/', callback);
+    return;
+  }
+  return this.api.requestPromise('/core/view/optionProxyChainPassword/');
+};
+
+/**
+ * 
+ **/
+Core.prototype.optionProxyChainPort = function (callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/core/view/optionProxyChainPort/', callback);
+    return;
+  }
+  return this.api.requestPromise('/core/view/optionProxyChainPort/');
+};
+
+/**
+ * 
+ **/
 Core.prototype.optionProxyChainPrompt = function (callback) {
   if (typeof callback === 'function') {
     this.api.request('/core/view/optionProxyChainPrompt/', callback);
@@ -424,6 +436,31 @@ Core.prototype.optionProxyChainPrompt = function (callback) {
   return this.api.requestPromise('/core/view/optionProxyChainPrompt/');
 };
 
+/**
+ * 
+ **/
+Core.prototype.optionProxyChainRealm = function (callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/core/view/optionProxyChainRealm/', callback);
+    return;
+  }
+  return this.api.requestPromise('/core/view/optionProxyChainRealm/');
+};
+
+/**
+ * 
+ **/
+Core.prototype.optionProxyChainUserName = function (callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/core/view/optionProxyChainUserName/', callback);
+    return;
+  }
+  return this.api.requestPromise('/core/view/optionProxyChainUserName/');
+};
+
+/**
+ * 
+ **/
 Core.prototype.optionSingleCookieRequestHeader = function (callback) {
   if (typeof callback === 'function') {
     this.api.request('/core/view/optionSingleCookieRequestHeader/', callback);
@@ -432,6 +469,20 @@ Core.prototype.optionSingleCookieRequestHeader = function (callback) {
   return this.api.requestPromise('/core/view/optionSingleCookieRequestHeader/');
 };
 
+/**
+ * Gets the connection time out (in seconds).
+ **/
+Core.prototype.optionTimeoutInSecs = function (callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/core/view/optionTimeoutInSecs/', callback);
+    return;
+  }
+  return this.api.requestPromise('/core/view/optionTimeoutInSecs/');
+};
+
+/**
+ * 
+ **/
 Core.prototype.optionUseProxyChain = function (callback) {
   if (typeof callback === 'function') {
     this.api.request('/core/view/optionUseProxyChain/', callback);
@@ -440,6 +491,9 @@ Core.prototype.optionUseProxyChain = function (callback) {
   return this.api.requestPromise('/core/view/optionUseProxyChain/');
 };
 
+/**
+ * 
+ **/
 Core.prototype.optionUseProxyChainAuth = function (callback) {
   if (typeof callback === 'function') {
     this.api.request('/core/view/optionUseProxyChainAuth/', callback);
@@ -449,10 +503,21 @@ Core.prototype.optionUseProxyChainAuth = function (callback) {
 };
 
 /**
+ * Gets whether or not the SOCKS proxy should be used.
+ **/
+Core.prototype.optionUseSocksProxy = function (callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/core/view/optionUseSocksProxy/', callback);
+    return;
+  }
+  return this.api.requestPromise('/core/view/optionUseSocksProxy/');
+};
+
+/**
  * Convenient and simple action to access a URL, optionally following redirections. Returns the request sent and response received and followed redirections, if any. Other actions are available which offer more control on what is sent, like, 'sendRequest' or 'sendHarRequest'.
  **/
 Core.prototype.accessUrl = function (url, followredirects, callback) {
-  const params = {'url' : url};
+  const params = {'url': url};
   if (followredirects && followredirects !== null) {
     params['followRedirects'] = followredirects;
   }
@@ -497,17 +562,17 @@ Core.prototype.newSession = function (name, overwrite, callback) {
  **/
 Core.prototype.loadSession = function (name, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/core/action/loadSession/', {'name' : name}, callback);
+    this.api.request('/core/action/loadSession/', {'name': name}, callback);
     return;
   }
-  return this.api.requestPromise('/core/action/loadSession/', {'name' : name});
+  return this.api.requestPromise('/core/action/loadSession/', {'name': name});
 };
 
 /**
- * Saves the session with the name supplied, optionally overwriting existing files. If a relative path is specified it will be resolved against the "session" directory in ZAP "home" dir.
+ * Saves the session.
  **/
 Core.prototype.saveSession = function (name, overwrite, callback) {
-  const params = {'name' : name};
+  const params = {'name': name};
   if (overwrite && overwrite !== null) {
     params['overwrite'] = overwrite;
   }
@@ -518,12 +583,22 @@ Core.prototype.saveSession = function (name, overwrite, callback) {
   return this.api.requestPromise('/core/action/saveSession/', params);
 };
 
-Core.prototype.snapshotSession = function (callback) {
+/**
+ * Snapshots the session, optionally with the given name, and overwriting existing files. If no name is specified the name of the current session with a timestamp appended is used. If a relative path is specified it will be resolved against the "session" directory in ZAP "home" dir.
+ **/
+Core.prototype.snapshotSession = function (name, overwrite, callback) {
+  const params = {};
+  if (name && name !== null) {
+    params['name'] = name;
+  }
+  if (overwrite && overwrite !== null) {
+    params['overwrite'] = overwrite;
+  }
   if (typeof callback === 'function') {
-    this.api.request('/core/action/snapshotSession/', callback);
+    this.api.request('/core/action/snapshotSession/', params, callback);
     return;
   }
-  return this.api.requestPromise('/core/action/snapshotSession/');
+  return this.api.requestPromise('/core/action/snapshotSession/', params);
 };
 
 /**
@@ -542,18 +617,21 @@ Core.prototype.clearExcludedFromProxy = function (callback) {
  **/
 Core.prototype.excludeFromProxy = function (regex, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/core/action/excludeFromProxy/', {'regex' : regex}, callback);
+    this.api.request('/core/action/excludeFromProxy/', {'regex': regex}, callback);
     return;
   }
-  return this.api.requestPromise('/core/action/excludeFromProxy/', {'regex' : regex});
+  return this.api.requestPromise('/core/action/excludeFromProxy/', {'regex': regex});
 };
 
+/**
+ * 
+ **/
 Core.prototype.setHomeDirectory = function (dir, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/core/action/setHomeDirectory/', {'dir' : dir}, callback);
+    this.api.request('/core/action/setHomeDirectory/', {'dir': dir}, callback);
     return;
   }
-  return this.api.requestPromise('/core/action/setHomeDirectory/', {'dir' : dir});
+  return this.api.requestPromise('/core/action/setHomeDirectory/', {'dir': dir});
 };
 
 /**
@@ -561,10 +639,10 @@ Core.prototype.setHomeDirectory = function (dir, callback) {
  **/
 Core.prototype.setMode = function (mode, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/core/action/setMode/', {'mode' : mode}, callback);
+    this.api.request('/core/action/setMode/', {'mode': mode}, callback);
     return;
   }
-  return this.api.requestPromise('/core/action/setMode/', {'mode' : mode});
+  return this.api.requestPromise('/core/action/setMode/', {'mode': mode});
 };
 
 /**
@@ -582,7 +660,7 @@ Core.prototype.generateRootCA = function (callback) {
  * Sends the HTTP request, optionally following redirections. Returns the request sent and response received and followed redirections, if any. The Mode is enforced when sending the request (and following redirections), custom manual requests are not allowed in 'Safe' mode nor in 'Protected' mode if out of scope.
  **/
 Core.prototype.sendRequest = function (request, followredirects, callback) {
-  const params = {'request' : request};
+  const params = {'request': request};
   if (followredirects && followredirects !== null) {
     params['followRedirects'] = followredirects;
   }
@@ -594,27 +672,8 @@ Core.prototype.sendRequest = function (request, followredirects, callback) {
 };
 
 /**
- * Deletes all alerts of the current session.
+ * 
  **/
-Core.prototype.deleteAllAlerts = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/core/action/deleteAllAlerts/', callback);
-    return;
-  }
-  return this.api.requestPromise('/core/action/deleteAllAlerts/');
-};
-
-/**
- * Deletes the alert with the given ID. 
- **/
-Core.prototype.deleteAlert = function (id, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/core/action/deleteAlert/', {'id' : id}, callback);
-    return;
-  }
-  return this.api.requestPromise('/core/action/deleteAlert/', {'id' : id});
-};
-
 Core.prototype.runGarbageCollection = function (callback) {
   if (typeof callback === 'function') {
     this.api.request('/core/action/runGarbageCollection/', callback);
@@ -627,7 +686,7 @@ Core.prototype.runGarbageCollection = function (callback) {
  * Deletes the site node found in the Sites Tree on the basis of the URL, HTTP method, and post data (if applicable and specified). 
  **/
 Core.prototype.deleteSiteNode = function (url, method, postdata, callback) {
-  const params = {'url' : url};
+  const params = {'url': url};
   if (method && method !== null) {
     params['method'] = method;
   }
@@ -645,7 +704,7 @@ Core.prototype.deleteSiteNode = function (url, method, postdata, callback) {
  * Adds a domain to be excluded from the outgoing proxy, using the specified value. Optionally sets if the new entry is enabled (default, true) and whether or not the new value is specified as a regex (default, false).
  **/
 Core.prototype.addProxyChainExcludedDomain = function (value, isregex, isenabled, callback) {
-  const params = {'value' : value};
+  const params = {'value': value};
   if (isregex && isregex !== null) {
     params['isRegex'] = isregex;
   }
@@ -663,7 +722,7 @@ Core.prototype.addProxyChainExcludedDomain = function (value, isregex, isenabled
  * Modifies a domain excluded from the outgoing proxy. Allows to modify the value, if enabled or if a regex. The domain is selected with its index, which can be obtained with the view proxyChainExcludedDomains.
  **/
 Core.prototype.modifyProxyChainExcludedDomain = function (idx, value, isregex, isenabled, callback) {
-  const params = {'idx' : idx};
+  const params = {'idx': idx};
   if (value && value !== null) {
     params['value'] = value;
   }
@@ -685,10 +744,10 @@ Core.prototype.modifyProxyChainExcludedDomain = function (idx, value, isregex, i
  **/
 Core.prototype.removeProxyChainExcludedDomain = function (idx, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/core/action/removeProxyChainExcludedDomain/', {'idx' : idx}, callback);
+    this.api.request('/core/action/removeProxyChainExcludedDomain/', {'idx': idx}, callback);
     return;
   }
-  return this.api.requestPromise('/core/action/removeProxyChainExcludedDomain/', {'idx' : idx});
+  return this.api.requestPromise('/core/action/removeProxyChainExcludedDomain/', {'idx': idx});
 };
 
 /**
@@ -718,10 +777,10 @@ Core.prototype.disableAllProxyChainExcludedDomains = function (callback) {
  **/
 Core.prototype.setOptionMaximumAlertInstances = function (numberofinstances, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/core/action/setOptionMaximumAlertInstances/', {'numberOfInstances' : numberofinstances}, callback);
+    this.api.request('/core/action/setOptionMaximumAlertInstances/', {'numberOfInstances': numberofinstances}, callback);
     return;
   }
-  return this.api.requestPromise('/core/action/setOptionMaximumAlertInstances/', {'numberOfInstances' : numberofinstances});
+  return this.api.requestPromise('/core/action/setOptionMaximumAlertInstances/', {'numberOfInstances': numberofinstances});
 };
 
 /**
@@ -729,10 +788,10 @@ Core.prototype.setOptionMaximumAlertInstances = function (numberofinstances, cal
  **/
 Core.prototype.setOptionMergeRelatedAlerts = function (enabled, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/core/action/setOptionMergeRelatedAlerts/', {'enabled' : enabled}, callback);
+    this.api.request('/core/action/setOptionMergeRelatedAlerts/', {'enabled': enabled}, callback);
     return;
   }
-  return this.api.requestPromise('/core/action/setOptionMergeRelatedAlerts/', {'enabled' : enabled});
+  return this.api.requestPromise('/core/action/setOptionMergeRelatedAlerts/', {'enabled': enabled});
 };
 
 /**
@@ -751,57 +810,62 @@ Core.prototype.setOptionAlertOverridesFilePath = function (filepath, callback) {
 };
 
 /**
+ * Enables use of a PKCS12 client certificate for the certificate with the given file system path, password, and optional index.
+ **/
+Core.prototype.enablePKCS12ClientCertificate = function (filepath, password, index, callback) {
+  const params = {'filePath': filepath, 'password': password};
+  if (index && index !== null) {
+    params['index'] = index;
+  }
+  if (typeof callback === 'function') {
+    this.api.request('/core/action/enablePKCS12ClientCertificate/', params, callback);
+    return;
+  }
+  return this.api.requestPromise('/core/action/enablePKCS12ClientCertificate/', params);
+};
+
+/**
+ * Disables the option for use of client certificates.
+ **/
+Core.prototype.disableClientCertificate = function (callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/core/action/disableClientCertificate/', callback);
+    return;
+  }
+  return this.api.requestPromise('/core/action/disableClientCertificate/');
+};
+
+/**
+ * Deletes all alerts of the current session.
+ **/
+Core.prototype.deleteAllAlerts = function (callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/core/action/deleteAllAlerts/', callback);
+    return;
+  }
+  return this.api.requestPromise('/core/action/deleteAllAlerts/');
+};
+
+/**
+ * Deletes the alert with the given ID. 
+ **/
+Core.prototype.deleteAlert = function (id, callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/core/action/deleteAlert/', {'id': id}, callback);
+    return;
+  }
+  return this.api.requestPromise('/core/action/deleteAlert/', {'id': id});
+};
+
+/**
  * Sets the user agent that ZAP should use when creating HTTP messages (for example, spider messages or CONNECT requests to outgoing proxy).
  **/
 Core.prototype.setOptionDefaultUserAgent = function (string, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/core/action/setOptionDefaultUserAgent/', {'String' : string}, callback);
+    this.api.request('/core/action/setOptionDefaultUserAgent/', {'String': string}, callback);
     return;
   }
-  return this.api.requestPromise('/core/action/setOptionDefaultUserAgent/', {'String' : string});
-};
-
-Core.prototype.setOptionProxyChainName = function (string, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/core/action/setOptionProxyChainName/', {'String' : string}, callback);
-    return;
-  }
-  return this.api.requestPromise('/core/action/setOptionProxyChainName/', {'String' : string});
-};
-
-Core.prototype.setOptionProxyChainPassword = function (string, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/core/action/setOptionProxyChainPassword/', {'String' : string}, callback);
-    return;
-  }
-  return this.api.requestPromise('/core/action/setOptionProxyChainPassword/', {'String' : string});
-};
-
-Core.prototype.setOptionProxyChainRealm = function (string, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/core/action/setOptionProxyChainRealm/', {'String' : string}, callback);
-    return;
-  }
-  return this.api.requestPromise('/core/action/setOptionProxyChainRealm/', {'String' : string});
-};
-
-/**
- * Use actions [add|modify|remove]ProxyChainExcludedDomain instead.
- **/
-Core.prototype.setOptionProxyChainSkipName = function (string, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/core/action/setOptionProxyChainSkipName/', {'String' : string}, callback);
-    return;
-  }
-  return this.api.requestPromise('/core/action/setOptionProxyChainSkipName/', {'String' : string});
-};
-
-Core.prototype.setOptionProxyChainUserName = function (string, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/core/action/setOptionProxyChainUserName/', {'String' : string}, callback);
-    return;
-  }
-  return this.api.requestPromise('/core/action/setOptionProxyChainUserName/', {'String' : string});
+  return this.api.requestPromise('/core/action/setOptionDefaultUserAgent/', {'String': string});
 };
 
 /**
@@ -809,50 +873,120 @@ Core.prototype.setOptionProxyChainUserName = function (string, callback) {
  **/
 Core.prototype.setOptionDnsTtlSuccessfulQueries = function (integer, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/core/action/setOptionDnsTtlSuccessfulQueries/', {'Integer' : integer}, callback);
+    this.api.request('/core/action/setOptionDnsTtlSuccessfulQueries/', {'Integer': integer}, callback);
     return;
   }
-  return this.api.requestPromise('/core/action/setOptionDnsTtlSuccessfulQueries/', {'Integer' : integer});
+  return this.api.requestPromise('/core/action/setOptionDnsTtlSuccessfulQueries/', {'Integer': integer});
 };
 
+/**
+ * 
+ **/
 Core.prototype.setOptionHttpStateEnabled = function (bool, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/core/action/setOptionHttpStateEnabled/', {'Boolean' : bool}, callback);
+    this.api.request('/core/action/setOptionHttpStateEnabled/', {'Boolean': bool}, callback);
     return;
   }
-  return this.api.requestPromise('/core/action/setOptionHttpStateEnabled/', {'Boolean' : bool});
+  return this.api.requestPromise('/core/action/setOptionHttpStateEnabled/', {'Boolean': bool});
 };
 
+/**
+ * 
+ **/
+Core.prototype.setOptionProxyChainName = function (string, callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/core/action/setOptionProxyChainName/', {'String': string}, callback);
+    return;
+  }
+  return this.api.requestPromise('/core/action/setOptionProxyChainName/', {'String': string});
+};
+
+/**
+ * 
+ **/
+Core.prototype.setOptionProxyChainPassword = function (string, callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/core/action/setOptionProxyChainPassword/', {'String': string}, callback);
+    return;
+  }
+  return this.api.requestPromise('/core/action/setOptionProxyChainPassword/', {'String': string});
+};
+
+/**
+ * 
+ **/
 Core.prototype.setOptionProxyChainPort = function (integer, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/core/action/setOptionProxyChainPort/', {'Integer' : integer}, callback);
+    this.api.request('/core/action/setOptionProxyChainPort/', {'Integer': integer}, callback);
     return;
   }
-  return this.api.requestPromise('/core/action/setOptionProxyChainPort/', {'Integer' : integer});
+  return this.api.requestPromise('/core/action/setOptionProxyChainPort/', {'Integer': integer});
 };
 
+/**
+ * 
+ **/
 Core.prototype.setOptionProxyChainPrompt = function (bool, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/core/action/setOptionProxyChainPrompt/', {'Boolean' : bool}, callback);
+    this.api.request('/core/action/setOptionProxyChainPrompt/', {'Boolean': bool}, callback);
     return;
   }
-  return this.api.requestPromise('/core/action/setOptionProxyChainPrompt/', {'Boolean' : bool});
+  return this.api.requestPromise('/core/action/setOptionProxyChainPrompt/', {'Boolean': bool});
 };
 
+/**
+ * 
+ **/
+Core.prototype.setOptionProxyChainRealm = function (string, callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/core/action/setOptionProxyChainRealm/', {'String': string}, callback);
+    return;
+  }
+  return this.api.requestPromise('/core/action/setOptionProxyChainRealm/', {'String': string});
+};
+
+/**
+ * Use actions [add|modify|remove]ProxyChainExcludedDomain instead.
+ **/
+Core.prototype.setOptionProxyChainSkipName = function (string, callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/core/action/setOptionProxyChainSkipName/', {'String': string}, callback);
+    return;
+  }
+  return this.api.requestPromise('/core/action/setOptionProxyChainSkipName/', {'String': string});
+};
+
+/**
+ * 
+ **/
+Core.prototype.setOptionProxyChainUserName = function (string, callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/core/action/setOptionProxyChainUserName/', {'String': string}, callback);
+    return;
+  }
+  return this.api.requestPromise('/core/action/setOptionProxyChainUserName/', {'String': string});
+};
+
+/**
+ * 
+ **/
 Core.prototype.setOptionSingleCookieRequestHeader = function (bool, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/core/action/setOptionSingleCookieRequestHeader/', {'Boolean' : bool}, callback);
+    this.api.request('/core/action/setOptionSingleCookieRequestHeader/', {'Boolean': bool}, callback);
     return;
   }
-  return this.api.requestPromise('/core/action/setOptionSingleCookieRequestHeader/', {'Boolean' : bool});
+  return this.api.requestPromise('/core/action/setOptionSingleCookieRequestHeader/', {'Boolean': bool});
 };
 
+/**
+ * Sets the connection time out (in seconds).
+ **/
 Core.prototype.setOptionTimeoutInSecs = function (integer, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/core/action/setOptionTimeoutInSecs/', {'Integer' : integer}, callback);
+    this.api.request('/core/action/setOptionTimeoutInSecs/', {'Integer': integer}, callback);
     return;
   }
-  return this.api.requestPromise('/core/action/setOptionTimeoutInSecs/', {'Integer' : integer});
+  return this.api.requestPromise('/core/action/setOptionTimeoutInSecs/', {'Integer': integer});
 };
 
 /**
@@ -860,20 +994,37 @@ Core.prototype.setOptionTimeoutInSecs = function (integer, callback) {
  **/
 Core.prototype.setOptionUseProxyChain = function (bool, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/core/action/setOptionUseProxyChain/', {'Boolean' : bool}, callback);
+    this.api.request('/core/action/setOptionUseProxyChain/', {'Boolean': bool}, callback);
     return;
   }
-  return this.api.requestPromise('/core/action/setOptionUseProxyChain/', {'Boolean' : bool});
+  return this.api.requestPromise('/core/action/setOptionUseProxyChain/', {'Boolean': bool});
 };
 
+/**
+ * 
+ **/
 Core.prototype.setOptionUseProxyChainAuth = function (bool, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/core/action/setOptionUseProxyChainAuth/', {'Boolean' : bool}, callback);
+    this.api.request('/core/action/setOptionUseProxyChainAuth/', {'Boolean': bool}, callback);
     return;
   }
-  return this.api.requestPromise('/core/action/setOptionUseProxyChainAuth/', {'Boolean' : bool});
+  return this.api.requestPromise('/core/action/setOptionUseProxyChainAuth/', {'Boolean': bool});
 };
 
+/**
+ * Sets whether or not the SOCKS proxy should be used.
+ **/
+Core.prototype.setOptionUseSocksProxy = function (bool, callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/core/action/setOptionUseSocksProxy/', {'Boolean': bool}, callback);
+    return;
+  }
+  return this.api.requestPromise('/core/action/setOptionUseSocksProxy/', {'Boolean': bool});
+};
+
+/**
+ * 
+ **/
 Core.prototype.proxypac = function (callback) {
   if (typeof callback === 'function') {
     this.api.requestOther('/core/other/proxy.pac/', callback);
@@ -893,12 +1044,15 @@ Core.prototype.rootcert = function (callback) {
   return this.api.requestPromiseOther('/core/other/rootcert/');
 };
 
+/**
+ * 
+ **/
 Core.prototype.setproxy = function (proxy, callback) {
   if (typeof callback === 'function') {
-    this.api.requestOther('/core/other/setproxy/', {'proxy' : proxy}, callback);
+    this.api.requestOther('/core/other/setproxy/', {'proxy': proxy}, callback);
     return;
   }
-  return this.api.requestPromiseOther('/core/other/setproxy/', {'proxy' : proxy});
+  return this.api.requestPromiseOther('/core/other/setproxy/', {'proxy': proxy});
 };
 
 /**
@@ -950,10 +1104,10 @@ Core.prototype.mdreport = function (callback) {
  **/
 Core.prototype.messageHar = function (id, callback) {
   if (typeof callback === 'function') {
-    this.api.requestOther('/core/other/messageHar/', {'id' : id}, callback);
+    this.api.requestOther('/core/other/messageHar/', {'id': id}, callback);
     return;
   }
-  return this.api.requestPromiseOther('/core/other/messageHar/', {'id' : id});
+  return this.api.requestPromiseOther('/core/other/messageHar/', {'id': id});
 };
 
 /**
@@ -982,17 +1136,17 @@ Core.prototype.messagesHar = function (baseurl, start, count, callback) {
  **/
 Core.prototype.messagesHarById = function (ids, callback) {
   if (typeof callback === 'function') {
-    this.api.requestOther('/core/other/messagesHarById/', {'ids' : ids}, callback);
+    this.api.requestOther('/core/other/messagesHarById/', {'ids': ids}, callback);
     return;
   }
-  return this.api.requestPromiseOther('/core/other/messagesHarById/', {'ids' : ids});
+  return this.api.requestPromiseOther('/core/other/messagesHarById/', {'ids': ids});
 };
 
 /**
  * Sends the first HAR request entry, optionally following redirections. Returns, in HAR format, the request sent and response received and followed redirections, if any. The Mode is enforced when sending the request (and following redirections), custom manual requests are not allowed in 'Safe' mode nor in 'Protected' mode if out of scope.
  **/
 Core.prototype.sendHarRequest = function (request, followredirects, callback) {
-  const params = {'request' : request};
+  const params = {'request': request};
   if (followredirects && followredirects !== null) {
     params['followRedirects'] = followredirects;
   }

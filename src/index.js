@@ -22,6 +22,7 @@ const requestPromise = require('request-promise-native');
 
 const Acsrf = require('./acsrf');
 const AjaxSpider = require('./ajaxSpider');
+const Alert = require('./alert')
 const Ascan = require('./ascan');
 const Authentication = require('./authentication');
 const Authorization = require('./authorization');
@@ -39,6 +40,7 @@ const Pnh = require('./pnh');
 const Pscan = require('./pscan');
 const Replacer = require('./replacer');
 const Reveal = require('./reveal');
+const RuleConfig = require('./ruleConfig')
 const Script = require('./script');
 const Search = require('./search');
 const Selenium = require('./selenium');
@@ -66,6 +68,7 @@ function ClientApi(options) {
   this.reqPromise = requestPromise.defaults(requestOptions);
   this.acsrf = new Acsrf(this);
   this.ajaxSpider = new AjaxSpider(this);
+  this.alert = new Alert(this);
   this.ascan = new Ascan(this);
   this.authentication = new Authentication(this);
   this.authorization = new Authorization(this);
@@ -83,6 +86,7 @@ function ClientApi(options) {
   this.pscan = new Pscan(this);
   this.replacer = new Replacer(this);
   this.reveal = new Reveal(this);
+  this.ruleConfig = new RuleConfig(this);
   this.script = new Script(this);
   this.search = new Search(this);
   this.selenium = new Selenium(this);

@@ -2,7 +2,7 @@
  *
  * ZAP is an HTTP/HTTPS proxy for assessing web application security.
  *
- * Copyright 2018 the ZAP development team
+ * Copyright 2022 the ZAP development team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,14 +39,25 @@ Acsrf.prototype.optionTokensNames = function (callback) {
 };
 
 /**
+ * Define if ZAP should detect CSRF tokens by searching for partial matches
+ **/
+Acsrf.prototype.optionPartialMatchingEnabled = function (callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/acsrf/view/optionPartialMatchingEnabled/', callback);
+    return;
+  }
+  return this.api.requestPromise('/acsrf/view/optionPartialMatchingEnabled/');
+};
+
+/**
  * Adds an anti-CSRF token with the given name, enabled by default
  **/
 Acsrf.prototype.addOptionToken = function (string, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/acsrf/action/addOptionToken/', {'String' : string}, callback);
+    this.api.request('/acsrf/action/addOptionToken/', {'String': string}, callback);
     return;
   }
-  return this.api.requestPromise('/acsrf/action/addOptionToken/', {'String' : string});
+  return this.api.requestPromise('/acsrf/action/addOptionToken/', {'String': string});
 };
 
 /**
@@ -54,21 +65,36 @@ Acsrf.prototype.addOptionToken = function (string, callback) {
  **/
 Acsrf.prototype.removeOptionToken = function (string, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/acsrf/action/removeOptionToken/', {'String' : string}, callback);
+    this.api.request('/acsrf/action/removeOptionToken/', {'String': string}, callback);
     return;
   }
-  return this.api.requestPromise('/acsrf/action/removeOptionToken/', {'String' : string});
+  return this.api.requestPromise('/acsrf/action/removeOptionToken/', {'String': string});
+};
+
+/**
+ * Define if ZAP should detect CSRF tokens by searching for partial matches.
+ **/
+Acsrf.prototype.setOptionPartialMatchingEnabled = function (bool, callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/acsrf/action/setOptionPartialMatchingEnabled/', {'Boolean': bool}, callback);
+    return;
+  }
+  return this.api.requestPromise('/acsrf/action/setOptionPartialMatchingEnabled/', {'Boolean': bool});
 };
 
 /**
  * Generate a form for testing lack of anti-CSRF tokens - typically invoked via ZAP
  **/
-Acsrf.prototype.genForm = function (hrefid, callback) {
+Acsrf.prototype.genForm = function (hrefid, actionurl, callback) {
+  const params = {'hrefId': hrefid};
+  if (actionurl && actionurl !== null) {
+    params['actionUrl'] = actionurl;
+  }
   if (typeof callback === 'function') {
-    this.api.requestOther('/acsrf/other/genForm/', {'hrefId' : hrefid}, callback);
+    this.api.requestOther('/acsrf/other/genForm/', params, callback);
     return;
   }
-  return this.api.requestPromiseOther('/acsrf/other/genForm/', {'hrefId' : hrefid});
+  return this.api.requestPromiseOther('/acsrf/other/genForm/', params);
 };
 
 module.exports = Acsrf;

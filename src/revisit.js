@@ -23,32 +23,41 @@
 /**
  * This file was automatically generated.
  */
-function Soap(clientApi) {
+function Revisit(clientApi) {
   this.api = clientApi;
 }
 
 /**
- * Import a WSDL definition from local file.
  * This component is optional and therefore the API will only work if it is installed
  **/
-Soap.prototype.importFile = function (file, callback) {
+Revisit.prototype.revisitList = function (callback) {
   if (typeof callback === 'function') {
-    this.api.request('/soap/action/importFile/', {'file': file}, callback);
+    this.api.request('/revisit/view/revisitList/', callback);
     return;
   }
-  return this.api.requestPromise('/soap/action/importFile/', {'file': file});
+  return this.api.requestPromise('/revisit/view/revisitList/');
 };
 
 /**
- * Import a WSDL definition from a URL.
  * This component is optional and therefore the API will only work if it is installed
  **/
-Soap.prototype.importUrl = function (url, callback) {
+Revisit.prototype.revisitSiteOn = function (site, starttime, endtime, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/soap/action/importUrl/', {'url': url}, callback);
+    this.api.request('/revisit/action/revisitSiteOn/', {'site': site, 'startTime': starttime, 'endTime': endtime}, callback);
     return;
   }
-  return this.api.requestPromise('/soap/action/importUrl/', {'url': url});
+  return this.api.requestPromise('/revisit/action/revisitSiteOn/', {'site': site, 'startTime': starttime, 'endTime': endtime});
 };
 
-module.exports = Soap;
+/**
+ * This component is optional and therefore the API will only work if it is installed
+ **/
+Revisit.prototype.revisitSiteOff = function (site, callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/revisit/action/revisitSiteOff/', {'site': site}, callback);
+    return;
+  }
+  return this.api.requestPromise('/revisit/action/revisitSiteOff/', {'site': site});
+};
+
+module.exports = Revisit;
