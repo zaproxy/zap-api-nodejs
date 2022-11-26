@@ -5,33 +5,31 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
-## [1.1.0] - 2022-11-26 - Upgrade API to ZAP 2.12.0
-
 ### Added
 * Add the API of the following Add-Ons
-    * Access Control
-    * Alert Filter
-    * Automation
-    * Exim
-    * GraphQL
-    * Network
-    * Reports
-    * Retest
-    * Revisit
-    * Wappalyzer
+    * Access Control version 8
+    * Alert Filter version 14
+    * Automation Framework version 0.19.0
+    * Import/Export version 0.3.0
+    * GraphQL Support version 0.12.0
+    * Network version 0.5.0
+    * Report Generation version 0.17.0
+    * Retest version 0.4.0
+    * Revisit version 4
+    * Wappalyzer - Technology Detection version 21.16.0
 
 ### Changed
 * Update Core APIs for 2.12.0
 * Update the APIs of following Add-Ons
-    * Ajax Spider
-    * OpenAPI
-    * PNH
-    * Replacer
-    * Reveal
-    * Selenium
-    * SOAP
-    * Spider
-    * Web Socket
+    * Ajax Spider version 23.10.0
+    * OpenAPI version 30
+    * Plug-n-Hack Configuration version 13
+    * Replacer version 11
+    * Reveal version 5
+    * Selenium version 15.11.0
+    * SOAP Support version 16
+    * Spider version 0.1.0
+    * WebSockets version 27
 
 ## [1.0.1] - 2019-08-30 - lodash security fix
 
