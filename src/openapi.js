@@ -2,7 +2,7 @@
  *
  * ZAP is an HTTP/HTTPS proxy for assessing web application security.
  *
- * Copyright 2018 the ZAP development team
+ * Copyright 2022 the ZAP development team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,25 +28,35 @@ function Openapi(clientApi) {
 }
 
 /**
- * Import an Open API definition from a local file.
+ * Imports an OpenAPI definition from a local file.
  * This component is optional and therefore the API will only work if it is installed
  **/
-Openapi.prototype.importFile = function (file, callback) {
+Openapi.prototype.importFile = function (file, target, contextid, callback) {
+  const params = {'file': file};
+  if (target && target !== null) {
+    params['target'] = target;
+  }
+  if (contextid && contextid !== null) {
+    params['contextId'] = contextid;
+  }
   if (typeof callback === 'function') {
-    this.api.request('/openapi/action/importFile/', {'file' : file}, callback);
+    this.api.request('/openapi/action/importFile/', params, callback);
     return;
   }
-  return this.api.requestPromise('/openapi/action/importFile/', {'file' : file});
+  return this.api.requestPromise('/openapi/action/importFile/', params);
 };
 
 /**
- * Import an Open API definition from a URL, hostOverride allows the host to be replaced
+ * Imports an OpenAPI definition from a URL.
  * This component is optional and therefore the API will only work if it is installed
  **/
-Openapi.prototype.importUrl = function (url, hostoverride, callback) {
-  const params = {'url' : url};
+Openapi.prototype.importUrl = function (url, hostoverride, contextid, callback) {
+  const params = {'url': url};
   if (hostoverride && hostoverride !== null) {
     params['hostOverride'] = hostoverride;
+  }
+  if (contextid && contextid !== null) {
+    params['contextId'] = contextid;
   }
   if (typeof callback === 'function') {
     this.api.request('/openapi/action/importUrl/', params, callback);

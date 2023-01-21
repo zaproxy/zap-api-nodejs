@@ -23,32 +23,41 @@
 /**
  * This file was automatically generated.
  */
-function Soap(clientApi) {
+function Automation(clientApi) {
   this.api = clientApi;
 }
 
 /**
- * Import a WSDL definition from local file.
  * This component is optional and therefore the API will only work if it is installed
  **/
-Soap.prototype.importFile = function (file, callback) {
+Automation.prototype.planProgress = function (planid, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/soap/action/importFile/', {'file': file}, callback);
+    this.api.request('/automation/view/planProgress/', {'planId': planid}, callback);
     return;
   }
-  return this.api.requestPromise('/soap/action/importFile/', {'file': file});
+  return this.api.requestPromise('/automation/view/planProgress/', {'planId': planid});
 };
 
 /**
- * Import a WSDL definition from a URL.
  * This component is optional and therefore the API will only work if it is installed
  **/
-Soap.prototype.importUrl = function (url, callback) {
+Automation.prototype.runPlan = function (filepath, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/soap/action/importUrl/', {'url': url}, callback);
+    this.api.request('/automation/action/runPlan/', {'filePath': filepath}, callback);
     return;
   }
-  return this.api.requestPromise('/soap/action/importUrl/', {'url': url});
+  return this.api.requestPromise('/automation/action/runPlan/', {'filePath': filepath});
 };
 
-module.exports = Soap;
+/**
+ * This component is optional and therefore the API will only work if it is installed
+ **/
+Automation.prototype.endDelayJob = function (callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/automation/action/endDelayJob/', callback);
+    return;
+  }
+  return this.api.requestPromise('/automation/action/endDelayJob/');
+};
+
+module.exports = Automation;

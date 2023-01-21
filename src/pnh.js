@@ -2,7 +2,7 @@
  *
  * ZAP is an HTTP/HTTPS proxy for assessing web application security.
  *
- * Copyright 2018 the ZAP development team
+ * Copyright 2022 the ZAP development team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,10 +32,10 @@ function Pnh(clientApi) {
  **/
 Pnh.prototype.monitor = function (id, message, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/pnh/action/monitor/', {'id' : id, 'message' : message}, callback);
+    this.api.request('/pnh/action/monitor/', {'id': id, 'message': message}, callback);
     return;
   }
-  return this.api.requestPromise('/pnh/action/monitor/', {'id' : id, 'message' : message});
+  return this.api.requestPromise('/pnh/action/monitor/', {'id': id, 'message': message});
 };
 
 /**
@@ -43,10 +43,10 @@ Pnh.prototype.monitor = function (id, message, callback) {
  **/
 Pnh.prototype.oracle = function (id, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/pnh/action/oracle/', {'id' : id}, callback);
+    this.api.request('/pnh/action/oracle/', {'id': id}, callback);
     return;
   }
-  return this.api.requestPromise('/pnh/action/oracle/', {'id' : id});
+  return this.api.requestPromise('/pnh/action/oracle/', {'id': id});
 };
 
 /**
@@ -54,10 +54,10 @@ Pnh.prototype.oracle = function (id, callback) {
  **/
 Pnh.prototype.startMonitoring = function (url, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/pnh/action/startMonitoring/', {'url' : url}, callback);
+    this.api.request('/pnh/action/startMonitoring/', {'url': url}, callback);
     return;
   }
-  return this.api.requestPromise('/pnh/action/startMonitoring/', {'url' : url});
+  return this.api.requestPromise('/pnh/action/startMonitoring/', {'url': url});
 };
 
 /**
@@ -65,10 +65,10 @@ Pnh.prototype.startMonitoring = function (url, callback) {
  **/
 Pnh.prototype.stopMonitoring = function (id, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/pnh/action/stopMonitoring/', {'id' : id}, callback);
+    this.api.request('/pnh/action/stopMonitoring/', {'id': id}, callback);
     return;
   }
-  return this.api.requestPromise('/pnh/action/stopMonitoring/', {'id' : id});
+  return this.api.requestPromise('/pnh/action/stopMonitoring/', {'id': id});
 };
 
 /**

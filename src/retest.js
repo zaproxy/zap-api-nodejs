@@ -23,32 +23,19 @@
 /**
  * This file was automatically generated.
  */
-function Soap(clientApi) {
+function Retest(clientApi) {
   this.api = clientApi;
 }
 
 /**
- * Import a WSDL definition from local file.
  * This component is optional and therefore the API will only work if it is installed
  **/
-Soap.prototype.importFile = function (file, callback) {
+Retest.prototype.retest = function (alertids, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/soap/action/importFile/', {'file': file}, callback);
+    this.api.request('/retest/action/retest/', {'alertIds': alertids}, callback);
     return;
   }
-  return this.api.requestPromise('/soap/action/importFile/', {'file': file});
+  return this.api.requestPromise('/retest/action/retest/', {'alertIds': alertids});
 };
 
-/**
- * Import a WSDL definition from a URL.
- * This component is optional and therefore the API will only work if it is installed
- **/
-Soap.prototype.importUrl = function (url, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/soap/action/importUrl/', {'url': url}, callback);
-    return;
-  }
-  return this.api.requestPromise('/soap/action/importUrl/', {'url': url});
-};
-
-module.exports = Soap;
+module.exports = Retest;

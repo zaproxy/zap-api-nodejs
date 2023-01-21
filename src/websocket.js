@@ -2,7 +2,7 @@
  *
  * ZAP is an HTTP/HTTPS proxy for assessing web application security.
  *
- * Copyright 2018 the ZAP development team
+ * Copyright 2022 the ZAP development team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -45,10 +45,10 @@ Websocket.prototype.channels = function (callback) {
  **/
 Websocket.prototype.message = function (channelid, messageid, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/websocket/view/message/', {'channelId' : channelid, 'messageId' : messageid}, callback);
+    this.api.request('/websocket/view/message/', {'channelId': channelid, 'messageId': messageid}, callback);
     return;
   }
-  return this.api.requestPromise('/websocket/view/message/', {'channelId' : channelid, 'messageId' : messageid});
+  return this.api.requestPromise('/websocket/view/message/', {'channelId': channelid, 'messageId': messageid});
 };
 
 /**
@@ -77,15 +77,39 @@ Websocket.prototype.messages = function (channelid, start, count, payloadpreview
 };
 
 /**
+ * Returns a text representation of an intercepted websockets message
+ * This component is optional and therefore the API will only work if it is installed
+ **/
+Websocket.prototype.breakTextMessage = function (callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/websocket/view/breakTextMessage/', callback);
+    return;
+  }
+  return this.api.requestPromise('/websocket/view/breakTextMessage/');
+};
+
+/**
  * Sends the specified message on the channel specified by channelId, if outgoing is 'True' then the message will be sent to the server and if it is 'False' then it will be sent to the client
  * This component is optional and therefore the API will only work if it is installed
  **/
 Websocket.prototype.sendTextMessage = function (channelid, outgoing, message, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/websocket/action/sendTextMessage/', {'channelId' : channelid, 'outgoing' : outgoing, 'message' : message}, callback);
+    this.api.request('/websocket/action/sendTextMessage/', {'channelId': channelid, 'outgoing': outgoing, 'message': message}, callback);
     return;
   }
-  return this.api.requestPromise('/websocket/action/sendTextMessage/', {'channelId' : channelid, 'outgoing' : outgoing, 'message' : message});
+  return this.api.requestPromise('/websocket/action/sendTextMessage/', {'channelId': channelid, 'outgoing': outgoing, 'message': message});
+};
+
+/**
+ * Sets the text message for an intercepted websockets message
+ * This component is optional and therefore the API will only work if it is installed
+ **/
+Websocket.prototype.setBreakTextMessage = function (message, outgoing, callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/websocket/action/setBreakTextMessage/', {'message': message, 'outgoing': outgoing}, callback);
+    return;
+  }
+  return this.api.requestPromise('/websocket/action/setBreakTextMessage/', {'message': message, 'outgoing': outgoing});
 };
 
 module.exports = Websocket;

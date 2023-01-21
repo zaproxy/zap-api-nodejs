@@ -19,26 +19,36 @@
 
 const request = require('request');
 const requestPromise = require('request-promise-native');
-
+const AccessControl = require('./accessControl');
 const Acsrf = require('./acsrf');
 const AjaxSpider = require('./ajaxSpider');
+const Alert = require('./alert')
+const AlertFilter = require('./alertFilter');
 const Ascan = require('./ascan');
 const Authentication = require('./authentication');
 const Authorization = require('./authorization');
+const Automation = require('./automation');
 const Autoupdate = require('./autoupdate');
 const Brk = require('./brk');
 const Context = require('./context');
 const Core = require('./core');
+const Exim = require('./exim');
 const ForcedUser = require('./forcedUser');
+const Graphql = require('./graphql');
 const HttpSessions = require('./httpSessions');
 const ImportLogFiles = require('./importLogFiles');
 const Importurls = require('./importurls');
+const Network = require('./network');
 const Openapi = require('./openapi');
 const Params = require('./params');
 const Pnh = require('./pnh');
 const Pscan = require('./pscan');
+const Reports = require('./reports');
 const Replacer = require('./replacer');
+const Retest = require('./retest');
+const Revisit = require('./revisit');
 const Reveal = require('./reveal');
+const RuleConfig = require('./ruleConfig')
 const Script = require('./script');
 const Search = require('./search');
 const Selenium = require('./selenium');
@@ -47,6 +57,7 @@ const Soap = require('./soap');
 const Spider = require('./spider');
 const Stats = require('./stats');
 const Users = require('./users');
+const Wappalyzer = require('./wappalyzer');
 const Websocket = require('./websocket');
 
 // base JSON api url
@@ -64,25 +75,36 @@ function ClientApi(options) {
   
   this.req = request.defaults(requestOptions);
   this.reqPromise = requestPromise.defaults(requestOptions);
+  this.accessControl = new AccessControl(this);
   this.acsrf = new Acsrf(this);
   this.ajaxSpider = new AjaxSpider(this);
+  this.alert = new Alert(this);
+  this.alertFilter = new AlertFilter(this);
   this.ascan = new Ascan(this);
   this.authentication = new Authentication(this);
   this.authorization = new Authorization(this);
+  this.automation = new Automation(this);
   this.autoupdate = new Autoupdate(this);
   this.brk = new Brk(this);
   this.context = new Context(this);
   this.core = new Core(this);
+  this.exim = new Exim(this);
   this.forcedUser = new ForcedUser(this);
+  this.graphql = new Graphql(this);
   this.httpSessions = new HttpSessions(this);
   this.importLogFiles = new ImportLogFiles(this);
   this.importurls = new Importurls(this);
+  this.network = new Network(this);
   this.openapi = new Openapi(this);
   this.params = new Params(this);
   this.pnh = new Pnh(this);
   this.pscan = new Pscan(this);
+  this.reports = new Reports(this);
   this.replacer = new Replacer(this);
+  this.retest = new Retest(this);
+  this.revisit = new Revisit(this);
   this.reveal = new Reveal(this);
+  this.ruleConfig = new RuleConfig(this);
   this.script = new Script(this);
   this.search = new Search(this);
   this.selenium = new Selenium(this);
@@ -91,6 +113,7 @@ function ClientApi(options) {
   this.spider = new Spider(this);
   this.stats = new Stats(this);
   this.users = new Users(this);
+  this.wappalyzer = new Wappalyzer(this);
   this.websocket = new Websocket(this);
 }
 

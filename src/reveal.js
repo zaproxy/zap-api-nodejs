@@ -2,7 +2,7 @@
  *
  * ZAP is an HTTP/HTTPS proxy for assessing web application security.
  *
- * Copyright 2018 the ZAP development team
+ * Copyright 2022 the ZAP development team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -45,10 +45,10 @@ Reveal.prototype.reveal = function (callback) {
  **/
 Reveal.prototype.setReveal = function (reveal, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/reveal/action/setReveal/', {'reveal' : reveal}, callback);
+    this.api.request('/reveal/action/setReveal/', {'reveal': reveal}, callback);
     return;
   }
-  return this.api.requestPromise('/reveal/action/setReveal/', {'reveal' : reveal});
+  return this.api.requestPromise('/reveal/action/setReveal/', {'reveal': reveal});
 };
 
 module.exports = Reveal;

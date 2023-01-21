@@ -23,32 +23,44 @@
 /**
  * This file was automatically generated.
  */
-function Soap(clientApi) {
+function Wappalyzer(clientApi) {
   this.api = clientApi;
 }
 
 /**
- * Import a WSDL definition from local file.
+ * Lists all the sites recognized by the wappalyzer addon.
  * This component is optional and therefore the API will only work if it is installed
  **/
-Soap.prototype.importFile = function (file, callback) {
+Wappalyzer.prototype.listSites = function (callback) {
   if (typeof callback === 'function') {
-    this.api.request('/soap/action/importFile/', {'file': file}, callback);
+    this.api.request('/wappalyzer/view/listSites/', callback);
     return;
   }
-  return this.api.requestPromise('/soap/action/importFile/', {'file': file});
+  return this.api.requestPromise('/wappalyzer/view/listSites/');
 };
 
 /**
- * Import a WSDL definition from a URL.
+ * Lists all sites and their associated applications (technologies).
  * This component is optional and therefore the API will only work if it is installed
  **/
-Soap.prototype.importUrl = function (url, callback) {
+Wappalyzer.prototype.listAll = function (callback) {
   if (typeof callback === 'function') {
-    this.api.request('/soap/action/importUrl/', {'url': url}, callback);
+    this.api.request('/wappalyzer/view/listAll/', callback);
     return;
   }
-  return this.api.requestPromise('/soap/action/importUrl/', {'url': url});
+  return this.api.requestPromise('/wappalyzer/view/listAll/');
 };
 
-module.exports = Soap;
+/**
+ * Lists all the applications (technologies) associated with a specific site.
+ * This component is optional and therefore the API will only work if it is installed
+ **/
+Wappalyzer.prototype.listSite = function (site, callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/wappalyzer/view/listSite/', {'site': site}, callback);
+    return;
+  }
+  return this.api.requestPromise('/wappalyzer/view/listSite/', {'site': site});
+};
+
+module.exports = Wappalyzer;
