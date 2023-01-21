@@ -4,8 +4,35 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
+### Added
+* Add the API of the following add-ons:
+    * Access Control version 8
+    * Alert Filter version 15
+    * Automation Framework version 0.22.0
+    * Import/Export version 0.3.0
+    * GraphQL Support version 0.12.0
+    * Network version 0.6.0
+    * Report Generation version 0.18.0
+    * Retest version 0.5.0
+    * Revisit version 4
+    * Wappalyzer - Technology Detection version 21.18.0
 
+### Changed
+* Update the API to support object as function parameters instead of individual parameters. [Github Issue](https://github.com/zaproxy/zaproxy/issues/7608)
+* Update Core APIs for 2.12.0
+* Update the APIs of following add-ons:
+    * Ajax Spider version 23.10.0
+    * OpenAPI version 31
+    * Plug-n-Hack Configuration version 13
+    * Replacer version 12
+    * Reveal version 5
+    * Selenium version 15.11.0
+    * SOAP Support version 16
+    * Spider version 0.2.0
+    * WebSockets version 28
 
+### Removed
+* The APIs for the add-ons Import files containing URLs and Log File Importer were removed, superseded by Import/Export add-on.
 ## [1.0.1] - 2019-08-30 - lodash security fix
 
 ### Security

@@ -2,7 +2,7 @@
  *
  * ZAP is an HTTP/HTTPS proxy for assessing web application security.
  *
- * Copyright 2018 the ZAP development team
+ * Copyright 2023 the ZAP development team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,45 +30,45 @@ function Pnh(clientApi) {
 /**
  * This component is optional and therefore the API will only work if it is installed
  **/
-Pnh.prototype.monitor = function (id, message, callback) {
+Pnh.prototype.monitor = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/pnh/action/monitor/', {'id' : id, 'message' : message}, callback);
+    this.api.request('/pnh/action/monitor/', {'id': args.id, 'message': args.message}, callback);
     return;
   }
-  return this.api.requestPromise('/pnh/action/monitor/', {'id' : id, 'message' : message});
+  return this.api.requestPromise('/pnh/action/monitor/', {'id': args.id, 'message': args.message});
 };
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  **/
-Pnh.prototype.oracle = function (id, callback) {
+Pnh.prototype.oracle = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/pnh/action/oracle/', {'id' : id}, callback);
+    this.api.request('/pnh/action/oracle/', {'id': args.id}, callback);
     return;
   }
-  return this.api.requestPromise('/pnh/action/oracle/', {'id' : id});
+  return this.api.requestPromise('/pnh/action/oracle/', {'id': args.id});
 };
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  **/
-Pnh.prototype.startMonitoring = function (url, callback) {
+Pnh.prototype.startMonitoring = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/pnh/action/startMonitoring/', {'url' : url}, callback);
+    this.api.request('/pnh/action/startMonitoring/', {'url': args.url}, callback);
     return;
   }
-  return this.api.requestPromise('/pnh/action/startMonitoring/', {'url' : url});
+  return this.api.requestPromise('/pnh/action/startMonitoring/', {'url': args.url});
 };
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  **/
-Pnh.prototype.stopMonitoring = function (id, callback) {
+Pnh.prototype.stopMonitoring = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/pnh/action/stopMonitoring/', {'id' : id}, callback);
+    this.api.request('/pnh/action/stopMonitoring/', {'id': args.id}, callback);
     return;
   }
-  return this.api.requestPromise('/pnh/action/stopMonitoring/', {'id' : id});
+  return this.api.requestPromise('/pnh/action/stopMonitoring/', {'id': args.id});
 };
 
 /**

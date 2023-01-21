@@ -23,34 +23,45 @@
 /**
  * This file was automatically generated.
  */
-function Soap(clientApi) {
+function Wappalyzer(clientApi) {
   this.api = clientApi;
 }
 
 /**
- * Import a WSDL definition from local file.
+ * Lists all the sites recognized by the wappalyzer addon.
  * This component is optional and therefore the API will only work if it is installed
- * @param {string} file
  **/
-Soap.prototype.importFile = function (args, callback) {
+Wappalyzer.prototype.listSites = function (callback) {
   if (typeof callback === 'function') {
-    this.api.request('/soap/action/importFile/', {'file': args.file}, callback);
+    this.api.request('/wappalyzer/view/listSites/', callback);
     return;
   }
-  return this.api.requestPromise('/soap/action/importFile/', {'file': args.file});
+  return this.api.requestPromise('/wappalyzer/view/listSites/');
 };
 
 /**
- * Import a WSDL definition from a URL.
+ * Lists all sites and their associated applications (technologies).
  * This component is optional and therefore the API will only work if it is installed
- * @param {string} url
  **/
-Soap.prototype.importUrl = function (args, callback) {
+Wappalyzer.prototype.listAll = function (callback) {
   if (typeof callback === 'function') {
-    this.api.request('/soap/action/importUrl/', {'url': args.url}, callback);
+    this.api.request('/wappalyzer/view/listAll/', callback);
     return;
   }
-  return this.api.requestPromise('/soap/action/importUrl/', {'url': args.url});
+  return this.api.requestPromise('/wappalyzer/view/listAll/');
 };
 
-module.exports = Soap;
+/**
+ * Lists all the applications (technologies) associated with a specific site.
+ * This component is optional and therefore the API will only work if it is installed
+ * @param {string} site
+ **/
+Wappalyzer.prototype.listSite = function (args, callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/wappalyzer/view/listSite/', {'site': args.site}, callback);
+    return;
+  }
+  return this.api.requestPromise('/wappalyzer/view/listSite/', {'site': args.site});
+};
+
+module.exports = Wappalyzer;

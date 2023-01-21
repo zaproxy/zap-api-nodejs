@@ -2,7 +2,7 @@
  *
  * ZAP is an HTTP/HTTPS proxy for assessing web application security.
  *
- * Copyright 2018 the ZAP development team
+ * Copyright 2023 the ZAP development team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,20 +23,19 @@
 /**
  * This file was automatically generated.
  */
-function Importurls(clientApi) {
+function Retest(clientApi) {
   this.api = clientApi;
 }
 
 /**
- * Imports URLs (one per line) from the file with the given file system path.
  * This component is optional and therefore the API will only work if it is installed
  **/
-Importurls.prototype.importurls = function (filepath, callback) {
+Retest.prototype.retest = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/importurls/action/importurls/', {'filePath' : filepath}, callback);
+    this.api.request('/retest/action/retest/', {'alertIds': args.alertids}, callback);
     return;
   }
-  return this.api.requestPromise('/importurls/action/importurls/', {'filePath' : filepath});
+  return this.api.requestPromise('/retest/action/retest/', {'alertIds': args.alertids});
 };
 
-module.exports = Importurls;
+module.exports = Retest;

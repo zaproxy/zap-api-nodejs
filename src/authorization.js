@@ -2,7 +2,7 @@
  *
  * ZAP is an HTTP/HTTPS proxy for assessing web application security.
  *
- * Copyright 2018 the ZAP development team
+ * Copyright 2023 the ZAP development team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,31 +29,37 @@ function Authorization(clientApi) {
 
 /**
  * Obtains all the configuration of the authorization detection method that is currently set for a context.
+ * @param {string} contextid
  **/
-Authorization.prototype.getAuthorizationDetectionMethod = function (contextid, callback) {
+Authorization.prototype.getAuthorizationDetectionMethod = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/authorization/view/getAuthorizationDetectionMethod/', {'contextId' : contextid}, callback);
+    this.api.request('/authorization/view/getAuthorizationDetectionMethod/', {'contextId': args.contextid}, callback);
     return;
   }
-  return this.api.requestPromise('/authorization/view/getAuthorizationDetectionMethod/', {'contextId' : contextid});
+  return this.api.requestPromise('/authorization/view/getAuthorizationDetectionMethod/', {'contextId': args.contextid});
 };
 
 /**
  * Sets the authorization detection method for a context as one that identifies un-authorized messages based on: the message's status code or a regex pattern in the response's header or body. Also, whether all conditions must match or just some can be specified via the logicalOperator parameter, which accepts two values: "AND" (default), "OR".  
+ * @param {string} contextid
+ * @param {string} headerregex
+ * @param {string} bodyregex
+ * @param {string} statuscode
+ * @param {string} logicaloperator
  **/
-Authorization.prototype.setBasicAuthorizationDetectionMethod = function (contextid, headerregex, bodyregex, statuscode, logicaloperator, callback) {
-  const params = {'contextId' : contextid};
-  if (headerregex && headerregex !== null) {
-    params['headerRegex'] = headerregex;
+Authorization.prototype.setBasicAuthorizationDetectionMethod = function (args, callback) {
+  const params = {'contextId': args.contextid};
+  if (args.headerregex && args.headerregex !== null) {
+    params['headerRegex'] = args.headerregex;
   }
-  if (bodyregex && bodyregex !== null) {
-    params['bodyRegex'] = bodyregex;
+  if (args.bodyregex && args.bodyregex !== null) {
+    params['bodyRegex'] = args.bodyregex;
   }
-  if (statuscode && statuscode !== null) {
-    params['statusCode'] = statuscode;
+  if (args.statuscode && args.statuscode !== null) {
+    params['statusCode'] = args.statuscode;
   }
-  if (logicaloperator && logicaloperator !== null) {
-    params['logicalOperator'] = logicaloperator;
+  if (args.logicaloperator && args.logicaloperator !== null) {
+    params['logicalOperator'] = args.logicaloperator;
   }
   if (typeof callback === 'function') {
     this.api.request('/authorization/action/setBasicAuthorizationDetectionMethod/', params, callback);
