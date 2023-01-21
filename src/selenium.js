@@ -2,7 +2,7 @@
  *
  * ZAP is an HTTP/HTTPS proxy for assessing web application security.
  *
- * Copyright 2018 the ZAP development team
+ * Copyright 2023 the ZAP development team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,29 @@
 function Selenium(clientApi) {
   this.api = clientApi;
 }
+
+/**
+ * This component is optional and therefore the API will only work if it is installed
+ **/
+Selenium.prototype.optionBrowserExtensions = function (callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/selenium/view/optionBrowserExtensions/', callback);
+    return;
+  }
+  return this.api.requestPromise('/selenium/view/optionBrowserExtensions/');
+};
+
+/**
+ * Returns the current path to Chrome binary
+ * This component is optional and therefore the API will only work if it is installed
+ **/
+Selenium.prototype.optionChromeBinaryPath = function (callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/selenium/view/optionChromeBinaryPath/', callback);
+    return;
+  }
+  return this.api.requestPromise('/selenium/view/optionChromeBinaryPath/');
+};
 
 /**
  * Returns the current path to ChromeDriver
@@ -64,7 +87,6 @@ Selenium.prototype.optionFirefoxDriverPath = function (callback) {
 };
 
 /**
- * Returns the current path to IEDriverServer
  * This component is optional and therefore the API will only work if it is installed
  **/
 Selenium.prototype.optionIeDriverPath = function (callback) {
@@ -73,6 +95,17 @@ Selenium.prototype.optionIeDriverPath = function (callback) {
     return;
   }
   return this.api.requestPromise('/selenium/view/optionIeDriverPath/');
+};
+
+/**
+ * This component is optional and therefore the API will only work if it is installed
+ **/
+Selenium.prototype.optionLastDirectory = function (callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/selenium/view/optionLastDirectory/', callback);
+    return;
+  }
+  return this.api.requestPromise('/selenium/view/optionLastDirectory/');
 };
 
 /**
@@ -88,63 +121,90 @@ Selenium.prototype.optionPhantomJsBinaryPath = function (callback) {
 };
 
 /**
- * Sets the current path to ChromeDriver
+ * Sets the current path to Chrome binary
  * This component is optional and therefore the API will only work if it is installed
+ * @param {string} string
  **/
-Selenium.prototype.setOptionChromeDriverPath = function (string, callback) {
+Selenium.prototype.setOptionChromeBinaryPath = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/selenium/action/setOptionChromeDriverPath/', {'String' : string}, callback);
+    this.api.request('/selenium/action/setOptionChromeBinaryPath/', {'String': args.string}, callback);
     return;
   }
-  return this.api.requestPromise('/selenium/action/setOptionChromeDriverPath/', {'String' : string});
+  return this.api.requestPromise('/selenium/action/setOptionChromeBinaryPath/', {'String': args.string});
+};
+
+/**
+ * Sets the current path to ChromeDriver
+ * This component is optional and therefore the API will only work if it is installed
+ * @param {string} string
+ **/
+Selenium.prototype.setOptionChromeDriverPath = function (args, callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/selenium/action/setOptionChromeDriverPath/', {'String': args.string}, callback);
+    return;
+  }
+  return this.api.requestPromise('/selenium/action/setOptionChromeDriverPath/', {'String': args.string});
 };
 
 /**
  * Sets the current path to Firefox binary
  * This component is optional and therefore the API will only work if it is installed
+ * @param {string} string
  **/
-Selenium.prototype.setOptionFirefoxBinaryPath = function (string, callback) {
+Selenium.prototype.setOptionFirefoxBinaryPath = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/selenium/action/setOptionFirefoxBinaryPath/', {'String' : string}, callback);
+    this.api.request('/selenium/action/setOptionFirefoxBinaryPath/', {'String': args.string}, callback);
     return;
   }
-  return this.api.requestPromise('/selenium/action/setOptionFirefoxBinaryPath/', {'String' : string});
+  return this.api.requestPromise('/selenium/action/setOptionFirefoxBinaryPath/', {'String': args.string});
 };
 
 /**
  * Sets the current path to Firefox driver (geckodriver)
  * This component is optional and therefore the API will only work if it is installed
+ * @param {string} string
  **/
-Selenium.prototype.setOptionFirefoxDriverPath = function (string, callback) {
+Selenium.prototype.setOptionFirefoxDriverPath = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/selenium/action/setOptionFirefoxDriverPath/', {'String' : string}, callback);
+    this.api.request('/selenium/action/setOptionFirefoxDriverPath/', {'String': args.string}, callback);
     return;
   }
-  return this.api.requestPromise('/selenium/action/setOptionFirefoxDriverPath/', {'String' : string});
+  return this.api.requestPromise('/selenium/action/setOptionFirefoxDriverPath/', {'String': args.string});
 };
 
 /**
- * Sets the current path to IEDriverServer
  * This component is optional and therefore the API will only work if it is installed
  **/
-Selenium.prototype.setOptionIeDriverPath = function (string, callback) {
+Selenium.prototype.setOptionIeDriverPath = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/selenium/action/setOptionIeDriverPath/', {'String' : string}, callback);
+    this.api.request('/selenium/action/setOptionIeDriverPath/', {'String': args.string}, callback);
     return;
   }
-  return this.api.requestPromise('/selenium/action/setOptionIeDriverPath/', {'String' : string});
+  return this.api.requestPromise('/selenium/action/setOptionIeDriverPath/', {'String': args.string});
+};
+
+/**
+ * This component is optional and therefore the API will only work if it is installed
+ **/
+Selenium.prototype.setOptionLastDirectory = function (args, callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/selenium/action/setOptionLastDirectory/', {'String': args.string}, callback);
+    return;
+  }
+  return this.api.requestPromise('/selenium/action/setOptionLastDirectory/', {'String': args.string});
 };
 
 /**
  * Sets the current path to PhantomJS binary
  * This component is optional and therefore the API will only work if it is installed
+ * @param {string} string
  **/
-Selenium.prototype.setOptionPhantomJsBinaryPath = function (string, callback) {
+Selenium.prototype.setOptionPhantomJsBinaryPath = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/selenium/action/setOptionPhantomJsBinaryPath/', {'String' : string}, callback);
+    this.api.request('/selenium/action/setOptionPhantomJsBinaryPath/', {'String': args.string}, callback);
     return;
   }
-  return this.api.requestPromise('/selenium/action/setOptionPhantomJsBinaryPath/', {'String' : string});
+  return this.api.requestPromise('/selenium/action/setOptionPhantomJsBinaryPath/', {'String': args.string});
 };
 
 module.exports = Selenium;

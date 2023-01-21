@@ -23,34 +23,41 @@
 /**
  * This file was automatically generated.
  */
-function Soap(clientApi) {
+function Revisit(clientApi) {
   this.api = clientApi;
 }
 
 /**
- * Import a WSDL definition from local file.
  * This component is optional and therefore the API will only work if it is installed
- * @param {string} file
  **/
-Soap.prototype.importFile = function (args, callback) {
+Revisit.prototype.revisitList = function (callback) {
   if (typeof callback === 'function') {
-    this.api.request('/soap/action/importFile/', {'file': args.file}, callback);
+    this.api.request('/revisit/view/revisitList/', callback);
     return;
   }
-  return this.api.requestPromise('/soap/action/importFile/', {'file': args.file});
+  return this.api.requestPromise('/revisit/view/revisitList/');
 };
 
 /**
- * Import a WSDL definition from a URL.
  * This component is optional and therefore the API will only work if it is installed
- * @param {string} url
  **/
-Soap.prototype.importUrl = function (args, callback) {
+Revisit.prototype.revisitSiteOn = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/soap/action/importUrl/', {'url': args.url}, callback);
+    this.api.request('/revisit/action/revisitSiteOn/', {'site': args.site, 'startTime': args.starttime, 'endTime': args.endtime}, callback);
     return;
   }
-  return this.api.requestPromise('/soap/action/importUrl/', {'url': args.url});
+  return this.api.requestPromise('/revisit/action/revisitSiteOn/', {'site': args.site, 'startTime': args.starttime, 'endTime': args.endtime});
 };
 
-module.exports = Soap;
+/**
+ * This component is optional and therefore the API will only work if it is installed
+ **/
+Revisit.prototype.revisitSiteOff = function (args, callback) {
+  if (typeof callback === 'function') {
+    this.api.request('/revisit/action/revisitSiteOff/', {'site': args.site}, callback);
+    return;
+  }
+  return this.api.requestPromise('/revisit/action/revisitSiteOff/', {'site': args.site});
+};
+
+module.exports = Revisit;
