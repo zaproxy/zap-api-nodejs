@@ -2,7 +2,7 @@
  *
  * ZAP is an HTTP/HTTPS proxy for assessing web application security.
  *
- * Copyright 2022 the ZAP development team
+ * Copyright 2023 the ZAP development team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,13 +29,14 @@ function RuleConfig(clientApi) {
 
 /**
  * Show the specified rule configuration
+ * @param {string} key
  **/
-RuleConfig.prototype.ruleConfigValue = function (key, callback) {
+RuleConfig.prototype.ruleConfigValue = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/ruleConfig/view/ruleConfigValue/', {'key': key}, callback);
+    this.api.request('/ruleConfig/view/ruleConfigValue/', {'key': args.key}, callback);
     return;
   }
-  return this.api.requestPromise('/ruleConfig/view/ruleConfigValue/', {'key': key});
+  return this.api.requestPromise('/ruleConfig/view/ruleConfigValue/', {'key': args.key});
 };
 
 /**
@@ -51,13 +52,14 @@ RuleConfig.prototype.allRuleConfigs = function (callback) {
 
 /**
  * Reset the specified rule configuration, which must already exist
+ * @param {string} key
  **/
-RuleConfig.prototype.resetRuleConfigValue = function (key, callback) {
+RuleConfig.prototype.resetRuleConfigValue = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/ruleConfig/action/resetRuleConfigValue/', {'key': key}, callback);
+    this.api.request('/ruleConfig/action/resetRuleConfigValue/', {'key': args.key}, callback);
     return;
   }
-  return this.api.requestPromise('/ruleConfig/action/resetRuleConfigValue/', {'key': key});
+  return this.api.requestPromise('/ruleConfig/action/resetRuleConfigValue/', {'key': args.key});
 };
 
 /**
@@ -73,11 +75,13 @@ RuleConfig.prototype.resetAllRuleConfigValues = function (callback) {
 
 /**
  * Set the specified rule configuration, which must already exist
+ * @param {string} key
+ * @param {string} value
  **/
-RuleConfig.prototype.setRuleConfigValue = function (key, value, callback) {
-  const params = {'key': key};
-  if (value && value !== null) {
-    params['value'] = value;
+RuleConfig.prototype.setRuleConfigValue = function (args, callback) {
+  const params = {'key': args.key};
+  if (args.value && args.value !== null) {
+    params['value'] = args.value;
   }
   if (typeof callback === 'function') {
     this.api.request('/ruleConfig/action/setRuleConfigValue/', params, callback);

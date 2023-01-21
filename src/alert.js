@@ -2,7 +2,7 @@
  *
  * ZAP is an HTTP/HTTPS proxy for assessing web application security.
  *
- * Copyright 2022 the ZAP development team
+ * Copyright 2023 the ZAP development team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,31 +29,36 @@ function Alert(clientApi) {
 
 /**
  * Gets the alert with the given ID, the corresponding HTTP message can be obtained with the 'messageId' field and 'message' API method
+ * @param {string} id
  **/
-Alert.prototype.alert = function (id, callback) {
+Alert.prototype.alert = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/alert/view/alert/', {'id': id}, callback);
+    this.api.request('/alert/view/alert/', {'id': args.id}, callback);
     return;
   }
-  return this.api.requestPromise('/alert/view/alert/', {'id': id});
+  return this.api.requestPromise('/alert/view/alert/', {'id': args.id});
 };
 
 /**
  * Gets the alerts raised by ZAP, optionally filtering by URL or riskId, and paginating with 'start' position and 'count' of alerts
+ * @param {string} baseurl
+ * @param {string} start
+ * @param {string} count
+ * @param {string} riskid
  **/
-Alert.prototype.alerts = function (baseurl, start, count, riskid, callback) {
+Alert.prototype.alerts = function (args, callback) {
   const params = {};
-  if (baseurl && baseurl !== null) {
-    params['baseurl'] = baseurl;
+  if (args.baseurl && args.baseurl !== null) {
+    params['baseurl'] = args.baseurl;
   }
-  if (start && start !== null) {
-    params['start'] = start;
+  if (args.start && args.start !== null) {
+    params['start'] = args.start;
   }
-  if (count && count !== null) {
-    params['count'] = count;
+  if (args.count && args.count !== null) {
+    params['count'] = args.count;
   }
-  if (riskid && riskid !== null) {
-    params['riskId'] = riskid;
+  if (args.riskid && args.riskid !== null) {
+    params['riskId'] = args.riskid;
   }
   if (typeof callback === 'function') {
     this.api.request('/alert/view/alerts/', params, callback);
@@ -64,11 +69,12 @@ Alert.prototype.alerts = function (baseurl, start, count, riskid, callback) {
 
 /**
  * Gets number of alerts grouped by each risk level, optionally filtering by URL
+ * @param {string} baseurl
  **/
-Alert.prototype.alertsSummary = function (baseurl, callback) {
+Alert.prototype.alertsSummary = function (args, callback) {
   const params = {};
-  if (baseurl && baseurl !== null) {
-    params['baseurl'] = baseurl;
+  if (args.baseurl && args.baseurl !== null) {
+    params['baseurl'] = args.baseurl;
   }
   if (typeof callback === 'function') {
     this.api.request('/alert/view/alertsSummary/', params, callback);
@@ -79,14 +85,16 @@ Alert.prototype.alertsSummary = function (baseurl, callback) {
 
 /**
  * Gets the number of alerts, optionally filtering by URL or riskId
+ * @param {string} baseurl
+ * @param {string} riskid
  **/
-Alert.prototype.numberOfAlerts = function (baseurl, riskid, callback) {
+Alert.prototype.numberOfAlerts = function (args, callback) {
   const params = {};
-  if (baseurl && baseurl !== null) {
-    params['baseurl'] = baseurl;
+  if (args.baseurl && args.baseurl !== null) {
+    params['baseurl'] = args.baseurl;
   }
-  if (riskid && riskid !== null) {
-    params['riskId'] = riskid;
+  if (args.riskid && args.riskid !== null) {
+    params['riskId'] = args.riskid;
   }
   if (typeof callback === 'function') {
     this.api.request('/alert/view/numberOfAlerts/', params, callback);
@@ -97,14 +105,16 @@ Alert.prototype.numberOfAlerts = function (baseurl, riskid, callback) {
 
 /**
  * Gets a summary of the alerts, optionally filtered by a 'url'. If 'recurse' is true then all alerts that apply to urls that start with the specified 'url' will be returned, otherwise only those on exactly the same 'url' (ignoring url parameters)
+ * @param {string} url
+ * @param {string} recurse
  **/
-Alert.prototype.alertsByRisk = function (url, recurse, callback) {
+Alert.prototype.alertsByRisk = function (args, callback) {
   const params = {};
-  if (url && url !== null) {
-    params['url'] = url;
+  if (args.url && args.url !== null) {
+    params['url'] = args.url;
   }
-  if (recurse && recurse !== null) {
-    params['recurse'] = recurse;
+  if (args.recurse && args.recurse !== null) {
+    params['recurse'] = args.recurse;
   }
   if (typeof callback === 'function') {
     this.api.request('/alert/view/alertsByRisk/', params, callback);
@@ -115,14 +125,16 @@ Alert.prototype.alertsByRisk = function (url, recurse, callback) {
 
 /**
  * Gets a count of the alerts, optionally filtered as per alertsPerRisk
+ * @param {string} url
+ * @param {string} recurse
  **/
-Alert.prototype.alertCountsByRisk = function (url, recurse, callback) {
+Alert.prototype.alertCountsByRisk = function (args, callback) {
   const params = {};
-  if (url && url !== null) {
-    params['url'] = url;
+  if (args.url && args.url !== null) {
+    params['url'] = args.url;
   }
-  if (recurse && recurse !== null) {
-    params['recurse'] = recurse;
+  if (args.recurse && args.recurse !== null) {
+    params['recurse'] = args.recurse;
   }
   if (typeof callback === 'function') {
     this.api.request('/alert/view/alertCountsByRisk/', params, callback);
@@ -144,65 +156,83 @@ Alert.prototype.deleteAllAlerts = function (callback) {
 
 /**
  * Deletes the alert with the given ID. 
+ * @param {string} id
  **/
-Alert.prototype.deleteAlert = function (id, callback) {
+Alert.prototype.deleteAlert = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/alert/action/deleteAlert/', {'id': id}, callback);
+    this.api.request('/alert/action/deleteAlert/', {'id': args.id}, callback);
     return;
   }
-  return this.api.requestPromise('/alert/action/deleteAlert/', {'id': id});
+  return this.api.requestPromise('/alert/action/deleteAlert/', {'id': args.id});
 };
 
 /**
  * Update the confidence of the alerts.
+ * @param {string} ids - The IDs of the alerts to update (comma separated values).
+ * @param {string} confidenceid - The numeric confidence representation ('1 - Low' through '3 - High' [user set values '0 - False Positive', and '4 - User Confirmed' are also available]).
  **/
-Alert.prototype.updateAlertsConfidence = function (ids, confidenceid, callback) {
+Alert.prototype.updateAlertsConfidence = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/alert/action/updateAlertsConfidence/', {'ids': ids, 'confidenceId': confidenceid}, callback);
+    this.api.request('/alert/action/updateAlertsConfidence/', {'ids': args.ids, 'confidenceId': args.confidenceid}, callback);
     return;
   }
-  return this.api.requestPromise('/alert/action/updateAlertsConfidence/', {'ids': ids, 'confidenceId': confidenceid});
+  return this.api.requestPromise('/alert/action/updateAlertsConfidence/', {'ids': args.ids, 'confidenceId': args.confidenceid});
 };
 
 /**
  * Update the risk of the alerts.
+ * @param {string} ids - The IDs of the alerts to update (comma separated values).
+ * @param {string} riskid - The numeric risk representation ('0 - Informational' through '3 - High').
  **/
-Alert.prototype.updateAlertsRisk = function (ids, riskid, callback) {
+Alert.prototype.updateAlertsRisk = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/alert/action/updateAlertsRisk/', {'ids': ids, 'riskId': riskid}, callback);
+    this.api.request('/alert/action/updateAlertsRisk/', {'ids': args.ids, 'riskId': args.riskid}, callback);
     return;
   }
-  return this.api.requestPromise('/alert/action/updateAlertsRisk/', {'ids': ids, 'riskId': riskid});
+  return this.api.requestPromise('/alert/action/updateAlertsRisk/', {'ids': args.ids, 'riskId': args.riskid});
 };
 
 /**
  * Update the alert with the given ID, with the provided details.
+ * @param {string} id - The ID of the alert to update.
+ * @param {string} name - The name of the alert.
+ * @param {string} riskid - The numeric risk representation ('0 - Informational' through '3 - High').
+ * @param {string} confidenceid - The numeric confidence representation ('1 - Low' through '3 - High' [user set values '0 - False Positive', and '4 - User Confirmed' are also available]).
+ * @param {string} description - The description to be set to the alert.
+ * @param {string} param - The name of the parameter applicable to the alert.
+ * @param {string} attack - The attack (ex: injected string) used by the scan rule.
+ * @param {string} otherinfo - Other information about the alert or test.
+ * @param {string} solution - The solution for the alert.
+ * @param {string} references - The reference details for the alert.
+ * @param {string} evidence - The evidence associated with the alert.
+ * @param {string} cweid - The CWE identifier associated with the alert.
+ * @param {string} wascid - The WASC identifier associated with the alert.
  **/
-Alert.prototype.updateAlert = function (id, name, riskid, confidenceid, description, param, attack, otherinfo, solution, references, evidence, cweid, wascid, callback) {
-  const params = {'id': id, 'name': name, 'riskId': riskid, 'confidenceId': confidenceid, 'description': description};
-  if (param && param !== null) {
-    params['param'] = param;
+Alert.prototype.updateAlert = function (args, callback) {
+  const params = {'id': args.id, 'name': args.name, 'riskId': args.riskid, 'confidenceId': args.confidenceid, 'description': args.description};
+  if (args.param && args.param !== null) {
+    params['param'] = args.param;
   }
-  if (attack && attack !== null) {
-    params['attack'] = attack;
+  if (args.attack && args.attack !== null) {
+    params['attack'] = args.attack;
   }
-  if (otherinfo && otherinfo !== null) {
-    params['otherInfo'] = otherinfo;
+  if (args.otherinfo && args.otherinfo !== null) {
+    params['otherInfo'] = args.otherinfo;
   }
-  if (solution && solution !== null) {
-    params['solution'] = solution;
+  if (args.solution && args.solution !== null) {
+    params['solution'] = args.solution;
   }
-  if (references && references !== null) {
-    params['references'] = references;
+  if (args.references && args.references !== null) {
+    params['references'] = args.references;
   }
-  if (evidence && evidence !== null) {
-    params['evidence'] = evidence;
+  if (args.evidence && args.evidence !== null) {
+    params['evidence'] = args.evidence;
   }
-  if (cweid && cweid !== null) {
-    params['cweId'] = cweid;
+  if (args.cweid && args.cweid !== null) {
+    params['cweId'] = args.cweid;
   }
-  if (wascid && wascid !== null) {
-    params['wascId'] = wascid;
+  if (args.wascid && args.wascid !== null) {
+    params['wascId'] = args.wascid;
   }
   if (typeof callback === 'function') {
     this.api.request('/alert/action/updateAlert/', params, callback);
@@ -213,32 +243,45 @@ Alert.prototype.updateAlert = function (id, name, riskid, confidenceid, descript
 
 /**
  * Add an alert associated with the given message ID, with the provided details. (The ID of the created alert is returned.)
+ * @param {string} messageid - The ID of the message to which the alert should be associated.
+ * @param {string} name - The name of the alert.
+ * @param {string} riskid - The numeric risk representation ('0 - Informational' through '3 - High').
+ * @param {string} confidenceid - The numeric confidence representation ('1 - Low' through '3 - High' [user set values '0 - False Positive', and '4 - User Confirmed' are also available]).
+ * @param {string} description - The description to be set to the alert.
+ * @param {string} param - The name of the parameter applicable to the alert.
+ * @param {string} attack - The attack (ex: injected string) used by the scan rule.
+ * @param {string} otherinfo - Other information about the alert or test.
+ * @param {string} solution - The solution for the alert.
+ * @param {string} references - The reference details for the alert.
+ * @param {string} evidence - The evidence associated with the alert.
+ * @param {string} cweid - The CWE identifier associated with the alert.
+ * @param {string} wascid - The WASC identifier associated with the alert.
  **/
-Alert.prototype.addAlert = function (messageid, name, riskid, confidenceid, description, param, attack, otherinfo, solution, references, evidence, cweid, wascid, callback) {
-  const params = {'messageId': messageid, 'name': name, 'riskId': riskid, 'confidenceId': confidenceid, 'description': description};
-  if (param && param !== null) {
-    params['param'] = param;
+Alert.prototype.addAlert = function (args, callback) {
+  const params = {'messageId': args.messageid, 'name': args.name, 'riskId': args.riskid, 'confidenceId': args.confidenceid, 'description': args.description};
+  if (args.param && args.param !== null) {
+    params['param'] = args.param;
   }
-  if (attack && attack !== null) {
-    params['attack'] = attack;
+  if (args.attack && args.attack !== null) {
+    params['attack'] = args.attack;
   }
-  if (otherinfo && otherinfo !== null) {
-    params['otherInfo'] = otherinfo;
+  if (args.otherinfo && args.otherinfo !== null) {
+    params['otherInfo'] = args.otherinfo;
   }
-  if (solution && solution !== null) {
-    params['solution'] = solution;
+  if (args.solution && args.solution !== null) {
+    params['solution'] = args.solution;
   }
-  if (references && references !== null) {
-    params['references'] = references;
+  if (args.references && args.references !== null) {
+    params['references'] = args.references;
   }
-  if (evidence && evidence !== null) {
-    params['evidence'] = evidence;
+  if (args.evidence && args.evidence !== null) {
+    params['evidence'] = args.evidence;
   }
-  if (cweid && cweid !== null) {
-    params['cweId'] = cweid;
+  if (args.cweid && args.cweid !== null) {
+    params['cweId'] = args.cweid;
   }
-  if (wascid && wascid !== null) {
-    params['wascId'] = wascid;
+  if (args.wascid && args.wascid !== null) {
+    params['wascId'] = args.wascid;
   }
   if (typeof callback === 'function') {
     this.api.request('/alert/action/addAlert/', params, callback);

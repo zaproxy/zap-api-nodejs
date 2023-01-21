@@ -2,7 +2,7 @@
  *
  * ZAP is an HTTP/HTTPS proxy for assessing web application security.
  *
- * Copyright 2022 the ZAP development team
+ * Copyright 2023 the ZAP development team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -260,123 +260,134 @@ Autoupdate.prototype.downloadLatestRelease = function (callback) {
 
 /**
  * Installs or updates the specified add-on, returning when complete (i.e. not asynchronously)
+ * @param {string} id
  **/
-Autoupdate.prototype.installAddon = function (id, callback) {
+Autoupdate.prototype.installAddon = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/autoupdate/action/installAddon/', {'id': id}, callback);
+    this.api.request('/autoupdate/action/installAddon/', {'id': args.id}, callback);
     return;
   }
-  return this.api.requestPromise('/autoupdate/action/installAddon/', {'id': id});
+  return this.api.requestPromise('/autoupdate/action/installAddon/', {'id': args.id});
 };
 
 /**
  * 
+ * @param {string} file
  **/
-Autoupdate.prototype.installLocalAddon = function (file, callback) {
+Autoupdate.prototype.installLocalAddon = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/autoupdate/action/installLocalAddon/', {'file': file}, callback);
+    this.api.request('/autoupdate/action/installLocalAddon/', {'file': args.file}, callback);
     return;
   }
-  return this.api.requestPromise('/autoupdate/action/installLocalAddon/', {'file': file});
+  return this.api.requestPromise('/autoupdate/action/installLocalAddon/', {'file': args.file});
 };
 
 /**
  * Uninstalls the specified add-on 
+ * @param {string} id
  **/
-Autoupdate.prototype.uninstallAddon = function (id, callback) {
+Autoupdate.prototype.uninstallAddon = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/autoupdate/action/uninstallAddon/', {'id': id}, callback);
+    this.api.request('/autoupdate/action/uninstallAddon/', {'id': args.id}, callback);
     return;
   }
-  return this.api.requestPromise('/autoupdate/action/uninstallAddon/', {'id': id});
+  return this.api.requestPromise('/autoupdate/action/uninstallAddon/', {'id': args.id});
 };
 
 /**
  * 
+ * @param {string} bool
  **/
-Autoupdate.prototype.setOptionCheckAddonUpdates = function (bool, callback) {
+Autoupdate.prototype.setOptionCheckAddonUpdates = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/autoupdate/action/setOptionCheckAddonUpdates/', {'Boolean': bool}, callback);
+    this.api.request('/autoupdate/action/setOptionCheckAddonUpdates/', {'Boolean': args.bool}, callback);
     return;
   }
-  return this.api.requestPromise('/autoupdate/action/setOptionCheckAddonUpdates/', {'Boolean': bool});
+  return this.api.requestPromise('/autoupdate/action/setOptionCheckAddonUpdates/', {'Boolean': args.bool});
 };
 
 /**
  * 
+ * @param {string} bool
  **/
-Autoupdate.prototype.setOptionCheckOnStart = function (bool, callback) {
+Autoupdate.prototype.setOptionCheckOnStart = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/autoupdate/action/setOptionCheckOnStart/', {'Boolean': bool}, callback);
+    this.api.request('/autoupdate/action/setOptionCheckOnStart/', {'Boolean': args.bool}, callback);
     return;
   }
-  return this.api.requestPromise('/autoupdate/action/setOptionCheckOnStart/', {'Boolean': bool});
+  return this.api.requestPromise('/autoupdate/action/setOptionCheckOnStart/', {'Boolean': args.bool});
 };
 
 /**
  * 
+ * @param {string} bool
  **/
-Autoupdate.prototype.setOptionDownloadNewRelease = function (bool, callback) {
+Autoupdate.prototype.setOptionDownloadNewRelease = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/autoupdate/action/setOptionDownloadNewRelease/', {'Boolean': bool}, callback);
+    this.api.request('/autoupdate/action/setOptionDownloadNewRelease/', {'Boolean': args.bool}, callback);
     return;
   }
-  return this.api.requestPromise('/autoupdate/action/setOptionDownloadNewRelease/', {'Boolean': bool});
+  return this.api.requestPromise('/autoupdate/action/setOptionDownloadNewRelease/', {'Boolean': args.bool});
 };
 
 /**
  * 
+ * @param {string} bool
  **/
-Autoupdate.prototype.setOptionInstallAddonUpdates = function (bool, callback) {
+Autoupdate.prototype.setOptionInstallAddonUpdates = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/autoupdate/action/setOptionInstallAddonUpdates/', {'Boolean': bool}, callback);
+    this.api.request('/autoupdate/action/setOptionInstallAddonUpdates/', {'Boolean': args.bool}, callback);
     return;
   }
-  return this.api.requestPromise('/autoupdate/action/setOptionInstallAddonUpdates/', {'Boolean': bool});
+  return this.api.requestPromise('/autoupdate/action/setOptionInstallAddonUpdates/', {'Boolean': args.bool});
 };
 
 /**
  * 
+ * @param {string} bool
  **/
-Autoupdate.prototype.setOptionInstallScannerRules = function (bool, callback) {
+Autoupdate.prototype.setOptionInstallScannerRules = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/autoupdate/action/setOptionInstallScannerRules/', {'Boolean': bool}, callback);
+    this.api.request('/autoupdate/action/setOptionInstallScannerRules/', {'Boolean': args.bool}, callback);
     return;
   }
-  return this.api.requestPromise('/autoupdate/action/setOptionInstallScannerRules/', {'Boolean': bool});
+  return this.api.requestPromise('/autoupdate/action/setOptionInstallScannerRules/', {'Boolean': args.bool});
 };
 
 /**
  * 
+ * @param {string} bool
  **/
-Autoupdate.prototype.setOptionReportAlphaAddons = function (bool, callback) {
+Autoupdate.prototype.setOptionReportAlphaAddons = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/autoupdate/action/setOptionReportAlphaAddons/', {'Boolean': bool}, callback);
+    this.api.request('/autoupdate/action/setOptionReportAlphaAddons/', {'Boolean': args.bool}, callback);
     return;
   }
-  return this.api.requestPromise('/autoupdate/action/setOptionReportAlphaAddons/', {'Boolean': bool});
+  return this.api.requestPromise('/autoupdate/action/setOptionReportAlphaAddons/', {'Boolean': args.bool});
 };
 
 /**
  * 
+ * @param {string} bool
  **/
-Autoupdate.prototype.setOptionReportBetaAddons = function (bool, callback) {
+Autoupdate.prototype.setOptionReportBetaAddons = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/autoupdate/action/setOptionReportBetaAddons/', {'Boolean': bool}, callback);
+    this.api.request('/autoupdate/action/setOptionReportBetaAddons/', {'Boolean': args.bool}, callback);
     return;
   }
-  return this.api.requestPromise('/autoupdate/action/setOptionReportBetaAddons/', {'Boolean': bool});
+  return this.api.requestPromise('/autoupdate/action/setOptionReportBetaAddons/', {'Boolean': args.bool});
 };
 
 /**
  * 
+ * @param {string} bool
  **/
-Autoupdate.prototype.setOptionReportReleaseAddons = function (bool, callback) {
+Autoupdate.prototype.setOptionReportReleaseAddons = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/autoupdate/action/setOptionReportReleaseAddons/', {'Boolean': bool}, callback);
+    this.api.request('/autoupdate/action/setOptionReportReleaseAddons/', {'Boolean': args.bool}, callback);
     return;
   }
-  return this.api.requestPromise('/autoupdate/action/setOptionReportReleaseAddons/', {'Boolean': bool});
+  return this.api.requestPromise('/autoupdate/action/setOptionReportReleaseAddons/', {'Boolean': args.bool});
 };
 
 module.exports = Autoupdate;

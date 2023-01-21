@@ -2,7 +2,7 @@
  *
  * ZAP is an HTTP/HTTPS proxy for assessing web application security.
  *
- * Copyright 2022 the ZAP development team
+ * Copyright 2023 the ZAP development team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,17 +29,21 @@ function Search(clientApi) {
 
 /**
  * Returns the URLs of the HTTP messages that match the given regular expression in the URL optionally filtered by URL and paginated with 'start' position and 'count' of messages.
+ * @param {string} regex
+ * @param {string} baseurl
+ * @param {string} start
+ * @param {string} count
  **/
-Search.prototype.urlsByUrlRegex = function (regex, baseurl, start, count, callback) {
-  const params = {'regex': regex};
-  if (baseurl && baseurl !== null) {
-    params['baseurl'] = baseurl;
+Search.prototype.urlsByUrlRegex = function (args, callback) {
+  const params = {'regex': args.regex};
+  if (args.baseurl && args.baseurl !== null) {
+    params['baseurl'] = args.baseurl;
   }
-  if (start && start !== null) {
-    params['start'] = start;
+  if (args.start && args.start !== null) {
+    params['start'] = args.start;
   }
-  if (count && count !== null) {
-    params['count'] = count;
+  if (args.count && args.count !== null) {
+    params['count'] = args.count;
   }
   if (typeof callback === 'function') {
     this.api.request('/search/view/urlsByUrlRegex/', params, callback);
@@ -50,17 +54,21 @@ Search.prototype.urlsByUrlRegex = function (regex, baseurl, start, count, callba
 
 /**
  * Returns the URLs of the HTTP messages that match the given regular expression in the request optionally filtered by URL and paginated with 'start' position and 'count' of messages.
+ * @param {string} regex
+ * @param {string} baseurl
+ * @param {string} start
+ * @param {string} count
  **/
-Search.prototype.urlsByRequestRegex = function (regex, baseurl, start, count, callback) {
-  const params = {'regex': regex};
-  if (baseurl && baseurl !== null) {
-    params['baseurl'] = baseurl;
+Search.prototype.urlsByRequestRegex = function (args, callback) {
+  const params = {'regex': args.regex};
+  if (args.baseurl && args.baseurl !== null) {
+    params['baseurl'] = args.baseurl;
   }
-  if (start && start !== null) {
-    params['start'] = start;
+  if (args.start && args.start !== null) {
+    params['start'] = args.start;
   }
-  if (count && count !== null) {
-    params['count'] = count;
+  if (args.count && args.count !== null) {
+    params['count'] = args.count;
   }
   if (typeof callback === 'function') {
     this.api.request('/search/view/urlsByRequestRegex/', params, callback);
@@ -71,17 +79,21 @@ Search.prototype.urlsByRequestRegex = function (regex, baseurl, start, count, ca
 
 /**
  * Returns the URLs of the HTTP messages that match the given regular expression in the response optionally filtered by URL and paginated with 'start' position and 'count' of messages.
+ * @param {string} regex
+ * @param {string} baseurl
+ * @param {string} start
+ * @param {string} count
  **/
-Search.prototype.urlsByResponseRegex = function (regex, baseurl, start, count, callback) {
-  const params = {'regex': regex};
-  if (baseurl && baseurl !== null) {
-    params['baseurl'] = baseurl;
+Search.prototype.urlsByResponseRegex = function (args, callback) {
+  const params = {'regex': args.regex};
+  if (args.baseurl && args.baseurl !== null) {
+    params['baseurl'] = args.baseurl;
   }
-  if (start && start !== null) {
-    params['start'] = start;
+  if (args.start && args.start !== null) {
+    params['start'] = args.start;
   }
-  if (count && count !== null) {
-    params['count'] = count;
+  if (args.count && args.count !== null) {
+    params['count'] = args.count;
   }
   if (typeof callback === 'function') {
     this.api.request('/search/view/urlsByResponseRegex/', params, callback);
@@ -92,17 +104,21 @@ Search.prototype.urlsByResponseRegex = function (regex, baseurl, start, count, c
 
 /**
  * Returns the URLs of the HTTP messages that match the given regular expression in the header(s) optionally filtered by URL and paginated with 'start' position and 'count' of messages.
+ * @param {string} regex
+ * @param {string} baseurl
+ * @param {string} start
+ * @param {string} count
  **/
-Search.prototype.urlsByHeaderRegex = function (regex, baseurl, start, count, callback) {
-  const params = {'regex': regex};
-  if (baseurl && baseurl !== null) {
-    params['baseurl'] = baseurl;
+Search.prototype.urlsByHeaderRegex = function (args, callback) {
+  const params = {'regex': args.regex};
+  if (args.baseurl && args.baseurl !== null) {
+    params['baseurl'] = args.baseurl;
   }
-  if (start && start !== null) {
-    params['start'] = start;
+  if (args.start && args.start !== null) {
+    params['start'] = args.start;
   }
-  if (count && count !== null) {
-    params['count'] = count;
+  if (args.count && args.count !== null) {
+    params['count'] = args.count;
   }
   if (typeof callback === 'function') {
     this.api.request('/search/view/urlsByHeaderRegex/', params, callback);
@@ -113,17 +129,21 @@ Search.prototype.urlsByHeaderRegex = function (regex, baseurl, start, count, cal
 
 /**
  * Returns the HTTP messages that match the given regular expression in the URL optionally filtered by URL and paginated with 'start' position and 'count' of messages.
+ * @param {string} regex
+ * @param {string} baseurl
+ * @param {string} start
+ * @param {string} count
  **/
-Search.prototype.messagesByUrlRegex = function (regex, baseurl, start, count, callback) {
-  const params = {'regex': regex};
-  if (baseurl && baseurl !== null) {
-    params['baseurl'] = baseurl;
+Search.prototype.messagesByUrlRegex = function (args, callback) {
+  const params = {'regex': args.regex};
+  if (args.baseurl && args.baseurl !== null) {
+    params['baseurl'] = args.baseurl;
   }
-  if (start && start !== null) {
-    params['start'] = start;
+  if (args.start && args.start !== null) {
+    params['start'] = args.start;
   }
-  if (count && count !== null) {
-    params['count'] = count;
+  if (args.count && args.count !== null) {
+    params['count'] = args.count;
   }
   if (typeof callback === 'function') {
     this.api.request('/search/view/messagesByUrlRegex/', params, callback);
@@ -134,17 +154,21 @@ Search.prototype.messagesByUrlRegex = function (regex, baseurl, start, count, ca
 
 /**
  * Returns the HTTP messages that match the given regular expression in the request optionally filtered by URL and paginated with 'start' position and 'count' of messages.
+ * @param {string} regex
+ * @param {string} baseurl
+ * @param {string} start
+ * @param {string} count
  **/
-Search.prototype.messagesByRequestRegex = function (regex, baseurl, start, count, callback) {
-  const params = {'regex': regex};
-  if (baseurl && baseurl !== null) {
-    params['baseurl'] = baseurl;
+Search.prototype.messagesByRequestRegex = function (args, callback) {
+  const params = {'regex': args.regex};
+  if (args.baseurl && args.baseurl !== null) {
+    params['baseurl'] = args.baseurl;
   }
-  if (start && start !== null) {
-    params['start'] = start;
+  if (args.start && args.start !== null) {
+    params['start'] = args.start;
   }
-  if (count && count !== null) {
-    params['count'] = count;
+  if (args.count && args.count !== null) {
+    params['count'] = args.count;
   }
   if (typeof callback === 'function') {
     this.api.request('/search/view/messagesByRequestRegex/', params, callback);
@@ -155,17 +179,21 @@ Search.prototype.messagesByRequestRegex = function (regex, baseurl, start, count
 
 /**
  * Returns the HTTP messages that match the given regular expression in the response optionally filtered by URL and paginated with 'start' position and 'count' of messages.
+ * @param {string} regex
+ * @param {string} baseurl
+ * @param {string} start
+ * @param {string} count
  **/
-Search.prototype.messagesByResponseRegex = function (regex, baseurl, start, count, callback) {
-  const params = {'regex': regex};
-  if (baseurl && baseurl !== null) {
-    params['baseurl'] = baseurl;
+Search.prototype.messagesByResponseRegex = function (args, callback) {
+  const params = {'regex': args.regex};
+  if (args.baseurl && args.baseurl !== null) {
+    params['baseurl'] = args.baseurl;
   }
-  if (start && start !== null) {
-    params['start'] = start;
+  if (args.start && args.start !== null) {
+    params['start'] = args.start;
   }
-  if (count && count !== null) {
-    params['count'] = count;
+  if (args.count && args.count !== null) {
+    params['count'] = args.count;
   }
   if (typeof callback === 'function') {
     this.api.request('/search/view/messagesByResponseRegex/', params, callback);
@@ -176,17 +204,21 @@ Search.prototype.messagesByResponseRegex = function (regex, baseurl, start, coun
 
 /**
  * Returns the HTTP messages that match the given regular expression in the header(s) optionally filtered by URL and paginated with 'start' position and 'count' of messages.
+ * @param {string} regex
+ * @param {string} baseurl
+ * @param {string} start
+ * @param {string} count
  **/
-Search.prototype.messagesByHeaderRegex = function (regex, baseurl, start, count, callback) {
-  const params = {'regex': regex};
-  if (baseurl && baseurl !== null) {
-    params['baseurl'] = baseurl;
+Search.prototype.messagesByHeaderRegex = function (args, callback) {
+  const params = {'regex': args.regex};
+  if (args.baseurl && args.baseurl !== null) {
+    params['baseurl'] = args.baseurl;
   }
-  if (start && start !== null) {
-    params['start'] = start;
+  if (args.start && args.start !== null) {
+    params['start'] = args.start;
   }
-  if (count && count !== null) {
-    params['count'] = count;
+  if (args.count && args.count !== null) {
+    params['count'] = args.count;
   }
   if (typeof callback === 'function') {
     this.api.request('/search/view/messagesByHeaderRegex/', params, callback);
@@ -197,17 +229,21 @@ Search.prototype.messagesByHeaderRegex = function (regex, baseurl, start, count,
 
 /**
  * Returns the HTTP messages, in HAR format, that match the given regular expression in the URL optionally filtered by URL and paginated with 'start' position and 'count' of messages.
+ * @param {string} regex
+ * @param {string} baseurl
+ * @param {string} start
+ * @param {string} count
  **/
-Search.prototype.harByUrlRegex = function (regex, baseurl, start, count, callback) {
-  const params = {'regex': regex};
-  if (baseurl && baseurl !== null) {
-    params['baseurl'] = baseurl;
+Search.prototype.harByUrlRegex = function (args, callback) {
+  const params = {'regex': args.regex};
+  if (args.baseurl && args.baseurl !== null) {
+    params['baseurl'] = args.baseurl;
   }
-  if (start && start !== null) {
-    params['start'] = start;
+  if (args.start && args.start !== null) {
+    params['start'] = args.start;
   }
-  if (count && count !== null) {
-    params['count'] = count;
+  if (args.count && args.count !== null) {
+    params['count'] = args.count;
   }
   if (typeof callback === 'function') {
     this.api.requestOther('/search/other/harByUrlRegex/', params, callback);
@@ -218,17 +254,21 @@ Search.prototype.harByUrlRegex = function (regex, baseurl, start, count, callbac
 
 /**
  * Returns the HTTP messages, in HAR format, that match the given regular expression in the request optionally filtered by URL and paginated with 'start' position and 'count' of messages.
+ * @param {string} regex
+ * @param {string} baseurl
+ * @param {string} start
+ * @param {string} count
  **/
-Search.prototype.harByRequestRegex = function (regex, baseurl, start, count, callback) {
-  const params = {'regex': regex};
-  if (baseurl && baseurl !== null) {
-    params['baseurl'] = baseurl;
+Search.prototype.harByRequestRegex = function (args, callback) {
+  const params = {'regex': args.regex};
+  if (args.baseurl && args.baseurl !== null) {
+    params['baseurl'] = args.baseurl;
   }
-  if (start && start !== null) {
-    params['start'] = start;
+  if (args.start && args.start !== null) {
+    params['start'] = args.start;
   }
-  if (count && count !== null) {
-    params['count'] = count;
+  if (args.count && args.count !== null) {
+    params['count'] = args.count;
   }
   if (typeof callback === 'function') {
     this.api.requestOther('/search/other/harByRequestRegex/', params, callback);
@@ -239,17 +279,21 @@ Search.prototype.harByRequestRegex = function (regex, baseurl, start, count, cal
 
 /**
  * Returns the HTTP messages, in HAR format, that match the given regular expression in the response optionally filtered by URL and paginated with 'start' position and 'count' of messages.
+ * @param {string} regex
+ * @param {string} baseurl
+ * @param {string} start
+ * @param {string} count
  **/
-Search.prototype.harByResponseRegex = function (regex, baseurl, start, count, callback) {
-  const params = {'regex': regex};
-  if (baseurl && baseurl !== null) {
-    params['baseurl'] = baseurl;
+Search.prototype.harByResponseRegex = function (args, callback) {
+  const params = {'regex': args.regex};
+  if (args.baseurl && args.baseurl !== null) {
+    params['baseurl'] = args.baseurl;
   }
-  if (start && start !== null) {
-    params['start'] = start;
+  if (args.start && args.start !== null) {
+    params['start'] = args.start;
   }
-  if (count && count !== null) {
-    params['count'] = count;
+  if (args.count && args.count !== null) {
+    params['count'] = args.count;
   }
   if (typeof callback === 'function') {
     this.api.requestOther('/search/other/harByResponseRegex/', params, callback);
@@ -260,17 +304,21 @@ Search.prototype.harByResponseRegex = function (regex, baseurl, start, count, ca
 
 /**
  * Returns the HTTP messages, in HAR format, that match the given regular expression in the header(s) optionally filtered by URL and paginated with 'start' position and 'count' of messages.
+ * @param {string} regex
+ * @param {string} baseurl
+ * @param {string} start
+ * @param {string} count
  **/
-Search.prototype.harByHeaderRegex = function (regex, baseurl, start, count, callback) {
-  const params = {'regex': regex};
-  if (baseurl && baseurl !== null) {
-    params['baseurl'] = baseurl;
+Search.prototype.harByHeaderRegex = function (args, callback) {
+  const params = {'regex': args.regex};
+  if (args.baseurl && args.baseurl !== null) {
+    params['baseurl'] = args.baseurl;
   }
-  if (start && start !== null) {
-    params['start'] = start;
+  if (args.start && args.start !== null) {
+    params['start'] = args.start;
   }
-  if (count && count !== null) {
-    params['count'] = count;
+  if (args.count && args.count !== null) {
+    params['count'] = args.count;
   }
   if (typeof callback === 'function') {
     this.api.requestOther('/search/other/harByHeaderRegex/', params, callback);

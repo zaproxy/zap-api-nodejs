@@ -70,7 +70,7 @@ AccessControl.prototype.scan = function (contextid, userid, scanasunauthuser, ra
     this.api.request('/accessControl/action/scan/', params, callback);
     return;
   }
-  return this.api.requestPromise('/accessControl/action/scan/', params);
+  return this.api.requ8estPromise('/accessControl/action/scan/', params);
 };
 
 /**

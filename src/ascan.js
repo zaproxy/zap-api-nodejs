@@ -2,7 +2,7 @@
  *
  * ZAP is an HTTP/HTTPS proxy for assessing web application security.
  *
- * Copyright 2022 the ZAP development team
+ * Copyright 2023 the ZAP development team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,11 +29,12 @@ function Ascan(clientApi) {
 
 /**
  * 
+ * @param {string} scanid
  **/
-Ascan.prototype.status = function (scanid, callback) {
+Ascan.prototype.status = function (args, callback) {
   const params = {};
-  if (scanid && scanid !== null) {
-    params['scanId'] = scanid;
+  if (args.scanid && args.scanid !== null) {
+    params['scanId'] = args.scanid;
   }
   if (typeof callback === 'function') {
     this.api.request('/ascan/view/status/', params, callback);
@@ -44,11 +45,12 @@ Ascan.prototype.status = function (scanid, callback) {
 
 /**
  * 
+ * @param {string} scanid
  **/
-Ascan.prototype.scanProgress = function (scanid, callback) {
+Ascan.prototype.scanProgress = function (args, callback) {
   const params = {};
-  if (scanid && scanid !== null) {
-    params['scanId'] = scanid;
+  if (args.scanid && args.scanid !== null) {
+    params['scanId'] = args.scanid;
   }
   if (typeof callback === 'function') {
     this.api.request('/ascan/view/scanProgress/', params, callback);
@@ -59,24 +61,26 @@ Ascan.prototype.scanProgress = function (scanid, callback) {
 
 /**
  * Gets the IDs of the messages sent during the scan with the given ID. A message can be obtained with 'message' core view.
+ * @param {string} scanid
  **/
-Ascan.prototype.messagesIds = function (scanid, callback) {
+Ascan.prototype.messagesIds = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/ascan/view/messagesIds/', {'scanId': scanid}, callback);
+    this.api.request('/ascan/view/messagesIds/', {'scanId': args.scanid}, callback);
     return;
   }
-  return this.api.requestPromise('/ascan/view/messagesIds/', {'scanId': scanid});
+  return this.api.requestPromise('/ascan/view/messagesIds/', {'scanId': args.scanid});
 };
 
 /**
  * Gets the IDs of the alerts raised during the scan with the given ID. An alert can be obtained with 'alert' core view.
+ * @param {string} scanid
  **/
-Ascan.prototype.alertsIds = function (scanid, callback) {
+Ascan.prototype.alertsIds = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/ascan/view/alertsIds/', {'scanId': scanid}, callback);
+    this.api.request('/ascan/view/alertsIds/', {'scanId': args.scanid}, callback);
     return;
   }
-  return this.api.requestPromise('/ascan/view/alertsIds/', {'scanId': scanid});
+  return this.api.requestPromise('/ascan/view/alertsIds/', {'scanId': args.scanid});
 };
 
 /**
@@ -114,14 +118,16 @@ Ascan.prototype.excludedFromScan = function (callback) {
 
 /**
  * Gets the scan rules, optionally, of the given scan policy or scanner policy/category ID.
+ * @param {string} scanpolicyname
+ * @param {string} policyid
  **/
-Ascan.prototype.scanners = function (scanpolicyname, policyid, callback) {
+Ascan.prototype.scanners = function (args, callback) {
   const params = {};
-  if (scanpolicyname && scanpolicyname !== null) {
-    params['scanPolicyName'] = scanpolicyname;
+  if (args.scanpolicyname && args.scanpolicyname !== null) {
+    params['scanPolicyName'] = args.scanpolicyname;
   }
-  if (policyid && policyid !== null) {
-    params['policyId'] = policyid;
+  if (args.policyid && args.policyid !== null) {
+    params['policyId'] = args.policyid;
   }
   if (typeof callback === 'function') {
     this.api.request('/ascan/view/scanners/', params, callback);
@@ -132,14 +138,16 @@ Ascan.prototype.scanners = function (scanpolicyname, policyid, callback) {
 
 /**
  * 
+ * @param {string} scanpolicyname
+ * @param {string} policyid
  **/
-Ascan.prototype.policies = function (scanpolicyname, policyid, callback) {
+Ascan.prototype.policies = function (args, callback) {
   const params = {};
-  if (scanpolicyname && scanpolicyname !== null) {
-    params['scanPolicyName'] = scanpolicyname;
+  if (args.scanpolicyname && args.scanpolicyname !== null) {
+    params['scanPolicyName'] = args.scanpolicyname;
   }
-  if (policyid && policyid !== null) {
-    params['policyId'] = policyid;
+  if (args.policyid && args.policyid !== null) {
+    params['policyId'] = args.policyid;
   }
   if (typeof callback === 'function') {
     this.api.request('/ascan/view/policies/', params, callback);
@@ -436,29 +444,36 @@ Ascan.prototype.optionShowAdvancedDialog = function (callback) {
 
 /**
  * Runs the active scanner against the given URL or Context. Optionally, the 'recurse' parameter can be used to scan URLs under the given URL, the parameter 'inScopeOnly' can be used to constrain the scan to URLs that are in scope (ignored if a Context is specified), the parameter 'scanPolicyName' allows to specify the scan policy (if none is given it uses the default scan policy), the parameters 'method' and 'postData' allow to select a given request in conjunction with the given URL.
+ * @param {string} url
+ * @param {string} recurse
+ * @param {string} inscopeonly
+ * @param {string} scanpolicyname
+ * @param {string} method
+ * @param {string} postdata
+ * @param {string} contextid
  **/
-Ascan.prototype.scan = function (url, recurse, inscopeonly, scanpolicyname, method, postdata, contextid, callback) {
+Ascan.prototype.scan = function (args, callback) {
   const params = {};
-  if (url && url !== null) {
-    params['url'] = url;
+  if (args.url && args.url !== null) {
+    params['url'] = args.url;
   }
-  if (recurse && recurse !== null) {
-    params['recurse'] = recurse;
+  if (args.recurse && args.recurse !== null) {
+    params['recurse'] = args.recurse;
   }
-  if (inscopeonly && inscopeonly !== null) {
-    params['inScopeOnly'] = inscopeonly;
+  if (args.inscopeonly && args.inscopeonly !== null) {
+    params['inScopeOnly'] = args.inscopeonly;
   }
-  if (scanpolicyname && scanpolicyname !== null) {
-    params['scanPolicyName'] = scanpolicyname;
+  if (args.scanpolicyname && args.scanpolicyname !== null) {
+    params['scanPolicyName'] = args.scanpolicyname;
   }
-  if (method && method !== null) {
-    params['method'] = method;
+  if (args.method && args.method !== null) {
+    params['method'] = args.method;
   }
-  if (postdata && postdata !== null) {
-    params['postData'] = postdata;
+  if (args.postdata && args.postdata !== null) {
+    params['postData'] = args.postdata;
   }
-  if (contextid && contextid !== null) {
-    params['contextId'] = contextid;
+  if (args.contextid && args.contextid !== null) {
+    params['contextId'] = args.contextid;
   }
   if (typeof callback === 'function') {
     this.api.request('/ascan/action/scan/', params, callback);
@@ -469,29 +484,36 @@ Ascan.prototype.scan = function (url, recurse, inscopeonly, scanpolicyname, meth
 
 /**
  * Active Scans from the perspective of a User, obtained using the given Context ID and User ID. See 'scan' action for more details.
+ * @param {string} url
+ * @param {string} contextid
+ * @param {string} userid
+ * @param {string} recurse
+ * @param {string} scanpolicyname
+ * @param {string} method
+ * @param {string} postdata
  **/
-Ascan.prototype.scanAsUser = function (url, contextid, userid, recurse, scanpolicyname, method, postdata, callback) {
+Ascan.prototype.scanAsUser = function (args, callback) {
   const params = {};
-  if (url && url !== null) {
-    params['url'] = url;
+  if (args.url && args.url !== null) {
+    params['url'] = args.url;
   }
-  if (contextid && contextid !== null) {
-    params['contextId'] = contextid;
+  if (args.contextid && args.contextid !== null) {
+    params['contextId'] = args.contextid;
   }
-  if (userid && userid !== null) {
-    params['userId'] = userid;
+  if (args.userid && args.userid !== null) {
+    params['userId'] = args.userid;
   }
-  if (recurse && recurse !== null) {
-    params['recurse'] = recurse;
+  if (args.recurse && args.recurse !== null) {
+    params['recurse'] = args.recurse;
   }
-  if (scanpolicyname && scanpolicyname !== null) {
-    params['scanPolicyName'] = scanpolicyname;
+  if (args.scanpolicyname && args.scanpolicyname !== null) {
+    params['scanPolicyName'] = args.scanpolicyname;
   }
-  if (method && method !== null) {
-    params['method'] = method;
+  if (args.method && args.method !== null) {
+    params['method'] = args.method;
   }
-  if (postdata && postdata !== null) {
-    params['postData'] = postdata;
+  if (args.postdata && args.postdata !== null) {
+    params['postData'] = args.postdata;
   }
   if (typeof callback === 'function') {
     this.api.request('/ascan/action/scanAsUser/', params, callback);
@@ -502,46 +524,50 @@ Ascan.prototype.scanAsUser = function (url, contextid, userid, recurse, scanpoli
 
 /**
  * 
+ * @param {string} scanid
  **/
-Ascan.prototype.pause = function (scanid, callback) {
+Ascan.prototype.pause = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/ascan/action/pause/', {'scanId': scanid}, callback);
+    this.api.request('/ascan/action/pause/', {'scanId': args.scanid}, callback);
     return;
   }
-  return this.api.requestPromise('/ascan/action/pause/', {'scanId': scanid});
+  return this.api.requestPromise('/ascan/action/pause/', {'scanId': args.scanid});
 };
 
 /**
  * 
+ * @param {string} scanid
  **/
-Ascan.prototype.resume = function (scanid, callback) {
+Ascan.prototype.resume = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/ascan/action/resume/', {'scanId': scanid}, callback);
+    this.api.request('/ascan/action/resume/', {'scanId': args.scanid}, callback);
     return;
   }
-  return this.api.requestPromise('/ascan/action/resume/', {'scanId': scanid});
+  return this.api.requestPromise('/ascan/action/resume/', {'scanId': args.scanid});
 };
 
 /**
  * 
+ * @param {string} scanid
  **/
-Ascan.prototype.stop = function (scanid, callback) {
+Ascan.prototype.stop = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/ascan/action/stop/', {'scanId': scanid}, callback);
+    this.api.request('/ascan/action/stop/', {'scanId': args.scanid}, callback);
     return;
   }
-  return this.api.requestPromise('/ascan/action/stop/', {'scanId': scanid});
+  return this.api.requestPromise('/ascan/action/stop/', {'scanId': args.scanid});
 };
 
 /**
  * 
+ * @param {string} scanid
  **/
-Ascan.prototype.removeScan = function (scanid, callback) {
+Ascan.prototype.removeScan = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/ascan/action/removeScan/', {'scanId': scanid}, callback);
+    this.api.request('/ascan/action/removeScan/', {'scanId': args.scanid}, callback);
     return;
   }
-  return this.api.requestPromise('/ascan/action/removeScan/', {'scanId': scanid});
+  return this.api.requestPromise('/ascan/action/removeScan/', {'scanId': args.scanid});
 };
 
 /**
@@ -601,22 +627,24 @@ Ascan.prototype.clearExcludedFromScan = function (callback) {
 
 /**
  * Adds a regex of URLs that should be excluded from the active scans.
+ * @param {string} regex
  **/
-Ascan.prototype.excludeFromScan = function (regex, callback) {
+Ascan.prototype.excludeFromScan = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/ascan/action/excludeFromScan/', {'regex': regex}, callback);
+    this.api.request('/ascan/action/excludeFromScan/', {'regex': args.regex}, callback);
     return;
   }
-  return this.api.requestPromise('/ascan/action/excludeFromScan/', {'regex': regex});
+  return this.api.requestPromise('/ascan/action/excludeFromScan/', {'regex': args.regex});
 };
 
 /**
  * Enables all scan rules of the scan policy with the given name, or the default if none given.
+ * @param {string} scanpolicyname
  **/
-Ascan.prototype.enableAllScanners = function (scanpolicyname, callback) {
+Ascan.prototype.enableAllScanners = function (args, callback) {
   const params = {};
-  if (scanpolicyname && scanpolicyname !== null) {
-    params['scanPolicyName'] = scanpolicyname;
+  if (args.scanpolicyname && args.scanpolicyname !== null) {
+    params['scanPolicyName'] = args.scanpolicyname;
   }
   if (typeof callback === 'function') {
     this.api.request('/ascan/action/enableAllScanners/', params, callback);
@@ -627,11 +655,12 @@ Ascan.prototype.enableAllScanners = function (scanpolicyname, callback) {
 
 /**
  * Disables all scan rules of the scan policy with the given name, or the default if none given.
+ * @param {string} scanpolicyname
  **/
-Ascan.prototype.disableAllScanners = function (scanpolicyname, callback) {
+Ascan.prototype.disableAllScanners = function (args, callback) {
   const params = {};
-  if (scanpolicyname && scanpolicyname !== null) {
-    params['scanPolicyName'] = scanpolicyname;
+  if (args.scanpolicyname && args.scanpolicyname !== null) {
+    params['scanPolicyName'] = args.scanpolicyname;
   }
   if (typeof callback === 'function') {
     this.api.request('/ascan/action/disableAllScanners/', params, callback);
@@ -642,11 +671,13 @@ Ascan.prototype.disableAllScanners = function (scanpolicyname, callback) {
 
 /**
  * Enables the scan rules with the given IDs (comma separated list of IDs) of the scan policy with the given name, or the default if none given.
+ * @param {string} ids
+ * @param {string} scanpolicyname
  **/
-Ascan.prototype.enableScanners = function (ids, scanpolicyname, callback) {
-  const params = {'ids': ids};
-  if (scanpolicyname && scanpolicyname !== null) {
-    params['scanPolicyName'] = scanpolicyname;
+Ascan.prototype.enableScanners = function (args, callback) {
+  const params = {'ids': args.ids};
+  if (args.scanpolicyname && args.scanpolicyname !== null) {
+    params['scanPolicyName'] = args.scanpolicyname;
   }
   if (typeof callback === 'function') {
     this.api.request('/ascan/action/enableScanners/', params, callback);
@@ -657,11 +688,13 @@ Ascan.prototype.enableScanners = function (ids, scanpolicyname, callback) {
 
 /**
  * Disables the scan rules with the given IDs (comma separated list of IDs) of the scan policy with the given name, or the default if none given.
+ * @param {string} ids
+ * @param {string} scanpolicyname
  **/
-Ascan.prototype.disableScanners = function (ids, scanpolicyname, callback) {
-  const params = {'ids': ids};
-  if (scanpolicyname && scanpolicyname !== null) {
-    params['scanPolicyName'] = scanpolicyname;
+Ascan.prototype.disableScanners = function (args, callback) {
+  const params = {'ids': args.ids};
+  if (args.scanpolicyname && args.scanpolicyname !== null) {
+    params['scanPolicyName'] = args.scanpolicyname;
   }
   if (typeof callback === 'function') {
     this.api.request('/ascan/action/disableScanners/', params, callback);
@@ -672,11 +705,13 @@ Ascan.prototype.disableScanners = function (ids, scanpolicyname, callback) {
 
 /**
  * 
+ * @param {string} ids
+ * @param {string} scanpolicyname
  **/
-Ascan.prototype.setEnabledPolicies = function (ids, scanpolicyname, callback) {
-  const params = {'ids': ids};
-  if (scanpolicyname && scanpolicyname !== null) {
-    params['scanPolicyName'] = scanpolicyname;
+Ascan.prototype.setEnabledPolicies = function (args, callback) {
+  const params = {'ids': args.ids};
+  if (args.scanpolicyname && args.scanpolicyname !== null) {
+    params['scanPolicyName'] = args.scanpolicyname;
   }
   if (typeof callback === 'function') {
     this.api.request('/ascan/action/setEnabledPolicies/', params, callback);
@@ -687,11 +722,14 @@ Ascan.prototype.setEnabledPolicies = function (ids, scanpolicyname, callback) {
 
 /**
  * 
+ * @param {string} id
+ * @param {string} attackstrength
+ * @param {string} scanpolicyname
  **/
-Ascan.prototype.setPolicyAttackStrength = function (id, attackstrength, scanpolicyname, callback) {
-  const params = {'id': id, 'attackStrength': attackstrength};
-  if (scanpolicyname && scanpolicyname !== null) {
-    params['scanPolicyName'] = scanpolicyname;
+Ascan.prototype.setPolicyAttackStrength = function (args, callback) {
+  const params = {'id': args.id, 'attackStrength': args.attackstrength};
+  if (args.scanpolicyname && args.scanpolicyname !== null) {
+    params['scanPolicyName'] = args.scanpolicyname;
   }
   if (typeof callback === 'function') {
     this.api.request('/ascan/action/setPolicyAttackStrength/', params, callback);
@@ -702,11 +740,14 @@ Ascan.prototype.setPolicyAttackStrength = function (id, attackstrength, scanpoli
 
 /**
  * 
+ * @param {string} id
+ * @param {string} alertthreshold
+ * @param {string} scanpolicyname
  **/
-Ascan.prototype.setPolicyAlertThreshold = function (id, alertthreshold, scanpolicyname, callback) {
-  const params = {'id': id, 'alertThreshold': alertthreshold};
-  if (scanpolicyname && scanpolicyname !== null) {
-    params['scanPolicyName'] = scanpolicyname;
+Ascan.prototype.setPolicyAlertThreshold = function (args, callback) {
+  const params = {'id': args.id, 'alertThreshold': args.alertthreshold};
+  if (args.scanpolicyname && args.scanpolicyname !== null) {
+    params['scanPolicyName'] = args.scanpolicyname;
   }
   if (typeof callback === 'function') {
     this.api.request('/ascan/action/setPolicyAlertThreshold/', params, callback);
@@ -717,11 +758,14 @@ Ascan.prototype.setPolicyAlertThreshold = function (id, alertthreshold, scanpoli
 
 /**
  * 
+ * @param {string} id
+ * @param {string} attackstrength
+ * @param {string} scanpolicyname
  **/
-Ascan.prototype.setScannerAttackStrength = function (id, attackstrength, scanpolicyname, callback) {
-  const params = {'id': id, 'attackStrength': attackstrength};
-  if (scanpolicyname && scanpolicyname !== null) {
-    params['scanPolicyName'] = scanpolicyname;
+Ascan.prototype.setScannerAttackStrength = function (args, callback) {
+  const params = {'id': args.id, 'attackStrength': args.attackstrength};
+  if (args.scanpolicyname && args.scanpolicyname !== null) {
+    params['scanPolicyName'] = args.scanpolicyname;
   }
   if (typeof callback === 'function') {
     this.api.request('/ascan/action/setScannerAttackStrength/', params, callback);
@@ -732,11 +776,14 @@ Ascan.prototype.setScannerAttackStrength = function (id, attackstrength, scanpol
 
 /**
  * 
+ * @param {string} id
+ * @param {string} alertthreshold
+ * @param {string} scanpolicyname
  **/
-Ascan.prototype.setScannerAlertThreshold = function (id, alertthreshold, scanpolicyname, callback) {
-  const params = {'id': id, 'alertThreshold': alertthreshold};
-  if (scanpolicyname && scanpolicyname !== null) {
-    params['scanPolicyName'] = scanpolicyname;
+Ascan.prototype.setScannerAlertThreshold = function (args, callback) {
+  const params = {'id': args.id, 'alertThreshold': args.alertthreshold};
+  if (args.scanpolicyname && args.scanpolicyname !== null) {
+    params['scanPolicyName'] = args.scanpolicyname;
   }
   if (typeof callback === 'function') {
     this.api.request('/ascan/action/setScannerAlertThreshold/', params, callback);
@@ -747,14 +794,17 @@ Ascan.prototype.setScannerAlertThreshold = function (id, alertthreshold, scanpol
 
 /**
  * 
+ * @param {string} scanpolicyname
+ * @param {string} alertthreshold
+ * @param {string} attackstrength
  **/
-Ascan.prototype.addScanPolicy = function (scanpolicyname, alertthreshold, attackstrength, callback) {
-  const params = {'scanPolicyName': scanpolicyname};
-  if (alertthreshold && alertthreshold !== null) {
-    params['alertThreshold'] = alertthreshold;
+Ascan.prototype.addScanPolicy = function (args, callback) {
+  const params = {'scanPolicyName': args.scanpolicyname};
+  if (args.alertthreshold && args.alertthreshold !== null) {
+    params['alertThreshold'] = args.alertthreshold;
   }
-  if (attackstrength && attackstrength !== null) {
-    params['attackStrength'] = attackstrength;
+  if (args.attackstrength && args.attackstrength !== null) {
+    params['attackStrength'] = args.attackstrength;
   }
   if (typeof callback === 'function') {
     this.api.request('/ascan/action/addScanPolicy/', params, callback);
@@ -765,25 +815,29 @@ Ascan.prototype.addScanPolicy = function (scanpolicyname, alertthreshold, attack
 
 /**
  * 
+ * @param {string} scanpolicyname
  **/
-Ascan.prototype.removeScanPolicy = function (scanpolicyname, callback) {
+Ascan.prototype.removeScanPolicy = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/ascan/action/removeScanPolicy/', {'scanPolicyName': scanpolicyname}, callback);
+    this.api.request('/ascan/action/removeScanPolicy/', {'scanPolicyName': args.scanpolicyname}, callback);
     return;
   }
-  return this.api.requestPromise('/ascan/action/removeScanPolicy/', {'scanPolicyName': scanpolicyname});
+  return this.api.requestPromise('/ascan/action/removeScanPolicy/', {'scanPolicyName': args.scanpolicyname});
 };
 
 /**
  * 
+ * @param {string} scanpolicyname
+ * @param {string} alertthreshold
+ * @param {string} attackstrength
  **/
-Ascan.prototype.updateScanPolicy = function (scanpolicyname, alertthreshold, attackstrength, callback) {
-  const params = {'scanPolicyName': scanpolicyname};
-  if (alertthreshold && alertthreshold !== null) {
-    params['alertThreshold'] = alertthreshold;
+Ascan.prototype.updateScanPolicy = function (args, callback) {
+  const params = {'scanPolicyName': args.scanpolicyname};
+  if (args.alertthreshold && args.alertthreshold !== null) {
+    params['alertThreshold'] = args.alertthreshold;
   }
-  if (attackstrength && attackstrength !== null) {
-    params['attackStrength'] = attackstrength;
+  if (args.attackstrength && args.attackstrength !== null) {
+    params['attackStrength'] = args.attackstrength;
   }
   if (typeof callback === 'function') {
     this.api.request('/ascan/action/updateScanPolicy/', params, callback);
@@ -794,25 +848,29 @@ Ascan.prototype.updateScanPolicy = function (scanpolicyname, alertthreshold, att
 
 /**
  * Imports a Scan Policy using the given file system path.
+ * @param {string} path
  **/
-Ascan.prototype.importScanPolicy = function (path, callback) {
+Ascan.prototype.importScanPolicy = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/ascan/action/importScanPolicy/', {'path': path}, callback);
+    this.api.request('/ascan/action/importScanPolicy/', {'path': args.path}, callback);
     return;
   }
-  return this.api.requestPromise('/ascan/action/importScanPolicy/', {'path': path});
+  return this.api.requestPromise('/ascan/action/importScanPolicy/', {'path': args.path});
 };
 
 /**
  * Adds a new parameter excluded from the scan, using the specified name. Optionally sets if the new entry applies to a specific URL (default, all URLs) and sets the ID of the type of the parameter (default, ID of any type). The type IDs can be obtained with the view excludedParamTypes. 
+ * @param {string} name
+ * @param {string} type
+ * @param {string} url
  **/
-Ascan.prototype.addExcludedParam = function (name, type, url, callback) {
-  const params = {'name': name};
-  if (type && type !== null) {
-    params['type'] = type;
+Ascan.prototype.addExcludedParam = function (args, callback) {
+  const params = {'name': args.name};
+  if (args.type && args.type !== null) {
+    params['type'] = args.type;
   }
-  if (url && url !== null) {
-    params['url'] = url;
+  if (args.url && args.url !== null) {
+    params['url'] = args.url;
   }
   if (typeof callback === 'function') {
     this.api.request('/ascan/action/addExcludedParam/', params, callback);
@@ -823,17 +881,21 @@ Ascan.prototype.addExcludedParam = function (name, type, url, callback) {
 
 /**
  * Modifies a parameter excluded from the scan. Allows to modify the name, the URL and the type of parameter. The parameter is selected with its index, which can be obtained with the view excludedParams.
+ * @param {string} idx
+ * @param {string} name
+ * @param {string} type
+ * @param {string} url
  **/
-Ascan.prototype.modifyExcludedParam = function (idx, name, type, url, callback) {
-  const params = {'idx': idx};
-  if (name && name !== null) {
-    params['name'] = name;
+Ascan.prototype.modifyExcludedParam = function (args, callback) {
+  const params = {'idx': args.idx};
+  if (args.name && args.name !== null) {
+    params['name'] = args.name;
   }
-  if (type && type !== null) {
-    params['type'] = type;
+  if (args.type && args.type !== null) {
+    params['type'] = args.type;
   }
-  if (url && url !== null) {
-    params['url'] = url;
+  if (args.url && args.url !== null) {
+    params['url'] = args.url;
   }
   if (typeof callback === 'function') {
     this.api.request('/ascan/action/modifyExcludedParam/', params, callback);
@@ -844,266 +906,291 @@ Ascan.prototype.modifyExcludedParam = function (idx, name, type, url, callback) 
 
 /**
  * Removes a parameter excluded from the scan, with the given index. The index can be obtained with the view excludedParams.
+ * @param {string} idx
  **/
-Ascan.prototype.removeExcludedParam = function (idx, callback) {
+Ascan.prototype.removeExcludedParam = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/ascan/action/removeExcludedParam/', {'idx': idx}, callback);
+    this.api.request('/ascan/action/removeExcludedParam/', {'idx': args.idx}, callback);
     return;
   }
-  return this.api.requestPromise('/ascan/action/removeExcludedParam/', {'idx': idx});
+  return this.api.requestPromise('/ascan/action/removeExcludedParam/', {'idx': args.idx});
 };
 
 /**
  * Skips the scanner using the given IDs of the scan and the scanner.
+ * @param {string} scanid
+ * @param {string} scannerid
  **/
-Ascan.prototype.skipScanner = function (scanid, scannerid, callback) {
+Ascan.prototype.skipScanner = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/ascan/action/skipScanner/', {'scanId': scanid, 'scannerId': scannerid}, callback);
+    this.api.request('/ascan/action/skipScanner/', {'scanId': args.scanid, 'scannerId': args.scannerid}, callback);
     return;
   }
-  return this.api.requestPromise('/ascan/action/skipScanner/', {'scanId': scanid, 'scannerId': scannerid});
+  return this.api.requestPromise('/ascan/action/skipScanner/', {'scanId': args.scanid, 'scannerId': args.scannerid});
 };
 
 /**
  * 
+ * @param {string} string
  **/
-Ascan.prototype.setOptionAttackPolicy = function (string, callback) {
+Ascan.prototype.setOptionAttackPolicy = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/ascan/action/setOptionAttackPolicy/', {'String': string}, callback);
+    this.api.request('/ascan/action/setOptionAttackPolicy/', {'String': args.string}, callback);
     return;
   }
-  return this.api.requestPromise('/ascan/action/setOptionAttackPolicy/', {'String': string});
+  return this.api.requestPromise('/ascan/action/setOptionAttackPolicy/', {'String': args.string});
 };
 
 /**
  * 
+ * @param {string} string
  **/
-Ascan.prototype.setOptionDefaultPolicy = function (string, callback) {
+Ascan.prototype.setOptionDefaultPolicy = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/ascan/action/setOptionDefaultPolicy/', {'String': string}, callback);
+    this.api.request('/ascan/action/setOptionDefaultPolicy/', {'String': args.string}, callback);
     return;
   }
-  return this.api.requestPromise('/ascan/action/setOptionDefaultPolicy/', {'String': string});
+  return this.api.requestPromise('/ascan/action/setOptionDefaultPolicy/', {'String': args.string});
 };
 
 /**
  * Sets whether or not the active scanner should add a query param to GET requests which do not have parameters to start with.
+ * @param {string} bool
  **/
-Ascan.prototype.setOptionAddQueryParam = function (bool, callback) {
+Ascan.prototype.setOptionAddQueryParam = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/ascan/action/setOptionAddQueryParam/', {'Boolean': bool}, callback);
+    this.api.request('/ascan/action/setOptionAddQueryParam/', {'Boolean': args.bool}, callback);
     return;
   }
-  return this.api.requestPromise('/ascan/action/setOptionAddQueryParam/', {'Boolean': bool});
+  return this.api.requestPromise('/ascan/action/setOptionAddQueryParam/', {'Boolean': args.bool});
 };
 
 /**
  * 
+ * @param {string} bool
  **/
-Ascan.prototype.setOptionAllowAttackOnStart = function (bool, callback) {
+Ascan.prototype.setOptionAllowAttackOnStart = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/ascan/action/setOptionAllowAttackOnStart/', {'Boolean': bool}, callback);
+    this.api.request('/ascan/action/setOptionAllowAttackOnStart/', {'Boolean': args.bool}, callback);
     return;
   }
-  return this.api.requestPromise('/ascan/action/setOptionAllowAttackOnStart/', {'Boolean': bool});
+  return this.api.requestPromise('/ascan/action/setOptionAllowAttackOnStart/', {'Boolean': args.bool});
 };
 
 /**
  * 
+ * @param {string} integer
  **/
-Ascan.prototype.setOptionDelayInMs = function (integer, callback) {
+Ascan.prototype.setOptionDelayInMs = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/ascan/action/setOptionDelayInMs/', {'Integer': integer}, callback);
+    this.api.request('/ascan/action/setOptionDelayInMs/', {'Integer': args.integer}, callback);
     return;
   }
-  return this.api.requestPromise('/ascan/action/setOptionDelayInMs/', {'Integer': integer});
+  return this.api.requestPromise('/ascan/action/setOptionDelayInMs/', {'Integer': args.integer});
 };
 
 /**
  * 
+ * @param {string} bool
  **/
-Ascan.prototype.setOptionHandleAntiCSRFTokens = function (bool, callback) {
+Ascan.prototype.setOptionHandleAntiCSRFTokens = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/ascan/action/setOptionHandleAntiCSRFTokens/', {'Boolean': bool}, callback);
+    this.api.request('/ascan/action/setOptionHandleAntiCSRFTokens/', {'Boolean': args.bool}, callback);
     return;
   }
-  return this.api.requestPromise('/ascan/action/setOptionHandleAntiCSRFTokens/', {'Boolean': bool});
+  return this.api.requestPromise('/ascan/action/setOptionHandleAntiCSRFTokens/', {'Boolean': args.bool});
 };
 
 /**
  * 
+ * @param {string} integer
  **/
-Ascan.prototype.setOptionHostPerScan = function (integer, callback) {
+Ascan.prototype.setOptionHostPerScan = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/ascan/action/setOptionHostPerScan/', {'Integer': integer}, callback);
+    this.api.request('/ascan/action/setOptionHostPerScan/', {'Integer': args.integer}, callback);
     return;
   }
-  return this.api.requestPromise('/ascan/action/setOptionHostPerScan/', {'Integer': integer});
+  return this.api.requestPromise('/ascan/action/setOptionHostPerScan/', {'Integer': args.integer});
 };
 
 /**
  * Sets whether or not the active scanner should inject the HTTP request header X-ZAP-Scan-ID, with the ID of the scanner that's sending the requests.
+ * @param {string} bool
  **/
-Ascan.prototype.setOptionInjectPluginIdInHeader = function (bool, callback) {
+Ascan.prototype.setOptionInjectPluginIdInHeader = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/ascan/action/setOptionInjectPluginIdInHeader/', {'Boolean': bool}, callback);
+    this.api.request('/ascan/action/setOptionInjectPluginIdInHeader/', {'Boolean': args.bool}, callback);
     return;
   }
-  return this.api.requestPromise('/ascan/action/setOptionInjectPluginIdInHeader/', {'Boolean': bool});
+  return this.api.requestPromise('/ascan/action/setOptionInjectPluginIdInHeader/', {'Boolean': args.bool});
 };
 
 /**
  * 
+ * @param {string} integer
  **/
-Ascan.prototype.setOptionMaxChartTimeInMins = function (integer, callback) {
+Ascan.prototype.setOptionMaxChartTimeInMins = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/ascan/action/setOptionMaxChartTimeInMins/', {'Integer': integer}, callback);
+    this.api.request('/ascan/action/setOptionMaxChartTimeInMins/', {'Integer': args.integer}, callback);
     return;
   }
-  return this.api.requestPromise('/ascan/action/setOptionMaxChartTimeInMins/', {'Integer': integer});
+  return this.api.requestPromise('/ascan/action/setOptionMaxChartTimeInMins/', {'Integer': args.integer});
 };
 
 /**
  * 
+ * @param {string} integer
  **/
-Ascan.prototype.setOptionMaxResultsToList = function (integer, callback) {
+Ascan.prototype.setOptionMaxResultsToList = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/ascan/action/setOptionMaxResultsToList/', {'Integer': integer}, callback);
+    this.api.request('/ascan/action/setOptionMaxResultsToList/', {'Integer': args.integer}, callback);
     return;
   }
-  return this.api.requestPromise('/ascan/action/setOptionMaxResultsToList/', {'Integer': integer});
+  return this.api.requestPromise('/ascan/action/setOptionMaxResultsToList/', {'Integer': args.integer});
 };
 
 /**
  * 
+ * @param {string} integer
  **/
-Ascan.prototype.setOptionMaxRuleDurationInMins = function (integer, callback) {
+Ascan.prototype.setOptionMaxRuleDurationInMins = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/ascan/action/setOptionMaxRuleDurationInMins/', {'Integer': integer}, callback);
+    this.api.request('/ascan/action/setOptionMaxRuleDurationInMins/', {'Integer': args.integer}, callback);
     return;
   }
-  return this.api.requestPromise('/ascan/action/setOptionMaxRuleDurationInMins/', {'Integer': integer});
+  return this.api.requestPromise('/ascan/action/setOptionMaxRuleDurationInMins/', {'Integer': args.integer});
 };
 
 /**
  * 
+ * @param {string} integer
  **/
-Ascan.prototype.setOptionMaxScanDurationInMins = function (integer, callback) {
+Ascan.prototype.setOptionMaxScanDurationInMins = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/ascan/action/setOptionMaxScanDurationInMins/', {'Integer': integer}, callback);
+    this.api.request('/ascan/action/setOptionMaxScanDurationInMins/', {'Integer': args.integer}, callback);
     return;
   }
-  return this.api.requestPromise('/ascan/action/setOptionMaxScanDurationInMins/', {'Integer': integer});
+  return this.api.requestPromise('/ascan/action/setOptionMaxScanDurationInMins/', {'Integer': args.integer});
 };
 
 /**
  * 
+ * @param {string} integer
  **/
-Ascan.prototype.setOptionMaxScansInUI = function (integer, callback) {
+Ascan.prototype.setOptionMaxScansInUI = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/ascan/action/setOptionMaxScansInUI/', {'Integer': integer}, callback);
+    this.api.request('/ascan/action/setOptionMaxScansInUI/', {'Integer': args.integer}, callback);
     return;
   }
-  return this.api.requestPromise('/ascan/action/setOptionMaxScansInUI/', {'Integer': integer});
+  return this.api.requestPromise('/ascan/action/setOptionMaxScansInUI/', {'Integer': args.integer});
 };
 
 /**
  * 
+ * @param {string} bool
  **/
-Ascan.prototype.setOptionPromptInAttackMode = function (bool, callback) {
+Ascan.prototype.setOptionPromptInAttackMode = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/ascan/action/setOptionPromptInAttackMode/', {'Boolean': bool}, callback);
+    this.api.request('/ascan/action/setOptionPromptInAttackMode/', {'Boolean': args.bool}, callback);
     return;
   }
-  return this.api.requestPromise('/ascan/action/setOptionPromptInAttackMode/', {'Boolean': bool});
+  return this.api.requestPromise('/ascan/action/setOptionPromptInAttackMode/', {'Boolean': args.bool});
 };
 
 /**
  * 
+ * @param {string} bool
  **/
-Ascan.prototype.setOptionPromptToClearFinishedScans = function (bool, callback) {
+Ascan.prototype.setOptionPromptToClearFinishedScans = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/ascan/action/setOptionPromptToClearFinishedScans/', {'Boolean': bool}, callback);
+    this.api.request('/ascan/action/setOptionPromptToClearFinishedScans/', {'Boolean': args.bool}, callback);
     return;
   }
-  return this.api.requestPromise('/ascan/action/setOptionPromptToClearFinishedScans/', {'Boolean': bool});
+  return this.api.requestPromise('/ascan/action/setOptionPromptToClearFinishedScans/', {'Boolean': args.bool});
 };
 
 /**
  * 
+ * @param {string} bool
  **/
-Ascan.prototype.setOptionRescanInAttackMode = function (bool, callback) {
+Ascan.prototype.setOptionRescanInAttackMode = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/ascan/action/setOptionRescanInAttackMode/', {'Boolean': bool}, callback);
+    this.api.request('/ascan/action/setOptionRescanInAttackMode/', {'Boolean': args.bool}, callback);
     return;
   }
-  return this.api.requestPromise('/ascan/action/setOptionRescanInAttackMode/', {'Boolean': bool});
+  return this.api.requestPromise('/ascan/action/setOptionRescanInAttackMode/', {'Boolean': args.bool});
 };
 
 /**
  * Sets whether or not the HTTP Headers of all requests should be scanned. Not just requests that send parameters, through the query or request body.
+ * @param {string} bool
  **/
-Ascan.prototype.setOptionScanHeadersAllRequests = function (bool, callback) {
+Ascan.prototype.setOptionScanHeadersAllRequests = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/ascan/action/setOptionScanHeadersAllRequests/', {'Boolean': bool}, callback);
+    this.api.request('/ascan/action/setOptionScanHeadersAllRequests/', {'Boolean': args.bool}, callback);
     return;
   }
-  return this.api.requestPromise('/ascan/action/setOptionScanHeadersAllRequests/', {'Boolean': bool});
+  return this.api.requestPromise('/ascan/action/setOptionScanHeadersAllRequests/', {'Boolean': args.bool});
 };
 
 /**
  * Sets whether or not the active scanner should scan null JSON values.
+ * @param {string} bool - true to scan null values, false otherwise.
  **/
-Ascan.prototype.setOptionScanNullJsonValues = function (bool, callback) {
+Ascan.prototype.setOptionScanNullJsonValues = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/ascan/action/setOptionScanNullJsonValues/', {'Boolean': bool}, callback);
+    this.api.request('/ascan/action/setOptionScanNullJsonValues/', {'Boolean': args.bool}, callback);
     return;
   }
-  return this.api.requestPromise('/ascan/action/setOptionScanNullJsonValues/', {'Boolean': bool});
+  return this.api.requestPromise('/ascan/action/setOptionScanNullJsonValues/', {'Boolean': args.bool});
 };
 
 /**
  * 
+ * @param {string} bool
  **/
-Ascan.prototype.setOptionShowAdvancedDialog = function (bool, callback) {
+Ascan.prototype.setOptionShowAdvancedDialog = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/ascan/action/setOptionShowAdvancedDialog/', {'Boolean': bool}, callback);
+    this.api.request('/ascan/action/setOptionShowAdvancedDialog/', {'Boolean': args.bool}, callback);
     return;
   }
-  return this.api.requestPromise('/ascan/action/setOptionShowAdvancedDialog/', {'Boolean': bool});
+  return this.api.requestPromise('/ascan/action/setOptionShowAdvancedDialog/', {'Boolean': args.bool});
 };
 
 /**
  * 
+ * @param {string} integer
  **/
-Ascan.prototype.setOptionTargetParamsEnabledRPC = function (integer, callback) {
+Ascan.prototype.setOptionTargetParamsEnabledRPC = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/ascan/action/setOptionTargetParamsEnabledRPC/', {'Integer': integer}, callback);
+    this.api.request('/ascan/action/setOptionTargetParamsEnabledRPC/', {'Integer': args.integer}, callback);
     return;
   }
-  return this.api.requestPromise('/ascan/action/setOptionTargetParamsEnabledRPC/', {'Integer': integer});
+  return this.api.requestPromise('/ascan/action/setOptionTargetParamsEnabledRPC/', {'Integer': args.integer});
 };
 
 /**
  * 
+ * @param {string} integer
  **/
-Ascan.prototype.setOptionTargetParamsInjectable = function (integer, callback) {
+Ascan.prototype.setOptionTargetParamsInjectable = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/ascan/action/setOptionTargetParamsInjectable/', {'Integer': integer}, callback);
+    this.api.request('/ascan/action/setOptionTargetParamsInjectable/', {'Integer': args.integer}, callback);
     return;
   }
-  return this.api.requestPromise('/ascan/action/setOptionTargetParamsInjectable/', {'Integer': integer});
+  return this.api.requestPromise('/ascan/action/setOptionTargetParamsInjectable/', {'Integer': args.integer});
 };
 
 /**
  * 
+ * @param {string} integer
  **/
-Ascan.prototype.setOptionThreadPerHost = function (integer, callback) {
+Ascan.prototype.setOptionThreadPerHost = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/ascan/action/setOptionThreadPerHost/', {'Integer': integer}, callback);
+    this.api.request('/ascan/action/setOptionThreadPerHost/', {'Integer': args.integer}, callback);
     return;
   }
-  return this.api.requestPromise('/ascan/action/setOptionThreadPerHost/', {'Integer': integer});
+  return this.api.requestPromise('/ascan/action/setOptionThreadPerHost/', {'Integer': args.integer});
 };
 
 module.exports = Ascan;

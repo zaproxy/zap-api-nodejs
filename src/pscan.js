@@ -2,7 +2,7 @@
  *
  * ZAP is an HTTP/HTTPS proxy for assessing web application security.
  *
- * Copyright 2022 the ZAP development team
+ * Copyright 2023 the ZAP development team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -95,24 +95,26 @@ Pscan.prototype.maxAlertsPerRule = function (callback) {
 
 /**
  * Sets whether or not the passive scanning is enabled (Note: the enabled state is not persisted).
+ * @param {string} enabled
  **/
-Pscan.prototype.setEnabled = function (enabled, callback) {
+Pscan.prototype.setEnabled = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/pscan/action/setEnabled/', {'enabled': enabled}, callback);
+    this.api.request('/pscan/action/setEnabled/', {'enabled': args.enabled}, callback);
     return;
   }
-  return this.api.requestPromise('/pscan/action/setEnabled/', {'enabled': enabled});
+  return this.api.requestPromise('/pscan/action/setEnabled/', {'enabled': args.enabled});
 };
 
 /**
  * Sets whether or not the passive scan should be performed only on messages that are in scope.
+ * @param {string} onlyinscope
  **/
-Pscan.prototype.setScanOnlyInScope = function (onlyinscope, callback) {
+Pscan.prototype.setScanOnlyInScope = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/pscan/action/setScanOnlyInScope/', {'onlyInScope': onlyinscope}, callback);
+    this.api.request('/pscan/action/setScanOnlyInScope/', {'onlyInScope': args.onlyinscope}, callback);
     return;
   }
-  return this.api.requestPromise('/pscan/action/setScanOnlyInScope/', {'onlyInScope': onlyinscope});
+  return this.api.requestPromise('/pscan/action/setScanOnlyInScope/', {'onlyInScope': args.onlyinscope});
 };
 
 /**
@@ -139,46 +141,51 @@ Pscan.prototype.disableAllScanners = function (callback) {
 
 /**
  * Enables all passive scan rules with the given IDs (comma separated list of IDs)
+ * @param {string} ids
  **/
-Pscan.prototype.enableScanners = function (ids, callback) {
+Pscan.prototype.enableScanners = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/pscan/action/enableScanners/', {'ids': ids}, callback);
+    this.api.request('/pscan/action/enableScanners/', {'ids': args.ids}, callback);
     return;
   }
-  return this.api.requestPromise('/pscan/action/enableScanners/', {'ids': ids});
+  return this.api.requestPromise('/pscan/action/enableScanners/', {'ids': args.ids});
 };
 
 /**
  * Disables all passive scan rules with the given IDs (comma separated list of IDs)
+ * @param {string} ids
  **/
-Pscan.prototype.disableScanners = function (ids, callback) {
+Pscan.prototype.disableScanners = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/pscan/action/disableScanners/', {'ids': ids}, callback);
+    this.api.request('/pscan/action/disableScanners/', {'ids': args.ids}, callback);
     return;
   }
-  return this.api.requestPromise('/pscan/action/disableScanners/', {'ids': ids});
+  return this.api.requestPromise('/pscan/action/disableScanners/', {'ids': args.ids});
 };
 
 /**
  * Sets the alert threshold of the passive scanner with the given ID, accepted values for alert threshold: OFF, DEFAULT, LOW, MEDIUM and HIGH
+ * @param {string} id
+ * @param {string} alertthreshold
  **/
-Pscan.prototype.setScannerAlertThreshold = function (id, alertthreshold, callback) {
+Pscan.prototype.setScannerAlertThreshold = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/pscan/action/setScannerAlertThreshold/', {'id': id, 'alertThreshold': alertthreshold}, callback);
+    this.api.request('/pscan/action/setScannerAlertThreshold/', {'id': args.id, 'alertThreshold': args.alertthreshold}, callback);
     return;
   }
-  return this.api.requestPromise('/pscan/action/setScannerAlertThreshold/', {'id': id, 'alertThreshold': alertthreshold});
+  return this.api.requestPromise('/pscan/action/setScannerAlertThreshold/', {'id': args.id, 'alertThreshold': args.alertthreshold});
 };
 
 /**
  * Sets the maximum number of alerts a passive scan rule should raise.
+ * @param {string} maxalerts
  **/
-Pscan.prototype.setMaxAlertsPerRule = function (maxalerts, callback) {
+Pscan.prototype.setMaxAlertsPerRule = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/pscan/action/setMaxAlertsPerRule/', {'maxAlerts': maxalerts}, callback);
+    this.api.request('/pscan/action/setMaxAlertsPerRule/', {'maxAlerts': args.maxalerts}, callback);
     return;
   }
-  return this.api.requestPromise('/pscan/action/setMaxAlertsPerRule/', {'maxAlerts': maxalerts});
+  return this.api.requestPromise('/pscan/action/setMaxAlertsPerRule/', {'maxAlerts': args.maxalerts});
 };
 
 /**

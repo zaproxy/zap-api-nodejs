@@ -2,7 +2,7 @@
  *
  * ZAP is an HTTP/HTTPS proxy for assessing web application security.
  *
- * Copyright 2022 the ZAP development team
+ * Copyright 2023 the ZAP development team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -62,24 +62,26 @@ Script.prototype.listScripts = function (callback) {
 
 /**
  * Gets the value of the global variable with the given key. Returns an API error (DOES_NOT_EXIST) if no value was previously set.
+ * @param {string} varkey
  **/
-Script.prototype.globalVar = function (varkey, callback) {
+Script.prototype.globalVar = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/script/view/globalVar/', {'varKey': varkey}, callback);
+    this.api.request('/script/view/globalVar/', {'varKey': args.varkey}, callback);
     return;
   }
-  return this.api.requestPromise('/script/view/globalVar/', {'varKey': varkey});
+  return this.api.requestPromise('/script/view/globalVar/', {'varKey': args.varkey});
 };
 
 /**
  * Gets the value (string representation) of a global custom variable. Returns an API error (DOES_NOT_EXIST) if no value was previously set.
+ * @param {string} varkey - The key of the variable.
  **/
-Script.prototype.globalCustomVar = function (varkey, callback) {
+Script.prototype.globalCustomVar = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/script/view/globalCustomVar/', {'varKey': varkey}, callback);
+    this.api.request('/script/view/globalCustomVar/', {'varKey': args.varkey}, callback);
     return;
   }
-  return this.api.requestPromise('/script/view/globalCustomVar/', {'varKey': varkey});
+  return this.api.requestPromise('/script/view/globalCustomVar/', {'varKey': args.varkey});
 };
 
 /**
@@ -106,80 +108,94 @@ Script.prototype.globalCustomVars = function (callback) {
 
 /**
  * Gets the value of the variable with the given key for the given script. Returns an API error (DOES_NOT_EXIST) if no script with the given name exists or if no value was previously set.
+ * @param {string} scriptname
+ * @param {string} varkey
  **/
-Script.prototype.scriptVar = function (scriptname, varkey, callback) {
+Script.prototype.scriptVar = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/script/view/scriptVar/', {'scriptName': scriptname, 'varKey': varkey}, callback);
+    this.api.request('/script/view/scriptVar/', {'scriptName': args.scriptname, 'varKey': args.varkey}, callback);
     return;
   }
-  return this.api.requestPromise('/script/view/scriptVar/', {'scriptName': scriptname, 'varKey': varkey});
+  return this.api.requestPromise('/script/view/scriptVar/', {'scriptName': args.scriptname, 'varKey': args.varkey});
 };
 
 /**
  * Gets the value (string representation) of a custom variable. Returns an API error (DOES_NOT_EXIST) if no script with the given name exists or if no value was previously set.
+ * @param {string} scriptname - The name of the script.
+ * @param {string} varkey - The key of the variable.
  **/
-Script.prototype.scriptCustomVar = function (scriptname, varkey, callback) {
+Script.prototype.scriptCustomVar = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/script/view/scriptCustomVar/', {'scriptName': scriptname, 'varKey': varkey}, callback);
+    this.api.request('/script/view/scriptCustomVar/', {'scriptName': args.scriptname, 'varKey': args.varkey}, callback);
     return;
   }
-  return this.api.requestPromise('/script/view/scriptCustomVar/', {'scriptName': scriptname, 'varKey': varkey});
+  return this.api.requestPromise('/script/view/scriptCustomVar/', {'scriptName': args.scriptname, 'varKey': args.varkey});
 };
 
 /**
  * Gets all the variables (key/value pairs) of the given script. Returns an API error (DOES_NOT_EXIST) if no script with the given name exists.
+ * @param {string} scriptname
  **/
-Script.prototype.scriptVars = function (scriptname, callback) {
+Script.prototype.scriptVars = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/script/view/scriptVars/', {'scriptName': scriptname}, callback);
+    this.api.request('/script/view/scriptVars/', {'scriptName': args.scriptname}, callback);
     return;
   }
-  return this.api.requestPromise('/script/view/scriptVars/', {'scriptName': scriptname});
+  return this.api.requestPromise('/script/view/scriptVars/', {'scriptName': args.scriptname});
 };
 
 /**
  * Gets all the custom variables (key/value pairs, the value is the string representation) of a script. Returns an API error (DOES_NOT_EXIST) if no script with the given name exists.
+ * @param {string} scriptname - The name of the script.
  **/
-Script.prototype.scriptCustomVars = function (scriptname, callback) {
+Script.prototype.scriptCustomVars = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/script/view/scriptCustomVars/', {'scriptName': scriptname}, callback);
+    this.api.request('/script/view/scriptCustomVars/', {'scriptName': args.scriptname}, callback);
     return;
   }
-  return this.api.requestPromise('/script/view/scriptCustomVars/', {'scriptName': scriptname});
+  return this.api.requestPromise('/script/view/scriptCustomVars/', {'scriptName': args.scriptname});
 };
 
 /**
  * Enables the script with the given name
+ * @param {string} scriptname
  **/
-Script.prototype.enable = function (scriptname, callback) {
+Script.prototype.enable = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/script/action/enable/', {'scriptName': scriptname}, callback);
+    this.api.request('/script/action/enable/', {'scriptName': args.scriptname}, callback);
     return;
   }
-  return this.api.requestPromise('/script/action/enable/', {'scriptName': scriptname});
+  return this.api.requestPromise('/script/action/enable/', {'scriptName': args.scriptname});
 };
 
 /**
  * Disables the script with the given name
+ * @param {string} scriptname
  **/
-Script.prototype.disable = function (scriptname, callback) {
+Script.prototype.disable = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/script/action/disable/', {'scriptName': scriptname}, callback);
+    this.api.request('/script/action/disable/', {'scriptName': args.scriptname}, callback);
     return;
   }
-  return this.api.requestPromise('/script/action/disable/', {'scriptName': scriptname});
+  return this.api.requestPromise('/script/action/disable/', {'scriptName': args.scriptname});
 };
 
 /**
  * Loads a script into ZAP from the given local file, with the given name, type and engine, optionally with a description, and a charset name to read the script (the charset name is required if the script is not in UTF-8, for example, in ISO-8859-1).
+ * @param {string} scriptname
+ * @param {string} scripttype
+ * @param {string} scriptengine
+ * @param {string} filename
+ * @param {string} scriptdescription
+ * @param {string} charset
  **/
-Script.prototype.load = function (scriptname, scripttype, scriptengine, filename, scriptdescription, charset, callback) {
-  const params = {'scriptName': scriptname, 'scriptType': scripttype, 'scriptEngine': scriptengine, 'fileName': filename};
-  if (scriptdescription && scriptdescription !== null) {
-    params['scriptDescription'] = scriptdescription;
+Script.prototype.load = function (args, callback) {
+  const params = {'scriptName': args.scriptname, 'scriptType': args.scripttype, 'scriptEngine': args.scriptengine, 'fileName': args.filename};
+  if (args.scriptdescription && args.scriptdescription !== null) {
+    params['scriptDescription'] = args.scriptdescription;
   }
-  if (charset && charset !== null) {
-    params['charset'] = charset;
+  if (args.charset && args.charset !== null) {
+    params['charset'] = args.charset;
   }
   if (typeof callback === 'function') {
     this.api.request('/script/action/load/', params, callback);
@@ -190,46 +206,50 @@ Script.prototype.load = function (scriptname, scripttype, scriptengine, filename
 
 /**
  * Removes the script with the given name
+ * @param {string} scriptname
  **/
-Script.prototype.remove = function (scriptname, callback) {
+Script.prototype.remove = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/script/action/remove/', {'scriptName': scriptname}, callback);
+    this.api.request('/script/action/remove/', {'scriptName': args.scriptname}, callback);
     return;
   }
-  return this.api.requestPromise('/script/action/remove/', {'scriptName': scriptname});
+  return this.api.requestPromise('/script/action/remove/', {'scriptName': args.scriptname});
 };
 
 /**
  * Runs the stand alone script with the given name
+ * @param {string} scriptname
  **/
-Script.prototype.runStandAloneScript = function (scriptname, callback) {
+Script.prototype.runStandAloneScript = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/script/action/runStandAloneScript/', {'scriptName': scriptname}, callback);
+    this.api.request('/script/action/runStandAloneScript/', {'scriptName': args.scriptname}, callback);
     return;
   }
-  return this.api.requestPromise('/script/action/runStandAloneScript/', {'scriptName': scriptname});
+  return this.api.requestPromise('/script/action/runStandAloneScript/', {'scriptName': args.scriptname});
 };
 
 /**
  * Clears the global variable with the given key.
+ * @param {string} varkey
  **/
-Script.prototype.clearGlobalVar = function (varkey, callback) {
+Script.prototype.clearGlobalVar = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/script/action/clearGlobalVar/', {'varKey': varkey}, callback);
+    this.api.request('/script/action/clearGlobalVar/', {'varKey': args.varkey}, callback);
     return;
   }
-  return this.api.requestPromise('/script/action/clearGlobalVar/', {'varKey': varkey});
+  return this.api.requestPromise('/script/action/clearGlobalVar/', {'varKey': args.varkey});
 };
 
 /**
  * Clears a global custom variable.
+ * @param {string} varkey - The key of the variable.
  **/
-Script.prototype.clearGlobalCustomVar = function (varkey, callback) {
+Script.prototype.clearGlobalCustomVar = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/script/action/clearGlobalCustomVar/', {'varKey': varkey}, callback);
+    this.api.request('/script/action/clearGlobalCustomVar/', {'varKey': args.varkey}, callback);
     return;
   }
-  return this.api.requestPromise('/script/action/clearGlobalCustomVar/', {'varKey': varkey});
+  return this.api.requestPromise('/script/action/clearGlobalCustomVar/', {'varKey': args.varkey});
 };
 
 /**
@@ -245,44 +265,52 @@ Script.prototype.clearGlobalVars = function (callback) {
 
 /**
  * Clears the variable with the given key of the given script. Returns an API error (DOES_NOT_EXIST) if no script with the given name exists.
+ * @param {string} scriptname
+ * @param {string} varkey
  **/
-Script.prototype.clearScriptVar = function (scriptname, varkey, callback) {
+Script.prototype.clearScriptVar = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/script/action/clearScriptVar/', {'scriptName': scriptname, 'varKey': varkey}, callback);
+    this.api.request('/script/action/clearScriptVar/', {'scriptName': args.scriptname, 'varKey': args.varkey}, callback);
     return;
   }
-  return this.api.requestPromise('/script/action/clearScriptVar/', {'scriptName': scriptname, 'varKey': varkey});
+  return this.api.requestPromise('/script/action/clearScriptVar/', {'scriptName': args.scriptname, 'varKey': args.varkey});
 };
 
 /**
  * Clears a script custom variable.
+ * @param {string} scriptname - The name of the script.
+ * @param {string} varkey - The key of the variable.
  **/
-Script.prototype.clearScriptCustomVar = function (scriptname, varkey, callback) {
+Script.prototype.clearScriptCustomVar = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/script/action/clearScriptCustomVar/', {'scriptName': scriptname, 'varKey': varkey}, callback);
+    this.api.request('/script/action/clearScriptCustomVar/', {'scriptName': args.scriptname, 'varKey': args.varkey}, callback);
     return;
   }
-  return this.api.requestPromise('/script/action/clearScriptCustomVar/', {'scriptName': scriptname, 'varKey': varkey});
+  return this.api.requestPromise('/script/action/clearScriptCustomVar/', {'scriptName': args.scriptname, 'varKey': args.varkey});
 };
 
 /**
  * Clears the variables of the given script. Returns an API error (DOES_NOT_EXIST) if no script with the given name exists.
+ * @param {string} scriptname
  **/
-Script.prototype.clearScriptVars = function (scriptname, callback) {
+Script.prototype.clearScriptVars = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/script/action/clearScriptVars/', {'scriptName': scriptname}, callback);
+    this.api.request('/script/action/clearScriptVars/', {'scriptName': args.scriptname}, callback);
     return;
   }
-  return this.api.requestPromise('/script/action/clearScriptVars/', {'scriptName': scriptname});
+  return this.api.requestPromise('/script/action/clearScriptVars/', {'scriptName': args.scriptname});
 };
 
 /**
  * Sets the value of the variable with the given key of the given script. Returns an API error (DOES_NOT_EXIST) if no script with the given name exists.
+ * @param {string} scriptname
+ * @param {string} varkey
+ * @param {string} varvalue
  **/
-Script.prototype.setScriptVar = function (scriptname, varkey, varvalue, callback) {
-  const params = {'scriptName': scriptname, 'varKey': varkey};
-  if (varvalue && varvalue !== null) {
-    params['varValue'] = varvalue;
+Script.prototype.setScriptVar = function (args, callback) {
+  const params = {'scriptName': args.scriptname, 'varKey': args.varkey};
+  if (args.varvalue && args.varvalue !== null) {
+    params['varValue'] = args.varvalue;
   }
   if (typeof callback === 'function') {
     this.api.request('/script/action/setScriptVar/', params, callback);
@@ -293,11 +321,13 @@ Script.prototype.setScriptVar = function (scriptname, varkey, varvalue, callback
 
 /**
  * Sets the value of the global variable with the given key.
+ * @param {string} varkey
+ * @param {string} varvalue
  **/
-Script.prototype.setGlobalVar = function (varkey, varvalue, callback) {
-  const params = {'varKey': varkey};
-  if (varvalue && varvalue !== null) {
-    params['varValue'] = varvalue;
+Script.prototype.setGlobalVar = function (args, callback) {
+  const params = {'varKey': args.varkey};
+  if (args.varvalue && args.varvalue !== null) {
+    params['varValue'] = args.varvalue;
   }
   if (typeof callback === 'function') {
     this.api.request('/script/action/setGlobalVar/', params, callback);
