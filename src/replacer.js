@@ -2,7 +2,7 @@
  *
  * ZAP is an HTTP/HTTPS proxy for assessing web application security.
  *
- * Copyright 2018 the ZAP development team
+ * Copyright 2023 the ZAP development team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,16 +40,27 @@ Replacer.prototype.rules = function (callback) {
 };
 
 /**
- * Adds a replacer rule. For the parameters: desc is a user friendly description, enabled is true or false, matchType is one of [REQ_HEADER, REQ_HEADER_STR, REQ_BODY_STR, RESP_HEADER, RESP_HEADER_STR, RESP_BODY_STR], matchRegex should be true if the matchString should be treated as a regex otherwise false, matchString is the string that will be matched against, replacement is the replacement string, initiators may be blank (for all initiators) or a comma separated list of integers as defined in <a href="https://github.com/zaproxy/zaproxy/blob/develop/src/org/parosproxy/paros/network/HttpSender.java">HttpSender</a>  
+ * Adds a replacer rule. For the parameters: desc is a user friendly description, enabled is true or false, matchType is one of [REQ_HEADER, REQ_HEADER_STR, REQ_BODY_STR, RESP_HEADER, RESP_HEADER_STR, RESP_BODY_STR], matchRegex should be true if the matchString should be treated as a regex otherwise false, matchString is the string that will be matched against, replacement is the replacement string, initiators may be blank (for all initiators) or a comma separated list of integers as defined in <a href="https://github.com/zaproxy/zaproxy/blob/main/zap/src/main/java/org/parosproxy/paros/network/HttpSender.java">HttpSender</a>  
  * This component is optional and therefore the API will only work if it is installed
+ * @param {string} description
+ * @param {string} enabled
+ * @param {string} matchtype
+ * @param {string} matchregex
+ * @param {string} matchstring
+ * @param {string} replacement
+ * @param {string} initiators
+ * @param {string} url - A regular expression to match the URL of the message, if empty the rule applies to all messages.
  **/
-Replacer.prototype.addRule = function (description, enabled, matchtype, matchregex, matchstring, replacement, initiators, callback) {
-  const params = {'description' : description, 'enabled' : enabled, 'matchType' : matchtype, 'matchRegex' : matchregex, 'matchString' : matchstring};
-  if (replacement && replacement !== null) {
-    params['replacement'] = replacement;
+Replacer.prototype.addRule = function (args, callback) {
+  const params = {'description': args.description, 'enabled': args.enabled, 'matchType': args.matchtype, 'matchRegex': args.matchregex, 'matchString': args.matchstring};
+  if (args.replacement && args.replacement !== null) {
+    params['replacement'] = args.replacement;
   }
-  if (initiators && initiators !== null) {
-    params['initiators'] = initiators;
+  if (args.initiators && args.initiators !== null) {
+    params['initiators'] = args.initiators;
+  }
+  if (args.url && args.url !== null) {
+    params['url'] = args.url;
   }
   if (typeof callback === 'function') {
     this.api.request('/replacer/action/addRule/', params, callback);
@@ -61,25 +72,28 @@ Replacer.prototype.addRule = function (description, enabled, matchtype, matchreg
 /**
  * Removes the rule with the given description
  * This component is optional and therefore the API will only work if it is installed
+ * @param {string} description
  **/
-Replacer.prototype.removeRule = function (description, callback) {
+Replacer.prototype.removeRule = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/replacer/action/removeRule/', {'description' : description}, callback);
+    this.api.request('/replacer/action/removeRule/', {'description': args.description}, callback);
     return;
   }
-  return this.api.requestPromise('/replacer/action/removeRule/', {'description' : description});
+  return this.api.requestPromise('/replacer/action/removeRule/', {'description': args.description});
 };
 
 /**
  * Enables or disables the rule with the given description based on the bool parameter  
  * This component is optional and therefore the API will only work if it is installed
+ * @param {string} description
+ * @param {string} bool
  **/
-Replacer.prototype.setEnabled = function (description, bool, callback) {
+Replacer.prototype.setEnabled = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/replacer/action/setEnabled/', {'description' : description, 'bool' : bool}, callback);
+    this.api.request('/replacer/action/setEnabled/', {'description': args.description, 'bool': args.bool}, callback);
     return;
   }
-  return this.api.requestPromise('/replacer/action/setEnabled/', {'description' : description, 'bool' : bool});
+  return this.api.requestPromise('/replacer/action/setEnabled/', {'description': args.description, 'bool': args.bool});
 };
 
 module.exports = Replacer;
