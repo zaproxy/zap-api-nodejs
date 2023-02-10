@@ -29,7 +29,7 @@ npm install zaproxy
 
 ## Usage
 
-By default ZAP [requires an API key](https://www.zaproxy.org/faq/why-is-an-api-key-required-by-default/) to be sent with every request. This is done automatically providing you supply the same API key when you instantiate the `ZapClient` that you use to run ZAP with. All following API requests will use this same API key.  
+By default ZAP [requires an API key](https://www.zaproxy.org/faq/why-is-an-api-key-required-by-default/) to be sent with every request. This is done automatically providing you supply the same API key when you instantiate the `ZapClient` that you use to run ZAP with. All following API requests will use this same API key.
 You can disable the API key when running ZAP if you are on a trusted network and understand the risks. If you choose to do so, you may omit the `apiKey` property of the `zapOptions` object supplied to `ZapClient`.
 
 ### Instantiate the Node API:
@@ -50,7 +50,7 @@ const zaproxy = new ZapClient(zapOptions);
 Callbacks:
 
 ```js
-zaproxy.spider.scanAsUser(contextId, userId, sutBaseUrl, maxChildren, recurse, subtreeonly, (err, resp) => {
+zaproxy.spider.scanAsUser({contextId, userId, setBaseUrl, maxChildren, recurse, subtreeonly}, (err, resp) => {
   if (err) // Handle the error.
   if (resp) // Handle the response.
 });
@@ -59,7 +59,7 @@ zaproxy.spider.scanAsUser(contextId, userId, sutBaseUrl, maxChildren, recurse, s
 Promises:
 
 ```js
-await zaproxy.spider.scanAsUser(contextId, userId, sutBaseUrl, maxChildren)
+await zaproxy.spider.scanAsUser({contextId, userId, setBaseUrl, maxChildren, recurse, subtreeonly})
   .then(
     resp => console.log(JSON.stringify(resp)),
     err => `Error occurred while attempting to scan as user. Error was: ${err.message}`
@@ -74,7 +74,7 @@ The Node API methods have the same signature as the API documentation, featuring
 
 The API key is no longer explicitly required on any Node API method invocations. Unless you have disabled the API key when running ZAP, simply provide it on Node API instantiation as mentioned in the [Usage](#usage) section and it will be provided automatically with each request to the ZAP API.
 
-**Callback mode**: If you provide a callback as the last parameter, the callback will be called with error and response arguments, with the response being an object that corresponds to the JSON output of the API call.  
+**Callback mode**: If you provide a callback as the last parameter, the callback will be called with error and response arguments, with the response being an object that corresponds to the JSON output of the API call.
 **Promise mode**: If you wish to use the modern approach, simply don't provide a callback, and a native promise will be returned for you to deal with as you wish.
 
 ## Getting Help
@@ -85,7 +85,7 @@ For help using the OWASP ZAP API refer to:
   * [OWASP ZAP User Group](https://groups.google.com/group/zaproxy-users) - for asking questions;
 
 For specific help with this Node API, contact [@binarymist](https://github.com/binarymist) (the maintainer).
-  
+
 ## Issues
 
 To report issues related to the OWASP ZAP Node API, bugs and enhancements requests, use the [issue tracker of the main OWASP ZAP project](https://github.com/zaproxy/zaproxy/issues).
