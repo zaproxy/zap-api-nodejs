@@ -17,60 +17,66 @@
  * limitations under the License.
  */
 
-const request = require('request');
-const requestPromise = require('request-promise-native');
-const AccessControl = require('./accessControl');
-const Acsrf = require('./acsrf');
-const AjaxSpider = require('./ajaxSpider');
-const Alert = require('./alert')
-const AlertFilter = require('./alertFilter');
-const Ascan = require('./ascan');
-const Authentication = require('./authentication');
-const Authorization = require('./authorization');
-const Automation = require('./automation');
-const Autoupdate = require('./autoupdate');
-const Brk = require('./brk');
-const Context = require('./context');
-const Core = require('./core');
-const Exim = require('./exim');
-const ForcedUser = require('./forcedUser');
-const Graphql = require('./graphql');
-const HttpSessions = require('./httpSessions');
-const Network = require('./network');
-const Openapi = require('./openapi');
-const Params = require('./params');
-const Pnh = require('./pnh');
-const Pscan = require('./pscan');
-const Reports = require('./reports');
-const Replacer = require('./replacer');
-const Reveal = require('./reveal');
-const Retest = require('./retest');
-const Revisit = require('./revisit');
-const RuleConfig = require('./ruleConfig')
-const Script = require('./script');
-const Search = require('./search');
-const Selenium = require('./selenium');
-const SessionManagement = require('./sessionManagement');
-const Soap = require('./soap');
-const Spider = require('./spider');
-const Stats = require('./stats');
-const Users = require('./users');
-const Wappalyzer = require('./wappalyzer');
-const Websocket = require('./websocket');
+const request = require("request");
+const requestPromise = require("request-promise-native");
+const axios = require("axios");
+const AccessControl = require("./accessControl");
+const Acsrf = require("./acsrf");
+const AjaxSpider = require("./ajaxSpider");
+const Alert = require("./alert");
+const AlertFilter = require("./alertFilter");
+const Ascan = require("./ascan");
+const Authentication = require("./authentication");
+const Authorization = require("./authorization");
+const Automation = require("./automation");
+const Autoupdate = require("./autoupdate");
+const Brk = require("./brk");
+const Context = require("./context");
+const Core = require("./core");
+const Exim = require("./exim");
+const ForcedUser = require("./forcedUser");
+const Graphql = require("./graphql");
+const HttpSessions = require("./httpSessions");
+const Network = require("./network");
+const Openapi = require("./openapi");
+const Params = require("./params");
+const Pnh = require("./pnh");
+const Pscan = require("./pscan");
+const Reports = require("./reports");
+const Replacer = require("./replacer");
+const Reveal = require("./reveal");
+const Retest = require("./retest");
+const Revisit = require("./revisit");
+const RuleConfig = require("./ruleConfig");
+const Script = require("./script");
+const Search = require("./search");
+const Selenium = require("./selenium");
+const SessionManagement = require("./sessionManagement");
+const Soap = require("./soap");
+const Spider = require("./spider");
+const Stats = require("./stats");
+const Users = require("./users");
+const Wappalyzer = require("./wappalyzer");
+const Websocket = require("./websocket");
 
 // base JSON api url
-const BASE = 'http://zap/JSON';
+const BASE = "http://zap/JSON";
 // base OTHER api url
-const BASE_OTHER = 'http://zap/OTHER';
+const BASE_OTHER = "http://zap/OTHER";
 
 function ClientApi(options) {
   const requestOptions = {
-    proxy: { ...{ proxy: 'http://127.0.0.1:8080' }, ...options }.proxy,
-    method: 'GET',
+    proxy: { ...{ proxy: "http://127.0.0.1:8080" }, ...options }.proxy,
+    method: "GET",
     json: true,
-    headers: options.apiKey ? { 'X-ZAP-API-Key': options.apiKey } : {}
+    headers: options.apiKey ? { "X-ZAP-API-Key": options.apiKey } : {},
   };
-  
+
+  const requestConfig = {
+    params: { apikey: options.apiKey },
+    baseURL: "http://127.0.0.1:8081/JSON",
+  };
+
   this.req = request.defaults(requestOptions);
   this.reqPromise = requestPromise.defaults(requestOptions);
   this.accessControl = new AccessControl(this);
@@ -137,14 +143,21 @@ const responseHandler = function (callback) {
   };
 };
 
+ClientApi.prototype.requestNew = async (url) => {
+  console.log(ClientApi['requestConfig'])
+ // let response = await axios.get(url);
+  // let response = await axios.get('https://google.com')
+  //console.log(response.data);
+};
+
 ClientApi.prototype.request = function (url, parms, callback) {
-  if (!callback && typeof(parms === 'function')) {
+  if (!callback && typeof (parms === "function")) {
     callback = parms;
     parms = null;
   }
 
   var options = {
-    url: BASE + url
+    url: BASE + url,
   };
   if (parms) {
     options.qs = parms;
@@ -153,13 +166,13 @@ ClientApi.prototype.request = function (url, parms, callback) {
 };
 
 ClientApi.prototype.requestOther = function (url, parms, callback) {
-  if (!callback && typeof(parms === 'function')) {
+  if (!callback && typeof (parms === "function")) {
     callback = parms;
     parms = null;
   }
 
   var options = {
-    url: BASE_OTHER + url
+    url: BASE_OTHER + url,
   };
   if (parms) {
     options.qs = parms;
@@ -173,14 +186,25 @@ const makeRequest = function (parms, options) {
   return this.reqPromise(parms ? { ...options, qs: parms } : options);
 };
 
-
 ClientApi.prototype.requestPromise = function (url, parms) {
   return makeRequest.call(this, parms, { url: BASE + url });
 };
-
 
 ClientApi.prototype.requestPromiseOther = function (url, parms) {
   return makeRequest.call(this, parms, { url: BASE_OTHER + url });
 };
 
 module.exports = ClientApi;
+
+async function invokeApi() {
+  const zapOptions = {
+    apiKey: "eahhr6h6kal92j21gkcnhkp80t",
+    proxy: "http://127.0.0.1:8080",
+  };
+  const zaproxy = new ClientApi(zapOptions);
+  await zaproxy.context.contextList((err, resp) => {
+    if (err) console.log(JSON.stringify(err)); // Handle the error.
+    if (resp) console.log(JSON.stringify(resp)); // Handle the response.
+  });
+}
+invokeApi();

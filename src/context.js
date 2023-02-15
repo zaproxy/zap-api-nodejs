@@ -30,12 +30,13 @@ function Context(clientApi) {
 /**
  * List context names of current session
  **/
-Context.prototype.contextList = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/context/view/contextList/', callback);
-    return;
-  }
-  return this.api.requestPromise('/context/view/contextList/');
+Context.prototype.contextList = async function (callback) {
+  // if (typeof callback === 'function') {
+  //   this.api.request('/context/view/contextList/', callback);
+  //   return;
+  // }
+  // return this.api.requestPromise('/context/view/contextList/');
+  await this.api.requestNew('/context/view/contextList/')
 };
 
 /**
