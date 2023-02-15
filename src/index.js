@@ -72,7 +72,7 @@ function ClientApi(options) {
     headers: options.apiKey ? { "X-ZAP-API-Key": options.apiKey } : {},
   };
 
-  const requestConfig = {
+  requestConfig = {
     params: { apikey: options.apiKey },
     baseURL: "http://127.0.0.1:8081/JSON",
   };
@@ -143,11 +143,12 @@ const responseHandler = function (callback) {
   };
 };
 
-ClientApi.prototype.requestNew = async (url) => {
-  console.log(ClientApi['requestConfig'])
- // let response = await axios.get(url);
-  // let response = await axios.get('https://google.com')
-  //console.log(response.data);
+ClientApi.prototype.requestNew = async (url, data) => {
+  if (data) {
+    requestConfig.params = { ...requestConfig.params, data };
+  }
+  let response = await axios.get(url, requestConfig);
+  console.log(response.data);
 };
 
 ClientApi.prototype.request = function (url, parms, callback) {
