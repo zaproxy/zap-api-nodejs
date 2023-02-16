@@ -144,11 +144,15 @@ function ClientApi(options) {
 // };
 
 ClientApi.prototype.requestNew = async (url, data) => {
-  if (data) {
-    requestConfig.params = { ...requestConfig.params, ...data };
+  try {
+    if (data) {
+      requestConfig.params = { ...requestConfig.params, ...data };
+    }
+    let response = await axios.get(url, requestConfig);
+    return response.data;
+  } catch (error) {
+    console.log(error.message,error.response.data);
   }
-  let response = await axios.get(url, requestConfig);
-  return response.data;
 };
 
 // ClientApi.prototype.request = function (url, parms, callback) {
@@ -200,12 +204,12 @@ module.exports = ClientApi;
 async function invokeApi() {
   const zapOptions = {
     apiKey: "eahhr6h6kal92j21gkcnhkp80t",
-   // proxy: "http://127.0.0.1:8080",
+    // proxy: "http://127.0.0.1:8080",
   };
   const zaproxy = new ClientApi(zapOptions);
-  let response = await zaproxy.context.contextList()
-   console.log(response)
-  // console.log(zaproxy.context.context({'contextname':'test'}))
-
+  let response = await zaproxy.context.contextList();
+  console.log(response)
+ // let response2 = zaproxy.context.context({ contextname: "test" });
+ // console.log(response2)
 }
 invokeApi();
