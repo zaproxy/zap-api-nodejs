@@ -67,12 +67,13 @@ Context.prototype.includeRegexs = function (args, callback) {
  * List the information about the named context
  * @param {string} contextname - The name of the context
  **/
-Context.prototype.context = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/context/view/context/', {'contextName': args.contextname}, callback);
-    return;
-  }
-  return this.api.requestPromise('/context/view/context/', {'contextName': args.contextname});
+Context.prototype.context = async function (args, callback) {
+  // if (typeof callback === 'function') {
+  //   this.api.request('/context/view/context/', {'contextName': args.contextname}, callback);
+  //   return;
+  // }
+  // return this.api.requestPromise('/context/view/context/', {'contextName': args.contextname});
+  await this.api.requestNew('/context/view/context/',{'contextName':args.contextname})
 };
 
 /**
