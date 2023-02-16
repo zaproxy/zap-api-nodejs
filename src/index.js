@@ -17,8 +17,8 @@
  * limitations under the License.
  */
 
-const request = require("request");
-const requestPromise = require("request-promise-native");
+// const request = require("request");
+// const requestPromise = require("request-promise-native");
 const axios = require("axios");
 const AccessControl = require("./accessControl");
 const Acsrf = require("./acsrf");
@@ -60,25 +60,25 @@ const Wappalyzer = require("./wappalyzer");
 const Websocket = require("./websocket");
 
 // base JSON api url
-const BASE = "http://zap/JSON";
+//const BASE = "http://zap/JSON";
 // base OTHER api url
-const BASE_OTHER = "http://zap/OTHER";
+//const BASE_OTHER = "http://zap/OTHER";
 
 function ClientApi(options) {
-  const requestOptions = {
-    proxy: { ...{ proxy: "http://127.0.0.1:8080" }, ...options }.proxy,
-    method: "GET",
-    json: true,
-    headers: options.apiKey ? { "X-ZAP-API-Key": options.apiKey } : {},
-  };
+  // const requestOptions = {
+  //   proxy: { ...{ proxy: "http://127.0.0.1:8080" }, ...options }.proxy,
+  //   method: "GET",
+  //   json: true,
+  //   headers: options.apiKey ? { "X-ZAP-API-Key": options.apiKey } : {},
+  // };
 
   requestConfig = {
     params: { apikey: options.apiKey },
     baseURL: "http://127.0.0.1:8081/JSON",
   };
 
-  this.req = request.defaults(requestOptions);
-  this.reqPromise = requestPromise.defaults(requestOptions);
+  // this.req = request.defaults(requestOptions);
+  // this.reqPromise = requestPromise.defaults(requestOptions);
   this.accessControl = new AccessControl(this);
   this.acsrf = new Acsrf(this);
   this.ajaxSpider = new AjaxSpider(this);
@@ -127,21 +127,21 @@ function ClientApi(options) {
  * return the correct status codes in the event of an error
  * (i.e. it always returns 200).
  **/
-const responseHandler = function (callback) {
-  return function handleResponse(err, res, body) {
-    if (err) {
-      callback(err);
-      return;
-    }
+// const responseHandler = function (callback) {
+//   return function handleResponse(err, res, body) {
+//     if (err) {
+//       callback(err);
+//       return;
+//     }
 
-    // if the response has a code and a message, it's an error.
-    if (body && body.code && body.message) {
-      callback(body);
-    } else {
-      callback(null, body);
-    }
-  };
-};
+//     // if the response has a code and a message, it's an error.
+//     if (body && body.code && body.message) {
+//       callback(body);
+//     } else {
+//       callback(null, body);
+//     }
+//   };
+// };
 
 ClientApi.prototype.requestNew = async (url, data) => {
   if (data) {
@@ -151,49 +151,49 @@ ClientApi.prototype.requestNew = async (url, data) => {
   console.log(response.data);
 };
 
-ClientApi.prototype.request = function (url, parms, callback) {
-  if (!callback && typeof (parms === "function")) {
-    callback = parms;
-    parms = null;
-  }
+// ClientApi.prototype.request = function (url, parms, callback) {
+//   if (!callback && typeof (parms === "function")) {
+//     callback = parms;
+//     parms = null;
+//   }
 
-  var options = {
-    url: BASE + url,
-  };
-  if (parms) {
-    options.qs = parms;
-  }
-  this.req(options, responseHandler(callback));
-};
+//   var options = {
+//     url: BASE + url,
+//   };
+//   if (parms) {
+//     options.qs = parms;
+//   }
+//   this.req(options, responseHandler(callback));
+// };
 
-ClientApi.prototype.requestOther = function (url, parms, callback) {
-  if (!callback && typeof (parms === "function")) {
-    callback = parms;
-    parms = null;
-  }
+// ClientApi.prototype.requestOther = function (url, parms, callback) {
+//   if (!callback && typeof (parms === "function")) {
+//     callback = parms;
+//     parms = null;
+//   }
 
-  var options = {
-    url: BASE_OTHER + url,
-  };
-  if (parms) {
-    options.qs = parms;
-  }
-  this.req(options, responseHandler(callback));
-};
+//   var options = {
+//     url: BASE_OTHER + url,
+//   };
+//   if (parms) {
+//     options.qs = parms;
+//   }
+//   this.req(options, responseHandler(callback));
+// };
 
 // End Legacy for callbacks.
 
-const makeRequest = function (parms, options) {
-  return this.reqPromise(parms ? { ...options, qs: parms } : options);
-};
+// const makeRequest = function (parms, options) {
+//   return this.reqPromise(parms ? { ...options, qs: parms } : options);
+// };
 
-ClientApi.prototype.requestPromise = function (url, parms) {
-  return makeRequest.call(this, parms, { url: BASE + url });
-};
+// ClientApi.prototype.requestPromise = function (url, parms) {
+//   return makeRequest.call(this, parms, { url: BASE + url });
+// };
 
-ClientApi.prototype.requestPromiseOther = function (url, parms) {
-  return makeRequest.call(this, parms, { url: BASE_OTHER + url });
-};
+// ClientApi.prototype.requestPromiseOther = function (url, parms) {
+//   return makeRequest.call(this, parms, { url: BASE_OTHER + url });
+// };
 
 module.exports = ClientApi;
 
