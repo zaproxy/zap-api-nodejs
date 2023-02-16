@@ -203,9 +203,7 @@ async function invokeApi() {
     proxy: "http://127.0.0.1:8080",
   };
   const zaproxy = new ClientApi(zapOptions);
-  await zaproxy.context.contextList((err, resp) => {
-    if (err) console.log(JSON.stringify(err)); // Handle the error.
-    if (resp) console.log(JSON.stringify(resp)); // Handle the response.
-  });
+   zaproxy.context.contextList();
+
 }
 invokeApi();
