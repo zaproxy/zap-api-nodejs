@@ -74,7 +74,7 @@ function ClientApi(options) {
 
   requestConfig = {
     params: { apikey: options.apiKey },
-    baseURL: "http://127.0.0.1:8081/JSON",
+    baseURL: "http://127.0.0.1:8081/JSON", //Fetch this from API client and if not found set the default value
   };
 
   // this.req = request.defaults(requestOptions);
@@ -151,7 +151,7 @@ ClientApi.prototype.requestNew = async (url, data) => {
     let response = await axios.get(url, requestConfig);
     return response.data;
   } catch (error) {
-    console.log(error.message,error.response.data);
+    console.log(error.message,', Data:',error.response.data);
   }
 };
 
@@ -209,7 +209,6 @@ async function invokeApi() {
   const zaproxy = new ClientApi(zapOptions);
   let response = await zaproxy.context.contextList();
   console.log(response)
- // let response2 = zaproxy.context.context({ contextname: "test" });
- // console.log(response2)
+  await zaproxy.context.context({ contextname: "test" });
 }
 invokeApi();
