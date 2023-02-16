@@ -102,6 +102,7 @@ Context.prototype.includedTechnologyList = function (args, callback) {
 /**
  * Lists the names of all technologies excluded from a context
  * @param {string} contextname - The name of the context
+
  **/
 Context.prototype.excludedTechnologyList = function (args, callback) {
   if (typeof callback === 'function') {
@@ -154,6 +155,7 @@ Context.prototype.includeInContext = function (args, callback) {
  * @param {string} contextname - The name of the context
  * @param {string} incregexs
  * @param {string} excregexs
+
  **/
 Context.prototype.setContextRegexs = function (args, callback) {
   if (typeof callback === 'function') {

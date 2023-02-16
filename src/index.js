@@ -17,6 +17,7 @@
  * limitations under the License.
  */
 
+
 // const request = require("request");
 // const requestPromise = require("request-promise-native");
 const axios = require("axios");
@@ -59,6 +60,7 @@ const Users = require("./users");
 const Wappalyzer = require("./wappalyzer");
 const Websocket = require("./websocket");
 
+
 // base JSON api url
 //const BASE = "http://zap/JSON";
 // base OTHER api url
@@ -77,8 +79,10 @@ function ClientApi(options) {
     baseURL: "http://127.0.0.1:8081/JSON", //Fetch this from API client and if not found set the default value
   };
 
+
   // this.req = request.defaults(requestOptions);
   // this.reqPromise = requestPromise.defaults(requestOptions);
+
   this.accessControl = new AccessControl(this);
   this.acsrf = new Acsrf(this);
   this.ajaxSpider = new AjaxSpider(this);
