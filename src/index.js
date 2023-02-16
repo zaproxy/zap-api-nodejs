@@ -148,7 +148,7 @@ ClientApi.prototype.requestNew = async (url, data) => {
     requestConfig.params = { ...requestConfig.params, ...data };
   }
   let response = await axios.get(url, requestConfig);
-  console.log(response.data);
+  return response.data;
 };
 
 // ClientApi.prototype.request = function (url, parms, callback) {
@@ -203,8 +203,9 @@ async function invokeApi() {
    // proxy: "http://127.0.0.1:8080",
   };
   const zaproxy = new ClientApi(zapOptions);
-   zaproxy.context.contextList();
-   zaproxy.context.context({'contextname':'test'})
+  let response = await zaproxy.context.contextList()
+   console.log(response)
+  // console.log(zaproxy.context.context({'contextname':'test'}))
 
 }
 invokeApi();

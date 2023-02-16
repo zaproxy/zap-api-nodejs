@@ -36,7 +36,7 @@ Context.prototype.contextList = async function (callback) {
   //   return;
   // }
   // return this.api.requestPromise('/context/view/contextList/');
-  await this.api.requestNew('/context/view/contextList/')
+  return await this.api.requestNew('/context/view/contextList/')
 };
 
 /**
