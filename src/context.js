@@ -17,7 +17,6 @@
  * limitations under the License.
  */
 
-
 'use strict';
 
 /**
@@ -30,13 +29,8 @@ function Context(clientApi) {
 /**
  * List context names of current session
  **/
-Context.prototype.contextList = async function (callback) {
-  // if (typeof callback === 'function') {
-  //   this.api.request('/context/view/contextList/', callback);
-  //   return;
-  // }
-  // return this.api.requestPromise('/context/view/contextList/');
-  return await this.api.requestNew('/context/view/contextList/')
+Context.prototype.contextList = async function () {
+  return await this.api.requestNew('/context/view/contextList/');
 };
 
 /**
@@ -45,10 +39,16 @@ Context.prototype.contextList = async function (callback) {
  **/
 Context.prototype.excludeRegexs = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/context/view/excludeRegexs/', {'contextName': args.contextname}, callback);
+    this.api.request(
+      '/context/view/excludeRegexs/',
+      { contextName: args.contextname },
+      callback
+    );
     return;
   }
-  return this.api.requestPromise('/context/view/excludeRegexs/', {'contextName': args.contextname});
+  return this.api.requestPromise('/context/view/excludeRegexs/', {
+    contextName: args.contextname,
+  });
 };
 
 /**
@@ -57,23 +57,26 @@ Context.prototype.excludeRegexs = function (args, callback) {
  **/
 Context.prototype.includeRegexs = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/context/view/includeRegexs/', {'contextName': args.contextname}, callback);
+    this.api.request(
+      '/context/view/includeRegexs/',
+      { contextName: args.contextname },
+      callback
+    );
     return;
   }
-  return this.api.requestPromise('/context/view/includeRegexs/', {'contextName': args.contextname});
+  return this.api.requestPromise('/context/view/includeRegexs/', {
+    contextName: args.contextname,
+  });
 };
 
 /**
  * List the information about the named context
  * @param {string} contextname - The name of the context
  **/
-Context.prototype.context = async function (args, callback) {
-  // if (typeof callback === 'function') {
-  //   this.api.request('/context/view/context/', {'contextName': args.contextname}, callback);
-  //   return;
-  // }
-  // return this.api.requestPromise('/context/view/context/', {'contextName': args.contextname});
-  await this.api.requestNew('/context/view/context/',{'contextName':args.contextname})
+Context.prototype.context = async function (args) {
+  await this.api.requestNew('/context/view/context/', {
+    contextName: args.contextname,
+  });
 };
 
 /**
@@ -93,10 +96,16 @@ Context.prototype.technologyList = function (callback) {
  **/
 Context.prototype.includedTechnologyList = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/context/view/includedTechnologyList/', {'contextName': args.contextname}, callback);
+    this.api.request(
+      '/context/view/includedTechnologyList/',
+      { contextName: args.contextname },
+      callback
+    );
     return;
   }
-  return this.api.requestPromise('/context/view/includedTechnologyList/', {'contextName': args.contextname});
+  return this.api.requestPromise('/context/view/includedTechnologyList/', {
+    contextName: args.contextname,
+  });
 };
 
 /**
@@ -106,10 +115,16 @@ Context.prototype.includedTechnologyList = function (args, callback) {
  **/
 Context.prototype.excludedTechnologyList = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/context/view/excludedTechnologyList/', {'contextName': args.contextname}, callback);
+    this.api.request(
+      '/context/view/excludedTechnologyList/',
+      { contextName: args.contextname },
+      callback
+    );
     return;
   }
-  return this.api.requestPromise('/context/view/excludedTechnologyList/', {'contextName': args.contextname});
+  return this.api.requestPromise('/context/view/excludedTechnologyList/', {
+    contextName: args.contextname,
+  });
 };
 
 /**
@@ -118,10 +133,16 @@ Context.prototype.excludedTechnologyList = function (args, callback) {
  **/
 Context.prototype.urls = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/context/view/urls/', {'contextName': args.contextname}, callback);
+    this.api.request(
+      '/context/view/urls/',
+      { contextName: args.contextname },
+      callback
+    );
     return;
   }
-  return this.api.requestPromise('/context/view/urls/', {'contextName': args.contextname});
+  return this.api.requestPromise('/context/view/urls/', {
+    contextName: args.contextname,
+  });
 };
 
 /**
@@ -131,10 +152,17 @@ Context.prototype.urls = function (args, callback) {
  **/
 Context.prototype.excludeFromContext = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/context/action/excludeFromContext/', {'contextName': args.contextname, 'regex': args.regex}, callback);
+    this.api.request(
+      '/context/action/excludeFromContext/',
+      { contextName: args.contextname, regex: args.regex },
+      callback
+    );
     return;
   }
-  return this.api.requestPromise('/context/action/excludeFromContext/', {'contextName': args.contextname, 'regex': args.regex});
+  return this.api.requestPromise('/context/action/excludeFromContext/', {
+    contextName: args.contextname,
+    regex: args.regex,
+  });
 };
 
 /**
@@ -144,10 +172,17 @@ Context.prototype.excludeFromContext = function (args, callback) {
  **/
 Context.prototype.includeInContext = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/context/action/includeInContext/', {'contextName': args.contextname, 'regex': args.regex}, callback);
+    this.api.request(
+      '/context/action/includeInContext/',
+      { contextName: args.contextname, regex: args.regex },
+      callback
+    );
     return;
   }
-  return this.api.requestPromise('/context/action/includeInContext/', {'contextName': args.contextname, 'regex': args.regex});
+  return this.api.requestPromise('/context/action/includeInContext/', {
+    contextName: args.contextname,
+    regex: args.regex,
+  });
 };
 
 /**
@@ -159,10 +194,22 @@ Context.prototype.includeInContext = function (args, callback) {
  **/
 Context.prototype.setContextRegexs = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/context/action/setContextRegexs/', {'contextName': args.contextname, 'incRegexs': args.incregexs, 'excRegexs': args.excregexs}, callback);
+    this.api.request(
+      '/context/action/setContextRegexs/',
+      {
+        contextName: args.contextname,
+        incRegexs: args.incregexs,
+        excRegexs: args.excregexs,
+      },
+      callback
+    );
     return;
   }
-  return this.api.requestPromise('/context/action/setContextRegexs/', {'contextName': args.contextname, 'incRegexs': args.incregexs, 'excRegexs': args.excregexs});
+  return this.api.requestPromise('/context/action/setContextRegexs/', {
+    contextName: args.contextname,
+    incRegexs: args.incregexs,
+    excRegexs: args.excregexs,
+  });
 };
 
 /**
@@ -176,7 +223,10 @@ Context.prototype.setContextRegexs = function (args, callback) {
  * @param {string} pollfrequencyunits - One of REQUESTS, SECONDS, must be supplied if checkingStrategy = POLL_URL, otherwise ignored
  **/
 Context.prototype.setContextCheckingStrategy = function (args, callback) {
-  const params = {'contextName': args.contextname, 'checkingStrategy': args.checkingstrategy};
+  const params = {
+    contextName: args.contextname,
+    checkingStrategy: args.checkingstrategy,
+  };
   if (args.pollurl && args.pollurl !== null) {
     params['pollUrl'] = args.pollurl;
   }
@@ -193,10 +243,17 @@ Context.prototype.setContextCheckingStrategy = function (args, callback) {
     params['pollFrequencyUnits'] = args.pollfrequencyunits;
   }
   if (typeof callback === 'function') {
-    this.api.request('/context/action/setContextCheckingStrategy/', params, callback);
+    this.api.request(
+      '/context/action/setContextCheckingStrategy/',
+      params,
+      callback
+    );
     return;
   }
-  return this.api.requestPromise('/context/action/setContextCheckingStrategy/', params);
+  return this.api.requestPromise(
+    '/context/action/setContextCheckingStrategy/',
+    params
+  );
 };
 
 /**
@@ -205,10 +262,16 @@ Context.prototype.setContextCheckingStrategy = function (args, callback) {
  **/
 Context.prototype.newContext = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/context/action/newContext/', {'contextName': args.contextname}, callback);
+    this.api.request(
+      '/context/action/newContext/',
+      { contextName: args.contextname },
+      callback
+    );
     return;
   }
-  return this.api.requestPromise('/context/action/newContext/', {'contextName': args.contextname});
+  return this.api.requestPromise('/context/action/newContext/', {
+    contextName: args.contextname,
+  });
 };
 
 /**
@@ -217,10 +280,16 @@ Context.prototype.newContext = function (args, callback) {
  **/
 Context.prototype.removeContext = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/context/action/removeContext/', {'contextName': args.contextname}, callback);
+    this.api.request(
+      '/context/action/removeContext/',
+      { contextName: args.contextname },
+      callback
+    );
     return;
   }
-  return this.api.requestPromise('/context/action/removeContext/', {'contextName': args.contextname});
+  return this.api.requestPromise('/context/action/removeContext/', {
+    contextName: args.contextname,
+  });
 };
 
 /**
@@ -230,10 +299,17 @@ Context.prototype.removeContext = function (args, callback) {
  **/
 Context.prototype.exportContext = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/context/action/exportContext/', {'contextName': args.contextname, 'contextFile': args.contextfile}, callback);
+    this.api.request(
+      '/context/action/exportContext/',
+      { contextName: args.contextname, contextFile: args.contextfile },
+      callback
+    );
     return;
   }
-  return this.api.requestPromise('/context/action/exportContext/', {'contextName': args.contextname, 'contextFile': args.contextfile});
+  return this.api.requestPromise('/context/action/exportContext/', {
+    contextName: args.contextname,
+    contextFile: args.contextfile,
+  });
 };
 
 /**
@@ -242,10 +318,16 @@ Context.prototype.exportContext = function (args, callback) {
  **/
 Context.prototype.importContext = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/context/action/importContext/', {'contextFile': args.contextfile}, callback);
+    this.api.request(
+      '/context/action/importContext/',
+      { contextFile: args.contextfile },
+      callback
+    );
     return;
   }
-  return this.api.requestPromise('/context/action/importContext/', {'contextFile': args.contextfile});
+  return this.api.requestPromise('/context/action/importContext/', {
+    contextFile: args.contextfile,
+  });
 };
 
 /**
@@ -255,10 +337,17 @@ Context.prototype.importContext = function (args, callback) {
  **/
 Context.prototype.includeContextTechnologies = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/context/action/includeContextTechnologies/', {'contextName': args.contextname, 'technologyNames': args.technologynames}, callback);
+    this.api.request(
+      '/context/action/includeContextTechnologies/',
+      { contextName: args.contextname, technologyNames: args.technologynames },
+      callback
+    );
     return;
   }
-  return this.api.requestPromise('/context/action/includeContextTechnologies/', {'contextName': args.contextname, 'technologyNames': args.technologynames});
+  return this.api.requestPromise(
+    '/context/action/includeContextTechnologies/',
+    { contextName: args.contextname, technologyNames: args.technologynames }
+  );
 };
 
 /**
@@ -267,10 +356,17 @@ Context.prototype.includeContextTechnologies = function (args, callback) {
  **/
 Context.prototype.includeAllContextTechnologies = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/context/action/includeAllContextTechnologies/', {'contextName': args.contextname}, callback);
+    this.api.request(
+      '/context/action/includeAllContextTechnologies/',
+      { contextName: args.contextname },
+      callback
+    );
     return;
   }
-  return this.api.requestPromise('/context/action/includeAllContextTechnologies/', {'contextName': args.contextname});
+  return this.api.requestPromise(
+    '/context/action/includeAllContextTechnologies/',
+    { contextName: args.contextname }
+  );
 };
 
 /**
@@ -280,10 +376,17 @@ Context.prototype.includeAllContextTechnologies = function (args, callback) {
  **/
 Context.prototype.excludeContextTechnologies = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/context/action/excludeContextTechnologies/', {'contextName': args.contextname, 'technologyNames': args.technologynames}, callback);
+    this.api.request(
+      '/context/action/excludeContextTechnologies/',
+      { contextName: args.contextname, technologyNames: args.technologynames },
+      callback
+    );
     return;
   }
-  return this.api.requestPromise('/context/action/excludeContextTechnologies/', {'contextName': args.contextname, 'technologyNames': args.technologynames});
+  return this.api.requestPromise(
+    '/context/action/excludeContextTechnologies/',
+    { contextName: args.contextname, technologyNames: args.technologynames }
+  );
 };
 
 /**
@@ -292,10 +395,17 @@ Context.prototype.excludeContextTechnologies = function (args, callback) {
  **/
 Context.prototype.excludeAllContextTechnologies = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/context/action/excludeAllContextTechnologies/', {'contextName': args.contextname}, callback);
+    this.api.request(
+      '/context/action/excludeAllContextTechnologies/',
+      { contextName: args.contextname },
+      callback
+    );
     return;
   }
-  return this.api.requestPromise('/context/action/excludeAllContextTechnologies/', {'contextName': args.contextname});
+  return this.api.requestPromise(
+    '/context/action/excludeAllContextTechnologies/',
+    { contextName: args.contextname }
+  );
 };
 
 /**
@@ -305,10 +415,17 @@ Context.prototype.excludeAllContextTechnologies = function (args, callback) {
  **/
 Context.prototype.setContextInScope = function (args, callback) {
   if (typeof callback === 'function') {
-    this.api.request('/context/action/setContextInScope/', {'contextName': args.contextname, 'booleanInScope': args.booleaninscope}, callback);
+    this.api.request(
+      '/context/action/setContextInScope/',
+      { contextName: args.contextname, booleanInScope: args.booleaninscope },
+      callback
+    );
     return;
   }
-  return this.api.requestPromise('/context/action/setContextInScope/', {'contextName': args.contextname, 'booleanInScope': args.booleaninscope});
+  return this.api.requestPromise('/context/action/setContextInScope/', {
+    contextName: args.contextname,
+    booleanInScope: args.booleaninscope,
+  });
 };
 
 module.exports = Context;
