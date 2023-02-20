@@ -60,7 +60,7 @@ const Websocket = require('./websocket');
 const BASE_URL_JSON = 'http://zap/JSON';
 const BASE_URL_OTHER = 'http://zap/OTHER';
 function ClientApi(options) {
-  requestConfig = {
+  defaultAxiosConfig = {
     params: {},
     baseURL: BASE_URL_JSON,
     headers: options.apiKey ? { 'X-ZAP-API-Key': options.apiKey } : {},
@@ -109,18 +109,16 @@ function ClientApi(options) {
 
 ClientApi.prototype.request = async (url, data, format) => {
   try {
+    let requestConfig = defaultAxiosConfig;
     if (data) {
-      requestConfig.params = { ...requestConfig.params, ...data };
+      config.params = { ...config.params, ...data };
     }
     let response;
     if (format === 'other') {
-      response = await axios.get(url, {
-        ...requestConfig,
-        baseURL: BASE_URL_OTHER,
-      });
-    } else {
-      response = await axios.get(url, requestConfig);
+      config = { ...config, baseURL: BASE_URL_OTHER };
     }
+    response = await axios.get(url, requestConfig);
+
     return response.data;
   } catch (error) {
     console.log(error.message, ', Data:', error.response.data);
