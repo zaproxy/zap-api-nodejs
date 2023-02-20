@@ -57,8 +57,8 @@ const Users = require('./users');
 const Wappalyzer = require('./wappalyzer');
 const Websocket = require('./websocket');
 
-const BASE_URL = 'http://zap/JSON';
-
+const BASE_URL_JSON = 'http://zap/JSON';
+const BASE_URL_OTHER = 'http://zap/OTHER';
 function ClientApi(options) {
   requestConfig = {
     params: {},
@@ -107,12 +107,20 @@ function ClientApi(options) {
   this.websocket = new Websocket(this);
 }
 
-ClientApi.prototype.requestNew = async (url, data) => {
+ClientApi.prototype.requestNew = async (url, data, format) => {
   try {
     if (data) {
       requestConfig.params = { ...requestConfig.params, ...data };
     }
-    let response = await axios.get(url, requestConfig);
+    let response;
+    if (format === 'other') {
+      response = await axios.get(url, {
+        ...requestConfig,
+        baseURL: BASE_URL_OTHER,
+      });
+    } else {
+      response = await axios.get(url, requestConfig);
+    }
     return response.data;
   } catch (error) {
     console.log(error.message, ', Data:', error.response.data);
