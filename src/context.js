@@ -30,7 +30,7 @@ function Context(clientApi) {
  * List context names of current session
  **/
 Context.prototype.contextList = async function () {
-  return await this.api.requestNew('/context/view/contextList/');
+  return await this.api.request('/context/view/contextList/');
 };
 
 /**
@@ -74,7 +74,7 @@ Context.prototype.includeRegexs = function (args, callback) {
  * @param {string} contextname - The name of the context
  **/
 Context.prototype.context = async function (args) {
-  await this.api.requestNew('/context/view/context/', {
+  await this.api.request('/context/view/context/', {
     contextName: args.contextname,
   });
 };

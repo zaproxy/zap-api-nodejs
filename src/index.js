@@ -62,7 +62,7 @@ const BASE_URL_OTHER = 'http://zap/OTHER';
 function ClientApi(options) {
   requestConfig = {
     params: {},
-    baseURL: BASE_URL,
+    baseURL: BASE_URL_JSON,
     headers: options.apiKey ? { 'X-ZAP-API-Key': options.apiKey } : {},
     proxy: options.proxy,
   };
@@ -107,7 +107,7 @@ function ClientApi(options) {
   this.websocket = new Websocket(this);
 }
 
-ClientApi.prototype.requestNew = async (url, data, format) => {
+ClientApi.prototype.request = async (url, data, format) => {
   try {
     if (data) {
       requestConfig.params = { ...requestConfig.params, ...data };
