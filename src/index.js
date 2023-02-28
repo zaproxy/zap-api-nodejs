@@ -126,18 +126,3 @@ ClientApi.prototype.request = async (url, data, format) => {
 };
 
 module.exports = ClientApi;
-
-async function invokeApi() {
-  const zapOptions = {
-    apiKey: 'eahhr6h6kal92j21gkcnhkp80t',
-    proxy: {
-      host: '127.0.0.1',
-      port: 8081,
-    },
-  };
-  const zaproxy = new ClientApi(zapOptions);
-  let response = await zaproxy.context.contextList();
-  console.log(response);
-  await zaproxy.context.context({ contextname: 'test' });
-}
-invokeApi();
