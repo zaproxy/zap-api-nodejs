@@ -121,7 +121,7 @@ ClientApi.prototype.request = async (url, data, format) => {
 
     return response.data;
   } catch (error) {
-    console.log(error.message, ', Data:', error.response.data);
+    console.log(error.message, ', Data:', error.response?.data);
   }
 };
 
