@@ -26,19 +26,13 @@
 function Authorization(clientApi) {
   this.api = clientApi;
 }
-
 /**
  * Obtains all the configuration of the authorization detection method that is currently set for a context.
  * @param {string} contextid
  **/
-Authorization.prototype.getAuthorizationDetectionMethod = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/authorization/view/getAuthorizationDetectionMethod/', {'contextId': args.contextid}, callback);
-    return;
-  }
-  return this.api.requestPromise('/authorization/view/getAuthorizationDetectionMethod/', {'contextId': args.contextid});
-};
-
+Authorization.prototype.getAuthorizationDetectionMethod = async function (args) {
+    return await this.api.request('/authorization/view/getAuthorizationDetectionMethod/', {'contextId': args.contextid })
+}
 /**
  * Sets the authorization detection method for a context as one that identifies un-authorized messages based on: the message's status code or a regex pattern in the response's header or body. Also, whether all conditions must match or just some can be specified via the logicalOperator parameter, which accepts two values: "AND" (default), "OR".  
  * @param {string} contextid
@@ -47,8 +41,8 @@ Authorization.prototype.getAuthorizationDetectionMethod = function (args, callba
  * @param {string} statuscode
  * @param {string} logicaloperator
  **/
-Authorization.prototype.setBasicAuthorizationDetectionMethod = function (args, callback) {
-  const params = {'contextId': args.contextid};
+Authorization.prototype.setBasicAuthorizationDetectionMethod = async function (args) {
+  const params = {'contextId': args.contextid };
   if (args.headerregex && args.headerregex !== null) {
     params['headerRegex'] = args.headerregex;
   }
@@ -61,11 +55,6 @@ Authorization.prototype.setBasicAuthorizationDetectionMethod = function (args, c
   if (args.logicaloperator && args.logicaloperator !== null) {
     params['logicalOperator'] = args.logicaloperator;
   }
-  if (typeof callback === 'function') {
-    this.api.request('/authorization/action/setBasicAuthorizationDetectionMethod/', params, callback);
-    return;
-  }
-  return this.api.requestPromise('/authorization/action/setBasicAuthorizationDetectionMethod/', params);
-};
-
+    return await this.api.request('/authorization/action/setBasicAuthorizationDetectionMethod/', params)
+}
 module.exports = Authorization;

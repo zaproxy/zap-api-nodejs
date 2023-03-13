@@ -26,16 +26,10 @@
 function Retest(clientApi) {
   this.api = clientApi;
 }
-
 /**
  * This component is optional and therefore the API will only work if it is installed
  **/
-Retest.prototype.retest = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/retest/action/retest/', {'alertIds': args.alertids}, callback);
-    return;
-  }
-  return this.api.requestPromise('/retest/action/retest/', {'alertIds': args.alertids});
-};
-
+Retest.prototype.retest = async function (args) {
+    return await this.api.request('/retest/action/retest/', {'alertIds': args.alertids })
+}
 module.exports = Retest;

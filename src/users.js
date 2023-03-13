@@ -26,195 +26,129 @@
 function Users(clientApi) {
   this.api = clientApi;
 }
-
 /**
  * Gets a list of users that belong to the context with the given ID, or all users if none provided.
  * @param {string} contextid - The Context ID
  **/
-Users.prototype.usersList = function (args, callback) {
-  const params = {};
+Users.prototype.usersList = async function (args) {
+  const params = { };
   if (args.contextid && args.contextid !== null) {
     params['contextId'] = args.contextid;
   }
-  if (typeof callback === 'function') {
-    this.api.request('/users/view/usersList/', params, callback);
-    return;
-  }
-  return this.api.requestPromise('/users/view/usersList/', params);
-};
-
+    return await this.api.request('/users/view/usersList/', params)
+}
 /**
  * Gets the data of the user with the given ID that belongs to the context with the given ID.
  * @param {string} contextid - The Context ID
  * @param {string} userid - The User ID
  **/
-Users.prototype.getUserById = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/users/view/getUserById/', {'contextId': args.contextid, 'userId': args.userid}, callback);
-    return;
-  }
-  return this.api.requestPromise('/users/view/getUserById/', {'contextId': args.contextid, 'userId': args.userid});
-};
-
+Users.prototype.getUserById = async function (args) {
+    return await this.api.request('/users/view/getUserById/', {'contextId': args.contextid, 'userId': args.userid })
+}
 /**
  * Gets the configuration parameters for the credentials of the context with the given ID.
  * @param {string} contextid - The Context ID
  **/
-Users.prototype.getAuthenticationCredentialsConfigParams = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/users/view/getAuthenticationCredentialsConfigParams/', {'contextId': args.contextid}, callback);
-    return;
-  }
-  return this.api.requestPromise('/users/view/getAuthenticationCredentialsConfigParams/', {'contextId': args.contextid});
-};
-
+Users.prototype.getAuthenticationCredentialsConfigParams = async function (args) {
+    return await this.api.request('/users/view/getAuthenticationCredentialsConfigParams/', {'contextId': args.contextid })
+}
 /**
  * Gets the authentication credentials of the user with given ID that belongs to the context with the given ID.
  * @param {string} contextid - The Context ID
  * @param {string} userid - the User ID
  **/
-Users.prototype.getAuthenticationCredentials = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/users/view/getAuthenticationCredentials/', {'contextId': args.contextid, 'userId': args.userid}, callback);
-    return;
-  }
-  return this.api.requestPromise('/users/view/getAuthenticationCredentials/', {'contextId': args.contextid, 'userId': args.userid});
-};
-
+Users.prototype.getAuthenticationCredentials = async function (args) {
+    return await this.api.request('/users/view/getAuthenticationCredentials/', {'contextId': args.contextid, 'userId': args.userid })
+}
 /**
- * Gets the authentication state information for the user identified by the Context and User IDs.
+ * Gets the authentication state information for the user identified by the Context and User Ids.
  * @param {string} contextid - The Context ID
  * @param {string} userid - The User ID
  **/
-Users.prototype.getAuthenticationState = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/users/view/getAuthenticationState/', {'contextId': args.contextid, 'userId': args.userid}, callback);
-    return;
-  }
-  return this.api.requestPromise('/users/view/getAuthenticationState/', {'contextId': args.contextid, 'userId': args.userid});
-};
-
+Users.prototype.getAuthenticationState = async function (args) {
+    return await this.api.request('/users/view/getAuthenticationState/', {'contextId': args.contextid, 'userId': args.userid })
+}
 /**
- * Gets the authentication session information for the user identified by the Context and User IDs, e.g. cookies and realm credentials.
+ * Gets the authentication session information for the user identified by the Context and User Ids, e.g. cookies and realm credentials.
  * @param {string} contextid - The Context ID
  * @param {string} userid - The User ID
  **/
-Users.prototype.getAuthenticationSession = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/users/view/getAuthenticationSession/', {'contextId': args.contextid, 'userId': args.userid}, callback);
-    return;
-  }
-  return this.api.requestPromise('/users/view/getAuthenticationSession/', {'contextId': args.contextid, 'userId': args.userid});
-};
-
+Users.prototype.getAuthenticationSession = async function (args) {
+    return await this.api.request('/users/view/getAuthenticationSession/', {'contextId': args.contextid, 'userId': args.userid })
+}
 /**
  * Creates a new user with the given name for the context with the given ID.
  * @param {string} contextid - The Context ID
  * @param {string} name
  **/
-Users.prototype.newUser = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/users/action/newUser/', {'contextId': args.contextid, 'name': args.name}, callback);
-    return;
-  }
-  return this.api.requestPromise('/users/action/newUser/', {'contextId': args.contextid, 'name': args.name});
-};
-
+Users.prototype.newUser = async function (args) {
+    return await this.api.request('/users/action/newUser/', {'contextId': args.contextid, 'name': args.name })
+}
 /**
  * Removes the user with the given ID that belongs to the context with the given ID.
  * @param {string} contextid - The Context ID
  * @param {string} userid - The User ID
  **/
-Users.prototype.removeUser = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/users/action/removeUser/', {'contextId': args.contextid, 'userId': args.userid}, callback);
-    return;
-  }
-  return this.api.requestPromise('/users/action/removeUser/', {'contextId': args.contextid, 'userId': args.userid});
-};
-
+Users.prototype.removeUser = async function (args) {
+    return await this.api.request('/users/action/removeUser/', {'contextId': args.contextid, 'userId': args.userid })
+}
 /**
  * Sets whether or not the user, with the given ID that belongs to the context with the given ID, should be enabled.
  * @param {string} contextid - The Context ID
  * @param {string} userid - The User ID
  * @param {string} enabled
  **/
-Users.prototype.setUserEnabled = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/users/action/setUserEnabled/', {'contextId': args.contextid, 'userId': args.userid, 'enabled': args.enabled}, callback);
-    return;
-  }
-  return this.api.requestPromise('/users/action/setUserEnabled/', {'contextId': args.contextid, 'userId': args.userid, 'enabled': args.enabled});
-};
-
+Users.prototype.setUserEnabled = async function (args) {
+    return await this.api.request('/users/action/setUserEnabled/', {'contextId': args.contextid, 'userId': args.userid, 'enabled': args.enabled })
+}
 /**
  * Renames the user with the given ID that belongs to the context with the given ID.
  * @param {string} contextid - The Context ID
  * @param {string} userid - The User ID
  * @param {string} name
  **/
-Users.prototype.setUserName = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/users/action/setUserName/', {'contextId': args.contextid, 'userId': args.userid, 'name': args.name}, callback);
-    return;
-  }
-  return this.api.requestPromise('/users/action/setUserName/', {'contextId': args.contextid, 'userId': args.userid, 'name': args.name});
-};
-
+Users.prototype.setUserName = async function (args) {
+    return await this.api.request('/users/action/setUserName/', {'contextId': args.contextid, 'userId': args.userid, 'name': args.name })
+}
 /**
  * Sets the authentication credentials for the user with the given ID that belongs to the context with the given ID.
  * @param {string} contextid - The Context ID
  * @param {string} userid - The User ID
  * @param {string} authcredentialsconfigparams
  **/
-Users.prototype.setAuthenticationCredentials = function (args, callback) {
-  const params = {'contextId': args.contextid, 'userId': args.userid};
+Users.prototype.setAuthenticationCredentials = async function (args) {
+  const params = {'contextId': args.contextid, 'userId': args.userid };
   if (args.authcredentialsconfigparams && args.authcredentialsconfigparams !== null) {
     params['authCredentialsConfigParams'] = args.authcredentialsconfigparams;
   }
-  if (typeof callback === 'function') {
-    this.api.request('/users/action/setAuthenticationCredentials/', params, callback);
-    return;
-  }
-  return this.api.requestPromise('/users/action/setAuthenticationCredentials/', params);
-};
-
+    return await this.api.request('/users/action/setAuthenticationCredentials/', params)
+}
 /**
  * Tries to authenticate as the identified user, returning the authentication request and whether it appears to have succeeded.
  * @param {string} contextid - The Context ID
  * @param {string} userid - The User ID
  **/
-Users.prototype.authenticateAsUser = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/users/action/authenticateAsUser/', {'contextId': args.contextid, 'userId': args.userid}, callback);
-    return;
-  }
-  return this.api.requestPromise('/users/action/authenticateAsUser/', {'contextId': args.contextid, 'userId': args.userid});
-};
-
+Users.prototype.authenticateAsUser = async function (args) {
+    return await this.api.request('/users/action/authenticateAsUser/', {'contextId': args.contextid, 'userId': args.userid })
+}
 /**
  * Tries to poll as the identified user, returning the authentication request and whether it appears to have succeeded. This will only work if the polling verification strategy has been configured.
  * @param {string} contextid - The Context ID
  * @param {string} userid - The User ID
  **/
-Users.prototype.pollAsUser = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/users/action/pollAsUser/', {'contextId': args.contextid, 'userId': args.userid}, callback);
-    return;
-  }
-  return this.api.requestPromise('/users/action/pollAsUser/', {'contextId': args.contextid, 'userId': args.userid});
-};
-
+Users.prototype.pollAsUser = async function (args) {
+    return await this.api.request('/users/action/pollAsUser/', {'contextId': args.contextid, 'userId': args.userid })
+}
 /**
- * Sets fields in the authentication state for the user identified by the Context and User IDs.
+ * Sets fields in the authentication state for the user identified by the Context and User Ids.
  * @param {string} contextid - The Context ID
  * @param {string} userid - The User ID
  * @param {string} lastpollresult - Last Poll Result - optional, should be 'true' or 'false'.
  * @param {string} lastpolltimeinms - Last Poll Time in Milliseconds - optional, should be a long or 'NOW' for the current time in ms.
  * @param {string} requestssincelastpoll - Requests Since Last Poll - optional, should be an integer.
  **/
-Users.prototype.setAuthenticationState = function (args, callback) {
-  const params = {'contextId': args.contextid, 'userId': args.userid};
+Users.prototype.setAuthenticationState = async function (args) {
+  const params = {'contextId': args.contextid, 'userId': args.userid };
   if (args.lastpollresult && args.lastpollresult !== null) {
     params['lastPollResult'] = args.lastpollresult;
   }
@@ -224,15 +158,10 @@ Users.prototype.setAuthenticationState = function (args, callback) {
   if (args.requestssincelastpoll && args.requestssincelastpoll !== null) {
     params['requestsSinceLastPoll'] = args.requestssincelastpoll;
   }
-  if (typeof callback === 'function') {
-    this.api.request('/users/action/setAuthenticationState/', params, callback);
-    return;
-  }
-  return this.api.requestPromise('/users/action/setAuthenticationState/', params);
-};
-
+    return await this.api.request('/users/action/setAuthenticationState/', params)
+}
 /**
- * Sets the specified cookie for the user identified by the Context and User IDs.
+ * Sets the specified cookie for the user identified by the Context and User Ids.
  * @param {string} contextid - The Context ID
  * @param {string} userid - The User ID
  * @param {string} domain - The Cookie Domain
@@ -241,19 +170,14 @@ Users.prototype.setAuthenticationState = function (args, callback) {
  * @param {string} path - The Cookie Path - optional default no path
  * @param {string} secure - If the Cookie is secure - optional default false
  **/
-Users.prototype.setCookie = function (args, callback) {
-  const params = {'contextId': args.contextid, 'userId': args.userid, 'domain': args.domain, 'name': args.name, 'value': args.value};
+Users.prototype.setCookie = async function (args) {
+  const params = {'contextId': args.contextid, 'userId': args.userid, 'domain': args.domain, 'name': args.name, 'value': args.value };
   if (args.path && args.path !== null) {
     params['path'] = args.path;
   }
   if (args.secure && args.secure !== null) {
     params['secure'] = args.secure;
   }
-  if (typeof callback === 'function') {
-    this.api.request('/users/action/setCookie/', params, callback);
-    return;
-  }
-  return this.api.requestPromise('/users/action/setCookie/', params);
-};
-
+    return await this.api.request('/users/action/setCookie/', params)
+}
 module.exports = Users;

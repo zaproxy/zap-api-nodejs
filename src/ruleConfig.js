@@ -26,68 +26,42 @@
 function RuleConfig(clientApi) {
   this.api = clientApi;
 }
-
 /**
  * Show the specified rule configuration
  * @param {string} key
  **/
-RuleConfig.prototype.ruleConfigValue = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/ruleConfig/view/ruleConfigValue/', {'key': args.key}, callback);
-    return;
-  }
-  return this.api.requestPromise('/ruleConfig/view/ruleConfigValue/', {'key': args.key});
-};
-
+RuleConfig.prototype.ruleConfigValue = async function (args) {
+    return await this.api.request('/ruleConfig/view/ruleConfigValue/', {'key': args.key })
+}
 /**
  * Show all of the rule configurations
  **/
-RuleConfig.prototype.allRuleConfigs = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/ruleConfig/view/allRuleConfigs/', callback);
-    return;
-  }
-  return this.api.requestPromise('/ruleConfig/view/allRuleConfigs/');
-};
-
+RuleConfig.prototype.allRuleConfigs = async function () {
+    return await this.api.request('/ruleConfig/view/allRuleConfigs/')
+}
 /**
  * Reset the specified rule configuration, which must already exist
  * @param {string} key
  **/
-RuleConfig.prototype.resetRuleConfigValue = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/ruleConfig/action/resetRuleConfigValue/', {'key': args.key}, callback);
-    return;
-  }
-  return this.api.requestPromise('/ruleConfig/action/resetRuleConfigValue/', {'key': args.key});
-};
-
+RuleConfig.prototype.resetRuleConfigValue = async function (args) {
+    return await this.api.request('/ruleConfig/action/resetRuleConfigValue/', {'key': args.key })
+}
 /**
  * Reset all of the rule configurations
  **/
-RuleConfig.prototype.resetAllRuleConfigValues = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/ruleConfig/action/resetAllRuleConfigValues/', callback);
-    return;
-  }
-  return this.api.requestPromise('/ruleConfig/action/resetAllRuleConfigValues/');
-};
-
+RuleConfig.prototype.resetAllRuleConfigValues = async function () {
+    return await this.api.request('/ruleConfig/action/resetAllRuleConfigValues/')
+}
 /**
  * Set the specified rule configuration, which must already exist
  * @param {string} key
  * @param {string} value
  **/
-RuleConfig.prototype.setRuleConfigValue = function (args, callback) {
-  const params = {'key': args.key};
+RuleConfig.prototype.setRuleConfigValue = async function (args) {
+  const params = {'key': args.key };
   if (args.value && args.value !== null) {
     params['value'] = args.value;
   }
-  if (typeof callback === 'function') {
-    this.api.request('/ruleConfig/action/setRuleConfigValue/', params, callback);
-    return;
-  }
-  return this.api.requestPromise('/ruleConfig/action/setRuleConfigValue/', params);
-};
-
+    return await this.api.request('/ruleConfig/action/setRuleConfigValue/', params)
+}
 module.exports = RuleConfig;

@@ -26,38 +26,22 @@
 function Automation(clientApi) {
   this.api = clientApi;
 }
-
 /**
  * This component is optional and therefore the API will only work if it is installed
  **/
-Automation.prototype.planProgress = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/automation/view/planProgress/', {'planId': args.planid}, callback);
-    return;
-  }
-  return this.api.requestPromise('/automation/view/planProgress/', {'planId': args.planid});
-};
-
+Automation.prototype.planProgress = async function (args) {
+    return await this.api.request('/automation/view/planProgress/', {'planId': args.planid })
+}
 /**
  * This component is optional and therefore the API will only work if it is installed
  **/
-Automation.prototype.runPlan = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/automation/action/runPlan/', {'filePath': args.filepath}, callback);
-    return;
-  }
-  return this.api.requestPromise('/automation/action/runPlan/', {'filePath': args.filepath});
-};
-
+Automation.prototype.runPlan = async function (args) {
+    return await this.api.request('/automation/action/runPlan/', {'filePath': args.filepath })
+}
 /**
  * This component is optional and therefore the API will only work if it is installed
  **/
-Automation.prototype.endDelayJob = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/automation/action/endDelayJob/', callback);
-    return;
-  }
-  return this.api.requestPromise('/automation/action/endDelayJob/');
-};
-
+Automation.prototype.endDelayJob = async function () {
+    return await this.api.request('/automation/action/endDelayJob/')
+}
 module.exports = Automation;

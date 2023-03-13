@@ -17,6 +17,7 @@
  * limitations under the License.
  */
 
+
 'use strict';
 
 /**
@@ -25,193 +26,85 @@
 function Context(clientApi) {
   this.api = clientApi;
 }
-
 /**
  * List context names of current session
  **/
 Context.prototype.contextList = async function () {
-  return await this.api.request('/context/view/contextList/');
-};
-
+    return await this.api.request('/context/view/contextList/')
+}
 /**
  * List excluded regexs for context
  * @param {string} contextname - The name of the context
  **/
-Context.prototype.excludeRegexs = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request(
-      '/context/view/excludeRegexs/',
-      { contextName: args.contextname },
-      callback
-    );
-    return;
-  }
-  return this.api.requestPromise('/context/view/excludeRegexs/', {
-    contextName: args.contextname,
-  });
-};
-
+Context.prototype.excludeRegexs = async function (args) {
+    return await this.api.request('/context/view/excludeRegexs/', {'contextName': args.contextname })
+}
 /**
  * List included regexs for context
  * @param {string} contextname - The name of the context
  **/
-Context.prototype.includeRegexs = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request(
-      '/context/view/includeRegexs/',
-      { contextName: args.contextname },
-      callback
-    );
-    return;
-  }
-  return this.api.requestPromise('/context/view/includeRegexs/', {
-    contextName: args.contextname,
-  });
-};
-
+Context.prototype.includeRegexs = async function (args) {
+    return await this.api.request('/context/view/includeRegexs/', {'contextName': args.contextname })
+}
 /**
  * List the information about the named context
  * @param {string} contextname - The name of the context
  **/
 Context.prototype.context = async function (args) {
-  await this.api.request('/context/view/context/', {
-    contextName: args.contextname,
-  });
-};
-
+    return await this.api.request('/context/view/context/', {'contextName': args.contextname })
+}
 /**
  * Lists the names of all built in technologies
  **/
-Context.prototype.technologyList = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/context/view/technologyList/', callback);
-    return;
-  }
-  return this.api.requestPromise('/context/view/technologyList/');
-};
-
+Context.prototype.technologyList = async function () {
+    return await this.api.request('/context/view/technologyList/')
+}
 /**
  * Lists the names of all technologies included in a context
  * @param {string} contextname - The name of the context
  **/
-Context.prototype.includedTechnologyList = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request(
-      '/context/view/includedTechnologyList/',
-      { contextName: args.contextname },
-      callback
-    );
-    return;
-  }
-  return this.api.requestPromise('/context/view/includedTechnologyList/', {
-    contextName: args.contextname,
-  });
-};
-
+Context.prototype.includedTechnologyList = async function (args) {
+    return await this.api.request('/context/view/includedTechnologyList/', {'contextName': args.contextname })
+}
 /**
  * Lists the names of all technologies excluded from a context
  * @param {string} contextname - The name of the context
-
  **/
-Context.prototype.excludedTechnologyList = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request(
-      '/context/view/excludedTechnologyList/',
-      { contextName: args.contextname },
-      callback
-    );
-    return;
-  }
-  return this.api.requestPromise('/context/view/excludedTechnologyList/', {
-    contextName: args.contextname,
-  });
-};
-
+Context.prototype.excludedTechnologyList = async function (args) {
+    return await this.api.request('/context/view/excludedTechnologyList/', {'contextName': args.contextname })
+}
 /**
  * Lists the URLs accessed through/by ZAP, that belong to the context with the given name.
  * @param {string} contextname - The name of the context
  **/
-Context.prototype.urls = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request(
-      '/context/view/urls/',
-      { contextName: args.contextname },
-      callback
-    );
-    return;
-  }
-  return this.api.requestPromise('/context/view/urls/', {
-    contextName: args.contextname,
-  });
-};
-
+Context.prototype.urls = async function (args) {
+    return await this.api.request('/context/view/urls/', {'contextName': args.contextname })
+}
 /**
  * Add exclude regex to context
  * @param {string} contextname - The name of the context
  * @param {string} regex
  **/
-Context.prototype.excludeFromContext = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request(
-      '/context/action/excludeFromContext/',
-      { contextName: args.contextname, regex: args.regex },
-      callback
-    );
-    return;
-  }
-  return this.api.requestPromise('/context/action/excludeFromContext/', {
-    contextName: args.contextname,
-    regex: args.regex,
-  });
-};
-
+Context.prototype.excludeFromContext = async function (args) {
+    return await this.api.request('/context/action/excludeFromContext/', {'contextName': args.contextname, 'regex': args.regex })
+}
 /**
  * Add include regex to context
  * @param {string} contextname - The name of the context
  * @param {string} regex
  **/
-Context.prototype.includeInContext = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request(
-      '/context/action/includeInContext/',
-      { contextName: args.contextname, regex: args.regex },
-      callback
-    );
-    return;
-  }
-  return this.api.requestPromise('/context/action/includeInContext/', {
-    contextName: args.contextname,
-    regex: args.regex,
-  });
-};
-
+Context.prototype.includeInContext = async function (args) {
+    return await this.api.request('/context/action/includeInContext/', {'contextName': args.contextname, 'regex': args.regex })
+}
 /**
  * Set the regexs to include and exclude for a context, both supplied as JSON string arrays
  * @param {string} contextname - The name of the context
  * @param {string} incregexs
  * @param {string} excregexs
-
  **/
-Context.prototype.setContextRegexs = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request(
-      '/context/action/setContextRegexs/',
-      {
-        contextName: args.contextname,
-        incRegexs: args.incregexs,
-        excRegexs: args.excregexs,
-      },
-      callback
-    );
-    return;
-  }
-  return this.api.requestPromise('/context/action/setContextRegexs/', {
-    contextName: args.contextname,
-    incRegexs: args.incregexs,
-    excRegexs: args.excregexs,
-  });
-};
-
+Context.prototype.setContextRegexs = async function (args) {
+    return await this.api.request('/context/action/setContextRegexs/', {'contextName': args.contextname, 'incRegexs': args.incregexs, 'excRegexs': args.excregexs })
+}
 /**
  * Set the checking strategy for a context - this defines how ZAP checks that a request is authenticated
  * @param {string} contextname - The name of the context
@@ -222,11 +115,8 @@ Context.prototype.setContextRegexs = function (args, callback) {
  * @param {string} pollfrequency - An integer greater than zero, must be supplied if checkingStrategy = POLL_URL, otherwise ignored
  * @param {string} pollfrequencyunits - One of REQUESTS, SECONDS, must be supplied if checkingStrategy = POLL_URL, otherwise ignored
  **/
-Context.prototype.setContextCheckingStrategy = function (args, callback) {
-  const params = {
-    contextName: args.contextname,
-    checkingStrategy: args.checkingstrategy,
-  };
+Context.prototype.setContextCheckingStrategy = async function (args) {
+  const params = {'contextName': args.contextname, 'checkingStrategy': args.checkingstrategy };
   if (args.pollurl && args.pollurl !== null) {
     params['pollUrl'] = args.pollurl;
   }
@@ -242,190 +132,73 @@ Context.prototype.setContextCheckingStrategy = function (args, callback) {
   if (args.pollfrequencyunits && args.pollfrequencyunits !== null) {
     params['pollFrequencyUnits'] = args.pollfrequencyunits;
   }
-  if (typeof callback === 'function') {
-    this.api.request(
-      '/context/action/setContextCheckingStrategy/',
-      params,
-      callback
-    );
-    return;
-  }
-  return this.api.requestPromise(
-    '/context/action/setContextCheckingStrategy/',
-    params
-  );
-};
-
+    return await this.api.request('/context/action/setContextCheckingStrategy/', params)
+}
 /**
  * Creates a new context with the given name in the current session
  * @param {string} contextname - The name of the context
  **/
-Context.prototype.newContext = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request(
-      '/context/action/newContext/',
-      { contextName: args.contextname },
-      callback
-    );
-    return;
-  }
-  return this.api.requestPromise('/context/action/newContext/', {
-    contextName: args.contextname,
-  });
-};
-
+Context.prototype.newContext = async function (args) {
+    return await this.api.request('/context/action/newContext/', {'contextName': args.contextname })
+}
 /**
  * Removes a context in the current session
  * @param {string} contextname - The name of the context
  **/
-Context.prototype.removeContext = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request(
-      '/context/action/removeContext/',
-      { contextName: args.contextname },
-      callback
-    );
-    return;
-  }
-  return this.api.requestPromise('/context/action/removeContext/', {
-    contextName: args.contextname,
-  });
-};
-
+Context.prototype.removeContext = async function (args) {
+    return await this.api.request('/context/action/removeContext/', {'contextName': args.contextname })
+}
 /**
  * Exports the context with the given name to a file. If a relative file path is specified it will be resolved against the "contexts" directory in ZAP "home" dir.
  * @param {string} contextname - The name of the context
  * @param {string} contextfile
  **/
-Context.prototype.exportContext = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request(
-      '/context/action/exportContext/',
-      { contextName: args.contextname, contextFile: args.contextfile },
-      callback
-    );
-    return;
-  }
-  return this.api.requestPromise('/context/action/exportContext/', {
-    contextName: args.contextname,
-    contextFile: args.contextfile,
-  });
-};
-
+Context.prototype.exportContext = async function (args) {
+    return await this.api.request('/context/action/exportContext/', {'contextName': args.contextname, 'contextFile': args.contextfile })
+}
 /**
  * Imports a context from a file. If a relative file path is specified it will be resolved against the "contexts" directory in ZAP "home" dir.
  * @param {string} contextfile
  **/
-Context.prototype.importContext = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request(
-      '/context/action/importContext/',
-      { contextFile: args.contextfile },
-      callback
-    );
-    return;
-  }
-  return this.api.requestPromise('/context/action/importContext/', {
-    contextFile: args.contextfile,
-  });
-};
-
+Context.prototype.importContext = async function (args) {
+    return await this.api.request('/context/action/importContext/', {'contextFile': args.contextfile })
+}
 /**
  * Includes technologies with the given names, separated by a comma, to a context
  * @param {string} contextname - The name of the context
  * @param {string} technologynames
  **/
-Context.prototype.includeContextTechnologies = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request(
-      '/context/action/includeContextTechnologies/',
-      { contextName: args.contextname, technologyNames: args.technologynames },
-      callback
-    );
-    return;
-  }
-  return this.api.requestPromise(
-    '/context/action/includeContextTechnologies/',
-    { contextName: args.contextname, technologyNames: args.technologynames }
-  );
-};
-
+Context.prototype.includeContextTechnologies = async function (args) {
+    return await this.api.request('/context/action/includeContextTechnologies/', {'contextName': args.contextname, 'technologyNames': args.technologynames })
+}
 /**
  * Includes all built in technologies in to a context
  * @param {string} contextname - The name of the context
  **/
-Context.prototype.includeAllContextTechnologies = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request(
-      '/context/action/includeAllContextTechnologies/',
-      { contextName: args.contextname },
-      callback
-    );
-    return;
-  }
-  return this.api.requestPromise(
-    '/context/action/includeAllContextTechnologies/',
-    { contextName: args.contextname }
-  );
-};
-
+Context.prototype.includeAllContextTechnologies = async function (args) {
+    return await this.api.request('/context/action/includeAllContextTechnologies/', {'contextName': args.contextname })
+}
 /**
  * Excludes technologies with the given names, separated by a comma, from a context
  * @param {string} contextname - The name of the context
  * @param {string} technologynames
  **/
-Context.prototype.excludeContextTechnologies = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request(
-      '/context/action/excludeContextTechnologies/',
-      { contextName: args.contextname, technologyNames: args.technologynames },
-      callback
-    );
-    return;
-  }
-  return this.api.requestPromise(
-    '/context/action/excludeContextTechnologies/',
-    { contextName: args.contextname, technologyNames: args.technologynames }
-  );
-};
-
+Context.prototype.excludeContextTechnologies = async function (args) {
+    return await this.api.request('/context/action/excludeContextTechnologies/', {'contextName': args.contextname, 'technologyNames': args.technologynames })
+}
 /**
  * Excludes all built in technologies from a context
  * @param {string} contextname - The name of the context
  **/
-Context.prototype.excludeAllContextTechnologies = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request(
-      '/context/action/excludeAllContextTechnologies/',
-      { contextName: args.contextname },
-      callback
-    );
-    return;
-  }
-  return this.api.requestPromise(
-    '/context/action/excludeAllContextTechnologies/',
-    { contextName: args.contextname }
-  );
-};
-
+Context.prototype.excludeAllContextTechnologies = async function (args) {
+    return await this.api.request('/context/action/excludeAllContextTechnologies/', {'contextName': args.contextname })
+}
 /**
  * Sets a context to in scope (contexts are in scope by default)
  * @param {string} contextname - The name of the context
  * @param {string} booleaninscope
  **/
-Context.prototype.setContextInScope = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request(
-      '/context/action/setContextInScope/',
-      { contextName: args.contextname, booleanInScope: args.booleaninscope },
-      callback
-    );
-    return;
-  }
-  return this.api.requestPromise('/context/action/setContextInScope/', {
-    contextName: args.contextname,
-    booleanInScope: args.booleaninscope,
-  });
-};
-
+Context.prototype.setContextInScope = async function (args) {
+    return await this.api.request('/context/action/setContextInScope/', {'contextName': args.contextname, 'booleanInScope': args.booleaninscope })
+}
 module.exports = Context;

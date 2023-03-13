@@ -26,42 +26,26 @@
 function Wappalyzer(clientApi) {
   this.api = clientApi;
 }
-
 /**
  * Lists all the sites recognized by the wappalyzer addon.
  * This component is optional and therefore the API will only work if it is installed
  **/
-Wappalyzer.prototype.listSites = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/wappalyzer/view/listSites/', callback);
-    return;
-  }
-  return this.api.requestPromise('/wappalyzer/view/listSites/');
-};
-
+Wappalyzer.prototype.listSites = async function () {
+    return await this.api.request('/wappalyzer/view/listSites/')
+}
 /**
  * Lists all sites and their associated applications (technologies).
  * This component is optional and therefore the API will only work if it is installed
  **/
-Wappalyzer.prototype.listAll = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/wappalyzer/view/listAll/', callback);
-    return;
-  }
-  return this.api.requestPromise('/wappalyzer/view/listAll/');
-};
-
+Wappalyzer.prototype.listAll = async function () {
+    return await this.api.request('/wappalyzer/view/listAll/')
+}
 /**
  * Lists all the applications (technologies) associated with a specific site.
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} site
  **/
-Wappalyzer.prototype.listSite = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/wappalyzer/view/listSite/', {'site': args.site}, callback);
-    return;
-  }
-  return this.api.requestPromise('/wappalyzer/view/listSite/', {'site': args.site});
-};
-
+Wappalyzer.prototype.listSite = async function (args) {
+    return await this.api.request('/wappalyzer/view/listSite/', {'site': args.site })
+}
 module.exports = Wappalyzer;

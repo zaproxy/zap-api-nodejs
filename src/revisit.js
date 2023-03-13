@@ -26,38 +26,22 @@
 function Revisit(clientApi) {
   this.api = clientApi;
 }
-
 /**
  * This component is optional and therefore the API will only work if it is installed
  **/
-Revisit.prototype.revisitList = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/revisit/view/revisitList/', callback);
-    return;
-  }
-  return this.api.requestPromise('/revisit/view/revisitList/');
-};
-
+Revisit.prototype.revisitList = async function () {
+    return await this.api.request('/revisit/view/revisitList/')
+}
 /**
  * This component is optional and therefore the API will only work if it is installed
  **/
-Revisit.prototype.revisitSiteOn = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/revisit/action/revisitSiteOn/', {'site': args.site, 'startTime': args.starttime, 'endTime': args.endtime}, callback);
-    return;
-  }
-  return this.api.requestPromise('/revisit/action/revisitSiteOn/', {'site': args.site, 'startTime': args.starttime, 'endTime': args.endtime});
-};
-
+Revisit.prototype.revisitSiteOn = async function (args) {
+    return await this.api.request('/revisit/action/revisitSiteOn/', {'site': args.site, 'startTime': args.starttime, 'endTime': args.endtime })
+}
 /**
  * This component is optional and therefore the API will only work if it is installed
  **/
-Revisit.prototype.revisitSiteOff = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/revisit/action/revisitSiteOff/', {'site': args.site}, callback);
-    return;
-  }
-  return this.api.requestPromise('/revisit/action/revisitSiteOff/', {'site': args.site});
-};
-
+Revisit.prototype.revisitSiteOff = async function (args) {
+    return await this.api.request('/revisit/action/revisitSiteOff/', {'site': args.site })
+}
 module.exports = Revisit;

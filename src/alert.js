@@ -26,19 +26,13 @@
 function Alert(clientApi) {
   this.api = clientApi;
 }
-
 /**
  * Gets the alert with the given ID, the corresponding HTTP message can be obtained with the 'messageId' field and 'message' API method
  * @param {string} id
  **/
-Alert.prototype.alert = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/alert/view/alert/', {'id': args.id}, callback);
-    return;
-  }
-  return this.api.requestPromise('/alert/view/alert/', {'id': args.id});
-};
-
+Alert.prototype.alert = async function (args) {
+    return await this.api.request('/alert/view/alert/', {'id': args.id })
+}
 /**
  * Gets the alerts raised by ZAP, optionally filtering by URL or riskId, and paginating with 'start' position and 'count' of alerts
  * @param {string} baseurl
@@ -46,8 +40,8 @@ Alert.prototype.alert = function (args, callback) {
  * @param {string} count
  * @param {string} riskid
  **/
-Alert.prototype.alerts = function (args, callback) {
-  const params = {};
+Alert.prototype.alerts = async function (args) {
+  const params = { };
   if (args.baseurl && args.baseurl !== null) {
     params['baseurl'] = args.baseurl;
   }
@@ -60,138 +54,93 @@ Alert.prototype.alerts = function (args, callback) {
   if (args.riskid && args.riskid !== null) {
     params['riskId'] = args.riskid;
   }
-  if (typeof callback === 'function') {
-    this.api.request('/alert/view/alerts/', params, callback);
-    return;
-  }
-  return this.api.requestPromise('/alert/view/alerts/', params);
-};
-
+    return await this.api.request('/alert/view/alerts/', params)
+}
 /**
  * Gets number of alerts grouped by each risk level, optionally filtering by URL
  * @param {string} baseurl
  **/
-Alert.prototype.alertsSummary = function (args, callback) {
-  const params = {};
+Alert.prototype.alertsSummary = async function (args) {
+  const params = { };
   if (args.baseurl && args.baseurl !== null) {
     params['baseurl'] = args.baseurl;
   }
-  if (typeof callback === 'function') {
-    this.api.request('/alert/view/alertsSummary/', params, callback);
-    return;
-  }
-  return this.api.requestPromise('/alert/view/alertsSummary/', params);
-};
-
+    return await this.api.request('/alert/view/alertsSummary/', params)
+}
 /**
  * Gets the number of alerts, optionally filtering by URL or riskId
  * @param {string} baseurl
  * @param {string} riskid
  **/
-Alert.prototype.numberOfAlerts = function (args, callback) {
-  const params = {};
+Alert.prototype.numberOfAlerts = async function (args) {
+  const params = { };
   if (args.baseurl && args.baseurl !== null) {
     params['baseurl'] = args.baseurl;
   }
   if (args.riskid && args.riskid !== null) {
     params['riskId'] = args.riskid;
   }
-  if (typeof callback === 'function') {
-    this.api.request('/alert/view/numberOfAlerts/', params, callback);
-    return;
-  }
-  return this.api.requestPromise('/alert/view/numberOfAlerts/', params);
-};
-
+    return await this.api.request('/alert/view/numberOfAlerts/', params)
+}
 /**
  * Gets a summary of the alerts, optionally filtered by a 'url'. If 'recurse' is true then all alerts that apply to urls that start with the specified 'url' will be returned, otherwise only those on exactly the same 'url' (ignoring url parameters)
  * @param {string} url
  * @param {string} recurse
  **/
-Alert.prototype.alertsByRisk = function (args, callback) {
-  const params = {};
+Alert.prototype.alertsByRisk = async function (args) {
+  const params = { };
   if (args.url && args.url !== null) {
     params['url'] = args.url;
   }
   if (args.recurse && args.recurse !== null) {
     params['recurse'] = args.recurse;
   }
-  if (typeof callback === 'function') {
-    this.api.request('/alert/view/alertsByRisk/', params, callback);
-    return;
-  }
-  return this.api.requestPromise('/alert/view/alertsByRisk/', params);
-};
-
+    return await this.api.request('/alert/view/alertsByRisk/', params)
+}
 /**
  * Gets a count of the alerts, optionally filtered as per alertsPerRisk
  * @param {string} url
  * @param {string} recurse
  **/
-Alert.prototype.alertCountsByRisk = function (args, callback) {
-  const params = {};
+Alert.prototype.alertCountsByRisk = async function (args) {
+  const params = { };
   if (args.url && args.url !== null) {
     params['url'] = args.url;
   }
   if (args.recurse && args.recurse !== null) {
     params['recurse'] = args.recurse;
   }
-  if (typeof callback === 'function') {
-    this.api.request('/alert/view/alertCountsByRisk/', params, callback);
-    return;
-  }
-  return this.api.requestPromise('/alert/view/alertCountsByRisk/', params);
-};
-
+    return await this.api.request('/alert/view/alertCountsByRisk/', params)
+}
 /**
  * Deletes all alerts of the current session.
  **/
-Alert.prototype.deleteAllAlerts = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/alert/action/deleteAllAlerts/', callback);
-    return;
-  }
-  return this.api.requestPromise('/alert/action/deleteAllAlerts/');
-};
-
+Alert.prototype.deleteAllAlerts = async function () {
+    return await this.api.request('/alert/action/deleteAllAlerts/')
+}
 /**
  * Deletes the alert with the given ID. 
  * @param {string} id
  **/
-Alert.prototype.deleteAlert = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/alert/action/deleteAlert/', {'id': args.id}, callback);
-    return;
-  }
-  return this.api.requestPromise('/alert/action/deleteAlert/', {'id': args.id});
-};
-
+Alert.prototype.deleteAlert = async function (args) {
+    return await this.api.request('/alert/action/deleteAlert/', {'id': args.id })
+}
 /**
  * Update the confidence of the alerts.
  * @param {string} ids - The IDs of the alerts to update (comma separated values).
  * @param {string} confidenceid - The numeric confidence representation ('1 - Low' through '3 - High' [user set values '0 - False Positive', and '4 - User Confirmed' are also available]).
  **/
-Alert.prototype.updateAlertsConfidence = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/alert/action/updateAlertsConfidence/', {'ids': args.ids, 'confidenceId': args.confidenceid}, callback);
-    return;
-  }
-  return this.api.requestPromise('/alert/action/updateAlertsConfidence/', {'ids': args.ids, 'confidenceId': args.confidenceid});
-};
-
+Alert.prototype.updateAlertsConfidence = async function (args) {
+    return await this.api.request('/alert/action/updateAlertsConfidence/', {'ids': args.ids, 'confidenceId': args.confidenceid })
+}
 /**
  * Update the risk of the alerts.
  * @param {string} ids - The IDs of the alerts to update (comma separated values).
  * @param {string} riskid - The numeric risk representation ('0 - Informational' through '3 - High').
  **/
-Alert.prototype.updateAlertsRisk = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/alert/action/updateAlertsRisk/', {'ids': args.ids, 'riskId': args.riskid}, callback);
-    return;
-  }
-  return this.api.requestPromise('/alert/action/updateAlertsRisk/', {'ids': args.ids, 'riskId': args.riskid});
-};
-
+Alert.prototype.updateAlertsRisk = async function (args) {
+    return await this.api.request('/alert/action/updateAlertsRisk/', {'ids': args.ids, 'riskId': args.riskid })
+}
 /**
  * Update the alert with the given ID, with the provided details.
  * @param {string} id - The ID of the alert to update.
@@ -208,8 +157,8 @@ Alert.prototype.updateAlertsRisk = function (args, callback) {
  * @param {string} cweid - The CWE identifier associated with the alert.
  * @param {string} wascid - The WASC identifier associated with the alert.
  **/
-Alert.prototype.updateAlert = function (args, callback) {
-  const params = {'id': args.id, 'name': args.name, 'riskId': args.riskid, 'confidenceId': args.confidenceid, 'description': args.description};
+Alert.prototype.updateAlert = async function (args) {
+  const params = {'id': args.id, 'name': args.name, 'riskId': args.riskid, 'confidenceId': args.confidenceid, 'description': args.description };
   if (args.param && args.param !== null) {
     params['param'] = args.param;
   }
@@ -234,13 +183,8 @@ Alert.prototype.updateAlert = function (args, callback) {
   if (args.wascid && args.wascid !== null) {
     params['wascId'] = args.wascid;
   }
-  if (typeof callback === 'function') {
-    this.api.request('/alert/action/updateAlert/', params, callback);
-    return;
-  }
-  return this.api.requestPromise('/alert/action/updateAlert/', params);
-};
-
+    return await this.api.request('/alert/action/updateAlert/', params)
+}
 /**
  * Add an alert associated with the given message ID, with the provided details. (The ID of the created alert is returned.)
  * @param {string} messageid - The ID of the message to which the alert should be associated.
@@ -257,8 +201,8 @@ Alert.prototype.updateAlert = function (args, callback) {
  * @param {string} cweid - The CWE identifier associated with the alert.
  * @param {string} wascid - The WASC identifier associated with the alert.
  **/
-Alert.prototype.addAlert = function (args, callback) {
-  const params = {'messageId': args.messageid, 'name': args.name, 'riskId': args.riskid, 'confidenceId': args.confidenceid, 'description': args.description};
+Alert.prototype.addAlert = async function (args) {
+  const params = {'messageId': args.messageid, 'name': args.name, 'riskId': args.riskid, 'confidenceId': args.confidenceid, 'description': args.description };
   if (args.param && args.param !== null) {
     params['param'] = args.param;
   }
@@ -283,11 +227,6 @@ Alert.prototype.addAlert = function (args, callback) {
   if (args.wascid && args.wascid !== null) {
     params['wascId'] = args.wascid;
   }
-  if (typeof callback === 'function') {
-    this.api.request('/alert/action/addAlert/', params, callback);
-    return;
-  }
-  return this.api.requestPromise('/alert/action/addAlert/', params);
-};
-
+    return await this.api.request('/alert/action/addAlert/', params)
+}
 module.exports = Alert;

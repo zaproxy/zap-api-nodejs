@@ -26,32 +26,21 @@
 function Reports(clientApi) {
   this.api = clientApi;
 }
-
 /**
  * View available templates.
  * This component is optional and therefore the API will only work if it is installed
  **/
-Reports.prototype.templates = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/reports/view/templates/', callback);
-    return;
-  }
-  return this.api.requestPromise('/reports/view/templates/');
-};
-
+Reports.prototype.templates = async function () {
+    return await this.api.request('/reports/view/templates/')
+}
 /**
  * View details of the specified template.
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} template - Template Label
  **/
-Reports.prototype.templateDetails = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/reports/view/templateDetails/', {'template': args.template}, callback);
-    return;
-  }
-  return this.api.requestPromise('/reports/view/templateDetails/', {'template': args.template});
-};
-
+Reports.prototype.templateDetails = async function (args) {
+    return await this.api.request('/reports/view/templateDetails/', {'template': args.template })
+}
 /**
  * Generate a report with the supplied parameters.
  * This component is optional and therefore the API will only work if it is installed
@@ -69,8 +58,8 @@ Reports.prototype.templateDetails = function (args, callback) {
  * @param {string} reportdir - Path to directory in which the generated report should be placed.
  * @param {string} display - Display the generated report. Either "true" or "false".
  **/
-Reports.prototype.generate = function (args, callback) {
-  const params = {'title': args.title, 'template': args.template};
+Reports.prototype.generate = async function (args) {
+  const params = {'title': args.title, 'template': args.template };
   if (args.theme && args.theme !== null) {
     params['theme'] = args.theme;
   }
@@ -104,11 +93,6 @@ Reports.prototype.generate = function (args, callback) {
   if (args.display && args.display !== null) {
     params['display'] = args.display;
   }
-  if (typeof callback === 'function') {
-    this.api.request('/reports/action/generate/', params, callback);
-    return;
-  }
-  return this.api.requestPromise('/reports/action/generate/', params);
-};
-
+    return await this.api.request('/reports/action/generate/', params)
+}
 module.exports = Reports;
