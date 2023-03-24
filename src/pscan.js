@@ -30,195 +30,127 @@ function Pscan(clientApi) {
 /**
  * Tells whether or not the passive scan should be performed only on messages that are in scope.
  **/
-Pscan.prototype.scanOnlyInScope = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/pscan/view/scanOnlyInScope/', callback);
-    return;
-  }
-  return this.api.requestPromise('/pscan/view/scanOnlyInScope/');
-};
+Pscan.prototype.scanOnlyInScope = async function () {
+    return await this.api.request('/pscan/view/scanOnlyInScope/')
+}
 
 /**
  * The number of records the passive scanner still has to scan
  **/
-Pscan.prototype.recordsToScan = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/pscan/view/recordsToScan/', callback);
-    return;
-  }
-  return this.api.requestPromise('/pscan/view/recordsToScan/');
-};
+Pscan.prototype.recordsToScan = async function () {
+    return await this.api.request('/pscan/view/recordsToScan/')
+}
 
 /**
  * Lists all passive scan rules with their ID, name, enabled state, and alert threshold.
  **/
-Pscan.prototype.scanners = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/pscan/view/scanners/', callback);
-    return;
-  }
-  return this.api.requestPromise('/pscan/view/scanners/');
-};
+Pscan.prototype.scanners = async function () {
+    return await this.api.request('/pscan/view/scanners/')
+}
 
 /**
  * Show information about the passive scan rule currently being run (if any).
  **/
-Pscan.prototype.currentRule = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/pscan/view/currentRule/', callback);
-    return;
-  }
-  return this.api.requestPromise('/pscan/view/currentRule/');
-};
+Pscan.prototype.currentRule = async function () {
+    return await this.api.request('/pscan/view/currentRule/')
+}
 
 /**
  * Show information about the passive scan tasks currently being run (if any).
  **/
-Pscan.prototype.currentTasks = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/pscan/view/currentTasks/', callback);
-    return;
-  }
-  return this.api.requestPromise('/pscan/view/currentTasks/');
-};
+Pscan.prototype.currentTasks = async function () {
+    return await this.api.request('/pscan/view/currentTasks/')
+}
 
 /**
  * Gets the maximum number of alerts a passive scan rule should raise.
  **/
-Pscan.prototype.maxAlertsPerRule = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/pscan/view/maxAlertsPerRule/', callback);
-    return;
-  }
-  return this.api.requestPromise('/pscan/view/maxAlertsPerRule/');
-};
+Pscan.prototype.maxAlertsPerRule = async function () {
+    return await this.api.request('/pscan/view/maxAlertsPerRule/')
+}
 
 /**
  * Sets whether or not the passive scanning is enabled (Note: the enabled state is not persisted).
  * @param {string} enabled
  **/
-Pscan.prototype.setEnabled = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/pscan/action/setEnabled/', {'enabled': args.enabled}, callback);
-    return;
-  }
-  return this.api.requestPromise('/pscan/action/setEnabled/', {'enabled': args.enabled});
-};
+Pscan.prototype.setEnabled = async function (args) {
+    return await this.api.request('/pscan/action/setEnabled/', {'enabled': args.enabled })
+}
 
 /**
  * Sets whether or not the passive scan should be performed only on messages that are in scope.
  * @param {string} onlyinscope
  **/
-Pscan.prototype.setScanOnlyInScope = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/pscan/action/setScanOnlyInScope/', {'onlyInScope': args.onlyinscope}, callback);
-    return;
-  }
-  return this.api.requestPromise('/pscan/action/setScanOnlyInScope/', {'onlyInScope': args.onlyinscope});
-};
+Pscan.prototype.setScanOnlyInScope = async function (args) {
+    return await this.api.request('/pscan/action/setScanOnlyInScope/', {'onlyInScope': args.onlyinscope })
+}
 
 /**
  * Enables all passive scan rules
  **/
-Pscan.prototype.enableAllScanners = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/pscan/action/enableAllScanners/', callback);
-    return;
-  }
-  return this.api.requestPromise('/pscan/action/enableAllScanners/');
-};
+Pscan.prototype.enableAllScanners = async function () {
+    return await this.api.request('/pscan/action/enableAllScanners/')
+}
 
 /**
  * Disables all passive scan rules
  **/
-Pscan.prototype.disableAllScanners = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/pscan/action/disableAllScanners/', callback);
-    return;
-  }
-  return this.api.requestPromise('/pscan/action/disableAllScanners/');
-};
+Pscan.prototype.disableAllScanners = async function () {
+    return await this.api.request('/pscan/action/disableAllScanners/')
+}
 
 /**
  * Enables all passive scan rules with the given IDs (comma separated list of IDs)
  * @param {string} ids
  **/
-Pscan.prototype.enableScanners = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/pscan/action/enableScanners/', {'ids': args.ids}, callback);
-    return;
-  }
-  return this.api.requestPromise('/pscan/action/enableScanners/', {'ids': args.ids});
-};
+Pscan.prototype.enableScanners = async function (args) {
+    return await this.api.request('/pscan/action/enableScanners/', {'ids': args.ids })
+}
 
 /**
  * Disables all passive scan rules with the given IDs (comma separated list of IDs)
  * @param {string} ids
  **/
-Pscan.prototype.disableScanners = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/pscan/action/disableScanners/', {'ids': args.ids}, callback);
-    return;
-  }
-  return this.api.requestPromise('/pscan/action/disableScanners/', {'ids': args.ids});
-};
+Pscan.prototype.disableScanners = async function (args) {
+    return await this.api.request('/pscan/action/disableScanners/', {'ids': args.ids })
+}
 
 /**
- * Sets the alert threshold of the passive scanner with the given ID, accepted values for alert threshold: OFF, DEFAULT, LOW, MEDIUM and HIGH
+ * Sets the alert threshold of the passive scan rule with the given ID, accepted values for alert threshold: OFF, DEFAULT, LOW, MEDIUM and HIGH
  * @param {string} id
  * @param {string} alertthreshold
  **/
-Pscan.prototype.setScannerAlertThreshold = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/pscan/action/setScannerAlertThreshold/', {'id': args.id, 'alertThreshold': args.alertthreshold}, callback);
-    return;
-  }
-  return this.api.requestPromise('/pscan/action/setScannerAlertThreshold/', {'id': args.id, 'alertThreshold': args.alertthreshold});
-};
+Pscan.prototype.setScannerAlertThreshold = async function (args) {
+    return await this.api.request('/pscan/action/setScannerAlertThreshold/', {'id': args.id, 'alertThreshold': args.alertthreshold })
+}
 
 /**
  * Sets the maximum number of alerts a passive scan rule should raise.
  * @param {string} maxalerts
  **/
-Pscan.prototype.setMaxAlertsPerRule = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/pscan/action/setMaxAlertsPerRule/', {'maxAlerts': args.maxalerts}, callback);
-    return;
-  }
-  return this.api.requestPromise('/pscan/action/setMaxAlertsPerRule/', {'maxAlerts': args.maxalerts});
-};
+Pscan.prototype.setMaxAlertsPerRule = async function (args) {
+    return await this.api.request('/pscan/action/setMaxAlertsPerRule/', {'maxAlerts': args.maxalerts })
+}
 
 /**
  * Disables all passive scan tags.
  **/
-Pscan.prototype.disableAllTags = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/pscan/action/disableAllTags/', callback);
-    return;
-  }
-  return this.api.requestPromise('/pscan/action/disableAllTags/');
-};
+Pscan.prototype.disableAllTags = async function () {
+    return await this.api.request('/pscan/action/disableAllTags/')
+}
 
 /**
  * Enables all passive scan tags.
  **/
-Pscan.prototype.enableAllTags = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/pscan/action/enableAllTags/', callback);
-    return;
-  }
-  return this.api.requestPromise('/pscan/action/enableAllTags/');
-};
+Pscan.prototype.enableAllTags = async function () {
+    return await this.api.request('/pscan/action/enableAllTags/')
+}
 
 /**
  * Clears the passive scan queue.
  **/
-Pscan.prototype.clearQueue = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/pscan/action/clearQueue/', callback);
-    return;
-  }
-  return this.api.requestPromise('/pscan/action/clearQueue/');
-};
+Pscan.prototype.clearQueue = async function () {
+    return await this.api.request('/pscan/action/clearQueue/')
+}
 
 module.exports = Pscan;

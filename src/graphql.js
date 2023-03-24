@@ -31,97 +31,65 @@ function Graphql(clientApi) {
  * Returns how arguments are currently specified.
  * This component is optional and therefore the API will only work if it is installed
  **/
-Graphql.prototype.optionArgsType = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/graphql/view/optionArgsType/', callback);
-    return;
-  }
-  return this.api.requestPromise('/graphql/view/optionArgsType/');
-};
+Graphql.prototype.optionArgsType = async function () {
+    return await this.api.request('/graphql/view/optionArgsType/')
+}
 
 /**
  * Returns whether or not lenient maximum query generation depth is enabled.
  * This component is optional and therefore the API will only work if it is installed
  **/
-Graphql.prototype.optionLenientMaxQueryDepthEnabled = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/graphql/view/optionLenientMaxQueryDepthEnabled/', callback);
-    return;
-  }
-  return this.api.requestPromise('/graphql/view/optionLenientMaxQueryDepthEnabled/');
-};
+Graphql.prototype.optionLenientMaxQueryDepthEnabled = async function () {
+    return await this.api.request('/graphql/view/optionLenientMaxQueryDepthEnabled/')
+}
 
 /**
  * Returns the current maximum additional query generation depth.
  * This component is optional and therefore the API will only work if it is installed
  **/
-Graphql.prototype.optionMaxAdditionalQueryDepth = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/graphql/view/optionMaxAdditionalQueryDepth/', callback);
-    return;
-  }
-  return this.api.requestPromise('/graphql/view/optionMaxAdditionalQueryDepth/');
-};
+Graphql.prototype.optionMaxAdditionalQueryDepth = async function () {
+    return await this.api.request('/graphql/view/optionMaxAdditionalQueryDepth/')
+}
 
 /**
  * Returns the current maximum arguments generation depth.
  * This component is optional and therefore the API will only work if it is installed
  **/
-Graphql.prototype.optionMaxArgsDepth = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/graphql/view/optionMaxArgsDepth/', callback);
-    return;
-  }
-  return this.api.requestPromise('/graphql/view/optionMaxArgsDepth/');
-};
+Graphql.prototype.optionMaxArgsDepth = async function () {
+    return await this.api.request('/graphql/view/optionMaxArgsDepth/')
+}
 
 /**
  * Returns the current maximum query generation depth.
  * This component is optional and therefore the API will only work if it is installed
  **/
-Graphql.prototype.optionMaxQueryDepth = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/graphql/view/optionMaxQueryDepth/', callback);
-    return;
-  }
-  return this.api.requestPromise('/graphql/view/optionMaxQueryDepth/');
-};
+Graphql.prototype.optionMaxQueryDepth = async function () {
+    return await this.api.request('/graphql/view/optionMaxQueryDepth/')
+}
 
 /**
  * Returns whether or not optional arguments are currently specified.
  * This component is optional and therefore the API will only work if it is installed
  **/
-Graphql.prototype.optionOptionalArgsEnabled = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/graphql/view/optionOptionalArgsEnabled/', callback);
-    return;
-  }
-  return this.api.requestPromise('/graphql/view/optionOptionalArgsEnabled/');
-};
+Graphql.prototype.optionOptionalArgsEnabled = async function () {
+    return await this.api.request('/graphql/view/optionOptionalArgsEnabled/')
+}
 
 /**
  * Returns the current level for which a single query is generated.
  * This component is optional and therefore the API will only work if it is installed
  **/
-Graphql.prototype.optionQuerySplitType = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/graphql/view/optionQuerySplitType/', callback);
-    return;
-  }
-  return this.api.requestPromise('/graphql/view/optionQuerySplitType/');
-};
+Graphql.prototype.optionQuerySplitType = async function () {
+    return await this.api.request('/graphql/view/optionQuerySplitType/')
+}
 
 /**
  * Returns the current request method.
  * This component is optional and therefore the API will only work if it is installed
  **/
-Graphql.prototype.optionRequestMethod = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/graphql/view/optionRequestMethod/', callback);
-    return;
-  }
-  return this.api.requestPromise('/graphql/view/optionRequestMethod/');
-};
+Graphql.prototype.optionRequestMethod = async function () {
+    return await this.api.request('/graphql/view/optionRequestMethod/')
+}
 
 /**
  * Imports a GraphQL Schema from a File.
@@ -129,13 +97,9 @@ Graphql.prototype.optionRequestMethod = function (callback) {
  * @param {string} endurl - The Endpoint URL.
  * @param {string} file - The File That Contains the GraphQL Schema.
  **/
-Graphql.prototype.importFile = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/graphql/action/importFile/', {'endurl': args.endurl, 'file': args.file}, callback);
-    return;
-  }
-  return this.api.requestPromise('/graphql/action/importFile/', {'endurl': args.endurl, 'file': args.file});
-};
+Graphql.prototype.importFile = async function (args) {
+    return await this.api.request('/graphql/action/importFile/', {'endurl': args.endurl, 'file': args.file })
+}
 
 /**
  * Imports a GraphQL Schema from a URL.
@@ -143,120 +107,84 @@ Graphql.prototype.importFile = function (args, callback) {
  * @param {string} endurl - The Endpoint URL.
  * @param {string} url - The URL Locating the GraphQL Schema.
  **/
-Graphql.prototype.importUrl = function (args, callback) {
-  const params = {'endurl': args.endurl};
+Graphql.prototype.importUrl = async function (args) {
+  const params = {'endurl': args.endurl };
   if (args.url && args.url !== null) {
     params['url'] = args.url;
   }
-  if (typeof callback === 'function') {
-    this.api.request('/graphql/action/importUrl/', params, callback);
-    return;
-  }
-  return this.api.requestPromise('/graphql/action/importUrl/', params);
-};
+    return await this.api.request('/graphql/action/importUrl/', params)
+}
 
 /**
  * Sets how arguments are specified.
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} string - Can be "INLINE", "VARIABLES", or "BOTH".
  **/
-Graphql.prototype.setOptionArgsType = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/graphql/action/setOptionArgsType/', {'String': args.string}, callback);
-    return;
-  }
-  return this.api.requestPromise('/graphql/action/setOptionArgsType/', {'String': args.string});
-};
+Graphql.prototype.setOptionArgsType = async function (args) {
+    return await this.api.request('/graphql/action/setOptionArgsType/', {'String': args.string })
+}
 
 /**
  * Sets the level for which a single query is generated.
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} string - Can be "LEAF", "ROOT_FIELD", or "OPERATION".
  **/
-Graphql.prototype.setOptionQuerySplitType = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/graphql/action/setOptionQuerySplitType/', {'String': args.string}, callback);
-    return;
-  }
-  return this.api.requestPromise('/graphql/action/setOptionQuerySplitType/', {'String': args.string});
-};
+Graphql.prototype.setOptionQuerySplitType = async function (args) {
+    return await this.api.request('/graphql/action/setOptionQuerySplitType/', {'String': args.string })
+}
 
 /**
  * Sets the request method.
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} string - Can be "POST_JSON", "POST_GRAPHQL", or "GET".
  **/
-Graphql.prototype.setOptionRequestMethod = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/graphql/action/setOptionRequestMethod/', {'String': args.string}, callback);
-    return;
-  }
-  return this.api.requestPromise('/graphql/action/setOptionRequestMethod/', {'String': args.string});
-};
+Graphql.prototype.setOptionRequestMethod = async function (args) {
+    return await this.api.request('/graphql/action/setOptionRequestMethod/', {'String': args.string })
+}
 
 /**
  * Sets whether or not Maximum Query Depth is enforced leniently.
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} bool - Enforce Leniently (true or false).
  **/
-Graphql.prototype.setOptionLenientMaxQueryDepthEnabled = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/graphql/action/setOptionLenientMaxQueryDepthEnabled/', {'Boolean': args.bool}, callback);
-    return;
-  }
-  return this.api.requestPromise('/graphql/action/setOptionLenientMaxQueryDepthEnabled/', {'Boolean': args.bool});
-};
+Graphql.prototype.setOptionLenientMaxQueryDepthEnabled = async function (args) {
+    return await this.api.request('/graphql/action/setOptionLenientMaxQueryDepthEnabled/', {'Boolean': args.bool })
+}
 
 /**
  * Sets the maximum additional query generation depth (used if enforced leniently).
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} integer - The Maximum Additional Depth.
  **/
-Graphql.prototype.setOptionMaxAdditionalQueryDepth = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/graphql/action/setOptionMaxAdditionalQueryDepth/', {'Integer': args.integer}, callback);
-    return;
-  }
-  return this.api.requestPromise('/graphql/action/setOptionMaxAdditionalQueryDepth/', {'Integer': args.integer});
-};
+Graphql.prototype.setOptionMaxAdditionalQueryDepth = async function (args) {
+    return await this.api.request('/graphql/action/setOptionMaxAdditionalQueryDepth/', {'Integer': args.integer })
+}
 
 /**
  * Sets the maximum arguments generation depth.
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} integer - The Maximum Depth.
  **/
-Graphql.prototype.setOptionMaxArgsDepth = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/graphql/action/setOptionMaxArgsDepth/', {'Integer': args.integer}, callback);
-    return;
-  }
-  return this.api.requestPromise('/graphql/action/setOptionMaxArgsDepth/', {'Integer': args.integer});
-};
+Graphql.prototype.setOptionMaxArgsDepth = async function (args) {
+    return await this.api.request('/graphql/action/setOptionMaxArgsDepth/', {'Integer': args.integer })
+}
 
 /**
  * Sets the maximum query generation depth.
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} integer - The Maximum Depth.
  **/
-Graphql.prototype.setOptionMaxQueryDepth = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/graphql/action/setOptionMaxQueryDepth/', {'Integer': args.integer}, callback);
-    return;
-  }
-  return this.api.requestPromise('/graphql/action/setOptionMaxQueryDepth/', {'Integer': args.integer});
-};
+Graphql.prototype.setOptionMaxQueryDepth = async function (args) {
+    return await this.api.request('/graphql/action/setOptionMaxQueryDepth/', {'Integer': args.integer })
+}
 
 /**
  * Sets whether or not Optional Arguments should be specified.
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} bool - Specify Optional Arguments (true or false).
  **/
-Graphql.prototype.setOptionOptionalArgsEnabled = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/graphql/action/setOptionOptionalArgsEnabled/', {'Boolean': args.bool}, callback);
-    return;
-  }
-  return this.api.requestPromise('/graphql/action/setOptionOptionalArgsEnabled/', {'Boolean': args.bool});
-};
+Graphql.prototype.setOptionOptionalArgsEnabled = async function (args) {
+    return await this.api.request('/graphql/action/setOptionOptionalArgsEnabled/', {'Boolean': args.bool })
+}
 
 module.exports = Graphql;

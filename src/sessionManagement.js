@@ -30,37 +30,25 @@ function SessionManagement(clientApi) {
 /**
  * Gets the name of the session management methods.
  **/
-SessionManagement.prototype.getSupportedSessionManagementMethods = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/sessionManagement/view/getSupportedSessionManagementMethods/', callback);
-    return;
-  }
-  return this.api.requestPromise('/sessionManagement/view/getSupportedSessionManagementMethods/');
-};
+SessionManagement.prototype.getSupportedSessionManagementMethods = async function () {
+    return await this.api.request('/sessionManagement/view/getSupportedSessionManagementMethods/')
+}
 
 /**
  * Gets the configuration parameters for the session management method with the given name.
  * @param {string} methodname
  **/
-SessionManagement.prototype.getSessionManagementMethodConfigParams = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/sessionManagement/view/getSessionManagementMethodConfigParams/', {'methodName': args.methodname}, callback);
-    return;
-  }
-  return this.api.requestPromise('/sessionManagement/view/getSessionManagementMethodConfigParams/', {'methodName': args.methodname});
-};
+SessionManagement.prototype.getSessionManagementMethodConfigParams = async function (args) {
+    return await this.api.request('/sessionManagement/view/getSessionManagementMethodConfigParams/', {'methodName': args.methodname })
+}
 
 /**
  * Gets the name of the session management method for the context with the given ID.
  * @param {string} contextid
  **/
-SessionManagement.prototype.getSessionManagementMethod = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/sessionManagement/view/getSessionManagementMethod/', {'contextId': args.contextid}, callback);
-    return;
-  }
-  return this.api.requestPromise('/sessionManagement/view/getSessionManagementMethod/', {'contextId': args.contextid});
-};
+SessionManagement.prototype.getSessionManagementMethod = async function (args) {
+    return await this.api.request('/sessionManagement/view/getSessionManagementMethod/', {'contextId': args.contextid })
+}
 
 /**
  * Sets the session management method for the context with the given ID.
@@ -68,16 +56,12 @@ SessionManagement.prototype.getSessionManagementMethod = function (args, callbac
  * @param {string} methodname
  * @param {string} methodconfigparams
  **/
-SessionManagement.prototype.setSessionManagementMethod = function (args, callback) {
-  const params = {'contextId': args.contextid, 'methodName': args.methodname};
+SessionManagement.prototype.setSessionManagementMethod = async function (args) {
+  const params = {'contextId': args.contextid, 'methodName': args.methodname };
   if (args.methodconfigparams && args.methodconfigparams !== null) {
     params['methodConfigParams'] = args.methodconfigparams;
   }
-  if (typeof callback === 'function') {
-    this.api.request('/sessionManagement/action/setSessionManagementMethod/', params, callback);
-    return;
-  }
-  return this.api.requestPromise('/sessionManagement/action/setSessionManagementMethod/', params);
-};
+    return await this.api.request('/sessionManagement/action/setSessionManagementMethod/', params)
+}
 
 module.exports = SessionManagement;

@@ -30,146 +30,102 @@ function HttpSessions(clientApi) {
 /**
  * Gets all of the sites that have sessions.
  **/
-HttpSessions.prototype.sites = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/httpSessions/view/sites/', callback);
-    return;
-  }
-  return this.api.requestPromise('/httpSessions/view/sites/');
-};
+HttpSessions.prototype.sites = async function () {
+    return await this.api.request('/httpSessions/view/sites/')
+}
 
 /**
  * Gets the sessions for the given site. Optionally returning just the session with the given name.
  * @param {string} site
  * @param {string} session
  **/
-HttpSessions.prototype.sessions = function (args, callback) {
-  const params = {'site': args.site};
+HttpSessions.prototype.sessions = async function (args) {
+  const params = {'site': args.site };
   if (args.session && args.session !== null) {
     params['session'] = args.session;
   }
-  if (typeof callback === 'function') {
-    this.api.request('/httpSessions/view/sessions/', params, callback);
-    return;
-  }
-  return this.api.requestPromise('/httpSessions/view/sessions/', params);
-};
+    return await this.api.request('/httpSessions/view/sessions/', params)
+}
 
 /**
  * Gets the name of the active session for the given site.
  * @param {string} site
  **/
-HttpSessions.prototype.activeSession = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/httpSessions/view/activeSession/', {'site': args.site}, callback);
-    return;
-  }
-  return this.api.requestPromise('/httpSessions/view/activeSession/', {'site': args.site});
-};
+HttpSessions.prototype.activeSession = async function (args) {
+    return await this.api.request('/httpSessions/view/activeSession/', {'site': args.site })
+}
 
 /**
  * Gets the names of the session tokens for the given site.
  * @param {string} site
  **/
-HttpSessions.prototype.sessionTokens = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/httpSessions/view/sessionTokens/', {'site': args.site}, callback);
-    return;
-  }
-  return this.api.requestPromise('/httpSessions/view/sessionTokens/', {'site': args.site});
-};
+HttpSessions.prototype.sessionTokens = async function (args) {
+    return await this.api.request('/httpSessions/view/sessionTokens/', {'site': args.site })
+}
 
 /**
  * Gets the default session tokens.
  **/
-HttpSessions.prototype.defaultSessionTokens = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/httpSessions/view/defaultSessionTokens/', callback);
-    return;
-  }
-  return this.api.requestPromise('/httpSessions/view/defaultSessionTokens/');
-};
+HttpSessions.prototype.defaultSessionTokens = async function () {
+    return await this.api.request('/httpSessions/view/defaultSessionTokens/')
+}
 
 /**
  * Creates an empty session for the given site. Optionally with the given name.
  * @param {string} site
  * @param {string} session
  **/
-HttpSessions.prototype.createEmptySession = function (args, callback) {
-  const params = {'site': args.site};
+HttpSessions.prototype.createEmptySession = async function (args) {
+  const params = {'site': args.site };
   if (args.session && args.session !== null) {
     params['session'] = args.session;
   }
-  if (typeof callback === 'function') {
-    this.api.request('/httpSessions/action/createEmptySession/', params, callback);
-    return;
-  }
-  return this.api.requestPromise('/httpSessions/action/createEmptySession/', params);
-};
+    return await this.api.request('/httpSessions/action/createEmptySession/', params)
+}
 
 /**
  * Removes the session from the given site.
  * @param {string} site
  * @param {string} session
  **/
-HttpSessions.prototype.removeSession = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/httpSessions/action/removeSession/', {'site': args.site, 'session': args.session}, callback);
-    return;
-  }
-  return this.api.requestPromise('/httpSessions/action/removeSession/', {'site': args.site, 'session': args.session});
-};
+HttpSessions.prototype.removeSession = async function (args) {
+    return await this.api.request('/httpSessions/action/removeSession/', {'site': args.site, 'session': args.session })
+}
 
 /**
  * Sets the given session as active for the given site.
  * @param {string} site
  * @param {string} session
  **/
-HttpSessions.prototype.setActiveSession = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/httpSessions/action/setActiveSession/', {'site': args.site, 'session': args.session}, callback);
-    return;
-  }
-  return this.api.requestPromise('/httpSessions/action/setActiveSession/', {'site': args.site, 'session': args.session});
-};
+HttpSessions.prototype.setActiveSession = async function (args) {
+    return await this.api.request('/httpSessions/action/setActiveSession/', {'site': args.site, 'session': args.session })
+}
 
 /**
  * Unsets the active session of the given site.
  * @param {string} site
  **/
-HttpSessions.prototype.unsetActiveSession = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/httpSessions/action/unsetActiveSession/', {'site': args.site}, callback);
-    return;
-  }
-  return this.api.requestPromise('/httpSessions/action/unsetActiveSession/', {'site': args.site});
-};
+HttpSessions.prototype.unsetActiveSession = async function (args) {
+    return await this.api.request('/httpSessions/action/unsetActiveSession/', {'site': args.site })
+}
 
 /**
  * Adds the session token to the given site.
  * @param {string} site
  * @param {string} sessiontoken
  **/
-HttpSessions.prototype.addSessionToken = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/httpSessions/action/addSessionToken/', {'site': args.site, 'sessionToken': args.sessiontoken}, callback);
-    return;
-  }
-  return this.api.requestPromise('/httpSessions/action/addSessionToken/', {'site': args.site, 'sessionToken': args.sessiontoken});
-};
+HttpSessions.prototype.addSessionToken = async function (args) {
+    return await this.api.request('/httpSessions/action/addSessionToken/', {'site': args.site, 'sessionToken': args.sessiontoken })
+}
 
 /**
  * Removes the session token from the given site.
  * @param {string} site
  * @param {string} sessiontoken
  **/
-HttpSessions.prototype.removeSessionToken = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/httpSessions/action/removeSessionToken/', {'site': args.site, 'sessionToken': args.sessiontoken}, callback);
-    return;
-  }
-  return this.api.requestPromise('/httpSessions/action/removeSessionToken/', {'site': args.site, 'sessionToken': args.sessiontoken});
-};
+HttpSessions.prototype.removeSessionToken = async function (args) {
+    return await this.api.request('/httpSessions/action/removeSessionToken/', {'site': args.site, 'sessionToken': args.sessiontoken })
+}
 
 /**
  * Sets the value of the session token of the given session for the given site.
@@ -178,13 +134,9 @@ HttpSessions.prototype.removeSessionToken = function (args, callback) {
  * @param {string} sessiontoken
  * @param {string} tokenvalue
  **/
-HttpSessions.prototype.setSessionTokenValue = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/httpSessions/action/setSessionTokenValue/', {'site': args.site, 'session': args.session, 'sessionToken': args.sessiontoken, 'tokenValue': args.tokenvalue}, callback);
-    return;
-  }
-  return this.api.requestPromise('/httpSessions/action/setSessionTokenValue/', {'site': args.site, 'session': args.session, 'sessionToken': args.sessiontoken, 'tokenValue': args.tokenvalue});
-};
+HttpSessions.prototype.setSessionTokenValue = async function (args) {
+    return await this.api.request('/httpSessions/action/setSessionTokenValue/', {'site': args.site, 'session': args.session, 'sessionToken': args.sessiontoken, 'tokenValue': args.tokenvalue })
+}
 
 /**
  * Renames the session of the given site.
@@ -192,54 +144,38 @@ HttpSessions.prototype.setSessionTokenValue = function (args, callback) {
  * @param {string} oldsessionname
  * @param {string} newsessionname
  **/
-HttpSessions.prototype.renameSession = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/httpSessions/action/renameSession/', {'site': args.site, 'oldSessionName': args.oldsessionname, 'newSessionName': args.newsessionname}, callback);
-    return;
-  }
-  return this.api.requestPromise('/httpSessions/action/renameSession/', {'site': args.site, 'oldSessionName': args.oldsessionname, 'newSessionName': args.newsessionname});
-};
+HttpSessions.prototype.renameSession = async function (args) {
+    return await this.api.request('/httpSessions/action/renameSession/', {'site': args.site, 'oldSessionName': args.oldsessionname, 'newSessionName': args.newsessionname })
+}
 
 /**
  * Adds a default session token with the given name and enabled state.
  * @param {string} sessiontoken
  * @param {string} tokenenabled
  **/
-HttpSessions.prototype.addDefaultSessionToken = function (args, callback) {
-  const params = {'sessionToken': args.sessiontoken};
+HttpSessions.prototype.addDefaultSessionToken = async function (args) {
+  const params = {'sessionToken': args.sessiontoken };
   if (args.tokenenabled && args.tokenenabled !== null) {
     params['tokenEnabled'] = args.tokenenabled;
   }
-  if (typeof callback === 'function') {
-    this.api.request('/httpSessions/action/addDefaultSessionToken/', params, callback);
-    return;
-  }
-  return this.api.requestPromise('/httpSessions/action/addDefaultSessionToken/', params);
-};
+    return await this.api.request('/httpSessions/action/addDefaultSessionToken/', params)
+}
 
 /**
  * Sets whether or not the default session token with the given name is enabled.
  * @param {string} sessiontoken
  * @param {string} tokenenabled
  **/
-HttpSessions.prototype.setDefaultSessionTokenEnabled = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/httpSessions/action/setDefaultSessionTokenEnabled/', {'sessionToken': args.sessiontoken, 'tokenEnabled': args.tokenenabled}, callback);
-    return;
-  }
-  return this.api.requestPromise('/httpSessions/action/setDefaultSessionTokenEnabled/', {'sessionToken': args.sessiontoken, 'tokenEnabled': args.tokenenabled});
-};
+HttpSessions.prototype.setDefaultSessionTokenEnabled = async function (args) {
+    return await this.api.request('/httpSessions/action/setDefaultSessionTokenEnabled/', {'sessionToken': args.sessiontoken, 'tokenEnabled': args.tokenenabled })
+}
 
 /**
  * Removes the default session token with the given name.
  * @param {string} sessiontoken
  **/
-HttpSessions.prototype.removeDefaultSessionToken = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/httpSessions/action/removeDefaultSessionToken/', {'sessionToken': args.sessiontoken}, callback);
-    return;
-  }
-  return this.api.requestPromise('/httpSessions/action/removeDefaultSessionToken/', {'sessionToken': args.sessiontoken});
-};
+HttpSessions.prototype.removeDefaultSessionToken = async function (args) {
+    return await this.api.request('/httpSessions/action/removeDefaultSessionToken/', {'sessionToken': args.sessiontoken })
+}
 
 module.exports = HttpSessions;

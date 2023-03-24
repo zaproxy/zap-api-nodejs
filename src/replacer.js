@@ -31,13 +31,9 @@ function Replacer(clientApi) {
  * Returns full details of all of the rules
  * This component is optional and therefore the API will only work if it is installed
  **/
-Replacer.prototype.rules = function (callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/replacer/view/rules/', callback);
-    return;
-  }
-  return this.api.requestPromise('/replacer/view/rules/');
-};
+Replacer.prototype.rules = async function () {
+    return await this.api.request('/replacer/view/rules/')
+}
 
 /**
  * Adds a replacer rule. For the parameters: desc is a user friendly description, enabled is true or false, matchType is one of [REQ_HEADER, REQ_HEADER_STR, REQ_BODY_STR, RESP_HEADER, RESP_HEADER_STR, RESP_BODY_STR], matchRegex should be true if the matchString should be treated as a regex otherwise false, matchString is the string that will be matched against, replacement is the replacement string, initiators may be blank (for all initiators) or a comma separated list of integers as defined in <a href="https://github.com/zaproxy/zaproxy/blob/main/zap/src/main/java/org/parosproxy/paros/network/HttpSender.java">HttpSender</a>  
@@ -51,8 +47,8 @@ Replacer.prototype.rules = function (callback) {
  * @param {string} initiators
  * @param {string} url - A regular expression to match the URL of the message, if empty the rule applies to all messages.
  **/
-Replacer.prototype.addRule = function (args, callback) {
-  const params = {'description': args.description, 'enabled': args.enabled, 'matchType': args.matchtype, 'matchRegex': args.matchregex, 'matchString': args.matchstring};
+Replacer.prototype.addRule = async function (args) {
+  const params = {'description': args.description, 'enabled': args.enabled, 'matchType': args.matchtype, 'matchRegex': args.matchregex, 'matchString': args.matchstring };
   if (args.replacement && args.replacement !== null) {
     params['replacement'] = args.replacement;
   }
@@ -62,25 +58,17 @@ Replacer.prototype.addRule = function (args, callback) {
   if (args.url && args.url !== null) {
     params['url'] = args.url;
   }
-  if (typeof callback === 'function') {
-    this.api.request('/replacer/action/addRule/', params, callback);
-    return;
-  }
-  return this.api.requestPromise('/replacer/action/addRule/', params);
-};
+    return await this.api.request('/replacer/action/addRule/', params)
+}
 
 /**
  * Removes the rule with the given description
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} description
  **/
-Replacer.prototype.removeRule = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/replacer/action/removeRule/', {'description': args.description}, callback);
-    return;
-  }
-  return this.api.requestPromise('/replacer/action/removeRule/', {'description': args.description});
-};
+Replacer.prototype.removeRule = async function (args) {
+    return await this.api.request('/replacer/action/removeRule/', {'description': args.description })
+}
 
 /**
  * Enables or disables the rule with the given description based on the bool parameter  
@@ -88,12 +76,8 @@ Replacer.prototype.removeRule = function (args, callback) {
  * @param {string} description
  * @param {string} bool
  **/
-Replacer.prototype.setEnabled = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/replacer/action/setEnabled/', {'description': args.description, 'bool': args.bool}, callback);
-    return;
-  }
-  return this.api.requestPromise('/replacer/action/setEnabled/', {'description': args.description, 'bool': args.bool});
-};
+Replacer.prototype.setEnabled = async function (args) {
+    return await this.api.request('/replacer/action/setEnabled/', {'description': args.description, 'bool': args.bool })
+}
 
 module.exports = Replacer;

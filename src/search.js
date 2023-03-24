@@ -34,8 +34,8 @@ function Search(clientApi) {
  * @param {string} start
  * @param {string} count
  **/
-Search.prototype.urlsByUrlRegex = function (args, callback) {
-  const params = {'regex': args.regex};
+Search.prototype.urlsByUrlRegex = async function (args) {
+  const params = {'regex': args.regex };
   if (args.baseurl && args.baseurl !== null) {
     params['baseurl'] = args.baseurl;
   }
@@ -45,12 +45,8 @@ Search.prototype.urlsByUrlRegex = function (args, callback) {
   if (args.count && args.count !== null) {
     params['count'] = args.count;
   }
-  if (typeof callback === 'function') {
-    this.api.request('/search/view/urlsByUrlRegex/', params, callback);
-    return;
-  }
-  return this.api.requestPromise('/search/view/urlsByUrlRegex/', params);
-};
+    return await this.api.request('/search/view/urlsByUrlRegex/', params)
+}
 
 /**
  * Returns the URLs of the HTTP messages that match the given regular expression in the request optionally filtered by URL and paginated with 'start' position and 'count' of messages.
@@ -59,8 +55,8 @@ Search.prototype.urlsByUrlRegex = function (args, callback) {
  * @param {string} start
  * @param {string} count
  **/
-Search.prototype.urlsByRequestRegex = function (args, callback) {
-  const params = {'regex': args.regex};
+Search.prototype.urlsByRequestRegex = async function (args) {
+  const params = {'regex': args.regex };
   if (args.baseurl && args.baseurl !== null) {
     params['baseurl'] = args.baseurl;
   }
@@ -70,12 +66,8 @@ Search.prototype.urlsByRequestRegex = function (args, callback) {
   if (args.count && args.count !== null) {
     params['count'] = args.count;
   }
-  if (typeof callback === 'function') {
-    this.api.request('/search/view/urlsByRequestRegex/', params, callback);
-    return;
-  }
-  return this.api.requestPromise('/search/view/urlsByRequestRegex/', params);
-};
+    return await this.api.request('/search/view/urlsByRequestRegex/', params)
+}
 
 /**
  * Returns the URLs of the HTTP messages that match the given regular expression in the response optionally filtered by URL and paginated with 'start' position and 'count' of messages.
@@ -84,8 +76,8 @@ Search.prototype.urlsByRequestRegex = function (args, callback) {
  * @param {string} start
  * @param {string} count
  **/
-Search.prototype.urlsByResponseRegex = function (args, callback) {
-  const params = {'regex': args.regex};
+Search.prototype.urlsByResponseRegex = async function (args) {
+  const params = {'regex': args.regex };
   if (args.baseurl && args.baseurl !== null) {
     params['baseurl'] = args.baseurl;
   }
@@ -95,12 +87,8 @@ Search.prototype.urlsByResponseRegex = function (args, callback) {
   if (args.count && args.count !== null) {
     params['count'] = args.count;
   }
-  if (typeof callback === 'function') {
-    this.api.request('/search/view/urlsByResponseRegex/', params, callback);
-    return;
-  }
-  return this.api.requestPromise('/search/view/urlsByResponseRegex/', params);
-};
+    return await this.api.request('/search/view/urlsByResponseRegex/', params)
+}
 
 /**
  * Returns the URLs of the HTTP messages that match the given regular expression in the header(s) optionally filtered by URL and paginated with 'start' position and 'count' of messages.
@@ -109,8 +97,8 @@ Search.prototype.urlsByResponseRegex = function (args, callback) {
  * @param {string} start
  * @param {string} count
  **/
-Search.prototype.urlsByHeaderRegex = function (args, callback) {
-  const params = {'regex': args.regex};
+Search.prototype.urlsByHeaderRegex = async function (args) {
+  const params = {'regex': args.regex };
   if (args.baseurl && args.baseurl !== null) {
     params['baseurl'] = args.baseurl;
   }
@@ -120,12 +108,8 @@ Search.prototype.urlsByHeaderRegex = function (args, callback) {
   if (args.count && args.count !== null) {
     params['count'] = args.count;
   }
-  if (typeof callback === 'function') {
-    this.api.request('/search/view/urlsByHeaderRegex/', params, callback);
-    return;
-  }
-  return this.api.requestPromise('/search/view/urlsByHeaderRegex/', params);
-};
+    return await this.api.request('/search/view/urlsByHeaderRegex/', params)
+}
 
 /**
  * Returns the HTTP messages that match the given regular expression in the URL optionally filtered by URL and paginated with 'start' position and 'count' of messages.
@@ -134,8 +118,8 @@ Search.prototype.urlsByHeaderRegex = function (args, callback) {
  * @param {string} start
  * @param {string} count
  **/
-Search.prototype.messagesByUrlRegex = function (args, callback) {
-  const params = {'regex': args.regex};
+Search.prototype.messagesByUrlRegex = async function (args) {
+  const params = {'regex': args.regex };
   if (args.baseurl && args.baseurl !== null) {
     params['baseurl'] = args.baseurl;
   }
@@ -145,12 +129,8 @@ Search.prototype.messagesByUrlRegex = function (args, callback) {
   if (args.count && args.count !== null) {
     params['count'] = args.count;
   }
-  if (typeof callback === 'function') {
-    this.api.request('/search/view/messagesByUrlRegex/', params, callback);
-    return;
-  }
-  return this.api.requestPromise('/search/view/messagesByUrlRegex/', params);
-};
+    return await this.api.request('/search/view/messagesByUrlRegex/', params)
+}
 
 /**
  * Returns the HTTP messages that match the given regular expression in the request optionally filtered by URL and paginated with 'start' position and 'count' of messages.
@@ -159,8 +139,8 @@ Search.prototype.messagesByUrlRegex = function (args, callback) {
  * @param {string} start
  * @param {string} count
  **/
-Search.prototype.messagesByRequestRegex = function (args, callback) {
-  const params = {'regex': args.regex};
+Search.prototype.messagesByRequestRegex = async function (args) {
+  const params = {'regex': args.regex };
   if (args.baseurl && args.baseurl !== null) {
     params['baseurl'] = args.baseurl;
   }
@@ -170,12 +150,8 @@ Search.prototype.messagesByRequestRegex = function (args, callback) {
   if (args.count && args.count !== null) {
     params['count'] = args.count;
   }
-  if (typeof callback === 'function') {
-    this.api.request('/search/view/messagesByRequestRegex/', params, callback);
-    return;
-  }
-  return this.api.requestPromise('/search/view/messagesByRequestRegex/', params);
-};
+    return await this.api.request('/search/view/messagesByRequestRegex/', params)
+}
 
 /**
  * Returns the HTTP messages that match the given regular expression in the response optionally filtered by URL and paginated with 'start' position and 'count' of messages.
@@ -184,8 +160,8 @@ Search.prototype.messagesByRequestRegex = function (args, callback) {
  * @param {string} start
  * @param {string} count
  **/
-Search.prototype.messagesByResponseRegex = function (args, callback) {
-  const params = {'regex': args.regex};
+Search.prototype.messagesByResponseRegex = async function (args) {
+  const params = {'regex': args.regex };
   if (args.baseurl && args.baseurl !== null) {
     params['baseurl'] = args.baseurl;
   }
@@ -195,12 +171,8 @@ Search.prototype.messagesByResponseRegex = function (args, callback) {
   if (args.count && args.count !== null) {
     params['count'] = args.count;
   }
-  if (typeof callback === 'function') {
-    this.api.request('/search/view/messagesByResponseRegex/', params, callback);
-    return;
-  }
-  return this.api.requestPromise('/search/view/messagesByResponseRegex/', params);
-};
+    return await this.api.request('/search/view/messagesByResponseRegex/', params)
+}
 
 /**
  * Returns the HTTP messages that match the given regular expression in the header(s) optionally filtered by URL and paginated with 'start' position and 'count' of messages.
@@ -209,8 +181,8 @@ Search.prototype.messagesByResponseRegex = function (args, callback) {
  * @param {string} start
  * @param {string} count
  **/
-Search.prototype.messagesByHeaderRegex = function (args, callback) {
-  const params = {'regex': args.regex};
+Search.prototype.messagesByHeaderRegex = async function (args) {
+  const params = {'regex': args.regex };
   if (args.baseurl && args.baseurl !== null) {
     params['baseurl'] = args.baseurl;
   }
@@ -220,12 +192,8 @@ Search.prototype.messagesByHeaderRegex = function (args, callback) {
   if (args.count && args.count !== null) {
     params['count'] = args.count;
   }
-  if (typeof callback === 'function') {
-    this.api.request('/search/view/messagesByHeaderRegex/', params, callback);
-    return;
-  }
-  return this.api.requestPromise('/search/view/messagesByHeaderRegex/', params);
-};
+    return await this.api.request('/search/view/messagesByHeaderRegex/', params)
+}
 
 /**
  * Returns the HTTP messages, in HAR format, that match the given regular expression in the URL optionally filtered by URL and paginated with 'start' position and 'count' of messages.
@@ -234,8 +202,8 @@ Search.prototype.messagesByHeaderRegex = function (args, callback) {
  * @param {string} start
  * @param {string} count
  **/
-Search.prototype.harByUrlRegex = function (args, callback) {
-  const params = {'regex': args.regex};
+Search.prototype.harByUrlRegex = async function (args) {
+  const params = {'regex': args.regex };
   if (args.baseurl && args.baseurl !== null) {
     params['baseurl'] = args.baseurl;
   }
@@ -245,12 +213,8 @@ Search.prototype.harByUrlRegex = function (args, callback) {
   if (args.count && args.count !== null) {
     params['count'] = args.count;
   }
-  if (typeof callback === 'function') {
-    this.api.requestOther('/search/other/harByUrlRegex/', params, callback);
-    return;
-  }
-  return this.api.requestPromiseOther('/search/other/harByUrlRegex/', params);
-};
+    return await this.api.request('/search/other/harByUrlRegex/', params, 'other')
+}
 
 /**
  * Returns the HTTP messages, in HAR format, that match the given regular expression in the request optionally filtered by URL and paginated with 'start' position and 'count' of messages.
@@ -259,8 +223,8 @@ Search.prototype.harByUrlRegex = function (args, callback) {
  * @param {string} start
  * @param {string} count
  **/
-Search.prototype.harByRequestRegex = function (args, callback) {
-  const params = {'regex': args.regex};
+Search.prototype.harByRequestRegex = async function (args) {
+  const params = {'regex': args.regex };
   if (args.baseurl && args.baseurl !== null) {
     params['baseurl'] = args.baseurl;
   }
@@ -270,12 +234,8 @@ Search.prototype.harByRequestRegex = function (args, callback) {
   if (args.count && args.count !== null) {
     params['count'] = args.count;
   }
-  if (typeof callback === 'function') {
-    this.api.requestOther('/search/other/harByRequestRegex/', params, callback);
-    return;
-  }
-  return this.api.requestPromiseOther('/search/other/harByRequestRegex/', params);
-};
+    return await this.api.request('/search/other/harByRequestRegex/', params, 'other')
+}
 
 /**
  * Returns the HTTP messages, in HAR format, that match the given regular expression in the response optionally filtered by URL and paginated with 'start' position and 'count' of messages.
@@ -284,8 +244,8 @@ Search.prototype.harByRequestRegex = function (args, callback) {
  * @param {string} start
  * @param {string} count
  **/
-Search.prototype.harByResponseRegex = function (args, callback) {
-  const params = {'regex': args.regex};
+Search.prototype.harByResponseRegex = async function (args) {
+  const params = {'regex': args.regex };
   if (args.baseurl && args.baseurl !== null) {
     params['baseurl'] = args.baseurl;
   }
@@ -295,12 +255,8 @@ Search.prototype.harByResponseRegex = function (args, callback) {
   if (args.count && args.count !== null) {
     params['count'] = args.count;
   }
-  if (typeof callback === 'function') {
-    this.api.requestOther('/search/other/harByResponseRegex/', params, callback);
-    return;
-  }
-  return this.api.requestPromiseOther('/search/other/harByResponseRegex/', params);
-};
+    return await this.api.request('/search/other/harByResponseRegex/', params, 'other')
+}
 
 /**
  * Returns the HTTP messages, in HAR format, that match the given regular expression in the header(s) optionally filtered by URL and paginated with 'start' position and 'count' of messages.
@@ -309,8 +265,8 @@ Search.prototype.harByResponseRegex = function (args, callback) {
  * @param {string} start
  * @param {string} count
  **/
-Search.prototype.harByHeaderRegex = function (args, callback) {
-  const params = {'regex': args.regex};
+Search.prototype.harByHeaderRegex = async function (args) {
+  const params = {'regex': args.regex };
   if (args.baseurl && args.baseurl !== null) {
     params['baseurl'] = args.baseurl;
   }
@@ -320,11 +276,7 @@ Search.prototype.harByHeaderRegex = function (args, callback) {
   if (args.count && args.count !== null) {
     params['count'] = args.count;
   }
-  if (typeof callback === 'function') {
-    this.api.requestOther('/search/other/harByHeaderRegex/', params, callback);
-    return;
-  }
-  return this.api.requestPromiseOther('/search/other/harByHeaderRegex/', params);
-};
+    return await this.api.request('/search/other/harByHeaderRegex/', params, 'other')
+}
 
 module.exports = Search;

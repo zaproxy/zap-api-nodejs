@@ -32,26 +32,18 @@ function AccessControl(clientApi) {
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} contextid
  **/
-AccessControl.prototype.getScanProgress = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/accessControl/view/getScanProgress/', {'contextId': args.contextid}, callback);
-    return;
-  }
-  return this.api.requestPromise('/accessControl/view/getScanProgress/', {'contextId': args.contextid});
-};
+AccessControl.prototype.getScanProgress = async function (args) {
+    return await this.api.request('/accessControl/view/getScanProgress/', {'contextId': args.contextid })
+}
 
 /**
  * Gets the Access Control scan status (description string) for the given context ID.
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} contextid
  **/
-AccessControl.prototype.getScanStatus = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/accessControl/view/getScanStatus/', {'contextId': args.contextid}, callback);
-    return;
-  }
-  return this.api.requestPromise('/accessControl/view/getScanStatus/', {'contextId': args.contextid});
-};
+AccessControl.prototype.getScanStatus = async function (args) {
+    return await this.api.request('/accessControl/view/getScanStatus/', {'contextId': args.contextid })
+}
 
 /**
  * Starts an Access Control scan with the given context ID and user ID. (Optional parameters: user ID for Unauthenticated user, boolean identifying whether or not Alerts are raised, and the Risk level for the Alerts.) [This assumes the Access Control rules were previously established via ZAP gui and the necessary Context exported/imported.]
@@ -62,8 +54,8 @@ AccessControl.prototype.getScanStatus = function (args, callback) {
  * @param {string} raisealert
  * @param {string} alertrisklevel
  **/
-AccessControl.prototype.scan = function (args, callback) {
-  const params = {'contextId': args.contextid, 'userId': args.userid};
+AccessControl.prototype.scan = async function (args) {
+  const params = {'contextId': args.contextid, 'userId': args.userid };
   if (args.scanasunauthuser && args.scanasunauthuser !== null) {
     params['scanAsUnAuthUser'] = args.scanasunauthuser;
   }
@@ -73,12 +65,8 @@ AccessControl.prototype.scan = function (args, callback) {
   if (args.alertrisklevel && args.alertrisklevel !== null) {
     params['alertRiskLevel'] = args.alertrisklevel;
   }
-  if (typeof callback === 'function') {
-    this.api.request('/accessControl/action/scan/', params, callback);
-    return;
-  }
-  return this.api.requestPromise('/accessControl/action/scan/', params);
-};
+    return await this.api.request('/accessControl/action/scan/', params)
+}
 
 /**
  * Generates an Access Control report for the given context ID and saves it based on the provided filename (path). 
@@ -86,12 +74,8 @@ AccessControl.prototype.scan = function (args, callback) {
  * @param {string} contextid
  * @param {string} filename
  **/
-AccessControl.prototype.writeHTMLreport = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/accessControl/action/writeHTMLreport/', {'contextId': args.contextid, 'fileName': args.filename}, callback);
-    return;
-  }
-  return this.api.requestPromise('/accessControl/action/writeHTMLreport/', {'contextId': args.contextid, 'fileName': args.filename});
-};
+AccessControl.prototype.writeHTMLreport = async function (args) {
+    return await this.api.request('/accessControl/action/writeHTMLreport/', {'contextId': args.contextid, 'fileName': args.filename })
+}
 
 module.exports = AccessControl;

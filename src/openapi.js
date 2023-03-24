@@ -34,20 +34,16 @@ function Openapi(clientApi) {
  * @param {string} target - The Target URL to override the server URL present in the definition.
  * @param {string} contextid
  **/
-Openapi.prototype.importFile = function (args, callback) {
-  const params = {'file': args.file};
+Openapi.prototype.importFile = async function (args) {
+  const params = {'file': args.file };
   if (args.target && args.target !== null) {
     params['target'] = args.target;
   }
   if (args.contextid && args.contextid !== null) {
     params['contextId'] = args.contextid;
   }
-  if (typeof callback === 'function') {
-    this.api.request('/openapi/action/importFile/', params, callback);
-    return;
-  }
-  return this.api.requestPromise('/openapi/action/importFile/', params);
-};
+    return await this.api.request('/openapi/action/importFile/', params)
+}
 
 /**
  * Imports an OpenAPI definition from a URL.
@@ -56,19 +52,15 @@ Openapi.prototype.importFile = function (args, callback) {
  * @param {string} hostoverride - The Target URL (called hostOverride for historical reasons) to override the server URL present in the definition.
  * @param {string} contextid
  **/
-Openapi.prototype.importUrl = function (args, callback) {
-  const params = {'url': args.url};
+Openapi.prototype.importUrl = async function (args) {
+  const params = {'url': args.url };
   if (args.hostoverride && args.hostoverride !== null) {
     params['hostOverride'] = args.hostoverride;
   }
   if (args.contextid && args.contextid !== null) {
     params['contextId'] = args.contextid;
   }
-  if (typeof callback === 'function') {
-    this.api.request('/openapi/action/importUrl/', params, callback);
-    return;
-  }
-  return this.api.requestPromise('/openapi/action/importUrl/', params);
-};
+    return await this.api.request('/openapi/action/importUrl/', params)
+}
 
 module.exports = Openapi;
