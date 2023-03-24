@@ -16,6 +16,7 @@
 </a>
 
 <br/><br/>
+
 </div>
 
 The NodeJS implementation to access the [OWASP ZAP API](https://github.com/zaproxy/zaproxy/wiki/ApiDetails). For more information
@@ -37,33 +38,29 @@ You can disable the API key when running ZAP if you are on a trusted network and
 ```js
 const ZapClient = require('zaproxy');
 
-const zapOptions = {
-  apiKey: <the key you supplied to ZAP when you started it>, // I.E. 'v90dnblpqs1pcac991tn2oudl'
-  proxy: <protocol>://<host>:<port> // I.E. 'http://192.168.0.10:8080'
-};
-
-const zaproxy = new ZapClient(zapOptions);
+async function invokeApi() {
+  const zapOptions = {
+    apiKey: 'eahhr6h6kal92j21gkcnhkp80t',
+    proxy: {
+      host: '127.0.0.1',
+      port: 8080,
+    },
+  };
+  const zaproxy = new ZapClient(zapOptions);
 ```
 
 ### Use the Node API:
 
-Callbacks:
-
 ```js
-zaproxy.spider.scanAsUser({contextId, userId, setBaseUrl, maxChildren, recurse, subtreeonly}, (err, resp) => {
-  if (err) // Handle the error.
-  if (resp) // Handle the response.
+let response = await zaproxy.spider.scanAsUser({
+  contextId,
+  userId,
+  setBaseUrl,
+  maxChildren,
+  recurse,
+  subtreeonly,
 });
-```
-
-Promises:
-
-```js
-await zaproxy.spider.scanAsUser({contextId, userId, setBaseUrl, maxChildren, recurse, subtreeonly})
-  .then(
-    resp => console.log(JSON.stringify(resp)),
-    err => `Error occurred while attempting to scan as user. Error was: ${err.message}`
-  );
+console.log(response);
 ```
 
 ## API
@@ -81,10 +78,10 @@ The API key is no longer explicitly required on any Node API method invocations.
 
 For help using the OWASP ZAP API refer to:
 
-  * [API Documentation](https://www.zaproxy.org/docs/api/);
-  * [OWASP ZAP User Group](https://groups.google.com/group/zaproxy-users) - for asking questions;
+- [API Documentation](https://www.zaproxy.org/docs/api/);
+- [OWASP ZAP User Group](https://groups.google.com/group/zaproxy-users) - for asking questions;
 
-For specific help with this Node API, contact [@binarymist](https://github.com/binarymist) (the maintainer).
+For specific help with this Node API, contact [@njmulsqb](https://github.com/njmulsqb) (the maintainer).
 
 ## Issues
 
