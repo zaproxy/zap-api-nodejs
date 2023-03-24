@@ -32,52 +32,36 @@ function Exim(clientApi) {
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} filepath
  **/
-Exim.prototype.importHar = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/exim/action/importHar/', {'filePath': args.filepath}, callback);
-    return;
-  }
-  return this.api.requestPromise('/exim/action/importHar/', {'filePath': args.filepath});
-};
+Exim.prototype.importHar = async function (args) {
+    return await this.api.request('/exim/action/importHar/', {'filePath': args.filepath })
+}
 
 /**
  * Imports URLs (one per line) from the file with the given file system path.
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} filepath
  **/
-Exim.prototype.importUrls = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/exim/action/importUrls/', {'filePath': args.filepath}, callback);
-    return;
-  }
-  return this.api.requestPromise('/exim/action/importUrls/', {'filePath': args.filepath});
-};
+Exim.prototype.importUrls = async function (args) {
+    return await this.api.request('/exim/action/importUrls/', {'filePath': args.filepath })
+}
 
 /**
  * Imports previously exported ZAP messages from the file with the given file system path.
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} filepath
  **/
-Exim.prototype.importZapLogs = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/exim/action/importZapLogs/', {'filePath': args.filepath}, callback);
-    return;
-  }
-  return this.api.requestPromise('/exim/action/importZapLogs/', {'filePath': args.filepath});
-};
+Exim.prototype.importZapLogs = async function (args) {
+    return await this.api.request('/exim/action/importZapLogs/', {'filePath': args.filepath })
+}
 
 /**
  * Imports ModSecurity2 logs from the file with the given file system path.
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} filepath
  **/
-Exim.prototype.importModsec2Logs = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/exim/action/importModsec2Logs/', {'filePath': args.filepath}, callback);
-    return;
-  }
-  return this.api.requestPromise('/exim/action/importModsec2Logs/', {'filePath': args.filepath});
-};
+Exim.prototype.importModsec2Logs = async function (args) {
+    return await this.api.request('/exim/action/importModsec2Logs/', {'filePath': args.filepath })
+}
 
 /**
  * Gets the HTTP messages sent through/by ZAP, in HAR format, optionally filtered by URL and paginated with 'start' position and 'count' of messages
@@ -86,8 +70,8 @@ Exim.prototype.importModsec2Logs = function (args, callback) {
  * @param {string} start - The position (or offset) within the results to use as a starting position for the information returned.
  * @param {string} count - The number of results to return.
  **/
-Exim.prototype.exportHar = function (args, callback) {
-  const params = {};
+Exim.prototype.exportHar = async function (args) {
+  const params = { };
   if (args.baseurl && args.baseurl !== null) {
     params['baseurl'] = args.baseurl;
   }
@@ -97,25 +81,17 @@ Exim.prototype.exportHar = function (args, callback) {
   if (args.count && args.count !== null) {
     params['count'] = args.count;
   }
-  if (typeof callback === 'function') {
-    this.api.requestOther('/exim/other/exportHar/', params, callback);
-    return;
-  }
-  return this.api.requestPromiseOther('/exim/other/exportHar/', params);
-};
+    return await this.api.request('/exim/other/exportHar/', params, 'other')
+}
 
 /**
  * Gets the HTTP messages with the given IDs, in HAR format.
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} ids - The ID (number(s)) of the message(s) to be returned.
  **/
-Exim.prototype.exportHarById = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.requestOther('/exim/other/exportHarById/', {'ids': args.ids}, callback);
-    return;
-  }
-  return this.api.requestPromiseOther('/exim/other/exportHarById/', {'ids': args.ids});
-};
+Exim.prototype.exportHarById = async function (args) {
+    return await this.api.request('/exim/other/exportHarById/', {'ids': args.ids }, 'other')
+}
 
 /**
  * Sends the first HAR request entry, optionally following redirections. Returns, in HAR format, the request sent and response received and followed redirections, if any. The Mode is enforced when sending the request (and following redirections), custom manual requests are not allowed in 'Safe' mode nor in 'Protected' mode if out of scope.
@@ -123,16 +99,12 @@ Exim.prototype.exportHarById = function (args, callback) {
  * @param {string} request - The raw JSON of a HAR request.
  * @param {string} followredirects - True if redirects should be followed, false otherwise.
  **/
-Exim.prototype.sendHarRequest = function (args, callback) {
-  const params = {'request': args.request};
+Exim.prototype.sendHarRequest = async function (args) {
+  const params = {'request': args.request };
   if (args.followredirects && args.followredirects !== null) {
     params['followRedirects'] = args.followredirects;
   }
-  if (typeof callback === 'function') {
-    this.api.requestOther('/exim/other/sendHarRequest/', params, callback);
-    return;
-  }
-  return this.api.requestPromiseOther('/exim/other/sendHarRequest/', params);
-};
+    return await this.api.request('/exim/other/sendHarRequest/', params, 'other')
+}
 
 module.exports = Exim;

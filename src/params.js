@@ -31,16 +31,12 @@ function Params(clientApi) {
  * Shows the parameters for the specified site, or for all sites if the site is not specified
  * @param {string} site
  **/
-Params.prototype.params = function (args, callback) {
-  const params = {};
+Params.prototype.params = async function (args) {
+  const params = { };
   if (args.site && args.site !== null) {
     params['site'] = args.site;
   }
-  if (typeof callback === 'function') {
-    this.api.request('/params/view/params/', params, callback);
-    return;
-  }
-  return this.api.requestPromise('/params/view/params/', params);
-};
+    return await this.api.request('/params/view/params/', params)
+}
 
 module.exports = Params;

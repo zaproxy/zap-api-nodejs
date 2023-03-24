@@ -17,12 +17,11 @@
  * limitations under the License.
  */
 
-const request = require('request');
-const requestPromise = require('request-promise-native');
+const axios = require('axios');
 const AccessControl = require('./accessControl');
 const Acsrf = require('./acsrf');
 const AjaxSpider = require('./ajaxSpider');
-const Alert = require('./alert')
+const Alert = require('./alert');
 const AlertFilter = require('./alertFilter');
 const Ascan = require('./ascan');
 const Authentication = require('./authentication');
@@ -46,7 +45,7 @@ const Replacer = require('./replacer');
 const Reveal = require('./reveal');
 const Retest = require('./retest');
 const Revisit = require('./revisit');
-const RuleConfig = require('./ruleConfig')
+const RuleConfig = require('./ruleConfig');
 const Script = require('./script');
 const Search = require('./search');
 const Selenium = require('./selenium');
@@ -58,21 +57,16 @@ const Users = require('./users');
 const Wappalyzer = require('./wappalyzer');
 const Websocket = require('./websocket');
 
-// base JSON api url
-const BASE = 'http://zap/JSON';
-// base OTHER api url
-const BASE_OTHER = 'http://zap/OTHER';
-
+const BASE_URL_JSON = 'http://zap/JSON';
+const BASE_URL_OTHER = 'http://zap/OTHER';
 function ClientApi(options) {
-  const requestOptions = {
-    proxy: { ...{ proxy: 'http://127.0.0.1:8080' }, ...options }.proxy,
-    method: 'GET',
-    json: true,
-    headers: options.apiKey ? { 'X-ZAP-API-Key': options.apiKey } : {}
+  defaultAxiosConfig = {
+    params: {},
+    baseURL: BASE_URL_JSON,
+    headers: options.apiKey ? { 'X-ZAP-API-Key': options.apiKey } : {},
+    proxy: options.proxy,
   };
-  
-  this.req = request.defaults(requestOptions);
-  this.reqPromise = requestPromise.defaults(requestOptions);
+
   this.accessControl = new AccessControl(this);
   this.acsrf = new Acsrf(this);
   this.ajaxSpider = new AjaxSpider(this);
@@ -113,74 +107,22 @@ function ClientApi(options) {
   this.websocket = new Websocket(this);
 }
 
-// Legacy for callbacks.
-
-/**
- * Get a handler for REST API responses.
- * We include a workaround here for the fact that the API does not
- * return the correct status codes in the event of an error
- * (i.e. it always returns 200).
- **/
-const responseHandler = function (callback) {
-  return function handleResponse(err, res, body) {
-    if (err) {
-      callback(err);
-      return;
+ClientApi.prototype.request = async (url, data, format) => {
+  try {
+    let requestConfig = defaultAxiosConfig;
+    if (data) {
+      config.params = { ...config.params, ...data };
     }
-
-    // if the response has a code and a message, it's an error.
-    if (body && body.code && body.message) {
-      callback(body);
-    } else {
-      callback(null, body);
+    let response;
+    if (format === 'other') {
+      config = { ...config, baseURL: BASE_URL_OTHER };
     }
-  };
-};
+    response = await axios.get(url, requestConfig);
 
-ClientApi.prototype.request = function (url, parms, callback) {
-  if (!callback && typeof(parms === 'function')) {
-    callback = parms;
-    parms = null;
+    return response.data;
+  } catch (error) {
+    console.log(error.message, ', Data:', error.response?.data);
   }
-
-  var options = {
-    url: BASE + url
-  };
-  if (parms) {
-    options.qs = parms;
-  }
-  this.req(options, responseHandler(callback));
-};
-
-ClientApi.prototype.requestOther = function (url, parms, callback) {
-  if (!callback && typeof(parms === 'function')) {
-    callback = parms;
-    parms = null;
-  }
-
-  var options = {
-    url: BASE_OTHER + url
-  };
-  if (parms) {
-    options.qs = parms;
-  }
-  this.req(options, responseHandler(callback));
-};
-
-// End Legacy for callbacks.
-
-const makeRequest = function (parms, options) {
-  return this.reqPromise(parms ? { ...options, qs: parms } : options);
-};
-
-
-ClientApi.prototype.requestPromise = function (url, parms) {
-  return makeRequest.call(this, parms, { url: BASE + url });
-};
-
-
-ClientApi.prototype.requestPromiseOther = function (url, parms) {
-  return makeRequest.call(this, parms, { url: BASE_OTHER + url });
 };
 
 module.exports = ClientApi;
