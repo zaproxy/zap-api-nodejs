@@ -26,6 +26,7 @@
 function Exim(clientApi) {
   this.api = clientApi;
 }
+
 /**
  * Imports a HAR file.
  * This component is optional and therefore the API will only work if it is installed
@@ -34,6 +35,7 @@ function Exim(clientApi) {
 Exim.prototype.importHar = async function (args) {
     return await this.api.request('/exim/action/importHar/', {'filePath': args.filepath })
 }
+
 /**
  * Imports URLs (one per line) from the file with the given file system path.
  * This component is optional and therefore the API will only work if it is installed
@@ -42,6 +44,7 @@ Exim.prototype.importHar = async function (args) {
 Exim.prototype.importUrls = async function (args) {
     return await this.api.request('/exim/action/importUrls/', {'filePath': args.filepath })
 }
+
 /**
  * Imports previously exported ZAP messages from the file with the given file system path.
  * This component is optional and therefore the API will only work if it is installed
@@ -50,6 +53,7 @@ Exim.prototype.importUrls = async function (args) {
 Exim.prototype.importZapLogs = async function (args) {
     return await this.api.request('/exim/action/importZapLogs/', {'filePath': args.filepath })
 }
+
 /**
  * Imports ModSecurity2 logs from the file with the given file system path.
  * This component is optional and therefore the API will only work if it is installed
@@ -58,6 +62,7 @@ Exim.prototype.importZapLogs = async function (args) {
 Exim.prototype.importModsec2Logs = async function (args) {
     return await this.api.request('/exim/action/importModsec2Logs/', {'filePath': args.filepath })
 }
+
 /**
  * Gets the HTTP messages sent through/by ZAP, in HAR format, optionally filtered by URL and paginated with 'start' position and 'count' of messages
  * This component is optional and therefore the API will only work if it is installed
@@ -78,6 +83,7 @@ Exim.prototype.exportHar = async function (args) {
   }
     return await this.api.request('/exim/other/exportHar/', params, 'other')
 }
+
 /**
  * Gets the HTTP messages with the given IDs, in HAR format.
  * This component is optional and therefore the API will only work if it is installed
@@ -86,6 +92,7 @@ Exim.prototype.exportHar = async function (args) {
 Exim.prototype.exportHarById = async function (args) {
     return await this.api.request('/exim/other/exportHarById/', {'ids': args.ids }, 'other')
 }
+
 /**
  * Sends the first HAR request entry, optionally following redirections. Returns, in HAR format, the request sent and response received and followed redirections, if any. The Mode is enforced when sending the request (and following redirections), custom manual requests are not allowed in 'Safe' mode nor in 'Protected' mode if out of scope.
  * This component is optional and therefore the API will only work if it is installed
@@ -99,4 +106,5 @@ Exim.prototype.sendHarRequest = async function (args) {
   }
     return await this.api.request('/exim/other/sendHarRequest/', params, 'other')
 }
+
 module.exports = Exim;

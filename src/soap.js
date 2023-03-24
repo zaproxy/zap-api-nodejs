@@ -32,25 +32,17 @@ function Soap(clientApi) {
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} file
  **/
-Soap.prototype.importFile = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/soap/action/importFile/', {'file': args.file}, callback);
-    return;
-  }
-  return this.api.requestPromise('/soap/action/importFile/', {'file': args.file});
-};
+Soap.prototype.importFile = async function (args) {
+    return await this.api.request('/soap/action/importFile/', {'file': args.file })
+}
 
 /**
  * Import a WSDL definition from a URL.
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} url
  **/
-Soap.prototype.importUrl = function (args, callback) {
-  if (typeof callback === 'function') {
-    this.api.request('/soap/action/importUrl/', {'url': args.url}, callback);
-    return;
-  }
-  return this.api.requestPromise('/soap/action/importUrl/', {'url': args.url});
-};
+Soap.prototype.importUrl = async function (args) {
+    return await this.api.request('/soap/action/importUrl/', {'url': args.url })
+}
 
 module.exports = Soap;

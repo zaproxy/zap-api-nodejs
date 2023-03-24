@@ -26,6 +26,7 @@
 function Reports(clientApi) {
   this.api = clientApi;
 }
+
 /**
  * View available templates.
  * This component is optional and therefore the API will only work if it is installed
@@ -33,6 +34,7 @@ function Reports(clientApi) {
 Reports.prototype.templates = async function () {
     return await this.api.request('/reports/view/templates/')
 }
+
 /**
  * View details of the specified template.
  * This component is optional and therefore the API will only work if it is installed
@@ -41,6 +43,7 @@ Reports.prototype.templates = async function () {
 Reports.prototype.templateDetails = async function (args) {
     return await this.api.request('/reports/view/templateDetails/', {'template': args.template })
 }
+
 /**
  * Generate a report with the supplied parameters.
  * This component is optional and therefore the API will only work if it is installed
@@ -95,4 +98,5 @@ Reports.prototype.generate = async function (args) {
   }
     return await this.api.request('/reports/action/generate/', params)
 }
+
 module.exports = Reports;

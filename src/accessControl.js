@@ -26,6 +26,7 @@
 function AccessControl(clientApi) {
   this.api = clientApi;
 }
+
 /**
  * Gets the Access Control scan progress (percentage integer) for the given context ID.
  * This component is optional and therefore the API will only work if it is installed
@@ -34,6 +35,7 @@ function AccessControl(clientApi) {
 AccessControl.prototype.getScanProgress = async function (args) {
     return await this.api.request('/accessControl/view/getScanProgress/', {'contextId': args.contextid })
 }
+
 /**
  * Gets the Access Control scan status (description string) for the given context ID.
  * This component is optional and therefore the API will only work if it is installed
@@ -42,6 +44,7 @@ AccessControl.prototype.getScanProgress = async function (args) {
 AccessControl.prototype.getScanStatus = async function (args) {
     return await this.api.request('/accessControl/view/getScanStatus/', {'contextId': args.contextid })
 }
+
 /**
  * Starts an Access Control scan with the given context ID and user ID. (Optional parameters: user ID for Unauthenticated user, boolean identifying whether or not Alerts are raised, and the Risk level for the Alerts.) [This assumes the Access Control rules were previously established via ZAP gui and the necessary Context exported/imported.]
  * This component is optional and therefore the API will only work if it is installed
@@ -64,6 +67,7 @@ AccessControl.prototype.scan = async function (args) {
   }
     return await this.api.request('/accessControl/action/scan/', params)
 }
+
 /**
  * Generates an Access Control report for the given context ID and saves it based on the provided filename (path). 
  * This component is optional and therefore the API will only work if it is installed
@@ -73,4 +77,5 @@ AccessControl.prototype.scan = async function (args) {
 AccessControl.prototype.writeHTMLreport = async function (args) {
     return await this.api.request('/accessControl/action/writeHTMLreport/', {'contextId': args.contextid, 'fileName': args.filename })
 }
+
 module.exports = AccessControl;
