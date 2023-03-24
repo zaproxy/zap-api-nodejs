@@ -26,12 +26,14 @@
 function Context(clientApi) {
   this.api = clientApi;
 }
+
 /**
  * List context names of current session
  **/
 Context.prototype.contextList = async function () {
     return await this.api.request('/context/view/contextList/')
 }
+
 /**
  * List excluded regexs for context
  * @param {string} contextname - The name of the context
@@ -39,6 +41,7 @@ Context.prototype.contextList = async function () {
 Context.prototype.excludeRegexs = async function (args) {
     return await this.api.request('/context/view/excludeRegexs/', {'contextName': args.contextname })
 }
+
 /**
  * List included regexs for context
  * @param {string} contextname - The name of the context
@@ -46,6 +49,7 @@ Context.prototype.excludeRegexs = async function (args) {
 Context.prototype.includeRegexs = async function (args) {
     return await this.api.request('/context/view/includeRegexs/', {'contextName': args.contextname })
 }
+
 /**
  * List the information about the named context
  * @param {string} contextname - The name of the context
@@ -53,12 +57,14 @@ Context.prototype.includeRegexs = async function (args) {
 Context.prototype.context = async function (args) {
     return await this.api.request('/context/view/context/', {'contextName': args.contextname })
 }
+
 /**
  * Lists the names of all built in technologies
  **/
 Context.prototype.technologyList = async function () {
     return await this.api.request('/context/view/technologyList/')
 }
+
 /**
  * Lists the names of all technologies included in a context
  * @param {string} contextname - The name of the context
@@ -66,6 +72,7 @@ Context.prototype.technologyList = async function () {
 Context.prototype.includedTechnologyList = async function (args) {
     return await this.api.request('/context/view/includedTechnologyList/', {'contextName': args.contextname })
 }
+
 /**
  * Lists the names of all technologies excluded from a context
  * @param {string} contextname - The name of the context
@@ -73,6 +80,7 @@ Context.prototype.includedTechnologyList = async function (args) {
 Context.prototype.excludedTechnologyList = async function (args) {
     return await this.api.request('/context/view/excludedTechnologyList/', {'contextName': args.contextname })
 }
+
 /**
  * Lists the URLs accessed through/by ZAP, that belong to the context with the given name.
  * @param {string} contextname - The name of the context
@@ -80,6 +88,7 @@ Context.prototype.excludedTechnologyList = async function (args) {
 Context.prototype.urls = async function (args) {
     return await this.api.request('/context/view/urls/', {'contextName': args.contextname })
 }
+
 /**
  * Add exclude regex to context
  * @param {string} contextname - The name of the context
@@ -88,6 +97,7 @@ Context.prototype.urls = async function (args) {
 Context.prototype.excludeFromContext = async function (args) {
     return await this.api.request('/context/action/excludeFromContext/', {'contextName': args.contextname, 'regex': args.regex })
 }
+
 /**
  * Add include regex to context
  * @param {string} contextname - The name of the context
@@ -96,6 +106,7 @@ Context.prototype.excludeFromContext = async function (args) {
 Context.prototype.includeInContext = async function (args) {
     return await this.api.request('/context/action/includeInContext/', {'contextName': args.contextname, 'regex': args.regex })
 }
+
 /**
  * Set the regexs to include and exclude for a context, both supplied as JSON string arrays
  * @param {string} contextname - The name of the context
@@ -105,6 +116,7 @@ Context.prototype.includeInContext = async function (args) {
 Context.prototype.setContextRegexs = async function (args) {
     return await this.api.request('/context/action/setContextRegexs/', {'contextName': args.contextname, 'incRegexs': args.incregexs, 'excRegexs': args.excregexs })
 }
+
 /**
  * Set the checking strategy for a context - this defines how ZAP checks that a request is authenticated
  * @param {string} contextname - The name of the context
@@ -134,6 +146,7 @@ Context.prototype.setContextCheckingStrategy = async function (args) {
   }
     return await this.api.request('/context/action/setContextCheckingStrategy/', params)
 }
+
 /**
  * Creates a new context with the given name in the current session
  * @param {string} contextname - The name of the context
@@ -141,6 +154,7 @@ Context.prototype.setContextCheckingStrategy = async function (args) {
 Context.prototype.newContext = async function (args) {
     return await this.api.request('/context/action/newContext/', {'contextName': args.contextname })
 }
+
 /**
  * Removes a context in the current session
  * @param {string} contextname - The name of the context
@@ -148,6 +162,7 @@ Context.prototype.newContext = async function (args) {
 Context.prototype.removeContext = async function (args) {
     return await this.api.request('/context/action/removeContext/', {'contextName': args.contextname })
 }
+
 /**
  * Exports the context with the given name to a file. If a relative file path is specified it will be resolved against the "contexts" directory in ZAP "home" dir.
  * @param {string} contextname - The name of the context
@@ -156,6 +171,7 @@ Context.prototype.removeContext = async function (args) {
 Context.prototype.exportContext = async function (args) {
     return await this.api.request('/context/action/exportContext/', {'contextName': args.contextname, 'contextFile': args.contextfile })
 }
+
 /**
  * Imports a context from a file. If a relative file path is specified it will be resolved against the "contexts" directory in ZAP "home" dir.
  * @param {string} contextfile
@@ -163,6 +179,7 @@ Context.prototype.exportContext = async function (args) {
 Context.prototype.importContext = async function (args) {
     return await this.api.request('/context/action/importContext/', {'contextFile': args.contextfile })
 }
+
 /**
  * Includes technologies with the given names, separated by a comma, to a context
  * @param {string} contextname - The name of the context
@@ -171,6 +188,7 @@ Context.prototype.importContext = async function (args) {
 Context.prototype.includeContextTechnologies = async function (args) {
     return await this.api.request('/context/action/includeContextTechnologies/', {'contextName': args.contextname, 'technologyNames': args.technologynames })
 }
+
 /**
  * Includes all built in technologies in to a context
  * @param {string} contextname - The name of the context
@@ -178,6 +196,7 @@ Context.prototype.includeContextTechnologies = async function (args) {
 Context.prototype.includeAllContextTechnologies = async function (args) {
     return await this.api.request('/context/action/includeAllContextTechnologies/', {'contextName': args.contextname })
 }
+
 /**
  * Excludes technologies with the given names, separated by a comma, from a context
  * @param {string} contextname - The name of the context
@@ -186,6 +205,7 @@ Context.prototype.includeAllContextTechnologies = async function (args) {
 Context.prototype.excludeContextTechnologies = async function (args) {
     return await this.api.request('/context/action/excludeContextTechnologies/', {'contextName': args.contextname, 'technologyNames': args.technologynames })
 }
+
 /**
  * Excludes all built in technologies from a context
  * @param {string} contextname - The name of the context
@@ -193,6 +213,7 @@ Context.prototype.excludeContextTechnologies = async function (args) {
 Context.prototype.excludeAllContextTechnologies = async function (args) {
     return await this.api.request('/context/action/excludeAllContextTechnologies/', {'contextName': args.contextname })
 }
+
 /**
  * Sets a context to in scope (contexts are in scope by default)
  * @param {string} contextname - The name of the context
@@ -201,4 +222,5 @@ Context.prototype.excludeAllContextTechnologies = async function (args) {
 Context.prototype.setContextInScope = async function (args) {
     return await this.api.request('/context/action/setContextInScope/', {'contextName': args.contextname, 'booleanInScope': args.booleaninscope })
 }
+
 module.exports = Context;

@@ -26,12 +26,14 @@
 function Authentication(clientApi) {
   this.api = clientApi;
 }
+
 /**
  * Gets the name of the authentication methods.
  **/
 Authentication.prototype.getSupportedAuthenticationMethods = async function () {
     return await this.api.request('/authentication/view/getSupportedAuthenticationMethods/')
 }
+
 /**
  * Gets the configuration parameters for the authentication method with the given name.
  * @param {string} authmethodname
@@ -39,6 +41,7 @@ Authentication.prototype.getSupportedAuthenticationMethods = async function () {
 Authentication.prototype.getAuthenticationMethodConfigParams = async function (args) {
     return await this.api.request('/authentication/view/getAuthenticationMethodConfigParams/', {'authMethodName': args.authmethodname })
 }
+
 /**
  * Gets the name of the authentication method for the context with the given ID.
  * @param {string} contextid
@@ -46,6 +49,7 @@ Authentication.prototype.getAuthenticationMethodConfigParams = async function (a
 Authentication.prototype.getAuthenticationMethod = async function (args) {
     return await this.api.request('/authentication/view/getAuthenticationMethod/', {'contextId': args.contextid })
 }
+
 /**
  * Gets the logged in indicator for the context with the given ID.
  * @param {string} contextid
@@ -53,6 +57,7 @@ Authentication.prototype.getAuthenticationMethod = async function (args) {
 Authentication.prototype.getLoggedInIndicator = async function (args) {
     return await this.api.request('/authentication/view/getLoggedInIndicator/', {'contextId': args.contextid })
 }
+
 /**
  * Gets the logged out indicator for the context with the given ID.
  * @param {string} contextid
@@ -60,6 +65,7 @@ Authentication.prototype.getLoggedInIndicator = async function (args) {
 Authentication.prototype.getLoggedOutIndicator = async function (args) {
     return await this.api.request('/authentication/view/getLoggedOutIndicator/', {'contextId': args.contextid })
 }
+
 /**
  * Sets the authentication method for the context with the given ID.
  * @param {string} contextid
@@ -73,6 +79,7 @@ Authentication.prototype.setAuthenticationMethod = async function (args) {
   }
     return await this.api.request('/authentication/action/setAuthenticationMethod/', params)
 }
+
 /**
  * Sets the logged in indicator for the context with the given ID.
  * @param {string} contextid
@@ -81,6 +88,7 @@ Authentication.prototype.setAuthenticationMethod = async function (args) {
 Authentication.prototype.setLoggedInIndicator = async function (args) {
     return await this.api.request('/authentication/action/setLoggedInIndicator/', {'contextId': args.contextid, 'loggedInIndicatorRegex': args.loggedinindicatorregex })
 }
+
 /**
  * Sets the logged out indicator for the context with the given ID.
  * @param {string} contextid
@@ -89,4 +97,5 @@ Authentication.prototype.setLoggedInIndicator = async function (args) {
 Authentication.prototype.setLoggedOutIndicator = async function (args) {
     return await this.api.request('/authentication/action/setLoggedOutIndicator/', {'contextId': args.contextid, 'loggedOutIndicatorRegex': args.loggedoutindicatorregex })
 }
+
 module.exports = Authentication;

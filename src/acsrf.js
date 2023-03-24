@@ -26,18 +26,21 @@
 function Acsrf(clientApi) {
   this.api = clientApi;
 }
+
 /**
  * Lists the names of all anti-CSRF tokens
  **/
 Acsrf.prototype.optionTokensNames = async function () {
     return await this.api.request('/acsrf/view/optionTokensNames/')
 }
+
 /**
  * Define if ZAP should detect CSRF tokens by searching for partial matches
  **/
 Acsrf.prototype.optionPartialMatchingEnabled = async function () {
     return await this.api.request('/acsrf/view/optionPartialMatchingEnabled/')
 }
+
 /**
  * Adds an anti-CSRF token with the given name, enabled by default
  * @param {string} string
@@ -45,6 +48,7 @@ Acsrf.prototype.optionPartialMatchingEnabled = async function () {
 Acsrf.prototype.addOptionToken = async function (args) {
     return await this.api.request('/acsrf/action/addOptionToken/', {'String': args.string })
 }
+
 /**
  * Removes the anti-CSRF token with the given name
  * @param {string} string
@@ -52,6 +56,7 @@ Acsrf.prototype.addOptionToken = async function (args) {
 Acsrf.prototype.removeOptionToken = async function (args) {
     return await this.api.request('/acsrf/action/removeOptionToken/', {'String': args.string })
 }
+
 /**
  * Define if ZAP should detect CSRF tokens by searching for partial matches.
  * @param {string} bool
@@ -59,6 +64,7 @@ Acsrf.prototype.removeOptionToken = async function (args) {
 Acsrf.prototype.setOptionPartialMatchingEnabled = async function (args) {
     return await this.api.request('/acsrf/action/setOptionPartialMatchingEnabled/', {'Boolean': args.bool })
 }
+
 /**
  * Generate a form for testing lack of anti-CSRF tokens - typically invoked via ZAP
  * @param {string} hrefid - Define which request will be used
@@ -71,4 +77,5 @@ Acsrf.prototype.genForm = async function (args) {
   }
     return await this.api.request('/acsrf/other/genForm/', params, 'other')
 }
+
 module.exports = Acsrf;

@@ -26,6 +26,7 @@
 function Users(clientApi) {
   this.api = clientApi;
 }
+
 /**
  * Gets a list of users that belong to the context with the given ID, or all users if none provided.
  * @param {string} contextid - The Context ID
@@ -37,6 +38,7 @@ Users.prototype.usersList = async function (args) {
   }
     return await this.api.request('/users/view/usersList/', params)
 }
+
 /**
  * Gets the data of the user with the given ID that belongs to the context with the given ID.
  * @param {string} contextid - The Context ID
@@ -45,6 +47,7 @@ Users.prototype.usersList = async function (args) {
 Users.prototype.getUserById = async function (args) {
     return await this.api.request('/users/view/getUserById/', {'contextId': args.contextid, 'userId': args.userid })
 }
+
 /**
  * Gets the configuration parameters for the credentials of the context with the given ID.
  * @param {string} contextid - The Context ID
@@ -52,6 +55,7 @@ Users.prototype.getUserById = async function (args) {
 Users.prototype.getAuthenticationCredentialsConfigParams = async function (args) {
     return await this.api.request('/users/view/getAuthenticationCredentialsConfigParams/', {'contextId': args.contextid })
 }
+
 /**
  * Gets the authentication credentials of the user with given ID that belongs to the context with the given ID.
  * @param {string} contextid - The Context ID
@@ -60,6 +64,7 @@ Users.prototype.getAuthenticationCredentialsConfigParams = async function (args)
 Users.prototype.getAuthenticationCredentials = async function (args) {
     return await this.api.request('/users/view/getAuthenticationCredentials/', {'contextId': args.contextid, 'userId': args.userid })
 }
+
 /**
  * Gets the authentication state information for the user identified by the Context and User Ids.
  * @param {string} contextid - The Context ID
@@ -68,6 +73,7 @@ Users.prototype.getAuthenticationCredentials = async function (args) {
 Users.prototype.getAuthenticationState = async function (args) {
     return await this.api.request('/users/view/getAuthenticationState/', {'contextId': args.contextid, 'userId': args.userid })
 }
+
 /**
  * Gets the authentication session information for the user identified by the Context and User Ids, e.g. cookies and realm credentials.
  * @param {string} contextid - The Context ID
@@ -76,6 +82,7 @@ Users.prototype.getAuthenticationState = async function (args) {
 Users.prototype.getAuthenticationSession = async function (args) {
     return await this.api.request('/users/view/getAuthenticationSession/', {'contextId': args.contextid, 'userId': args.userid })
 }
+
 /**
  * Creates a new user with the given name for the context with the given ID.
  * @param {string} contextid - The Context ID
@@ -84,6 +91,7 @@ Users.prototype.getAuthenticationSession = async function (args) {
 Users.prototype.newUser = async function (args) {
     return await this.api.request('/users/action/newUser/', {'contextId': args.contextid, 'name': args.name })
 }
+
 /**
  * Removes the user with the given ID that belongs to the context with the given ID.
  * @param {string} contextid - The Context ID
@@ -92,6 +100,7 @@ Users.prototype.newUser = async function (args) {
 Users.prototype.removeUser = async function (args) {
     return await this.api.request('/users/action/removeUser/', {'contextId': args.contextid, 'userId': args.userid })
 }
+
 /**
  * Sets whether or not the user, with the given ID that belongs to the context with the given ID, should be enabled.
  * @param {string} contextid - The Context ID
@@ -101,6 +110,7 @@ Users.prototype.removeUser = async function (args) {
 Users.prototype.setUserEnabled = async function (args) {
     return await this.api.request('/users/action/setUserEnabled/', {'contextId': args.contextid, 'userId': args.userid, 'enabled': args.enabled })
 }
+
 /**
  * Renames the user with the given ID that belongs to the context with the given ID.
  * @param {string} contextid - The Context ID
@@ -110,6 +120,7 @@ Users.prototype.setUserEnabled = async function (args) {
 Users.prototype.setUserName = async function (args) {
     return await this.api.request('/users/action/setUserName/', {'contextId': args.contextid, 'userId': args.userid, 'name': args.name })
 }
+
 /**
  * Sets the authentication credentials for the user with the given ID that belongs to the context with the given ID.
  * @param {string} contextid - The Context ID
@@ -123,6 +134,7 @@ Users.prototype.setAuthenticationCredentials = async function (args) {
   }
     return await this.api.request('/users/action/setAuthenticationCredentials/', params)
 }
+
 /**
  * Tries to authenticate as the identified user, returning the authentication request and whether it appears to have succeeded.
  * @param {string} contextid - The Context ID
@@ -131,6 +143,7 @@ Users.prototype.setAuthenticationCredentials = async function (args) {
 Users.prototype.authenticateAsUser = async function (args) {
     return await this.api.request('/users/action/authenticateAsUser/', {'contextId': args.contextid, 'userId': args.userid })
 }
+
 /**
  * Tries to poll as the identified user, returning the authentication request and whether it appears to have succeeded. This will only work if the polling verification strategy has been configured.
  * @param {string} contextid - The Context ID
@@ -139,6 +152,7 @@ Users.prototype.authenticateAsUser = async function (args) {
 Users.prototype.pollAsUser = async function (args) {
     return await this.api.request('/users/action/pollAsUser/', {'contextId': args.contextid, 'userId': args.userid })
 }
+
 /**
  * Sets fields in the authentication state for the user identified by the Context and User Ids.
  * @param {string} contextid - The Context ID
@@ -160,6 +174,7 @@ Users.prototype.setAuthenticationState = async function (args) {
   }
     return await this.api.request('/users/action/setAuthenticationState/', params)
 }
+
 /**
  * Sets the specified cookie for the user identified by the Context and User Ids.
  * @param {string} contextid - The Context ID
@@ -180,4 +195,5 @@ Users.prototype.setCookie = async function (args) {
   }
     return await this.api.request('/users/action/setCookie/', params)
 }
+
 module.exports = Users;

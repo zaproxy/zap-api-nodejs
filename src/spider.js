@@ -228,6 +228,13 @@ Spider.prototype.optionParseComments = async function () {
 }
 
 /**
+ * This component is optional and therefore the API will only work if it is installed
+ **/
+Spider.prototype.optionParseDsStore = async function () {
+    return await this.api.request('/spider/view/optionParseDsStore/')
+}
+
+/**
  * 
  * This component is optional and therefore the API will only work if it is installed
  **/
@@ -598,6 +605,13 @@ Spider.prototype.setOptionMaxScansInUI = async function (args) {
  **/
 Spider.prototype.setOptionParseComments = async function (args) {
     return await this.api.request('/spider/action/setOptionParseComments/', {'Boolean': args.bool })
+}
+
+/**
+ * This component is optional and therefore the API will only work if it is installed
+ **/
+Spider.prototype.setOptionParseDsStore = async function (args) {
+    return await this.api.request('/spider/action/setOptionParseDsStore/', {'Boolean': args.bool })
 }
 
 /**

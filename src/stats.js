@@ -26,6 +26,7 @@
 function Stats(clientApi) {
   this.api = clientApi;
 }
+
 /**
  * Statistics
  * @param {string} keyprefix
@@ -37,6 +38,7 @@ Stats.prototype.stats = async function (args) {
   }
     return await this.api.request('/stats/view/stats/', params)
 }
+
 /**
  * Gets all of the site based statistics, optionally filtered by a key prefix
  * @param {string} keyprefix
@@ -48,6 +50,7 @@ Stats.prototype.allSitesStats = async function (args) {
   }
     return await this.api.request('/stats/view/allSitesStats/', params)
 }
+
 /**
  * Gets all of the global statistics, optionally filtered by a key prefix
  * @param {string} site
@@ -60,36 +63,42 @@ Stats.prototype.siteStats = async function (args) {
   }
     return await this.api.request('/stats/view/siteStats/', params)
 }
+
 /**
  * Gets the Statsd service hostname
  **/
 Stats.prototype.optionStatsdHost = async function () {
     return await this.api.request('/stats/view/optionStatsdHost/')
 }
+
 /**
  * Gets the Statsd service port
  **/
 Stats.prototype.optionStatsdPort = async function () {
     return await this.api.request('/stats/view/optionStatsdPort/')
 }
+
 /**
  * Gets the prefix to be applied to all stats sent to the configured Statsd service
  **/
 Stats.prototype.optionStatsdPrefix = async function () {
     return await this.api.request('/stats/view/optionStatsdPrefix/')
 }
+
 /**
  * Returns 'true' if in memory statistics are enabled, otherwise returns 'false'
  **/
 Stats.prototype.optionInMemoryEnabled = async function () {
     return await this.api.request('/stats/view/optionInMemoryEnabled/')
 }
+
 /**
  * Returns 'true' if a Statsd server has been correctly configured, otherwise returns 'false'
  **/
 Stats.prototype.optionStatsdEnabled = async function () {
     return await this.api.request('/stats/view/optionStatsdEnabled/')
 }
+
 /**
  * Clears all of the statistics
  * @param {string} keyprefix
@@ -101,6 +110,7 @@ Stats.prototype.clearStats = async function (args) {
   }
     return await this.api.request('/stats/action/clearStats/', params)
 }
+
 /**
  * Sets the Statsd service hostname, supply an empty string to stop using a Statsd service
  * @param {string} string
@@ -108,6 +118,7 @@ Stats.prototype.clearStats = async function (args) {
 Stats.prototype.setOptionStatsdHost = async function (args) {
     return await this.api.request('/stats/action/setOptionStatsdHost/', {'String': args.string })
 }
+
 /**
  * Sets the prefix to be applied to all stats sent to the configured Statsd service
  * @param {string} string
@@ -115,6 +126,7 @@ Stats.prototype.setOptionStatsdHost = async function (args) {
 Stats.prototype.setOptionStatsdPrefix = async function (args) {
     return await this.api.request('/stats/action/setOptionStatsdPrefix/', {'String': args.string })
 }
+
 /**
  * Sets whether in memory statistics are enabled
  * @param {string} bool
@@ -122,6 +134,7 @@ Stats.prototype.setOptionStatsdPrefix = async function (args) {
 Stats.prototype.setOptionInMemoryEnabled = async function (args) {
     return await this.api.request('/stats/action/setOptionInMemoryEnabled/', {'Boolean': args.bool })
 }
+
 /**
  * Sets the Statsd service port
  * @param {string} integer
@@ -129,4 +142,5 @@ Stats.prototype.setOptionInMemoryEnabled = async function (args) {
 Stats.prototype.setOptionStatsdPort = async function (args) {
     return await this.api.request('/stats/action/setOptionStatsdPort/', {'Integer': args.integer })
 }
+
 module.exports = Stats;

@@ -26,12 +26,14 @@
 function SessionManagement(clientApi) {
   this.api = clientApi;
 }
+
 /**
  * Gets the name of the session management methods.
  **/
 SessionManagement.prototype.getSupportedSessionManagementMethods = async function () {
     return await this.api.request('/sessionManagement/view/getSupportedSessionManagementMethods/')
 }
+
 /**
  * Gets the configuration parameters for the session management method with the given name.
  * @param {string} methodname
@@ -39,6 +41,7 @@ SessionManagement.prototype.getSupportedSessionManagementMethods = async functio
 SessionManagement.prototype.getSessionManagementMethodConfigParams = async function (args) {
     return await this.api.request('/sessionManagement/view/getSessionManagementMethodConfigParams/', {'methodName': args.methodname })
 }
+
 /**
  * Gets the name of the session management method for the context with the given ID.
  * @param {string} contextid
@@ -46,6 +49,7 @@ SessionManagement.prototype.getSessionManagementMethodConfigParams = async funct
 SessionManagement.prototype.getSessionManagementMethod = async function (args) {
     return await this.api.request('/sessionManagement/view/getSessionManagementMethod/', {'contextId': args.contextid })
 }
+
 /**
  * Sets the session management method for the context with the given ID.
  * @param {string} contextid
@@ -59,4 +63,5 @@ SessionManagement.prototype.setSessionManagementMethod = async function (args) {
   }
     return await this.api.request('/sessionManagement/action/setSessionManagementMethod/', params)
 }
+
 module.exports = SessionManagement;

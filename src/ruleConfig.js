@@ -26,6 +26,7 @@
 function RuleConfig(clientApi) {
   this.api = clientApi;
 }
+
 /**
  * Show the specified rule configuration
  * @param {string} key
@@ -33,12 +34,14 @@ function RuleConfig(clientApi) {
 RuleConfig.prototype.ruleConfigValue = async function (args) {
     return await this.api.request('/ruleConfig/view/ruleConfigValue/', {'key': args.key })
 }
+
 /**
  * Show all of the rule configurations
  **/
 RuleConfig.prototype.allRuleConfigs = async function () {
     return await this.api.request('/ruleConfig/view/allRuleConfigs/')
 }
+
 /**
  * Reset the specified rule configuration, which must already exist
  * @param {string} key
@@ -46,12 +49,14 @@ RuleConfig.prototype.allRuleConfigs = async function () {
 RuleConfig.prototype.resetRuleConfigValue = async function (args) {
     return await this.api.request('/ruleConfig/action/resetRuleConfigValue/', {'key': args.key })
 }
+
 /**
  * Reset all of the rule configurations
  **/
 RuleConfig.prototype.resetAllRuleConfigValues = async function () {
     return await this.api.request('/ruleConfig/action/resetAllRuleConfigValues/')
 }
+
 /**
  * Set the specified rule configuration, which must already exist
  * @param {string} key
@@ -64,4 +69,5 @@ RuleConfig.prototype.setRuleConfigValue = async function (args) {
   }
     return await this.api.request('/ruleConfig/action/setRuleConfigValue/', params)
 }
+
 module.exports = RuleConfig;

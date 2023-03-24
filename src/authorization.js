@@ -26,6 +26,7 @@
 function Authorization(clientApi) {
   this.api = clientApi;
 }
+
 /**
  * Obtains all the configuration of the authorization detection method that is currently set for a context.
  * @param {string} contextid
@@ -33,6 +34,7 @@ function Authorization(clientApi) {
 Authorization.prototype.getAuthorizationDetectionMethod = async function (args) {
     return await this.api.request('/authorization/view/getAuthorizationDetectionMethod/', {'contextId': args.contextid })
 }
+
 /**
  * Sets the authorization detection method for a context as one that identifies un-authorized messages based on: the message's status code or a regex pattern in the response's header or body. Also, whether all conditions must match or just some can be specified via the logicalOperator parameter, which accepts two values: "AND" (default), "OR".  
  * @param {string} contextid
@@ -57,4 +59,5 @@ Authorization.prototype.setBasicAuthorizationDetectionMethod = async function (a
   }
     return await this.api.request('/authorization/action/setBasicAuthorizationDetectionMethod/', params)
 }
+
 module.exports = Authorization;

@@ -26,12 +26,14 @@
 function HttpSessions(clientApi) {
   this.api = clientApi;
 }
+
 /**
  * Gets all of the sites that have sessions.
  **/
 HttpSessions.prototype.sites = async function () {
     return await this.api.request('/httpSessions/view/sites/')
 }
+
 /**
  * Gets the sessions for the given site. Optionally returning just the session with the given name.
  * @param {string} site
@@ -44,6 +46,7 @@ HttpSessions.prototype.sessions = async function (args) {
   }
     return await this.api.request('/httpSessions/view/sessions/', params)
 }
+
 /**
  * Gets the name of the active session for the given site.
  * @param {string} site
@@ -51,6 +54,7 @@ HttpSessions.prototype.sessions = async function (args) {
 HttpSessions.prototype.activeSession = async function (args) {
     return await this.api.request('/httpSessions/view/activeSession/', {'site': args.site })
 }
+
 /**
  * Gets the names of the session tokens for the given site.
  * @param {string} site
@@ -58,12 +62,14 @@ HttpSessions.prototype.activeSession = async function (args) {
 HttpSessions.prototype.sessionTokens = async function (args) {
     return await this.api.request('/httpSessions/view/sessionTokens/', {'site': args.site })
 }
+
 /**
  * Gets the default session tokens.
  **/
 HttpSessions.prototype.defaultSessionTokens = async function () {
     return await this.api.request('/httpSessions/view/defaultSessionTokens/')
 }
+
 /**
  * Creates an empty session for the given site. Optionally with the given name.
  * @param {string} site
@@ -76,6 +82,7 @@ HttpSessions.prototype.createEmptySession = async function (args) {
   }
     return await this.api.request('/httpSessions/action/createEmptySession/', params)
 }
+
 /**
  * Removes the session from the given site.
  * @param {string} site
@@ -84,6 +91,7 @@ HttpSessions.prototype.createEmptySession = async function (args) {
 HttpSessions.prototype.removeSession = async function (args) {
     return await this.api.request('/httpSessions/action/removeSession/', {'site': args.site, 'session': args.session })
 }
+
 /**
  * Sets the given session as active for the given site.
  * @param {string} site
@@ -92,6 +100,7 @@ HttpSessions.prototype.removeSession = async function (args) {
 HttpSessions.prototype.setActiveSession = async function (args) {
     return await this.api.request('/httpSessions/action/setActiveSession/', {'site': args.site, 'session': args.session })
 }
+
 /**
  * Unsets the active session of the given site.
  * @param {string} site
@@ -99,6 +108,7 @@ HttpSessions.prototype.setActiveSession = async function (args) {
 HttpSessions.prototype.unsetActiveSession = async function (args) {
     return await this.api.request('/httpSessions/action/unsetActiveSession/', {'site': args.site })
 }
+
 /**
  * Adds the session token to the given site.
  * @param {string} site
@@ -107,6 +117,7 @@ HttpSessions.prototype.unsetActiveSession = async function (args) {
 HttpSessions.prototype.addSessionToken = async function (args) {
     return await this.api.request('/httpSessions/action/addSessionToken/', {'site': args.site, 'sessionToken': args.sessiontoken })
 }
+
 /**
  * Removes the session token from the given site.
  * @param {string} site
@@ -115,6 +126,7 @@ HttpSessions.prototype.addSessionToken = async function (args) {
 HttpSessions.prototype.removeSessionToken = async function (args) {
     return await this.api.request('/httpSessions/action/removeSessionToken/', {'site': args.site, 'sessionToken': args.sessiontoken })
 }
+
 /**
  * Sets the value of the session token of the given session for the given site.
  * @param {string} site
@@ -125,6 +137,7 @@ HttpSessions.prototype.removeSessionToken = async function (args) {
 HttpSessions.prototype.setSessionTokenValue = async function (args) {
     return await this.api.request('/httpSessions/action/setSessionTokenValue/', {'site': args.site, 'session': args.session, 'sessionToken': args.sessiontoken, 'tokenValue': args.tokenvalue })
 }
+
 /**
  * Renames the session of the given site.
  * @param {string} site
@@ -134,6 +147,7 @@ HttpSessions.prototype.setSessionTokenValue = async function (args) {
 HttpSessions.prototype.renameSession = async function (args) {
     return await this.api.request('/httpSessions/action/renameSession/', {'site': args.site, 'oldSessionName': args.oldsessionname, 'newSessionName': args.newsessionname })
 }
+
 /**
  * Adds a default session token with the given name and enabled state.
  * @param {string} sessiontoken
@@ -146,6 +160,7 @@ HttpSessions.prototype.addDefaultSessionToken = async function (args) {
   }
     return await this.api.request('/httpSessions/action/addDefaultSessionToken/', params)
 }
+
 /**
  * Sets whether or not the default session token with the given name is enabled.
  * @param {string} sessiontoken
@@ -154,6 +169,7 @@ HttpSessions.prototype.addDefaultSessionToken = async function (args) {
 HttpSessions.prototype.setDefaultSessionTokenEnabled = async function (args) {
     return await this.api.request('/httpSessions/action/setDefaultSessionTokenEnabled/', {'sessionToken': args.sessiontoken, 'tokenEnabled': args.tokenenabled })
 }
+
 /**
  * Removes the default session token with the given name.
  * @param {string} sessiontoken
@@ -161,4 +177,5 @@ HttpSessions.prototype.setDefaultSessionTokenEnabled = async function (args) {
 HttpSessions.prototype.removeDefaultSessionToken = async function (args) {
     return await this.api.request('/httpSessions/action/removeDefaultSessionToken/', {'sessionToken': args.sessiontoken })
 }
+
 module.exports = HttpSessions;

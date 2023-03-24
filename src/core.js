@@ -26,18 +26,21 @@
 function Core(clientApi) {
   this.api = clientApi;
 }
+
 /**
  * Gets the name of the hosts accessed through/by ZAP
  **/
 Core.prototype.hosts = async function () {
     return await this.api.request('/core/view/hosts/')
 }
+
 /**
  * Gets the sites accessed through/by ZAP (scheme and domain)
  **/
 Core.prototype.sites = async function () {
     return await this.api.request('/core/view/sites/')
 }
+
 /**
  * Gets the URLs accessed through/by ZAP, optionally filtering by (base) URL.
  * @param {string} baseurl
@@ -49,6 +52,7 @@ Core.prototype.urls = async function (args) {
   }
     return await this.api.request('/core/view/urls/', params)
 }
+
 /**
  * Gets the child nodes underneath the specified URL in the Sites tree
  * @param {string} url
@@ -60,6 +64,7 @@ Core.prototype.childNodes = async function (args) {
   }
     return await this.api.request('/core/view/childNodes/', params)
 }
+
 /**
  * Gets the HTTP message with the given ID. Returns the ID, request/response headers and bodies, cookies, note, type, RTT, and timestamp.
  * @param {string} id
@@ -67,6 +72,7 @@ Core.prototype.childNodes = async function (args) {
 Core.prototype.message = async function (args) {
     return await this.api.request('/core/view/message/', {'id': args.id })
 }
+
 /**
  * Gets the HTTP messages sent by ZAP, request and response, optionally filtered by URL and paginated with 'start' position and 'count' of messages
  * @param {string} baseurl
@@ -86,6 +92,7 @@ Core.prototype.messages = async function (args) {
   }
     return await this.api.request('/core/view/messages/', params)
 }
+
 /**
  * Gets the HTTP messages with the given IDs.
  * @param {string} ids
@@ -93,6 +100,7 @@ Core.prototype.messages = async function (args) {
 Core.prototype.messagesById = async function (args) {
     return await this.api.request('/core/view/messagesById/', {'ids': args.ids })
 }
+
 /**
  * Gets the number of messages, optionally filtering by URL
  * @param {string} baseurl
@@ -104,84 +112,98 @@ Core.prototype.numberOfMessages = async function (args) {
   }
     return await this.api.request('/core/view/numberOfMessages/', params)
 }
+
 /**
  * Gets the mode
  **/
 Core.prototype.mode = async function () {
     return await this.api.request('/core/view/mode/')
 }
+
 /**
  * Gets ZAP version
  **/
 Core.prototype.version = async function () {
     return await this.api.request('/core/view/version/')
 }
+
 /**
  * Gets the regular expressions, applied to URLs, to exclude from the local proxies.
  **/
 Core.prototype.excludedFromProxy = async function () {
     return await this.api.request('/core/view/excludedFromProxy/')
 }
+
 /**
  * Gets the location of the current session file
  **/
 Core.prototype.sessionLocation = async function () {
     return await this.api.request('/core/view/sessionLocation/')
 }
+
 /**
  * Gets all the domains that are excluded from the outgoing proxy. For each domain the following are shown: the index, the value (domain), if enabled, and if specified as a regex.
  **/
 Core.prototype.proxyChainExcludedDomains = async function () {
     return await this.api.request('/core/view/proxyChainExcludedDomains/')
 }
+
 /**
  * Gets the path to ZAP's home directory.
  **/
 Core.prototype.zapHomePath = async function () {
     return await this.api.request('/core/view/zapHomePath/')
 }
+
 /**
  * Gets the maximum number of alert instances to include in a report.
  **/
 Core.prototype.optionMaximumAlertInstances = async function () {
     return await this.api.request('/core/view/optionMaximumAlertInstances/')
 }
+
 /**
  * Gets whether or not related alerts will be merged in any reports generated.
  **/
 Core.prototype.optionMergeRelatedAlerts = async function () {
     return await this.api.request('/core/view/optionMergeRelatedAlerts/')
 }
+
 /**
  * Gets the path to the file with alert overrides.
  **/
 Core.prototype.optionAlertOverridesFilePath = async function () {
     return await this.api.request('/core/view/optionAlertOverridesFilePath/')
 }
+
 /**
  * 
  **/
 Core.prototype.homeDirectory = async function () {
     return await this.api.request('/core/view/homeDirectory/')
 }
+
 /**
  * Use view proxyChainExcludedDomains instead.
  **/
 Core.prototype.optionProxyChainSkipName = async function () {
     return await this.api.request('/core/view/optionProxyChainSkipName/')
 }
+
 /**
  * Use view proxyChainExcludedDomains instead.
  **/
 Core.prototype.optionProxyExcludedDomains = async function () {
     return await this.api.request('/core/view/optionProxyExcludedDomains/')
 }
+
 /**
  * Use view proxyChainExcludedDomains instead.
  **/
 Core.prototype.optionProxyExcludedDomainsEnabled = async function () {
     return await this.api.request('/core/view/optionProxyExcludedDomainsEnabled/')
 }
+
 /**
  * Gets the alert with the given ID, the corresponding HTTP message can be obtained with the 'messageId' field and 'message' API method
  * @param {string} id
@@ -189,6 +211,7 @@ Core.prototype.optionProxyExcludedDomainsEnabled = async function () {
 Core.prototype.alert = async function (args) {
     return await this.api.request('/core/view/alert/', {'id': args.id })
 }
+
 /**
  * Gets the alerts raised by ZAP, optionally filtering by URL or riskId, and paginating with 'start' position and 'count' of alerts
  * @param {string} baseurl
@@ -212,6 +235,7 @@ Core.prototype.alerts = async function (args) {
   }
     return await this.api.request('/core/view/alerts/', params)
 }
+
 /**
  * Gets number of alerts grouped by each risk level, optionally filtering by URL
  * @param {string} baseurl
@@ -223,6 +247,7 @@ Core.prototype.alertsSummary = async function (args) {
   }
     return await this.api.request('/core/view/alertsSummary/', params)
 }
+
 /**
  * Gets the number of alerts, optionally filtering by URL or riskId
  * @param {string} baseurl
@@ -238,96 +263,112 @@ Core.prototype.numberOfAlerts = async function (args) {
   }
     return await this.api.request('/core/view/numberOfAlerts/', params)
 }
+
 /**
  * Gets the user agent that ZAP should use when creating HTTP messages (for example, spider messages or CONNECT requests to outgoing proxy).
  **/
 Core.prototype.optionDefaultUserAgent = async function () {
     return await this.api.request('/core/view/optionDefaultUserAgent/')
 }
+
 /**
  * Gets the TTL (in seconds) of successful DNS queries.
  **/
 Core.prototype.optionDnsTtlSuccessfulQueries = async function () {
     return await this.api.request('/core/view/optionDnsTtlSuccessfulQueries/')
 }
+
 /**
  * 
  **/
 Core.prototype.optionHttpState = async function () {
     return await this.api.request('/core/view/optionHttpState/')
 }
+
 /**
  * 
  **/
 Core.prototype.optionHttpStateEnabled = async function () {
     return await this.api.request('/core/view/optionHttpStateEnabled/')
 }
+
 /**
  * 
  **/
 Core.prototype.optionProxyChainName = async function () {
     return await this.api.request('/core/view/optionProxyChainName/')
 }
+
 /**
  * 
  **/
 Core.prototype.optionProxyChainPassword = async function () {
     return await this.api.request('/core/view/optionProxyChainPassword/')
 }
+
 /**
  * 
  **/
 Core.prototype.optionProxyChainPort = async function () {
     return await this.api.request('/core/view/optionProxyChainPort/')
 }
+
 /**
  * 
  **/
 Core.prototype.optionProxyChainPrompt = async function () {
     return await this.api.request('/core/view/optionProxyChainPrompt/')
 }
+
 /**
  * 
  **/
 Core.prototype.optionProxyChainRealm = async function () {
     return await this.api.request('/core/view/optionProxyChainRealm/')
 }
+
 /**
  * 
  **/
 Core.prototype.optionProxyChainUserName = async function () {
     return await this.api.request('/core/view/optionProxyChainUserName/')
 }
+
 /**
  * 
  **/
 Core.prototype.optionSingleCookieRequestHeader = async function () {
     return await this.api.request('/core/view/optionSingleCookieRequestHeader/')
 }
+
 /**
  * Gets the connection time out (in seconds).
  **/
 Core.prototype.optionTimeoutInSecs = async function () {
     return await this.api.request('/core/view/optionTimeoutInSecs/')
 }
+
 /**
  * 
  **/
 Core.prototype.optionUseProxyChain = async function () {
     return await this.api.request('/core/view/optionUseProxyChain/')
 }
+
 /**
  * 
  **/
 Core.prototype.optionUseProxyChainAuth = async function () {
     return await this.api.request('/core/view/optionUseProxyChainAuth/')
 }
+
 /**
  * Gets whether or not the SOCKS proxy should be used.
  **/
 Core.prototype.optionUseSocksProxy = async function () {
     return await this.api.request('/core/view/optionUseSocksProxy/')
 }
+
 /**
  * Convenient and simple action to access a URL, optionally following redirections. Returns the request sent and response received and followed redirections, if any. Other actions are available which offer more control on what is sent, like, 'sendRequest' or 'sendHarRequest'.
  * @param {string} url
@@ -340,12 +381,14 @@ Core.prototype.accessUrl = async function (args) {
   }
     return await this.api.request('/core/action/accessUrl/', params)
 }
+
 /**
  * Shuts down ZAP
  **/
 Core.prototype.shutdown = async function () {
     return await this.api.request('/core/action/shutdown/')
 }
+
 /**
  * Creates a new session, optionally overwriting existing files. If a relative path is specified it will be resolved against the "session" directory in ZAP "home" dir.
  * @param {string} name
@@ -361,6 +404,7 @@ Core.prototype.newSession = async function (args) {
   }
     return await this.api.request('/core/action/newSession/', params)
 }
+
 /**
  * Loads the session with the given name. If a relative path is specified it will be resolved against the "session" directory in ZAP "home" dir.
  * @param {string} name
@@ -368,6 +412,7 @@ Core.prototype.newSession = async function (args) {
 Core.prototype.loadSession = async function (args) {
     return await this.api.request('/core/action/loadSession/', {'name': args.name })
 }
+
 /**
  * Saves the session.
  * @param {string} name - The name (or path) of the session. If a relative path is specified it will be resolved against the "session" directory in ZAP "home" dir.
@@ -380,6 +425,7 @@ Core.prototype.saveSession = async function (args) {
   }
     return await this.api.request('/core/action/saveSession/', params)
 }
+
 /**
  * Snapshots the session, optionally with the given name, and overwriting existing files. If no name is specified the name of the current session with a timestamp appended is used. If a relative path is specified it will be resolved against the "session" directory in ZAP "home" dir.
  * @param {string} name
@@ -395,12 +441,14 @@ Core.prototype.snapshotSession = async function (args) {
   }
     return await this.api.request('/core/action/snapshotSession/', params)
 }
+
 /**
  * Clears the regexes of URLs excluded from the local proxies.
  **/
 Core.prototype.clearExcludedFromProxy = async function () {
     return await this.api.request('/core/action/clearExcludedFromProxy/')
 }
+
 /**
  * Adds a regex of URLs that should be excluded from the local proxies.
  * @param {string} regex
@@ -408,6 +456,7 @@ Core.prototype.clearExcludedFromProxy = async function () {
 Core.prototype.excludeFromProxy = async function (args) {
     return await this.api.request('/core/action/excludeFromProxy/', {'regex': args.regex })
 }
+
 /**
  * 
  * @param {string} dir
@@ -415,6 +464,7 @@ Core.prototype.excludeFromProxy = async function (args) {
 Core.prototype.setHomeDirectory = async function (args) {
     return await this.api.request('/core/action/setHomeDirectory/', {'dir': args.dir })
 }
+
 /**
  * Sets the mode, which may be one of [safe, protect, standard, attack]
  * @param {string} mode
@@ -422,12 +472,14 @@ Core.prototype.setHomeDirectory = async function (args) {
 Core.prototype.setMode = async function (args) {
     return await this.api.request('/core/action/setMode/', {'mode': args.mode })
 }
+
 /**
  * Generates a new Root CA certificate for the local proxies.
  **/
 Core.prototype.generateRootCA = async function () {
     return await this.api.request('/core/action/generateRootCA/')
 }
+
 /**
  * Sends the HTTP request, optionally following redirections. Returns the request sent and response received and followed redirections, if any. The Mode is enforced when sending the request (and following redirections), custom manual requests are not allowed in 'Safe' mode nor in 'Protected' mode if out of scope.
  * @param {string} request
@@ -440,12 +492,14 @@ Core.prototype.sendRequest = async function (args) {
   }
     return await this.api.request('/core/action/sendRequest/', params)
 }
+
 /**
  * 
  **/
 Core.prototype.runGarbageCollection = async function () {
     return await this.api.request('/core/action/runGarbageCollection/')
 }
+
 /**
  * Deletes the site node found in the Sites Tree on the basis of the URL, HTTP method, and post data (if applicable and specified). 
  * @param {string} url
@@ -462,6 +516,7 @@ Core.prototype.deleteSiteNode = async function (args) {
   }
     return await this.api.request('/core/action/deleteSiteNode/', params)
 }
+
 /**
  * Adds a domain to be excluded from the outgoing proxy, using the specified value. Optionally sets if the new entry is enabled (default, true) and whether or not the new value is specified as a regex (default, false).
  * @param {string} value
@@ -478,6 +533,7 @@ Core.prototype.addProxyChainExcludedDomain = async function (args) {
   }
     return await this.api.request('/core/action/addProxyChainExcludedDomain/', params)
 }
+
 /**
  * Modifies a domain excluded from the outgoing proxy. Allows to modify the value, if enabled or if a regex. The domain is selected with its index, which can be obtained with the view proxyChainExcludedDomains.
  * @param {string} idx
@@ -498,6 +554,7 @@ Core.prototype.modifyProxyChainExcludedDomain = async function (args) {
   }
     return await this.api.request('/core/action/modifyProxyChainExcludedDomain/', params)
 }
+
 /**
  * Removes a domain excluded from the outgoing proxy, with the given index. The index can be obtained with the view proxyChainExcludedDomains.
  * @param {string} idx
@@ -505,18 +562,21 @@ Core.prototype.modifyProxyChainExcludedDomain = async function (args) {
 Core.prototype.removeProxyChainExcludedDomain = async function (args) {
     return await this.api.request('/core/action/removeProxyChainExcludedDomain/', {'idx': args.idx })
 }
+
 /**
  * Enables all domains excluded from the outgoing proxy.
  **/
 Core.prototype.enableAllProxyChainExcludedDomains = async function () {
     return await this.api.request('/core/action/enableAllProxyChainExcludedDomains/')
 }
+
 /**
  * Disables all domains excluded from the outgoing proxy.
  **/
 Core.prototype.disableAllProxyChainExcludedDomains = async function () {
     return await this.api.request('/core/action/disableAllProxyChainExcludedDomains/')
 }
+
 /**
  * Sets the maximum number of alert instances to include in a report. A value of zero is treated as unlimited.
  * @param {string} numberofinstances
@@ -524,6 +584,7 @@ Core.prototype.disableAllProxyChainExcludedDomains = async function () {
 Core.prototype.setOptionMaximumAlertInstances = async function (args) {
     return await this.api.request('/core/action/setOptionMaximumAlertInstances/', {'numberOfInstances': args.numberofinstances })
 }
+
 /**
  * Sets whether or not related alerts will be merged in any reports generated.
  * @param {string} enabled
@@ -531,6 +592,7 @@ Core.prototype.setOptionMaximumAlertInstances = async function (args) {
 Core.prototype.setOptionMergeRelatedAlerts = async function (args) {
     return await this.api.request('/core/action/setOptionMergeRelatedAlerts/', {'enabled': args.enabled })
 }
+
 /**
  * Sets (or clears, if empty) the path to the file with alert overrides.
  * @param {string} filepath
@@ -542,6 +604,7 @@ Core.prototype.setOptionAlertOverridesFilePath = async function (args) {
   }
     return await this.api.request('/core/action/setOptionAlertOverridesFilePath/', params)
 }
+
 /**
  * Enables use of a PKCS12 client certificate for the certificate with the given file system path, password, and optional index.
  * @param {string} filepath
@@ -555,18 +618,21 @@ Core.prototype.enablePKCS12ClientCertificate = async function (args) {
   }
     return await this.api.request('/core/action/enablePKCS12ClientCertificate/', params)
 }
+
 /**
  * Disables the option for use of client certificates.
  **/
 Core.prototype.disableClientCertificate = async function () {
     return await this.api.request('/core/action/disableClientCertificate/')
 }
+
 /**
  * Deletes all alerts of the current session.
  **/
 Core.prototype.deleteAllAlerts = async function () {
     return await this.api.request('/core/action/deleteAllAlerts/')
 }
+
 /**
  * Deletes the alert with the given ID. 
  * @param {string} id
@@ -574,6 +640,7 @@ Core.prototype.deleteAllAlerts = async function () {
 Core.prototype.deleteAlert = async function (args) {
     return await this.api.request('/core/action/deleteAlert/', {'id': args.id })
 }
+
 /**
  * Sets the user agent that ZAP should use when creating HTTP messages (for example, spider messages or CONNECT requests to outgoing proxy).
  * @param {string} string
@@ -581,6 +648,7 @@ Core.prototype.deleteAlert = async function (args) {
 Core.prototype.setOptionDefaultUserAgent = async function (args) {
     return await this.api.request('/core/action/setOptionDefaultUserAgent/', {'String': args.string })
 }
+
 /**
  * Sets the TTL (in seconds) of successful DNS queries (applies after ZAP restart).
  * @param {string} integer
@@ -588,6 +656,7 @@ Core.prototype.setOptionDefaultUserAgent = async function (args) {
 Core.prototype.setOptionDnsTtlSuccessfulQueries = async function (args) {
     return await this.api.request('/core/action/setOptionDnsTtlSuccessfulQueries/', {'Integer': args.integer })
 }
+
 /**
  * 
  * @param {string} bool
@@ -595,6 +664,7 @@ Core.prototype.setOptionDnsTtlSuccessfulQueries = async function (args) {
 Core.prototype.setOptionHttpStateEnabled = async function (args) {
     return await this.api.request('/core/action/setOptionHttpStateEnabled/', {'Boolean': args.bool })
 }
+
 /**
  * 
  * @param {string} string
@@ -602,6 +672,7 @@ Core.prototype.setOptionHttpStateEnabled = async function (args) {
 Core.prototype.setOptionProxyChainName = async function (args) {
     return await this.api.request('/core/action/setOptionProxyChainName/', {'String': args.string })
 }
+
 /**
  * 
  * @param {string} string
@@ -609,6 +680,7 @@ Core.prototype.setOptionProxyChainName = async function (args) {
 Core.prototype.setOptionProxyChainPassword = async function (args) {
     return await this.api.request('/core/action/setOptionProxyChainPassword/', {'String': args.string })
 }
+
 /**
  * 
  * @param {string} integer
@@ -616,6 +688,7 @@ Core.prototype.setOptionProxyChainPassword = async function (args) {
 Core.prototype.setOptionProxyChainPort = async function (args) {
     return await this.api.request('/core/action/setOptionProxyChainPort/', {'Integer': args.integer })
 }
+
 /**
  * 
  * @param {string} bool
@@ -623,6 +696,7 @@ Core.prototype.setOptionProxyChainPort = async function (args) {
 Core.prototype.setOptionProxyChainPrompt = async function (args) {
     return await this.api.request('/core/action/setOptionProxyChainPrompt/', {'Boolean': args.bool })
 }
+
 /**
  * 
  * @param {string} string
@@ -630,6 +704,7 @@ Core.prototype.setOptionProxyChainPrompt = async function (args) {
 Core.prototype.setOptionProxyChainRealm = async function (args) {
     return await this.api.request('/core/action/setOptionProxyChainRealm/', {'String': args.string })
 }
+
 /**
  * Use actions [add|modify|remove]ProxyChainExcludedDomain instead.
  * @param {string} string
@@ -637,6 +712,7 @@ Core.prototype.setOptionProxyChainRealm = async function (args) {
 Core.prototype.setOptionProxyChainSkipName = async function (args) {
     return await this.api.request('/core/action/setOptionProxyChainSkipName/', {'String': args.string })
 }
+
 /**
  * 
  * @param {string} string
@@ -644,6 +720,7 @@ Core.prototype.setOptionProxyChainSkipName = async function (args) {
 Core.prototype.setOptionProxyChainUserName = async function (args) {
     return await this.api.request('/core/action/setOptionProxyChainUserName/', {'String': args.string })
 }
+
 /**
  * 
  * @param {string} bool
@@ -651,6 +728,7 @@ Core.prototype.setOptionProxyChainUserName = async function (args) {
 Core.prototype.setOptionSingleCookieRequestHeader = async function (args) {
     return await this.api.request('/core/action/setOptionSingleCookieRequestHeader/', {'Boolean': args.bool })
 }
+
 /**
  * Sets the connection time out (in seconds).
  * @param {string} integer
@@ -658,6 +736,7 @@ Core.prototype.setOptionSingleCookieRequestHeader = async function (args) {
 Core.prototype.setOptionTimeoutInSecs = async function (args) {
     return await this.api.request('/core/action/setOptionTimeoutInSecs/', {'Integer': args.integer })
 }
+
 /**
  * Sets whether or not the outgoing proxy should be used. The address/hostname of the outgoing proxy must be set to enable this option.
  * @param {string} bool
@@ -665,6 +744,7 @@ Core.prototype.setOptionTimeoutInSecs = async function (args) {
 Core.prototype.setOptionUseProxyChain = async function (args) {
     return await this.api.request('/core/action/setOptionUseProxyChain/', {'Boolean': args.bool })
 }
+
 /**
  * 
  * @param {string} bool
@@ -672,6 +752,7 @@ Core.prototype.setOptionUseProxyChain = async function (args) {
 Core.prototype.setOptionUseProxyChainAuth = async function (args) {
     return await this.api.request('/core/action/setOptionUseProxyChainAuth/', {'Boolean': args.bool })
 }
+
 /**
  * Sets whether or not the SOCKS proxy should be used.
  * @param {string} bool - true if the SOCKS proxy should be used, false otherwise.
@@ -679,18 +760,21 @@ Core.prototype.setOptionUseProxyChainAuth = async function (args) {
 Core.prototype.setOptionUseSocksProxy = async function (args) {
     return await this.api.request('/core/action/setOptionUseSocksProxy/', {'Boolean': args.bool })
 }
+
 /**
  * 
  **/
 Core.prototype.proxypac = async function () {
     return await this.api.request('/core/other/proxy.pac/', 'other')
 }
+
 /**
  * Gets the Root CA certificate used by the local proxies.
  **/
 Core.prototype.rootcert = async function () {
     return await this.api.request('/core/other/rootcert/', 'other')
 }
+
 /**
  * 
  * @param {string} proxy
@@ -698,30 +782,35 @@ Core.prototype.rootcert = async function () {
 Core.prototype.setproxy = async function (args) {
     return await this.api.request('/core/other/setproxy/', {'proxy': args.proxy }, 'other')
 }
+
 /**
  * Generates a report in XML format
  **/
 Core.prototype.xmlreport = async function () {
     return await this.api.request('/core/other/xmlreport/', 'other')
 }
+
 /**
  * Generates a report in HTML format
  **/
 Core.prototype.htmlreport = async function () {
     return await this.api.request('/core/other/htmlreport/', 'other')
 }
+
 /**
  * Generates a report in JSON format
  **/
 Core.prototype.jsonreport = async function () {
     return await this.api.request('/core/other/jsonreport/', 'other')
 }
+
 /**
  * Generates a report in Markdown format
  **/
 Core.prototype.mdreport = async function () {
     return await this.api.request('/core/other/mdreport/', 'other')
 }
+
 /**
  * Gets the message with the given ID in HAR format
  * @param {string} id
@@ -729,6 +818,7 @@ Core.prototype.mdreport = async function () {
 Core.prototype.messageHar = async function (args) {
     return await this.api.request('/core/other/messageHar/', {'id': args.id }, 'other')
 }
+
 /**
  * Gets the HTTP messages sent through/by ZAP, in HAR format, optionally filtered by URL and paginated with 'start' position and 'count' of messages
  * @param {string} baseurl
@@ -748,6 +838,7 @@ Core.prototype.messagesHar = async function (args) {
   }
     return await this.api.request('/core/other/messagesHar/', params, 'other')
 }
+
 /**
  * Gets the HTTP messages with the given IDs, in HAR format.
  * @param {string} ids
@@ -755,6 +846,7 @@ Core.prototype.messagesHar = async function (args) {
 Core.prototype.messagesHarById = async function (args) {
     return await this.api.request('/core/other/messagesHarById/', {'ids': args.ids }, 'other')
 }
+
 /**
  * Sends the first HAR request entry, optionally following redirections. Returns, in HAR format, the request sent and response received and followed redirections, if any. The Mode is enforced when sending the request (and following redirections), custom manual requests are not allowed in 'Safe' mode nor in 'Protected' mode if out of scope.
  * @param {string} request
@@ -767,4 +859,5 @@ Core.prototype.sendHarRequest = async function (args) {
   }
     return await this.api.request('/core/other/sendHarRequest/', params, 'other')
 }
+
 module.exports = Core;

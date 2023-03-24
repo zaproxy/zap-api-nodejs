@@ -26,30 +26,35 @@
 function Break(clientApi) {
   this.api = clientApi;
 }
+
 /**
  * Returns True if ZAP will break on both requests and responses
  **/
 Break.prototype.isBreakAll = async function () {
     return await this.api.request('/break/view/isBreakAll/')
 }
+
 /**
  * Returns True if ZAP will break on requests
  **/
 Break.prototype.isBreakRequest = async function () {
     return await this.api.request('/break/view/isBreakRequest/')
 }
+
 /**
  * Returns True if ZAP will break on responses
  **/
 Break.prototype.isBreakResponse = async function () {
     return await this.api.request('/break/view/isBreakResponse/')
 }
+
 /**
  * Returns the HTTP message currently intercepted (if any)
  **/
 Break.prototype.httpMessage = async function () {
     return await this.api.request('/break/view/httpMessage/')
 }
+
 /**
  * Controls the global break functionality. The type may be one of: http-all, http-request or http-response. The state may be true (for turning break on for the specified type) or false (for turning break off). Scope is not currently used.
  * @param {string} type
@@ -63,6 +68,7 @@ Break.prototype.brk = async function (args) {
   }
     return await this.api.request('/break/action/break/', params)
 }
+
 /**
  * Overwrites the currently intercepted message with the data provided
  * @param {string} httpheader
@@ -75,24 +81,28 @@ Break.prototype.setHttpMessage = async function (args) {
   }
     return await this.api.request('/break/action/setHttpMessage/', params)
 }
+
 /**
  * Submits the currently intercepted message and unsets the global request/response breakpoints
  **/
 Break.prototype.cont = async function () {
     return await this.api.request('/break/action/continue/')
 }
+
 /**
  * Submits the currently intercepted message, the next request or response will automatically be intercepted
  **/
 Break.prototype.step = async function () {
     return await this.api.request('/break/action/step/')
 }
+
 /**
  * Drops the currently intercepted message
  **/
 Break.prototype.drop = async function () {
     return await this.api.request('/break/action/drop/')
 }
+
 /**
  * Adds a custom HTTP breakpoint. The string is the string to match. Location may be one of: url, request_header, request_body, response_header or response_body. Match may be: contains or regex. Inverse (match) may be true or false. Lastly, ignorecase (when matching the string) may be true or false.  
  * @param {string} string
@@ -104,6 +114,7 @@ Break.prototype.drop = async function () {
 Break.prototype.addHttpBreakpoint = async function (args) {
     return await this.api.request('/break/action/addHttpBreakpoint/', {'string': args.string, 'location': args.location, 'match': args.match, 'inverse': args.inverse, 'ignorecase': args.ignorecase })
 }
+
 /**
  * Removes the specified breakpoint
  * @param {string} string
@@ -115,4 +126,5 @@ Break.prototype.addHttpBreakpoint = async function (args) {
 Break.prototype.removeHttpBreakpoint = async function (args) {
     return await this.api.request('/break/action/removeHttpBreakpoint/', {'string': args.string, 'location': args.location, 'match': args.match, 'inverse': args.inverse, 'ignorecase': args.ignorecase })
 }
+
 module.exports = Break;

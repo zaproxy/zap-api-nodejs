@@ -26,6 +26,7 @@
 function Params(clientApi) {
   this.api = clientApi;
 }
+
 /**
  * Shows the parameters for the specified site, or for all sites if the site is not specified
  * @param {string} site
@@ -37,4 +38,5 @@ Params.prototype.params = async function (args) {
   }
     return await this.api.request('/params/view/params/', params)
 }
+
 module.exports = Params;

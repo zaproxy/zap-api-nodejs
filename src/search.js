@@ -26,6 +26,7 @@
 function Search(clientApi) {
   this.api = clientApi;
 }
+
 /**
  * Returns the URLs of the HTTP messages that match the given regular expression in the URL optionally filtered by URL and paginated with 'start' position and 'count' of messages.
  * @param {string} regex
@@ -46,6 +47,7 @@ Search.prototype.urlsByUrlRegex = async function (args) {
   }
     return await this.api.request('/search/view/urlsByUrlRegex/', params)
 }
+
 /**
  * Returns the URLs of the HTTP messages that match the given regular expression in the request optionally filtered by URL and paginated with 'start' position and 'count' of messages.
  * @param {string} regex
@@ -66,6 +68,7 @@ Search.prototype.urlsByRequestRegex = async function (args) {
   }
     return await this.api.request('/search/view/urlsByRequestRegex/', params)
 }
+
 /**
  * Returns the URLs of the HTTP messages that match the given regular expression in the response optionally filtered by URL and paginated with 'start' position and 'count' of messages.
  * @param {string} regex
@@ -86,6 +89,7 @@ Search.prototype.urlsByResponseRegex = async function (args) {
   }
     return await this.api.request('/search/view/urlsByResponseRegex/', params)
 }
+
 /**
  * Returns the URLs of the HTTP messages that match the given regular expression in the header(s) optionally filtered by URL and paginated with 'start' position and 'count' of messages.
  * @param {string} regex
@@ -106,6 +110,7 @@ Search.prototype.urlsByHeaderRegex = async function (args) {
   }
     return await this.api.request('/search/view/urlsByHeaderRegex/', params)
 }
+
 /**
  * Returns the HTTP messages that match the given regular expression in the URL optionally filtered by URL and paginated with 'start' position and 'count' of messages.
  * @param {string} regex
@@ -126,6 +131,7 @@ Search.prototype.messagesByUrlRegex = async function (args) {
   }
     return await this.api.request('/search/view/messagesByUrlRegex/', params)
 }
+
 /**
  * Returns the HTTP messages that match the given regular expression in the request optionally filtered by URL and paginated with 'start' position and 'count' of messages.
  * @param {string} regex
@@ -146,6 +152,7 @@ Search.prototype.messagesByRequestRegex = async function (args) {
   }
     return await this.api.request('/search/view/messagesByRequestRegex/', params)
 }
+
 /**
  * Returns the HTTP messages that match the given regular expression in the response optionally filtered by URL and paginated with 'start' position and 'count' of messages.
  * @param {string} regex
@@ -166,6 +173,7 @@ Search.prototype.messagesByResponseRegex = async function (args) {
   }
     return await this.api.request('/search/view/messagesByResponseRegex/', params)
 }
+
 /**
  * Returns the HTTP messages that match the given regular expression in the header(s) optionally filtered by URL and paginated with 'start' position and 'count' of messages.
  * @param {string} regex
@@ -186,6 +194,7 @@ Search.prototype.messagesByHeaderRegex = async function (args) {
   }
     return await this.api.request('/search/view/messagesByHeaderRegex/', params)
 }
+
 /**
  * Returns the HTTP messages, in HAR format, that match the given regular expression in the URL optionally filtered by URL and paginated with 'start' position and 'count' of messages.
  * @param {string} regex
@@ -206,6 +215,7 @@ Search.prototype.harByUrlRegex = async function (args) {
   }
     return await this.api.request('/search/other/harByUrlRegex/', params, 'other')
 }
+
 /**
  * Returns the HTTP messages, in HAR format, that match the given regular expression in the request optionally filtered by URL and paginated with 'start' position and 'count' of messages.
  * @param {string} regex
@@ -226,6 +236,7 @@ Search.prototype.harByRequestRegex = async function (args) {
   }
     return await this.api.request('/search/other/harByRequestRegex/', params, 'other')
 }
+
 /**
  * Returns the HTTP messages, in HAR format, that match the given regular expression in the response optionally filtered by URL and paginated with 'start' position and 'count' of messages.
  * @param {string} regex
@@ -246,6 +257,7 @@ Search.prototype.harByResponseRegex = async function (args) {
   }
     return await this.api.request('/search/other/harByResponseRegex/', params, 'other')
 }
+
 /**
  * Returns the HTTP messages, in HAR format, that match the given regular expression in the header(s) optionally filtered by URL and paginated with 'start' position and 'count' of messages.
  * @param {string} regex
@@ -266,4 +278,5 @@ Search.prototype.harByHeaderRegex = async function (args) {
   }
     return await this.api.request('/search/other/harByHeaderRegex/', params, 'other')
 }
+
 module.exports = Search;

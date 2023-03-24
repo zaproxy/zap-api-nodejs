@@ -26,6 +26,7 @@
 function Alert(clientApi) {
   this.api = clientApi;
 }
+
 /**
  * Gets the alert with the given ID, the corresponding HTTP message can be obtained with the 'messageId' field and 'message' API method
  * @param {string} id
@@ -33,6 +34,7 @@ function Alert(clientApi) {
 Alert.prototype.alert = async function (args) {
     return await this.api.request('/alert/view/alert/', {'id': args.id })
 }
+
 /**
  * Gets the alerts raised by ZAP, optionally filtering by URL or riskId, and paginating with 'start' position and 'count' of alerts
  * @param {string} baseurl
@@ -56,6 +58,7 @@ Alert.prototype.alerts = async function (args) {
   }
     return await this.api.request('/alert/view/alerts/', params)
 }
+
 /**
  * Gets number of alerts grouped by each risk level, optionally filtering by URL
  * @param {string} baseurl
@@ -67,6 +70,7 @@ Alert.prototype.alertsSummary = async function (args) {
   }
     return await this.api.request('/alert/view/alertsSummary/', params)
 }
+
 /**
  * Gets the number of alerts, optionally filtering by URL or riskId
  * @param {string} baseurl
@@ -82,6 +86,7 @@ Alert.prototype.numberOfAlerts = async function (args) {
   }
     return await this.api.request('/alert/view/numberOfAlerts/', params)
 }
+
 /**
  * Gets a summary of the alerts, optionally filtered by a 'url'. If 'recurse' is true then all alerts that apply to urls that start with the specified 'url' will be returned, otherwise only those on exactly the same 'url' (ignoring url parameters)
  * @param {string} url
@@ -97,6 +102,7 @@ Alert.prototype.alertsByRisk = async function (args) {
   }
     return await this.api.request('/alert/view/alertsByRisk/', params)
 }
+
 /**
  * Gets a count of the alerts, optionally filtered as per alertsPerRisk
  * @param {string} url
@@ -112,12 +118,14 @@ Alert.prototype.alertCountsByRisk = async function (args) {
   }
     return await this.api.request('/alert/view/alertCountsByRisk/', params)
 }
+
 /**
  * Deletes all alerts of the current session.
  **/
 Alert.prototype.deleteAllAlerts = async function () {
     return await this.api.request('/alert/action/deleteAllAlerts/')
 }
+
 /**
  * Deletes the alert with the given ID. 
  * @param {string} id
@@ -125,6 +133,7 @@ Alert.prototype.deleteAllAlerts = async function () {
 Alert.prototype.deleteAlert = async function (args) {
     return await this.api.request('/alert/action/deleteAlert/', {'id': args.id })
 }
+
 /**
  * Update the confidence of the alerts.
  * @param {string} ids - The IDs of the alerts to update (comma separated values).
@@ -133,6 +142,7 @@ Alert.prototype.deleteAlert = async function (args) {
 Alert.prototype.updateAlertsConfidence = async function (args) {
     return await this.api.request('/alert/action/updateAlertsConfidence/', {'ids': args.ids, 'confidenceId': args.confidenceid })
 }
+
 /**
  * Update the risk of the alerts.
  * @param {string} ids - The IDs of the alerts to update (comma separated values).
@@ -141,6 +151,7 @@ Alert.prototype.updateAlertsConfidence = async function (args) {
 Alert.prototype.updateAlertsRisk = async function (args) {
     return await this.api.request('/alert/action/updateAlertsRisk/', {'ids': args.ids, 'riskId': args.riskid })
 }
+
 /**
  * Update the alert with the given ID, with the provided details.
  * @param {string} id - The ID of the alert to update.
@@ -185,6 +196,7 @@ Alert.prototype.updateAlert = async function (args) {
   }
     return await this.api.request('/alert/action/updateAlert/', params)
 }
+
 /**
  * Add an alert associated with the given message ID, with the provided details. (The ID of the created alert is returned.)
  * @param {string} messageid - The ID of the message to which the alert should be associated.
@@ -229,4 +241,5 @@ Alert.prototype.addAlert = async function (args) {
   }
     return await this.api.request('/alert/action/addAlert/', params)
 }
+
 module.exports = Alert;

@@ -26,24 +26,28 @@
 function Script(clientApi) {
   this.api = clientApi;
 }
+
 /**
  * Lists the script engines available
  **/
 Script.prototype.listEngines = async function () {
     return await this.api.request('/script/view/listEngines/')
 }
+
 /**
  * Lists the script types available.
  **/
 Script.prototype.listTypes = async function () {
     return await this.api.request('/script/view/listTypes/')
 }
+
 /**
  * Lists the scripts available, with its engine, name, description, type and error state.
  **/
 Script.prototype.listScripts = async function () {
     return await this.api.request('/script/view/listScripts/')
 }
+
 /**
  * Gets the value of the global variable with the given key. Returns an API error (DOES_NOT_EXIST) if no value was previously set.
  * @param {string} varkey
@@ -51,6 +55,7 @@ Script.prototype.listScripts = async function () {
 Script.prototype.globalVar = async function (args) {
     return await this.api.request('/script/view/globalVar/', {'varKey': args.varkey })
 }
+
 /**
  * Gets the value (string representation) of a global custom variable. Returns an API error (DOES_NOT_EXIST) if no value was previously set.
  * @param {string} varkey - The key of the variable.
@@ -58,18 +63,21 @@ Script.prototype.globalVar = async function (args) {
 Script.prototype.globalCustomVar = async function (args) {
     return await this.api.request('/script/view/globalCustomVar/', {'varKey': args.varkey })
 }
+
 /**
  * Gets all the global variables (key/value pairs).
  **/
 Script.prototype.globalVars = async function () {
     return await this.api.request('/script/view/globalVars/')
 }
+
 /**
  * Gets all the global custom variables (key/value pairs, the value is the string representation).
  **/
 Script.prototype.globalCustomVars = async function () {
     return await this.api.request('/script/view/globalCustomVars/')
 }
+
 /**
  * Gets the value of the variable with the given key for the given script. Returns an API error (DOES_NOT_EXIST) if no script with the given name exists or if no value was previously set.
  * @param {string} scriptname
@@ -78,6 +86,7 @@ Script.prototype.globalCustomVars = async function () {
 Script.prototype.scriptVar = async function (args) {
     return await this.api.request('/script/view/scriptVar/', {'scriptName': args.scriptname, 'varKey': args.varkey })
 }
+
 /**
  * Gets the value (string representation) of a custom variable. Returns an API error (DOES_NOT_EXIST) if no script with the given name exists or if no value was previously set.
  * @param {string} scriptname - The name of the script.
@@ -86,6 +95,7 @@ Script.prototype.scriptVar = async function (args) {
 Script.prototype.scriptCustomVar = async function (args) {
     return await this.api.request('/script/view/scriptCustomVar/', {'scriptName': args.scriptname, 'varKey': args.varkey })
 }
+
 /**
  * Gets all the variables (key/value pairs) of the given script. Returns an API error (DOES_NOT_EXIST) if no script with the given name exists.
  * @param {string} scriptname
@@ -93,6 +103,7 @@ Script.prototype.scriptCustomVar = async function (args) {
 Script.prototype.scriptVars = async function (args) {
     return await this.api.request('/script/view/scriptVars/', {'scriptName': args.scriptname })
 }
+
 /**
  * Gets all the custom variables (key/value pairs, the value is the string representation) of a script. Returns an API error (DOES_NOT_EXIST) if no script with the given name exists.
  * @param {string} scriptname - The name of the script.
@@ -100,6 +111,7 @@ Script.prototype.scriptVars = async function (args) {
 Script.prototype.scriptCustomVars = async function (args) {
     return await this.api.request('/script/view/scriptCustomVars/', {'scriptName': args.scriptname })
 }
+
 /**
  * Enables the script with the given name
  * @param {string} scriptname
@@ -107,6 +119,7 @@ Script.prototype.scriptCustomVars = async function (args) {
 Script.prototype.enable = async function (args) {
     return await this.api.request('/script/action/enable/', {'scriptName': args.scriptname })
 }
+
 /**
  * Disables the script with the given name
  * @param {string} scriptname
@@ -114,6 +127,7 @@ Script.prototype.enable = async function (args) {
 Script.prototype.disable = async function (args) {
     return await this.api.request('/script/action/disable/', {'scriptName': args.scriptname })
 }
+
 /**
  * Loads a script into ZAP from the given local file, with the given name, type and engine, optionally with a description, and a charset name to read the script (the charset name is required if the script is not in UTF-8, for example, in ISO-8859-1).
  * @param {string} scriptname
@@ -133,6 +147,7 @@ Script.prototype.load = async function (args) {
   }
     return await this.api.request('/script/action/load/', params)
 }
+
 /**
  * Removes the script with the given name
  * @param {string} scriptname
@@ -140,6 +155,7 @@ Script.prototype.load = async function (args) {
 Script.prototype.remove = async function (args) {
     return await this.api.request('/script/action/remove/', {'scriptName': args.scriptname })
 }
+
 /**
  * Runs the stand alone script with the given name
  * @param {string} scriptname
@@ -147,6 +163,7 @@ Script.prototype.remove = async function (args) {
 Script.prototype.runStandAloneScript = async function (args) {
     return await this.api.request('/script/action/runStandAloneScript/', {'scriptName': args.scriptname })
 }
+
 /**
  * Clears the global variable with the given key.
  * @param {string} varkey
@@ -154,6 +171,7 @@ Script.prototype.runStandAloneScript = async function (args) {
 Script.prototype.clearGlobalVar = async function (args) {
     return await this.api.request('/script/action/clearGlobalVar/', {'varKey': args.varkey })
 }
+
 /**
  * Clears a global custom variable.
  * @param {string} varkey - The key of the variable.
@@ -161,12 +179,14 @@ Script.prototype.clearGlobalVar = async function (args) {
 Script.prototype.clearGlobalCustomVar = async function (args) {
     return await this.api.request('/script/action/clearGlobalCustomVar/', {'varKey': args.varkey })
 }
+
 /**
  * Clears the global variables.
  **/
 Script.prototype.clearGlobalVars = async function () {
     return await this.api.request('/script/action/clearGlobalVars/')
 }
+
 /**
  * Clears the variable with the given key of the given script. Returns an API error (DOES_NOT_EXIST) if no script with the given name exists.
  * @param {string} scriptname
@@ -175,6 +195,7 @@ Script.prototype.clearGlobalVars = async function () {
 Script.prototype.clearScriptVar = async function (args) {
     return await this.api.request('/script/action/clearScriptVar/', {'scriptName': args.scriptname, 'varKey': args.varkey })
 }
+
 /**
  * Clears a script custom variable.
  * @param {string} scriptname - The name of the script.
@@ -183,6 +204,7 @@ Script.prototype.clearScriptVar = async function (args) {
 Script.prototype.clearScriptCustomVar = async function (args) {
     return await this.api.request('/script/action/clearScriptCustomVar/', {'scriptName': args.scriptname, 'varKey': args.varkey })
 }
+
 /**
  * Clears the variables of the given script. Returns an API error (DOES_NOT_EXIST) if no script with the given name exists.
  * @param {string} scriptname
@@ -190,6 +212,7 @@ Script.prototype.clearScriptCustomVar = async function (args) {
 Script.prototype.clearScriptVars = async function (args) {
     return await this.api.request('/script/action/clearScriptVars/', {'scriptName': args.scriptname })
 }
+
 /**
  * Sets the value of the variable with the given key of the given script. Returns an API error (DOES_NOT_EXIST) if no script with the given name exists.
  * @param {string} scriptname
@@ -203,6 +226,7 @@ Script.prototype.setScriptVar = async function (args) {
   }
     return await this.api.request('/script/action/setScriptVar/', params)
 }
+
 /**
  * Sets the value of the global variable with the given key.
  * @param {string} varkey
@@ -215,4 +239,5 @@ Script.prototype.setGlobalVar = async function (args) {
   }
     return await this.api.request('/script/action/setGlobalVar/', params)
 }
+
 module.exports = Script;
