@@ -17,21 +17,20 @@
  * limitations under the License.
  */
 
-
-'use strict';
+'use strict'
 
 /**
  * This file was automatically generated.
  */
-function Retest(clientApi) {
-  this.api = clientApi;
+function Retest (clientApi) {
+  this.api = clientApi
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  **/
 Retest.prototype.retest = function (args) {
-    return this.api.request('/retest/action/retest/', {'alertIds': args.alertids })
+  return this.api.request('/retest/action/retest/', { alertIds: args.alertids })
 }
 
-module.exports = Retest;
+module.exports = Retest

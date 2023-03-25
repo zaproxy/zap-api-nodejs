@@ -17,14 +17,13 @@
  * limitations under the License.
  */
 
-
-'use strict';
+'use strict'
 
 /**
  * This file was automatically generated.
  */
-function Authorization(clientApi) {
-  this.api = clientApi;
+function Authorization (clientApi) {
+  this.api = clientApi
 }
 
 /**
@@ -32,11 +31,11 @@ function Authorization(clientApi) {
  * @param {string} contextid
  **/
 Authorization.prototype.getAuthorizationDetectionMethod = function (args) {
-    return this.api.request('/authorization/view/getAuthorizationDetectionMethod/', {'contextId': args.contextid })
+  return this.api.request('/authorization/view/getAuthorizationDetectionMethod/', { contextId: args.contextid })
 }
 
 /**
- * Sets the authorization detection method for a context as one that identifies un-authorized messages based on: the message's status code or a regex pattern in the response's header or body. Also, whether all conditions must match or just some can be specified via the logicalOperator parameter, which accepts two values: "AND" (default), "OR".  
+ * Sets the authorization detection method for a context as one that identifies un-authorized messages based on: the message's status code or a regex pattern in the response's header or body. Also, whether all conditions must match or just some can be specified via the logicalOperator parameter, which accepts two values: "AND" (default), "OR".
  * @param {string} contextid
  * @param {string} headerregex
  * @param {string} bodyregex
@@ -44,20 +43,20 @@ Authorization.prototype.getAuthorizationDetectionMethod = function (args) {
  * @param {string} logicaloperator
  **/
 Authorization.prototype.setBasicAuthorizationDetectionMethod = function (args) {
-  const params = {'contextId': args.contextid };
+  const params = { contextId: args.contextid }
   if (args.headerregex && args.headerregex !== null) {
-    params['headerRegex'] = args.headerregex;
+    params.headerRegex = args.headerregex
   }
   if (args.bodyregex && args.bodyregex !== null) {
-    params['bodyRegex'] = args.bodyregex;
+    params.bodyRegex = args.bodyregex
   }
   if (args.statuscode && args.statuscode !== null) {
-    params['statusCode'] = args.statuscode;
+    params.statusCode = args.statuscode
   }
   if (args.logicaloperator && args.logicaloperator !== null) {
-    params['logicalOperator'] = args.logicaloperator;
+    params.logicalOperator = args.logicaloperator
   }
-    return this.api.request('/authorization/action/setBasicAuthorizationDetectionMethod/', params)
+  return this.api.request('/authorization/action/setBasicAuthorizationDetectionMethod/', params)
 }
 
-module.exports = Authorization;
+module.exports = Authorization

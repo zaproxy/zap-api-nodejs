@@ -17,28 +17,27 @@
  * limitations under the License.
  */
 
-
-'use strict';
+'use strict'
 
 /**
  * This file was automatically generated.
  */
-function Core(clientApi) {
-  this.api = clientApi;
+function Core (clientApi) {
+  this.api = clientApi
 }
 
 /**
  * Gets the name of the hosts accessed through/by ZAP
  **/
 Core.prototype.hosts = function () {
-    return this.api.request('/core/view/hosts/')
+  return this.api.request('/core/view/hosts/')
 }
 
 /**
  * Gets the sites accessed through/by ZAP (scheme and domain)
  **/
 Core.prototype.sites = function () {
-    return this.api.request('/core/view/sites/')
+  return this.api.request('/core/view/sites/')
 }
 
 /**
@@ -46,11 +45,11 @@ Core.prototype.sites = function () {
  * @param {string} baseurl
  **/
 Core.prototype.urls = function (args) {
-  const params = { };
+  const params = { }
   if (args.baseurl && args.baseurl !== null) {
-    params['baseurl'] = args.baseurl;
+    params.baseurl = args.baseurl
   }
-    return this.api.request('/core/view/urls/', params)
+  return this.api.request('/core/view/urls/', params)
 }
 
 /**
@@ -58,11 +57,11 @@ Core.prototype.urls = function (args) {
  * @param {string} url
  **/
 Core.prototype.childNodes = function (args) {
-  const params = { };
+  const params = { }
   if (args.url && args.url !== null) {
-    params['url'] = args.url;
+    params.url = args.url
   }
-    return this.api.request('/core/view/childNodes/', params)
+  return this.api.request('/core/view/childNodes/', params)
 }
 
 /**
@@ -70,7 +69,7 @@ Core.prototype.childNodes = function (args) {
  * @param {string} id
  **/
 Core.prototype.message = function (args) {
-    return this.api.request('/core/view/message/', {'id': args.id })
+  return this.api.request('/core/view/message/', { id: args.id })
 }
 
 /**
@@ -80,17 +79,17 @@ Core.prototype.message = function (args) {
  * @param {string} count
  **/
 Core.prototype.messages = function (args) {
-  const params = { };
+  const params = { }
   if (args.baseurl && args.baseurl !== null) {
-    params['baseurl'] = args.baseurl;
+    params.baseurl = args.baseurl
   }
   if (args.start && args.start !== null) {
-    params['start'] = args.start;
+    params.start = args.start
   }
   if (args.count && args.count !== null) {
-    params['count'] = args.count;
+    params.count = args.count
   }
-    return this.api.request('/core/view/messages/', params)
+  return this.api.request('/core/view/messages/', params)
 }
 
 /**
@@ -98,7 +97,7 @@ Core.prototype.messages = function (args) {
  * @param {string} ids
  **/
 Core.prototype.messagesById = function (args) {
-    return this.api.request('/core/view/messagesById/', {'ids': args.ids })
+  return this.api.request('/core/view/messagesById/', { ids: args.ids })
 }
 
 /**
@@ -106,102 +105,102 @@ Core.prototype.messagesById = function (args) {
  * @param {string} baseurl
  **/
 Core.prototype.numberOfMessages = function (args) {
-  const params = { };
+  const params = { }
   if (args.baseurl && args.baseurl !== null) {
-    params['baseurl'] = args.baseurl;
+    params.baseurl = args.baseurl
   }
-    return this.api.request('/core/view/numberOfMessages/', params)
+  return this.api.request('/core/view/numberOfMessages/', params)
 }
 
 /**
  * Gets the mode
  **/
 Core.prototype.mode = function () {
-    return this.api.request('/core/view/mode/')
+  return this.api.request('/core/view/mode/')
 }
 
 /**
  * Gets ZAP version
  **/
 Core.prototype.version = function () {
-    return this.api.request('/core/view/version/')
+  return this.api.request('/core/view/version/')
 }
 
 /**
  * Gets the regular expressions, applied to URLs, to exclude from the local proxies.
  **/
 Core.prototype.excludedFromProxy = function () {
-    return this.api.request('/core/view/excludedFromProxy/')
+  return this.api.request('/core/view/excludedFromProxy/')
 }
 
 /**
  * Gets the location of the current session file
  **/
 Core.prototype.sessionLocation = function () {
-    return this.api.request('/core/view/sessionLocation/')
+  return this.api.request('/core/view/sessionLocation/')
 }
 
 /**
  * Gets all the domains that are excluded from the outgoing proxy. For each domain the following are shown: the index, the value (domain), if enabled, and if specified as a regex.
  **/
 Core.prototype.proxyChainExcludedDomains = function () {
-    return this.api.request('/core/view/proxyChainExcludedDomains/')
+  return this.api.request('/core/view/proxyChainExcludedDomains/')
 }
 
 /**
  * Gets the path to ZAP's home directory.
  **/
 Core.prototype.zapHomePath = function () {
-    return this.api.request('/core/view/zapHomePath/')
+  return this.api.request('/core/view/zapHomePath/')
 }
 
 /**
  * Gets the maximum number of alert instances to include in a report.
  **/
 Core.prototype.optionMaximumAlertInstances = function () {
-    return this.api.request('/core/view/optionMaximumAlertInstances/')
+  return this.api.request('/core/view/optionMaximumAlertInstances/')
 }
 
 /**
  * Gets whether or not related alerts will be merged in any reports generated.
  **/
 Core.prototype.optionMergeRelatedAlerts = function () {
-    return this.api.request('/core/view/optionMergeRelatedAlerts/')
+  return this.api.request('/core/view/optionMergeRelatedAlerts/')
 }
 
 /**
  * Gets the path to the file with alert overrides.
  **/
 Core.prototype.optionAlertOverridesFilePath = function () {
-    return this.api.request('/core/view/optionAlertOverridesFilePath/')
+  return this.api.request('/core/view/optionAlertOverridesFilePath/')
 }
 
 /**
- * 
+ *
  **/
 Core.prototype.homeDirectory = function () {
-    return this.api.request('/core/view/homeDirectory/')
+  return this.api.request('/core/view/homeDirectory/')
 }
 
 /**
  * Use view proxyChainExcludedDomains instead.
  **/
 Core.prototype.optionProxyChainSkipName = function () {
-    return this.api.request('/core/view/optionProxyChainSkipName/')
+  return this.api.request('/core/view/optionProxyChainSkipName/')
 }
 
 /**
  * Use view proxyChainExcludedDomains instead.
  **/
 Core.prototype.optionProxyExcludedDomains = function () {
-    return this.api.request('/core/view/optionProxyExcludedDomains/')
+  return this.api.request('/core/view/optionProxyExcludedDomains/')
 }
 
 /**
  * Use view proxyChainExcludedDomains instead.
  **/
 Core.prototype.optionProxyExcludedDomainsEnabled = function () {
-    return this.api.request('/core/view/optionProxyExcludedDomainsEnabled/')
+  return this.api.request('/core/view/optionProxyExcludedDomainsEnabled/')
 }
 
 /**
@@ -209,7 +208,7 @@ Core.prototype.optionProxyExcludedDomainsEnabled = function () {
  * @param {string} id
  **/
 Core.prototype.alert = function (args) {
-    return this.api.request('/core/view/alert/', {'id': args.id })
+  return this.api.request('/core/view/alert/', { id: args.id })
 }
 
 /**
@@ -220,20 +219,20 @@ Core.prototype.alert = function (args) {
  * @param {string} riskid
  **/
 Core.prototype.alerts = function (args) {
-  const params = { };
+  const params = { }
   if (args.baseurl && args.baseurl !== null) {
-    params['baseurl'] = args.baseurl;
+    params.baseurl = args.baseurl
   }
   if (args.start && args.start !== null) {
-    params['start'] = args.start;
+    params.start = args.start
   }
   if (args.count && args.count !== null) {
-    params['count'] = args.count;
+    params.count = args.count
   }
   if (args.riskid && args.riskid !== null) {
-    params['riskId'] = args.riskid;
+    params.riskId = args.riskid
   }
-    return this.api.request('/core/view/alerts/', params)
+  return this.api.request('/core/view/alerts/', params)
 }
 
 /**
@@ -241,11 +240,11 @@ Core.prototype.alerts = function (args) {
  * @param {string} baseurl
  **/
 Core.prototype.alertsSummary = function (args) {
-  const params = { };
+  const params = { }
   if (args.baseurl && args.baseurl !== null) {
-    params['baseurl'] = args.baseurl;
+    params.baseurl = args.baseurl
   }
-    return this.api.request('/core/view/alertsSummary/', params)
+  return this.api.request('/core/view/alertsSummary/', params)
 }
 
 /**
@@ -254,119 +253,119 @@ Core.prototype.alertsSummary = function (args) {
  * @param {string} riskid
  **/
 Core.prototype.numberOfAlerts = function (args) {
-  const params = { };
+  const params = { }
   if (args.baseurl && args.baseurl !== null) {
-    params['baseurl'] = args.baseurl;
+    params.baseurl = args.baseurl
   }
   if (args.riskid && args.riskid !== null) {
-    params['riskId'] = args.riskid;
+    params.riskId = args.riskid
   }
-    return this.api.request('/core/view/numberOfAlerts/', params)
+  return this.api.request('/core/view/numberOfAlerts/', params)
 }
 
 /**
  * Gets the user agent that ZAP should use when creating HTTP messages (for example, spider messages or CONNECT requests to outgoing proxy).
  **/
 Core.prototype.optionDefaultUserAgent = function () {
-    return this.api.request('/core/view/optionDefaultUserAgent/')
+  return this.api.request('/core/view/optionDefaultUserAgent/')
 }
 
 /**
  * Gets the TTL (in seconds) of successful DNS queries.
  **/
 Core.prototype.optionDnsTtlSuccessfulQueries = function () {
-    return this.api.request('/core/view/optionDnsTtlSuccessfulQueries/')
+  return this.api.request('/core/view/optionDnsTtlSuccessfulQueries/')
 }
 
 /**
- * 
+ *
  **/
 Core.prototype.optionHttpState = function () {
-    return this.api.request('/core/view/optionHttpState/')
+  return this.api.request('/core/view/optionHttpState/')
 }
 
 /**
- * 
+ *
  **/
 Core.prototype.optionHttpStateEnabled = function () {
-    return this.api.request('/core/view/optionHttpStateEnabled/')
+  return this.api.request('/core/view/optionHttpStateEnabled/')
 }
 
 /**
- * 
+ *
  **/
 Core.prototype.optionProxyChainName = function () {
-    return this.api.request('/core/view/optionProxyChainName/')
+  return this.api.request('/core/view/optionProxyChainName/')
 }
 
 /**
- * 
+ *
  **/
 Core.prototype.optionProxyChainPassword = function () {
-    return this.api.request('/core/view/optionProxyChainPassword/')
+  return this.api.request('/core/view/optionProxyChainPassword/')
 }
 
 /**
- * 
+ *
  **/
 Core.prototype.optionProxyChainPort = function () {
-    return this.api.request('/core/view/optionProxyChainPort/')
+  return this.api.request('/core/view/optionProxyChainPort/')
 }
 
 /**
- * 
+ *
  **/
 Core.prototype.optionProxyChainPrompt = function () {
-    return this.api.request('/core/view/optionProxyChainPrompt/')
+  return this.api.request('/core/view/optionProxyChainPrompt/')
 }
 
 /**
- * 
+ *
  **/
 Core.prototype.optionProxyChainRealm = function () {
-    return this.api.request('/core/view/optionProxyChainRealm/')
+  return this.api.request('/core/view/optionProxyChainRealm/')
 }
 
 /**
- * 
+ *
  **/
 Core.prototype.optionProxyChainUserName = function () {
-    return this.api.request('/core/view/optionProxyChainUserName/')
+  return this.api.request('/core/view/optionProxyChainUserName/')
 }
 
 /**
- * 
+ *
  **/
 Core.prototype.optionSingleCookieRequestHeader = function () {
-    return this.api.request('/core/view/optionSingleCookieRequestHeader/')
+  return this.api.request('/core/view/optionSingleCookieRequestHeader/')
 }
 
 /**
  * Gets the connection time out (in seconds).
  **/
 Core.prototype.optionTimeoutInSecs = function () {
-    return this.api.request('/core/view/optionTimeoutInSecs/')
+  return this.api.request('/core/view/optionTimeoutInSecs/')
 }
 
 /**
- * 
+ *
  **/
 Core.prototype.optionUseProxyChain = function () {
-    return this.api.request('/core/view/optionUseProxyChain/')
+  return this.api.request('/core/view/optionUseProxyChain/')
 }
 
 /**
- * 
+ *
  **/
 Core.prototype.optionUseProxyChainAuth = function () {
-    return this.api.request('/core/view/optionUseProxyChainAuth/')
+  return this.api.request('/core/view/optionUseProxyChainAuth/')
 }
 
 /**
  * Gets whether or not the SOCKS proxy should be used.
  **/
 Core.prototype.optionUseSocksProxy = function () {
-    return this.api.request('/core/view/optionUseSocksProxy/')
+  return this.api.request('/core/view/optionUseSocksProxy/')
 }
 
 /**
@@ -375,18 +374,18 @@ Core.prototype.optionUseSocksProxy = function () {
  * @param {string} followredirects
  **/
 Core.prototype.accessUrl = function (args) {
-  const params = {'url': args.url };
+  const params = { url: args.url }
   if (args.followredirects && args.followredirects !== null) {
-    params['followRedirects'] = args.followredirects;
+    params.followRedirects = args.followredirects
   }
-    return this.api.request('/core/action/accessUrl/', params)
+  return this.api.request('/core/action/accessUrl/', params)
 }
 
 /**
  * Shuts down ZAP
  **/
 Core.prototype.shutdown = function () {
-    return this.api.request('/core/action/shutdown/')
+  return this.api.request('/core/action/shutdown/')
 }
 
 /**
@@ -395,14 +394,14 @@ Core.prototype.shutdown = function () {
  * @param {string} overwrite
  **/
 Core.prototype.newSession = function (args) {
-  const params = { };
+  const params = { }
   if (args.name && args.name !== null) {
-    params['name'] = args.name;
+    params.name = args.name
   }
   if (args.overwrite && args.overwrite !== null) {
-    params['overwrite'] = args.overwrite;
+    params.overwrite = args.overwrite
   }
-    return this.api.request('/core/action/newSession/', params)
+  return this.api.request('/core/action/newSession/', params)
 }
 
 /**
@@ -410,7 +409,7 @@ Core.prototype.newSession = function (args) {
  * @param {string} name
  **/
 Core.prototype.loadSession = function (args) {
-    return this.api.request('/core/action/loadSession/', {'name': args.name })
+  return this.api.request('/core/action/loadSession/', { name: args.name })
 }
 
 /**
@@ -419,11 +418,11 @@ Core.prototype.loadSession = function (args) {
  * @param {string} overwrite - If existing files should be overwritten, attempting to overwrite the files of the session already in use/saved will lead to an error ("already_exists").
  **/
 Core.prototype.saveSession = function (args) {
-  const params = {'name': args.name };
+  const params = { name: args.name }
   if (args.overwrite && args.overwrite !== null) {
-    params['overwrite'] = args.overwrite;
+    params.overwrite = args.overwrite
   }
-    return this.api.request('/core/action/saveSession/', params)
+  return this.api.request('/core/action/saveSession/', params)
 }
 
 /**
@@ -432,21 +431,21 @@ Core.prototype.saveSession = function (args) {
  * @param {string} overwrite
  **/
 Core.prototype.snapshotSession = function (args) {
-  const params = { };
+  const params = { }
   if (args.name && args.name !== null) {
-    params['name'] = args.name;
+    params.name = args.name
   }
   if (args.overwrite && args.overwrite !== null) {
-    params['overwrite'] = args.overwrite;
+    params.overwrite = args.overwrite
   }
-    return this.api.request('/core/action/snapshotSession/', params)
+  return this.api.request('/core/action/snapshotSession/', params)
 }
 
 /**
  * Clears the regexes of URLs excluded from the local proxies.
  **/
 Core.prototype.clearExcludedFromProxy = function () {
-    return this.api.request('/core/action/clearExcludedFromProxy/')
+  return this.api.request('/core/action/clearExcludedFromProxy/')
 }
 
 /**
@@ -454,15 +453,15 @@ Core.prototype.clearExcludedFromProxy = function () {
  * @param {string} regex
  **/
 Core.prototype.excludeFromProxy = function (args) {
-    return this.api.request('/core/action/excludeFromProxy/', {'regex': args.regex })
+  return this.api.request('/core/action/excludeFromProxy/', { regex: args.regex })
 }
 
 /**
- * 
+ *
  * @param {string} dir
  **/
 Core.prototype.setHomeDirectory = function (args) {
-    return this.api.request('/core/action/setHomeDirectory/', {'dir': args.dir })
+  return this.api.request('/core/action/setHomeDirectory/', { dir: args.dir })
 }
 
 /**
@@ -470,14 +469,14 @@ Core.prototype.setHomeDirectory = function (args) {
  * @param {string} mode
  **/
 Core.prototype.setMode = function (args) {
-    return this.api.request('/core/action/setMode/', {'mode': args.mode })
+  return this.api.request('/core/action/setMode/', { mode: args.mode })
 }
 
 /**
  * Generates a new Root CA certificate for the local proxies.
  **/
 Core.prototype.generateRootCA = function () {
-    return this.api.request('/core/action/generateRootCA/')
+  return this.api.request('/core/action/generateRootCA/')
 }
 
 /**
@@ -486,35 +485,35 @@ Core.prototype.generateRootCA = function () {
  * @param {string} followredirects
  **/
 Core.prototype.sendRequest = function (args) {
-  const params = {'request': args.request };
+  const params = { request: args.request }
   if (args.followredirects && args.followredirects !== null) {
-    params['followRedirects'] = args.followredirects;
+    params.followRedirects = args.followredirects
   }
-    return this.api.request('/core/action/sendRequest/', params)
+  return this.api.request('/core/action/sendRequest/', params)
 }
 
 /**
- * 
+ *
  **/
 Core.prototype.runGarbageCollection = function () {
-    return this.api.request('/core/action/runGarbageCollection/')
+  return this.api.request('/core/action/runGarbageCollection/')
 }
 
 /**
- * Deletes the site node found in the Sites Tree on the basis of the URL, HTTP method, and post data (if applicable and specified). 
+ * Deletes the site node found in the Sites Tree on the basis of the URL, HTTP method, and post data (if applicable and specified).
  * @param {string} url
  * @param {string} method
  * @param {string} postdata
  **/
 Core.prototype.deleteSiteNode = function (args) {
-  const params = {'url': args.url };
+  const params = { url: args.url }
   if (args.method && args.method !== null) {
-    params['method'] = args.method;
+    params.method = args.method
   }
   if (args.postdata && args.postdata !== null) {
-    params['postData'] = args.postdata;
+    params.postData = args.postdata
   }
-    return this.api.request('/core/action/deleteSiteNode/', params)
+  return this.api.request('/core/action/deleteSiteNode/', params)
 }
 
 /**
@@ -524,14 +523,14 @@ Core.prototype.deleteSiteNode = function (args) {
  * @param {string} isenabled
  **/
 Core.prototype.addProxyChainExcludedDomain = function (args) {
-  const params = {'value': args.value };
+  const params = { value: args.value }
   if (args.isregex && args.isregex !== null) {
-    params['isRegex'] = args.isregex;
+    params.isRegex = args.isregex
   }
   if (args.isenabled && args.isenabled !== null) {
-    params['isEnabled'] = args.isenabled;
+    params.isEnabled = args.isenabled
   }
-    return this.api.request('/core/action/addProxyChainExcludedDomain/', params)
+  return this.api.request('/core/action/addProxyChainExcludedDomain/', params)
 }
 
 /**
@@ -542,17 +541,17 @@ Core.prototype.addProxyChainExcludedDomain = function (args) {
  * @param {string} isenabled
  **/
 Core.prototype.modifyProxyChainExcludedDomain = function (args) {
-  const params = {'idx': args.idx };
+  const params = { idx: args.idx }
   if (args.value && args.value !== null) {
-    params['value'] = args.value;
+    params.value = args.value
   }
   if (args.isregex && args.isregex !== null) {
-    params['isRegex'] = args.isregex;
+    params.isRegex = args.isregex
   }
   if (args.isenabled && args.isenabled !== null) {
-    params['isEnabled'] = args.isenabled;
+    params.isEnabled = args.isenabled
   }
-    return this.api.request('/core/action/modifyProxyChainExcludedDomain/', params)
+  return this.api.request('/core/action/modifyProxyChainExcludedDomain/', params)
 }
 
 /**
@@ -560,21 +559,21 @@ Core.prototype.modifyProxyChainExcludedDomain = function (args) {
  * @param {string} idx
  **/
 Core.prototype.removeProxyChainExcludedDomain = function (args) {
-    return this.api.request('/core/action/removeProxyChainExcludedDomain/', {'idx': args.idx })
+  return this.api.request('/core/action/removeProxyChainExcludedDomain/', { idx: args.idx })
 }
 
 /**
  * Enables all domains excluded from the outgoing proxy.
  **/
 Core.prototype.enableAllProxyChainExcludedDomains = function () {
-    return this.api.request('/core/action/enableAllProxyChainExcludedDomains/')
+  return this.api.request('/core/action/enableAllProxyChainExcludedDomains/')
 }
 
 /**
  * Disables all domains excluded from the outgoing proxy.
  **/
 Core.prototype.disableAllProxyChainExcludedDomains = function () {
-    return this.api.request('/core/action/disableAllProxyChainExcludedDomains/')
+  return this.api.request('/core/action/disableAllProxyChainExcludedDomains/')
 }
 
 /**
@@ -582,7 +581,7 @@ Core.prototype.disableAllProxyChainExcludedDomains = function () {
  * @param {string} numberofinstances
  **/
 Core.prototype.setOptionMaximumAlertInstances = function (args) {
-    return this.api.request('/core/action/setOptionMaximumAlertInstances/', {'numberOfInstances': args.numberofinstances })
+  return this.api.request('/core/action/setOptionMaximumAlertInstances/', { numberOfInstances: args.numberofinstances })
 }
 
 /**
@@ -590,7 +589,7 @@ Core.prototype.setOptionMaximumAlertInstances = function (args) {
  * @param {string} enabled
  **/
 Core.prototype.setOptionMergeRelatedAlerts = function (args) {
-    return this.api.request('/core/action/setOptionMergeRelatedAlerts/', {'enabled': args.enabled })
+  return this.api.request('/core/action/setOptionMergeRelatedAlerts/', { enabled: args.enabled })
 }
 
 /**
@@ -598,11 +597,11 @@ Core.prototype.setOptionMergeRelatedAlerts = function (args) {
  * @param {string} filepath
  **/
 Core.prototype.setOptionAlertOverridesFilePath = function (args) {
-  const params = { };
+  const params = { }
   if (args.filepath && args.filepath !== null) {
-    params['filePath'] = args.filepath;
+    params.filePath = args.filepath
   }
-    return this.api.request('/core/action/setOptionAlertOverridesFilePath/', params)
+  return this.api.request('/core/action/setOptionAlertOverridesFilePath/', params)
 }
 
 /**
@@ -612,33 +611,33 @@ Core.prototype.setOptionAlertOverridesFilePath = function (args) {
  * @param {string} index
  **/
 Core.prototype.enablePKCS12ClientCertificate = function (args) {
-  const params = {'filePath': args.filepath, 'password': args.password };
+  const params = { filePath: args.filepath, password: args.password }
   if (args.index && args.index !== null) {
-    params['index'] = args.index;
+    params.index = args.index
   }
-    return this.api.request('/core/action/enablePKCS12ClientCertificate/', params)
+  return this.api.request('/core/action/enablePKCS12ClientCertificate/', params)
 }
 
 /**
  * Disables the option for use of client certificates.
  **/
 Core.prototype.disableClientCertificate = function () {
-    return this.api.request('/core/action/disableClientCertificate/')
+  return this.api.request('/core/action/disableClientCertificate/')
 }
 
 /**
  * Deletes all alerts of the current session.
  **/
 Core.prototype.deleteAllAlerts = function () {
-    return this.api.request('/core/action/deleteAllAlerts/')
+  return this.api.request('/core/action/deleteAllAlerts/')
 }
 
 /**
- * Deletes the alert with the given ID. 
+ * Deletes the alert with the given ID.
  * @param {string} id
  **/
 Core.prototype.deleteAlert = function (args) {
-    return this.api.request('/core/action/deleteAlert/', {'id': args.id })
+  return this.api.request('/core/action/deleteAlert/', { id: args.id })
 }
 
 /**
@@ -646,7 +645,7 @@ Core.prototype.deleteAlert = function (args) {
  * @param {string} string
  **/
 Core.prototype.setOptionDefaultUserAgent = function (args) {
-    return this.api.request('/core/action/setOptionDefaultUserAgent/', {'String': args.string })
+  return this.api.request('/core/action/setOptionDefaultUserAgent/', { String: args.string })
 }
 
 /**
@@ -654,55 +653,55 @@ Core.prototype.setOptionDefaultUserAgent = function (args) {
  * @param {string} integer
  **/
 Core.prototype.setOptionDnsTtlSuccessfulQueries = function (args) {
-    return this.api.request('/core/action/setOptionDnsTtlSuccessfulQueries/', {'Integer': args.integer })
+  return this.api.request('/core/action/setOptionDnsTtlSuccessfulQueries/', { Integer: args.integer })
 }
 
 /**
- * 
+ *
  * @param {string} bool
  **/
 Core.prototype.setOptionHttpStateEnabled = function (args) {
-    return this.api.request('/core/action/setOptionHttpStateEnabled/', {'Boolean': args.bool })
+  return this.api.request('/core/action/setOptionHttpStateEnabled/', { Boolean: args.bool })
 }
 
 /**
- * 
+ *
  * @param {string} string
  **/
 Core.prototype.setOptionProxyChainName = function (args) {
-    return this.api.request('/core/action/setOptionProxyChainName/', {'String': args.string })
+  return this.api.request('/core/action/setOptionProxyChainName/', { String: args.string })
 }
 
 /**
- * 
+ *
  * @param {string} string
  **/
 Core.prototype.setOptionProxyChainPassword = function (args) {
-    return this.api.request('/core/action/setOptionProxyChainPassword/', {'String': args.string })
+  return this.api.request('/core/action/setOptionProxyChainPassword/', { String: args.string })
 }
 
 /**
- * 
+ *
  * @param {string} integer
  **/
 Core.prototype.setOptionProxyChainPort = function (args) {
-    return this.api.request('/core/action/setOptionProxyChainPort/', {'Integer': args.integer })
+  return this.api.request('/core/action/setOptionProxyChainPort/', { Integer: args.integer })
 }
 
 /**
- * 
+ *
  * @param {string} bool
  **/
 Core.prototype.setOptionProxyChainPrompt = function (args) {
-    return this.api.request('/core/action/setOptionProxyChainPrompt/', {'Boolean': args.bool })
+  return this.api.request('/core/action/setOptionProxyChainPrompt/', { Boolean: args.bool })
 }
 
 /**
- * 
+ *
  * @param {string} string
  **/
 Core.prototype.setOptionProxyChainRealm = function (args) {
-    return this.api.request('/core/action/setOptionProxyChainRealm/', {'String': args.string })
+  return this.api.request('/core/action/setOptionProxyChainRealm/', { String: args.string })
 }
 
 /**
@@ -710,23 +709,23 @@ Core.prototype.setOptionProxyChainRealm = function (args) {
  * @param {string} string
  **/
 Core.prototype.setOptionProxyChainSkipName = function (args) {
-    return this.api.request('/core/action/setOptionProxyChainSkipName/', {'String': args.string })
+  return this.api.request('/core/action/setOptionProxyChainSkipName/', { String: args.string })
 }
 
 /**
- * 
+ *
  * @param {string} string
  **/
 Core.prototype.setOptionProxyChainUserName = function (args) {
-    return this.api.request('/core/action/setOptionProxyChainUserName/', {'String': args.string })
+  return this.api.request('/core/action/setOptionProxyChainUserName/', { String: args.string })
 }
 
 /**
- * 
+ *
  * @param {string} bool
  **/
 Core.prototype.setOptionSingleCookieRequestHeader = function (args) {
-    return this.api.request('/core/action/setOptionSingleCookieRequestHeader/', {'Boolean': args.bool })
+  return this.api.request('/core/action/setOptionSingleCookieRequestHeader/', { Boolean: args.bool })
 }
 
 /**
@@ -734,7 +733,7 @@ Core.prototype.setOptionSingleCookieRequestHeader = function (args) {
  * @param {string} integer
  **/
 Core.prototype.setOptionTimeoutInSecs = function (args) {
-    return this.api.request('/core/action/setOptionTimeoutInSecs/', {'Integer': args.integer })
+  return this.api.request('/core/action/setOptionTimeoutInSecs/', { Integer: args.integer })
 }
 
 /**
@@ -742,15 +741,15 @@ Core.prototype.setOptionTimeoutInSecs = function (args) {
  * @param {string} bool
  **/
 Core.prototype.setOptionUseProxyChain = function (args) {
-    return this.api.request('/core/action/setOptionUseProxyChain/', {'Boolean': args.bool })
+  return this.api.request('/core/action/setOptionUseProxyChain/', { Boolean: args.bool })
 }
 
 /**
- * 
+ *
  * @param {string} bool
  **/
 Core.prototype.setOptionUseProxyChainAuth = function (args) {
-    return this.api.request('/core/action/setOptionUseProxyChainAuth/', {'Boolean': args.bool })
+  return this.api.request('/core/action/setOptionUseProxyChainAuth/', { Boolean: args.bool })
 }
 
 /**
@@ -758,57 +757,57 @@ Core.prototype.setOptionUseProxyChainAuth = function (args) {
  * @param {string} bool - true if the SOCKS proxy should be used, false otherwise.
  **/
 Core.prototype.setOptionUseSocksProxy = function (args) {
-    return this.api.request('/core/action/setOptionUseSocksProxy/', {'Boolean': args.bool })
+  return this.api.request('/core/action/setOptionUseSocksProxy/', { Boolean: args.bool })
 }
 
 /**
- * 
+ *
  **/
 Core.prototype.proxypac = function () {
-    return this.api.request('/core/other/proxy.pac/', 'other')
+  return this.api.request('/core/other/proxy.pac/', 'other')
 }
 
 /**
  * Gets the Root CA certificate used by the local proxies.
  **/
 Core.prototype.rootcert = function () {
-    return this.api.request('/core/other/rootcert/', 'other')
+  return this.api.request('/core/other/rootcert/', 'other')
 }
 
 /**
- * 
+ *
  * @param {string} proxy
  **/
 Core.prototype.setproxy = function (args) {
-    return this.api.request('/core/other/setproxy/', {'proxy': args.proxy }, 'other')
+  return this.api.request('/core/other/setproxy/', { proxy: args.proxy }, 'other')
 }
 
 /**
  * Generates a report in XML format
  **/
 Core.prototype.xmlreport = function () {
-    return this.api.request('/core/other/xmlreport/', 'other')
+  return this.api.request('/core/other/xmlreport/', 'other')
 }
 
 /**
  * Generates a report in HTML format
  **/
 Core.prototype.htmlreport = function () {
-    return this.api.request('/core/other/htmlreport/', 'other')
+  return this.api.request('/core/other/htmlreport/', 'other')
 }
 
 /**
  * Generates a report in JSON format
  **/
 Core.prototype.jsonreport = function () {
-    return this.api.request('/core/other/jsonreport/', 'other')
+  return this.api.request('/core/other/jsonreport/', 'other')
 }
 
 /**
  * Generates a report in Markdown format
  **/
 Core.prototype.mdreport = function () {
-    return this.api.request('/core/other/mdreport/', 'other')
+  return this.api.request('/core/other/mdreport/', 'other')
 }
 
 /**
@@ -816,7 +815,7 @@ Core.prototype.mdreport = function () {
  * @param {string} id
  **/
 Core.prototype.messageHar = function (args) {
-    return this.api.request('/core/other/messageHar/', {'id': args.id }, 'other')
+  return this.api.request('/core/other/messageHar/', { id: args.id }, 'other')
 }
 
 /**
@@ -826,17 +825,17 @@ Core.prototype.messageHar = function (args) {
  * @param {string} count
  **/
 Core.prototype.messagesHar = function (args) {
-  const params = { };
+  const params = { }
   if (args.baseurl && args.baseurl !== null) {
-    params['baseurl'] = args.baseurl;
+    params.baseurl = args.baseurl
   }
   if (args.start && args.start !== null) {
-    params['start'] = args.start;
+    params.start = args.start
   }
   if (args.count && args.count !== null) {
-    params['count'] = args.count;
+    params.count = args.count
   }
-    return this.api.request('/core/other/messagesHar/', params, 'other')
+  return this.api.request('/core/other/messagesHar/', params, 'other')
 }
 
 /**
@@ -844,7 +843,7 @@ Core.prototype.messagesHar = function (args) {
  * @param {string} ids
  **/
 Core.prototype.messagesHarById = function (args) {
-    return this.api.request('/core/other/messagesHarById/', {'ids': args.ids }, 'other')
+  return this.api.request('/core/other/messagesHarById/', { ids: args.ids }, 'other')
 }
 
 /**
@@ -853,11 +852,11 @@ Core.prototype.messagesHarById = function (args) {
  * @param {string} followredirects
  **/
 Core.prototype.sendHarRequest = function (args) {
-  const params = {'request': args.request };
+  const params = { request: args.request }
   if (args.followredirects && args.followredirects !== null) {
-    params['followRedirects'] = args.followredirects;
+    params.followRedirects = args.followredirects
   }
-    return this.api.request('/core/other/sendHarRequest/', params, 'other')
+  return this.api.request('/core/other/sendHarRequest/', params, 'other')
 }
 
-module.exports = Core;
+module.exports = Core

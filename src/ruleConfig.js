@@ -17,14 +17,13 @@
  * limitations under the License.
  */
 
-
-'use strict';
+'use strict'
 
 /**
  * This file was automatically generated.
  */
-function RuleConfig(clientApi) {
-  this.api = clientApi;
+function RuleConfig (clientApi) {
+  this.api = clientApi
 }
 
 /**
@@ -32,14 +31,14 @@ function RuleConfig(clientApi) {
  * @param {string} key
  **/
 RuleConfig.prototype.ruleConfigValue = function (args) {
-    return this.api.request('/ruleConfig/view/ruleConfigValue/', {'key': args.key })
+  return this.api.request('/ruleConfig/view/ruleConfigValue/', { key: args.key })
 }
 
 /**
  * Show all of the rule configurations
  **/
 RuleConfig.prototype.allRuleConfigs = function () {
-    return this.api.request('/ruleConfig/view/allRuleConfigs/')
+  return this.api.request('/ruleConfig/view/allRuleConfigs/')
 }
 
 /**
@@ -47,14 +46,14 @@ RuleConfig.prototype.allRuleConfigs = function () {
  * @param {string} key
  **/
 RuleConfig.prototype.resetRuleConfigValue = function (args) {
-    return this.api.request('/ruleConfig/action/resetRuleConfigValue/', {'key': args.key })
+  return this.api.request('/ruleConfig/action/resetRuleConfigValue/', { key: args.key })
 }
 
 /**
  * Reset all of the rule configurations
  **/
 RuleConfig.prototype.resetAllRuleConfigValues = function () {
-    return this.api.request('/ruleConfig/action/resetAllRuleConfigValues/')
+  return this.api.request('/ruleConfig/action/resetAllRuleConfigValues/')
 }
 
 /**
@@ -63,11 +62,11 @@ RuleConfig.prototype.resetAllRuleConfigValues = function () {
  * @param {string} value
  **/
 RuleConfig.prototype.setRuleConfigValue = function (args) {
-  const params = {'key': args.key };
+  const params = { key: args.key }
   if (args.value && args.value !== null) {
-    params['value'] = args.value;
+    params.value = args.value
   }
-    return this.api.request('/ruleConfig/action/setRuleConfigValue/', params)
+  return this.api.request('/ruleConfig/action/setRuleConfigValue/', params)
 }
 
-module.exports = RuleConfig;
+module.exports = RuleConfig

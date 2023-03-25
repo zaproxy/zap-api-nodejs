@@ -17,14 +17,13 @@
  * limitations under the License.
  */
 
-
-'use strict';
+'use strict'
 
 /**
  * This file was automatically generated.
  */
-function Soap(clientApi) {
-  this.api = clientApi;
+function Soap (clientApi) {
+  this.api = clientApi
 }
 
 /**
@@ -33,7 +32,7 @@ function Soap(clientApi) {
  * @param {string} file
  **/
 Soap.prototype.importFile = function (args) {
-    return this.api.request('/soap/action/importFile/', {'file': args.file })
+  return this.api.request('/soap/action/importFile/', { file: args.file })
 }
 
 /**
@@ -42,7 +41,7 @@ Soap.prototype.importFile = function (args) {
  * @param {string} url
  **/
 Soap.prototype.importUrl = function (args) {
-    return this.api.request('/soap/action/importUrl/', {'url': args.url })
+  return this.api.request('/soap/action/importUrl/', { url: args.url })
 }
 
-module.exports = Soap;
+module.exports = Soap

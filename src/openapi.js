@@ -17,14 +17,13 @@
  * limitations under the License.
  */
 
-
-'use strict';
+'use strict'
 
 /**
  * This file was automatically generated.
  */
-function Openapi(clientApi) {
-  this.api = clientApi;
+function Openapi (clientApi) {
+  this.api = clientApi
 }
 
 /**
@@ -35,14 +34,14 @@ function Openapi(clientApi) {
  * @param {string} contextid
  **/
 Openapi.prototype.importFile = function (args) {
-  const params = {'file': args.file };
+  const params = { file: args.file }
   if (args.target && args.target !== null) {
-    params['target'] = args.target;
+    params.target = args.target
   }
   if (args.contextid && args.contextid !== null) {
-    params['contextId'] = args.contextid;
+    params.contextId = args.contextid
   }
-    return this.api.request('/openapi/action/importFile/', params)
+  return this.api.request('/openapi/action/importFile/', params)
 }
 
 /**
@@ -53,14 +52,14 @@ Openapi.prototype.importFile = function (args) {
  * @param {string} contextid
  **/
 Openapi.prototype.importUrl = function (args) {
-  const params = {'url': args.url };
+  const params = { url: args.url }
   if (args.hostoverride && args.hostoverride !== null) {
-    params['hostOverride'] = args.hostoverride;
+    params.hostOverride = args.hostoverride
   }
   if (args.contextid && args.contextid !== null) {
-    params['contextId'] = args.contextid;
+    params.contextId = args.contextid
   }
-    return this.api.request('/openapi/action/importUrl/', params)
+  return this.api.request('/openapi/action/importUrl/', params)
 }
 
-module.exports = Openapi;
+module.exports = Openapi

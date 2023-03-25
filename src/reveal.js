@@ -17,14 +17,13 @@
  * limitations under the License.
  */
 
-
-'use strict';
+'use strict'
 
 /**
  * This file was automatically generated.
  */
-function Reveal(clientApi) {
-  this.api = clientApi;
+function Reveal (clientApi) {
+  this.api = clientApi
 }
 
 /**
@@ -32,7 +31,7 @@ function Reveal(clientApi) {
  * This component is optional and therefore the API will only work if it is installed
  **/
 Reveal.prototype.reveal = function () {
-    return this.api.request('/reveal/view/reveal/')
+  return this.api.request('/reveal/view/reveal/')
 }
 
 /**
@@ -41,7 +40,7 @@ Reveal.prototype.reveal = function () {
  * @param {string} reveal
  **/
 Reveal.prototype.setReveal = function (args) {
-    return this.api.request('/reveal/action/setReveal/', {'reveal': args.reveal })
+  return this.api.request('/reveal/action/setReveal/', { reveal: args.reveal })
 }
 
-module.exports = Reveal;
+module.exports = Reveal

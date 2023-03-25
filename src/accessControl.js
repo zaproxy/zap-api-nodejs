@@ -17,14 +17,13 @@
  * limitations under the License.
  */
 
-
-'use strict';
+'use strict'
 
 /**
  * This file was automatically generated.
  */
-function AccessControl(clientApi) {
-  this.api = clientApi;
+function AccessControl (clientApi) {
+  this.api = clientApi
 }
 
 /**
@@ -33,7 +32,7 @@ function AccessControl(clientApi) {
  * @param {string} contextid
  **/
 AccessControl.prototype.getScanProgress = function (args) {
-    return this.api.request('/accessControl/view/getScanProgress/', {'contextId': args.contextid })
+  return this.api.request('/accessControl/view/getScanProgress/', { contextId: args.contextid })
 }
 
 /**
@@ -42,7 +41,7 @@ AccessControl.prototype.getScanProgress = function (args) {
  * @param {string} contextid
  **/
 AccessControl.prototype.getScanStatus = function (args) {
-    return this.api.request('/accessControl/view/getScanStatus/', {'contextId': args.contextid })
+  return this.api.request('/accessControl/view/getScanStatus/', { contextId: args.contextid })
 }
 
 /**
@@ -55,27 +54,27 @@ AccessControl.prototype.getScanStatus = function (args) {
  * @param {string} alertrisklevel
  **/
 AccessControl.prototype.scan = function (args) {
-  const params = {'contextId': args.contextid, 'userId': args.userid };
+  const params = { contextId: args.contextid, userId: args.userid }
   if (args.scanasunauthuser && args.scanasunauthuser !== null) {
-    params['scanAsUnAuthUser'] = args.scanasunauthuser;
+    params.scanAsUnAuthUser = args.scanasunauthuser
   }
   if (args.raisealert && args.raisealert !== null) {
-    params['raiseAlert'] = args.raisealert;
+    params.raiseAlert = args.raisealert
   }
   if (args.alertrisklevel && args.alertrisklevel !== null) {
-    params['alertRiskLevel'] = args.alertrisklevel;
+    params.alertRiskLevel = args.alertrisklevel
   }
-    return this.api.request('/accessControl/action/scan/', params)
+  return this.api.request('/accessControl/action/scan/', params)
 }
 
 /**
- * Generates an Access Control report for the given context ID and saves it based on the provided filename (path). 
+ * Generates an Access Control report for the given context ID and saves it based on the provided filename (path).
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} contextid
  * @param {string} filename
  **/
 AccessControl.prototype.writeHTMLreport = function (args) {
-    return this.api.request('/accessControl/action/writeHTMLreport/', {'contextId': args.contextid, 'fileName': args.filename })
+  return this.api.request('/accessControl/action/writeHTMLreport/', { contextId: args.contextid, fileName: args.filename })
 }
 
-module.exports = AccessControl;
+module.exports = AccessControl

@@ -17,14 +17,13 @@
  * limitations under the License.
  */
 
-
-'use strict';
+'use strict'
 
 /**
  * This file was automatically generated.
  */
-function Users(clientApi) {
-  this.api = clientApi;
+function Users (clientApi) {
+  this.api = clientApi
 }
 
 /**
@@ -32,11 +31,11 @@ function Users(clientApi) {
  * @param {string} contextid - The Context ID
  **/
 Users.prototype.usersList = function (args) {
-  const params = { };
+  const params = { }
   if (args.contextid && args.contextid !== null) {
-    params['contextId'] = args.contextid;
+    params.contextId = args.contextid
   }
-    return this.api.request('/users/view/usersList/', params)
+  return this.api.request('/users/view/usersList/', params)
 }
 
 /**
@@ -45,7 +44,7 @@ Users.prototype.usersList = function (args) {
  * @param {string} userid - The User ID
  **/
 Users.prototype.getUserById = function (args) {
-    return this.api.request('/users/view/getUserById/', {'contextId': args.contextid, 'userId': args.userid })
+  return this.api.request('/users/view/getUserById/', { contextId: args.contextid, userId: args.userid })
 }
 
 /**
@@ -53,7 +52,7 @@ Users.prototype.getUserById = function (args) {
  * @param {string} contextid - The Context ID
  **/
 Users.prototype.getAuthenticationCredentialsConfigParams = function (args) {
-    return this.api.request('/users/view/getAuthenticationCredentialsConfigParams/', {'contextId': args.contextid })
+  return this.api.request('/users/view/getAuthenticationCredentialsConfigParams/', { contextId: args.contextid })
 }
 
 /**
@@ -62,7 +61,7 @@ Users.prototype.getAuthenticationCredentialsConfigParams = function (args) {
  * @param {string} userid - the User ID
  **/
 Users.prototype.getAuthenticationCredentials = function (args) {
-    return this.api.request('/users/view/getAuthenticationCredentials/', {'contextId': args.contextid, 'userId': args.userid })
+  return this.api.request('/users/view/getAuthenticationCredentials/', { contextId: args.contextid, userId: args.userid })
 }
 
 /**
@@ -71,7 +70,7 @@ Users.prototype.getAuthenticationCredentials = function (args) {
  * @param {string} userid - The User ID
  **/
 Users.prototype.getAuthenticationState = function (args) {
-    return this.api.request('/users/view/getAuthenticationState/', {'contextId': args.contextid, 'userId': args.userid })
+  return this.api.request('/users/view/getAuthenticationState/', { contextId: args.contextid, userId: args.userid })
 }
 
 /**
@@ -80,7 +79,7 @@ Users.prototype.getAuthenticationState = function (args) {
  * @param {string} userid - The User ID
  **/
 Users.prototype.getAuthenticationSession = function (args) {
-    return this.api.request('/users/view/getAuthenticationSession/', {'contextId': args.contextid, 'userId': args.userid })
+  return this.api.request('/users/view/getAuthenticationSession/', { contextId: args.contextid, userId: args.userid })
 }
 
 /**
@@ -89,7 +88,7 @@ Users.prototype.getAuthenticationSession = function (args) {
  * @param {string} name
  **/
 Users.prototype.newUser = function (args) {
-    return this.api.request('/users/action/newUser/', {'contextId': args.contextid, 'name': args.name })
+  return this.api.request('/users/action/newUser/', { contextId: args.contextid, name: args.name })
 }
 
 /**
@@ -98,7 +97,7 @@ Users.prototype.newUser = function (args) {
  * @param {string} userid - The User ID
  **/
 Users.prototype.removeUser = function (args) {
-    return this.api.request('/users/action/removeUser/', {'contextId': args.contextid, 'userId': args.userid })
+  return this.api.request('/users/action/removeUser/', { contextId: args.contextid, userId: args.userid })
 }
 
 /**
@@ -108,7 +107,7 @@ Users.prototype.removeUser = function (args) {
  * @param {string} enabled
  **/
 Users.prototype.setUserEnabled = function (args) {
-    return this.api.request('/users/action/setUserEnabled/', {'contextId': args.contextid, 'userId': args.userid, 'enabled': args.enabled })
+  return this.api.request('/users/action/setUserEnabled/', { contextId: args.contextid, userId: args.userid, enabled: args.enabled })
 }
 
 /**
@@ -118,7 +117,7 @@ Users.prototype.setUserEnabled = function (args) {
  * @param {string} name
  **/
 Users.prototype.setUserName = function (args) {
-    return this.api.request('/users/action/setUserName/', {'contextId': args.contextid, 'userId': args.userid, 'name': args.name })
+  return this.api.request('/users/action/setUserName/', { contextId: args.contextid, userId: args.userid, name: args.name })
 }
 
 /**
@@ -128,11 +127,11 @@ Users.prototype.setUserName = function (args) {
  * @param {string} authcredentialsconfigparams
  **/
 Users.prototype.setAuthenticationCredentials = function (args) {
-  const params = {'contextId': args.contextid, 'userId': args.userid };
+  const params = { contextId: args.contextid, userId: args.userid }
   if (args.authcredentialsconfigparams && args.authcredentialsconfigparams !== null) {
-    params['authCredentialsConfigParams'] = args.authcredentialsconfigparams;
+    params.authCredentialsConfigParams = args.authcredentialsconfigparams
   }
-    return this.api.request('/users/action/setAuthenticationCredentials/', params)
+  return this.api.request('/users/action/setAuthenticationCredentials/', params)
 }
 
 /**
@@ -141,7 +140,7 @@ Users.prototype.setAuthenticationCredentials = function (args) {
  * @param {string} userid - The User ID
  **/
 Users.prototype.authenticateAsUser = function (args) {
-    return this.api.request('/users/action/authenticateAsUser/', {'contextId': args.contextid, 'userId': args.userid })
+  return this.api.request('/users/action/authenticateAsUser/', { contextId: args.contextid, userId: args.userid })
 }
 
 /**
@@ -150,7 +149,7 @@ Users.prototype.authenticateAsUser = function (args) {
  * @param {string} userid - The User ID
  **/
 Users.prototype.pollAsUser = function (args) {
-    return this.api.request('/users/action/pollAsUser/', {'contextId': args.contextid, 'userId': args.userid })
+  return this.api.request('/users/action/pollAsUser/', { contextId: args.contextid, userId: args.userid })
 }
 
 /**
@@ -162,17 +161,17 @@ Users.prototype.pollAsUser = function (args) {
  * @param {string} requestssincelastpoll - Requests Since Last Poll - optional, should be an integer.
  **/
 Users.prototype.setAuthenticationState = function (args) {
-  const params = {'contextId': args.contextid, 'userId': args.userid };
+  const params = { contextId: args.contextid, userId: args.userid }
   if (args.lastpollresult && args.lastpollresult !== null) {
-    params['lastPollResult'] = args.lastpollresult;
+    params.lastPollResult = args.lastpollresult
   }
   if (args.lastpolltimeinms && args.lastpolltimeinms !== null) {
-    params['lastPollTimeInMs'] = args.lastpolltimeinms;
+    params.lastPollTimeInMs = args.lastpolltimeinms
   }
   if (args.requestssincelastpoll && args.requestssincelastpoll !== null) {
-    params['requestsSinceLastPoll'] = args.requestssincelastpoll;
+    params.requestsSinceLastPoll = args.requestssincelastpoll
   }
-    return this.api.request('/users/action/setAuthenticationState/', params)
+  return this.api.request('/users/action/setAuthenticationState/', params)
 }
 
 /**
@@ -186,14 +185,14 @@ Users.prototype.setAuthenticationState = function (args) {
  * @param {string} secure - If the Cookie is secure - optional default false
  **/
 Users.prototype.setCookie = function (args) {
-  const params = {'contextId': args.contextid, 'userId': args.userid, 'domain': args.domain, 'name': args.name, 'value': args.value };
+  const params = { contextId: args.contextid, userId: args.userid, domain: args.domain, name: args.name, value: args.value }
   if (args.path && args.path !== null) {
-    params['path'] = args.path;
+    params.path = args.path
   }
   if (args.secure && args.secure !== null) {
-    params['secure'] = args.secure;
+    params.secure = args.secure
   }
-    return this.api.request('/users/action/setCookie/', params)
+  return this.api.request('/users/action/setCookie/', params)
 }
 
-module.exports = Users;
+module.exports = Users

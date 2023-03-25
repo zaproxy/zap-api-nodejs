@@ -17,21 +17,20 @@
  * limitations under the License.
  */
 
-
-'use strict';
+'use strict'
 
 /**
  * This file was automatically generated.
  */
-function Authentication(clientApi) {
-  this.api = clientApi;
+function Authentication (clientApi) {
+  this.api = clientApi
 }
 
 /**
  * Gets the name of the authentication methods.
  **/
 Authentication.prototype.getSupportedAuthenticationMethods = function () {
-    return this.api.request('/authentication/view/getSupportedAuthenticationMethods/')
+  return this.api.request('/authentication/view/getSupportedAuthenticationMethods/')
 }
 
 /**
@@ -39,7 +38,7 @@ Authentication.prototype.getSupportedAuthenticationMethods = function () {
  * @param {string} authmethodname
  **/
 Authentication.prototype.getAuthenticationMethodConfigParams = function (args) {
-    return this.api.request('/authentication/view/getAuthenticationMethodConfigParams/', {'authMethodName': args.authmethodname })
+  return this.api.request('/authentication/view/getAuthenticationMethodConfigParams/', { authMethodName: args.authmethodname })
 }
 
 /**
@@ -47,7 +46,7 @@ Authentication.prototype.getAuthenticationMethodConfigParams = function (args) {
  * @param {string} contextid
  **/
 Authentication.prototype.getAuthenticationMethod = function (args) {
-    return this.api.request('/authentication/view/getAuthenticationMethod/', {'contextId': args.contextid })
+  return this.api.request('/authentication/view/getAuthenticationMethod/', { contextId: args.contextid })
 }
 
 /**
@@ -55,7 +54,7 @@ Authentication.prototype.getAuthenticationMethod = function (args) {
  * @param {string} contextid
  **/
 Authentication.prototype.getLoggedInIndicator = function (args) {
-    return this.api.request('/authentication/view/getLoggedInIndicator/', {'contextId': args.contextid })
+  return this.api.request('/authentication/view/getLoggedInIndicator/', { contextId: args.contextid })
 }
 
 /**
@@ -63,7 +62,7 @@ Authentication.prototype.getLoggedInIndicator = function (args) {
  * @param {string} contextid
  **/
 Authentication.prototype.getLoggedOutIndicator = function (args) {
-    return this.api.request('/authentication/view/getLoggedOutIndicator/', {'contextId': args.contextid })
+  return this.api.request('/authentication/view/getLoggedOutIndicator/', { contextId: args.contextid })
 }
 
 /**
@@ -73,11 +72,11 @@ Authentication.prototype.getLoggedOutIndicator = function (args) {
  * @param {string} authmethodconfigparams
  **/
 Authentication.prototype.setAuthenticationMethod = function (args) {
-  const params = {'contextId': args.contextid, 'authMethodName': args.authmethodname };
+  const params = { contextId: args.contextid, authMethodName: args.authmethodname }
   if (args.authmethodconfigparams && args.authmethodconfigparams !== null) {
-    params['authMethodConfigParams'] = args.authmethodconfigparams;
+    params.authMethodConfigParams = args.authmethodconfigparams
   }
-    return this.api.request('/authentication/action/setAuthenticationMethod/', params)
+  return this.api.request('/authentication/action/setAuthenticationMethod/', params)
 }
 
 /**
@@ -86,7 +85,7 @@ Authentication.prototype.setAuthenticationMethod = function (args) {
  * @param {string} loggedinindicatorregex
  **/
 Authentication.prototype.setLoggedInIndicator = function (args) {
-    return this.api.request('/authentication/action/setLoggedInIndicator/', {'contextId': args.contextid, 'loggedInIndicatorRegex': args.loggedinindicatorregex })
+  return this.api.request('/authentication/action/setLoggedInIndicator/', { contextId: args.contextid, loggedInIndicatorRegex: args.loggedinindicatorregex })
 }
 
 /**
@@ -95,7 +94,7 @@ Authentication.prototype.setLoggedInIndicator = function (args) {
  * @param {string} loggedoutindicatorregex
  **/
 Authentication.prototype.setLoggedOutIndicator = function (args) {
-    return this.api.request('/authentication/action/setLoggedOutIndicator/', {'contextId': args.contextid, 'loggedOutIndicatorRegex': args.loggedoutindicatorregex })
+  return this.api.request('/authentication/action/setLoggedOutIndicator/', { contextId: args.contextid, loggedOutIndicatorRegex: args.loggedoutindicatorregex })
 }
 
-module.exports = Authentication;
+module.exports = Authentication

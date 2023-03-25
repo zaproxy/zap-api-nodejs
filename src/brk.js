@@ -17,42 +17,41 @@
  * limitations under the License.
  */
 
-
-'use strict';
+'use strict'
 
 /**
  * This file was automatically generated.
  */
-function Break(clientApi) {
-  this.api = clientApi;
+function Break (clientApi) {
+  this.api = clientApi
 }
 
 /**
  * Returns True if ZAP will break on both requests and responses
  **/
 Break.prototype.isBreakAll = function () {
-    return this.api.request('/break/view/isBreakAll/')
+  return this.api.request('/break/view/isBreakAll/')
 }
 
 /**
  * Returns True if ZAP will break on requests
  **/
 Break.prototype.isBreakRequest = function () {
-    return this.api.request('/break/view/isBreakRequest/')
+  return this.api.request('/break/view/isBreakRequest/')
 }
 
 /**
  * Returns True if ZAP will break on responses
  **/
 Break.prototype.isBreakResponse = function () {
-    return this.api.request('/break/view/isBreakResponse/')
+  return this.api.request('/break/view/isBreakResponse/')
 }
 
 /**
  * Returns the HTTP message currently intercepted (if any)
  **/
 Break.prototype.httpMessage = function () {
-    return this.api.request('/break/view/httpMessage/')
+  return this.api.request('/break/view/httpMessage/')
 }
 
 /**
@@ -62,11 +61,11 @@ Break.prototype.httpMessage = function () {
  * @param {string} scope
  **/
 Break.prototype.brk = function (args) {
-  const params = {'type': args.type, 'state': args.state };
+  const params = { type: args.type, state: args.state }
   if (args.scope && args.scope !== null) {
-    params['scope'] = args.scope;
+    params.scope = args.scope
   }
-    return this.api.request('/break/action/break/', params)
+  return this.api.request('/break/action/break/', params)
 }
 
 /**
@@ -75,36 +74,36 @@ Break.prototype.brk = function (args) {
  * @param {string} httpbody
  **/
 Break.prototype.setHttpMessage = function (args) {
-  const params = {'httpHeader': args.httpheader };
+  const params = { httpHeader: args.httpheader }
   if (args.httpbody && args.httpbody !== null) {
-    params['httpBody'] = args.httpbody;
+    params.httpBody = args.httpbody
   }
-    return this.api.request('/break/action/setHttpMessage/', params)
+  return this.api.request('/break/action/setHttpMessage/', params)
 }
 
 /**
  * Submits the currently intercepted message and unsets the global request/response breakpoints
  **/
 Break.prototype.cont = function () {
-    return this.api.request('/break/action/continue/')
+  return this.api.request('/break/action/continue/')
 }
 
 /**
  * Submits the currently intercepted message, the next request or response will automatically be intercepted
  **/
 Break.prototype.step = function () {
-    return this.api.request('/break/action/step/')
+  return this.api.request('/break/action/step/')
 }
 
 /**
  * Drops the currently intercepted message
  **/
 Break.prototype.drop = function () {
-    return this.api.request('/break/action/drop/')
+  return this.api.request('/break/action/drop/')
 }
 
 /**
- * Adds a custom HTTP breakpoint. The string is the string to match. Location may be one of: url, request_header, request_body, response_header or response_body. Match may be: contains or regex. Inverse (match) may be true or false. Lastly, ignorecase (when matching the string) may be true or false.  
+ * Adds a custom HTTP breakpoint. The string is the string to match. Location may be one of: url, request_header, request_body, response_header or response_body. Match may be: contains or regex. Inverse (match) may be true or false. Lastly, ignorecase (when matching the string) may be true or false.
  * @param {string} string
  * @param {string} location
  * @param {string} match
@@ -112,7 +111,7 @@ Break.prototype.drop = function () {
  * @param {string} ignorecase
  **/
 Break.prototype.addHttpBreakpoint = function (args) {
-    return this.api.request('/break/action/addHttpBreakpoint/', {'string': args.string, 'location': args.location, 'match': args.match, 'inverse': args.inverse, 'ignorecase': args.ignorecase })
+  return this.api.request('/break/action/addHttpBreakpoint/', { string: args.string, location: args.location, match: args.match, inverse: args.inverse, ignorecase: args.ignorecase })
 }
 
 /**
@@ -124,7 +123,7 @@ Break.prototype.addHttpBreakpoint = function (args) {
  * @param {string} ignorecase
  **/
 Break.prototype.removeHttpBreakpoint = function (args) {
-    return this.api.request('/break/action/removeHttpBreakpoint/', {'string': args.string, 'location': args.location, 'match': args.match, 'inverse': args.inverse, 'ignorecase': args.ignorecase })
+  return this.api.request('/break/action/removeHttpBreakpoint/', { string: args.string, location: args.location, match: args.match, inverse: args.inverse, ignorecase: args.ignorecase })
 }
 
-module.exports = Break;
+module.exports = Break

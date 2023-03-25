@@ -17,14 +17,13 @@
  * limitations under the License.
  */
 
-
-'use strict';
+'use strict'
 
 /**
  * This file was automatically generated.
  */
-function Params(clientApi) {
-  this.api = clientApi;
+function Params (clientApi) {
+  this.api = clientApi
 }
 
 /**
@@ -32,11 +31,11 @@ function Params(clientApi) {
  * @param {string} site
  **/
 Params.prototype.params = function (args) {
-  const params = { };
+  const params = { }
   if (args.site && args.site !== null) {
-    params['site'] = args.site;
+    params.site = args.site
   }
-    return this.api.request('/params/view/params/', params)
+  return this.api.request('/params/view/params/', params)
 }
 
-module.exports = Params;
+module.exports = Params

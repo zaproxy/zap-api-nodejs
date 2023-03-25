@@ -17,14 +17,13 @@
  * limitations under the License.
  */
 
-
-'use strict';
+'use strict'
 
 /**
  * This file was automatically generated.
  */
-function Exim(clientApi) {
-  this.api = clientApi;
+function Exim (clientApi) {
+  this.api = clientApi
 }
 
 /**
@@ -33,7 +32,7 @@ function Exim(clientApi) {
  * @param {string} filepath
  **/
 Exim.prototype.importHar = function (args) {
-    return this.api.request('/exim/action/importHar/', {'filePath': args.filepath })
+  return this.api.request('/exim/action/importHar/', { filePath: args.filepath })
 }
 
 /**
@@ -42,7 +41,7 @@ Exim.prototype.importHar = function (args) {
  * @param {string} filepath
  **/
 Exim.prototype.importUrls = function (args) {
-    return this.api.request('/exim/action/importUrls/', {'filePath': args.filepath })
+  return this.api.request('/exim/action/importUrls/', { filePath: args.filepath })
 }
 
 /**
@@ -51,7 +50,7 @@ Exim.prototype.importUrls = function (args) {
  * @param {string} filepath
  **/
 Exim.prototype.importZapLogs = function (args) {
-    return this.api.request('/exim/action/importZapLogs/', {'filePath': args.filepath })
+  return this.api.request('/exim/action/importZapLogs/', { filePath: args.filepath })
 }
 
 /**
@@ -60,7 +59,7 @@ Exim.prototype.importZapLogs = function (args) {
  * @param {string} filepath
  **/
 Exim.prototype.importModsec2Logs = function (args) {
-    return this.api.request('/exim/action/importModsec2Logs/', {'filePath': args.filepath })
+  return this.api.request('/exim/action/importModsec2Logs/', { filePath: args.filepath })
 }
 
 /**
@@ -71,17 +70,17 @@ Exim.prototype.importModsec2Logs = function (args) {
  * @param {string} count - The number of results to return.
  **/
 Exim.prototype.exportHar = function (args) {
-  const params = { };
+  const params = { }
   if (args.baseurl && args.baseurl !== null) {
-    params['baseurl'] = args.baseurl;
+    params.baseurl = args.baseurl
   }
   if (args.start && args.start !== null) {
-    params['start'] = args.start;
+    params.start = args.start
   }
   if (args.count && args.count !== null) {
-    params['count'] = args.count;
+    params.count = args.count
   }
-    return this.api.request('/exim/other/exportHar/', params, 'other')
+  return this.api.request('/exim/other/exportHar/', params, 'other')
 }
 
 /**
@@ -90,7 +89,7 @@ Exim.prototype.exportHar = function (args) {
  * @param {string} ids - The ID (number(s)) of the message(s) to be returned.
  **/
 Exim.prototype.exportHarById = function (args) {
-    return this.api.request('/exim/other/exportHarById/', {'ids': args.ids }, 'other')
+  return this.api.request('/exim/other/exportHarById/', { ids: args.ids }, 'other')
 }
 
 /**
@@ -100,11 +99,11 @@ Exim.prototype.exportHarById = function (args) {
  * @param {string} followredirects - True if redirects should be followed, false otherwise.
  **/
 Exim.prototype.sendHarRequest = function (args) {
-  const params = {'request': args.request };
+  const params = { request: args.request }
   if (args.followredirects && args.followredirects !== null) {
-    params['followRedirects'] = args.followredirects;
+    params.followRedirects = args.followredirects
   }
-    return this.api.request('/exim/other/sendHarRequest/', params, 'other')
+  return this.api.request('/exim/other/sendHarRequest/', params, 'other')
 }
 
-module.exports = Exim;
+module.exports = Exim

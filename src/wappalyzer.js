@@ -17,14 +17,13 @@
  * limitations under the License.
  */
 
-
-'use strict';
+'use strict'
 
 /**
  * This file was automatically generated.
  */
-function Wappalyzer(clientApi) {
-  this.api = clientApi;
+function Wappalyzer (clientApi) {
+  this.api = clientApi
 }
 
 /**
@@ -32,7 +31,7 @@ function Wappalyzer(clientApi) {
  * This component is optional and therefore the API will only work if it is installed
  **/
 Wappalyzer.prototype.listSites = function () {
-    return this.api.request('/wappalyzer/view/listSites/')
+  return this.api.request('/wappalyzer/view/listSites/')
 }
 
 /**
@@ -40,7 +39,7 @@ Wappalyzer.prototype.listSites = function () {
  * This component is optional and therefore the API will only work if it is installed
  **/
 Wappalyzer.prototype.listAll = function () {
-    return this.api.request('/wappalyzer/view/listAll/')
+  return this.api.request('/wappalyzer/view/listAll/')
 }
 
 /**
@@ -49,7 +48,7 @@ Wappalyzer.prototype.listAll = function () {
  * @param {string} site
  **/
 Wappalyzer.prototype.listSite = function (args) {
-    return this.api.request('/wappalyzer/view/listSite/', {'site': args.site })
+  return this.api.request('/wappalyzer/view/listSite/', { site: args.site })
 }
 
-module.exports = Wappalyzer;
+module.exports = Wappalyzer
