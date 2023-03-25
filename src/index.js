@@ -111,11 +111,11 @@ ClientApi.prototype.request = async (url, data, format) => {
   try {
     let requestConfig = defaultAxiosConfig;
     if (data) {
-      config.params = { ...config.params, ...data };
+      requestConfig.params = { ...requestConfig.params, ...data };
     }
     let response;
     if (format === 'other') {
-      config = { ...config, baseURL: BASE_URL_OTHER };
+      requestConfig = { ...requestConfig, baseURL: BASE_URL_OTHER };
     }
     response = await axios.get(url, requestConfig);
 
