@@ -52,14 +52,15 @@ async function invokeApi() {
 ### Use the Node API:
 
 ```js
-let response = await zaproxy.spider.scanAsUser({
+let params = {
   contextId,
   userId,
   setBaseUrl,
   maxChildren,
   recurse,
   subtreeonly,
-});
+};
+let response = await zaproxy.spider.scanAsUser(params);
 console.log(response);
 ```
 
@@ -70,9 +71,6 @@ For a full API list, see [https://github.com/zaproxy/zaproxy/wiki/ApiGen_Index](
 The Node API methods have the same signature as the API documentation, featuring both callback and promise based interfaces, making everyone happy.
 
 The API key is no longer explicitly required on any Node API method invocations. Unless you have disabled the API key when running ZAP, simply provide it on Node API instantiation as mentioned in the [Usage](#usage) section and it will be provided automatically with each request to the ZAP API.
-
-**Callback mode**: If you provide a callback as the last parameter, the callback will be called with error and response arguments, with the response being an object that corresponds to the JSON output of the API call.
-**Promise mode**: If you wish to use the modern approach, simply don't provide a callback, and a native promise will be returned for you to deal with as you wish.
 
 ## Getting Help
 
