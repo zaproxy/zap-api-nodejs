@@ -109,7 +109,7 @@ function ClientApi(options) {
 
 ClientApi.prototype.request = async (url, data, format) => {
   try {
-    let requestConfig = defaultAxiosConfig;
+    let requestConfig = structuredClone(defaultAxiosConfig);
     if (data) {
       requestConfig.params = { ...requestConfig.params, ...data };
     }
