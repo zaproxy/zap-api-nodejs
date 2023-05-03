@@ -55,7 +55,7 @@ async function invokeApi() {
 let params = {
   contextId,
   userId,
-  setBaseUrl,
+  sutBaseUrl,
   maxChildren,
   recurse,
   subtreeonly,
