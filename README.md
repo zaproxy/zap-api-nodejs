@@ -53,10 +53,10 @@ async function invokeApi() {
 
 ```js
 let params = {
-  contextId,
-  userId,
-  sutBaseUrl,
-  maxChildren,
+  contextid,
+  userid,
+  sutbaseurl,
+  maxchildren,
   recurse,
   subtreeonly,
 };
