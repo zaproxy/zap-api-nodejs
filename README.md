@@ -78,8 +78,6 @@ For help using the OWASP ZAP API refer to:
 - [API Documentation](https://www.zaproxy.org/docs/api/);
 - [OWASP ZAP User Group](https://groups.google.com/group/zaproxy-users) - for asking questions;
 
-For specific help with this Node API, contact [@njmulsqb](https://github.com/njmulsqb) (the maintainer).
-
 ## Issues
 
 To report issues related to the OWASP ZAP Node API, bugs and enhancements requests, use the [issue tracker of the main OWASP ZAP project](https://github.com/zaproxy/zaproxy/issues).
