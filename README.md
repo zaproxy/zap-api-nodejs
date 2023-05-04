@@ -59,7 +59,7 @@ let params = {
   recurse,
   subtreeonly,
 };
-let response = await zaproxy.spider.scanAsUser(params);
+let response = zaproxy.spider.scanAsUser(params);
 console.log(response);
 ```
 
