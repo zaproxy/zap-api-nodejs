@@ -51,12 +51,12 @@ const ZapClient = require('zaproxy');
 
 ```js
 let params = {
-  contextid,
-  userid,
-  sutbaseurl,
-  maxchildren,
-  recurse,
-  subtreeonly,
+  contextid: contextid,
+  userid: userid,
+  url: sutbaseurl,
+  maxchildren: maxchildren,
+  recurse: recurse,
+  subtreeonly: subtreeonly,
 };
 let response = zaproxy.spider.scanAsUser(params);
 console.log(response);
