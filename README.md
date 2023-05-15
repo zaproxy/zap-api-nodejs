@@ -38,15 +38,14 @@ You can disable the API key when running ZAP if you are on a trusted network and
 const ZapClient = require('zaproxy');
 
 const zapOptions = {
+  apiKey: 'eahhr6h6kal92j21gkcnhkp80t',
+  proxy: {
+    host: '127.0.0.1',
+    port: 8080,
+  },
+};
 
-    apiKey: 'eahhr6h6kal92j21gkcnhkp80t',
-    proxy: {
-      host: '127.0.0.1',
-      port: 8080,
-    },
-  };
-  
-  const zaproxy = new ZapClient(zapOptions);
+const zaproxy = new ZapClient(zapOptions);
 
 ```
 
