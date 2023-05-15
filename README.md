@@ -38,32 +38,30 @@ You can disable the API key when running ZAP if you are on a trusted network and
 const ZapClient = require('zaproxy');
 
 const zapOptions = {
-  apiKey: <the key you supplied to ZAP when you started it>, // I.E. 'v90dnblpqs1pcac991tn2oudl',
-  proxy: <protocol>://<host>:<port> // I.E. 'http://192.168.0.10:8080'
+  apiKey: 'eahhr6h6kal92j21gkcnhkp80t',
+  proxy: {
+    host: '127.0.0.1',
+    port: 8080,
+  },
 };
 
 const zaproxy = new ZapClient(zapOptions);
+
 ```
 
 ### Use the Node API:
 
-Callbacks:
-
 ```js
-zaproxy.spider.scanAsUser(contextId, userId, sutBaseUrl, maxChildren, recurse, subtreeonly, (err, resp) => {
-  if (err) // Handle the error.
-  if (resp) // Handle the response.
-});
-```
-
-Promises:
-
-```js
-await zaproxy.spider.scanAsUser(contextId, userId, sutBaseUrl, maxChildren)
-  .then(
-    resp => console.log(JSON.stringify(resp)),
-    err => `Error occurred while attempting to scan as user. Error was: ${err.message}`
-  );
+let params = {
+  contextid: contextid,
+  userid: userid,
+  url: sutbaseurl,
+  maxchildren: maxchildren,
+  recurse: recurse,
+  subtreeonly: subtreeonly,
+};
+let response = await zaproxy.spider.scanAsUser(params);
+console.log(response);
 ```
 
 ## API
@@ -74,9 +72,6 @@ The Node API methods have the same signature as the API documentation, featuring
 
 The API key is no longer explicitly required on any Node API method invocations. Unless you have disabled the API key when running ZAP, simply provide it on Node API instantiation as mentioned in the [Usage](#usage) section and it will be provided automatically with each request to the ZAP API.
 
-**Callback mode**: If you provide a callback as the last parameter, the callback will be called with error and response arguments, with the response being an object that corresponds to the JSON output of the API call.  
-**Promise mode**: If you wish to use the modern approach, simply don't provide a callback, and a native promise will be returned for you to deal with as you wish.
-
 ## Getting Help
 
 For help using the OWASP ZAP API refer to:
@@ -84,8 +79,6 @@ For help using the OWASP ZAP API refer to:
   * [API Documentation](https://www.zaproxy.org/docs/api/);
   * [OWASP ZAP User Group](https://groups.google.com/group/zaproxy-users) - for asking questions;
 
-For specific help with this Node API, contact [@binarymist](https://github.com/binarymist) (the maintainer).
-  
 ## Issues
 
 To report issues related to the OWASP ZAP Node API, bugs and enhancements requests, use the [issue tracker of the main OWASP ZAP project](https://github.com/zaproxy/zaproxy/issues).
