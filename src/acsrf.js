@@ -30,39 +30,39 @@ function Acsrf(clientApi) {
 /**
  * Lists the names of all anti-CSRF tokens
  **/
-Acsrf.prototype.optionTokensNames = async function () {
-    return await this.api.request('/acsrf/view/optionTokensNames/')
+Acsrf.prototype.optionTokensNames = function () {
+    return this.api.request('/acsrf/view/optionTokensNames/')
 }
 
 /**
  * Define if ZAP should detect CSRF tokens by searching for partial matches
  **/
-Acsrf.prototype.optionPartialMatchingEnabled = async function () {
-    return await this.api.request('/acsrf/view/optionPartialMatchingEnabled/')
+Acsrf.prototype.optionPartialMatchingEnabled = function () {
+    return this.api.request('/acsrf/view/optionPartialMatchingEnabled/')
 }
 
 /**
  * Adds an anti-CSRF token with the given name, enabled by default
  * @param {string} string
  **/
-Acsrf.prototype.addOptionToken = async function (args) {
-    return await this.api.request('/acsrf/action/addOptionToken/', {'String': args.string })
+Acsrf.prototype.addOptionToken = function (args) {
+    return this.api.request('/acsrf/action/addOptionToken/', {'String': args.string })
 }
 
 /**
  * Removes the anti-CSRF token with the given name
  * @param {string} string
  **/
-Acsrf.prototype.removeOptionToken = async function (args) {
-    return await this.api.request('/acsrf/action/removeOptionToken/', {'String': args.string })
+Acsrf.prototype.removeOptionToken = function (args) {
+    return this.api.request('/acsrf/action/removeOptionToken/', {'String': args.string })
 }
 
 /**
  * Define if ZAP should detect CSRF tokens by searching for partial matches.
  * @param {string} bool
  **/
-Acsrf.prototype.setOptionPartialMatchingEnabled = async function (args) {
-    return await this.api.request('/acsrf/action/setOptionPartialMatchingEnabled/', {'Boolean': args.bool })
+Acsrf.prototype.setOptionPartialMatchingEnabled = function (args) {
+    return this.api.request('/acsrf/action/setOptionPartialMatchingEnabled/', {'Boolean': args.bool })
 }
 
 /**
@@ -70,12 +70,12 @@ Acsrf.prototype.setOptionPartialMatchingEnabled = async function (args) {
  * @param {string} hrefid - Define which request will be used
  * @param {string} actionurl - Define the action URL to be used in the generated form
  **/
-Acsrf.prototype.genForm = async function (args) {
+Acsrf.prototype.genForm = function (args) {
   const params = {'hrefId': args.hrefid };
   if (args.actionurl && args.actionurl !== null) {
     params['actionUrl'] = args.actionurl;
   }
-    return await this.api.request('/acsrf/other/genForm/', params, 'other')
+    return this.api.request('/acsrf/other/genForm/', params, 'other')
 }
 
 module.exports = Acsrf;

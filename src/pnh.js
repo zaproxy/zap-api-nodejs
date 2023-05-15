@@ -30,57 +30,57 @@ function Pnh(clientApi) {
 /**
  * This component is optional and therefore the API will only work if it is installed
  **/
-Pnh.prototype.monitor = async function (args) {
-    return await this.api.request('/pnh/action/monitor/', {'id': args.id, 'message': args.message })
+Pnh.prototype.monitor = function (args) {
+    return this.api.request('/pnh/action/monitor/', {'id': args.id, 'message': args.message })
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  **/
-Pnh.prototype.oracle = async function (args) {
-    return await this.api.request('/pnh/action/oracle/', {'id': args.id })
+Pnh.prototype.oracle = function (args) {
+    return this.api.request('/pnh/action/oracle/', {'id': args.id })
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  **/
-Pnh.prototype.startMonitoring = async function (args) {
-    return await this.api.request('/pnh/action/startMonitoring/', {'url': args.url })
+Pnh.prototype.startMonitoring = function (args) {
+    return this.api.request('/pnh/action/startMonitoring/', {'url': args.url })
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  **/
-Pnh.prototype.stopMonitoring = async function (args) {
-    return await this.api.request('/pnh/action/stopMonitoring/', {'id': args.id })
+Pnh.prototype.stopMonitoring = function (args) {
+    return this.api.request('/pnh/action/stopMonitoring/', {'id': args.id })
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  **/
-Pnh.prototype.pnh = async function () {
-    return await this.api.request('/pnh/other/pnh/', 'other')
+Pnh.prototype.pnh = function () {
+    return this.api.request('/pnh/other/pnh/', 'other')
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  **/
-Pnh.prototype.manifest = async function () {
-    return await this.api.request('/pnh/other/manifest/', 'other')
+Pnh.prototype.manifest = function () {
+    return this.api.request('/pnh/other/manifest/', 'other')
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  **/
-Pnh.prototype.service = async function () {
-    return await this.api.request('/pnh/other/service/', 'other')
+Pnh.prototype.service = function () {
+    return this.api.request('/pnh/other/service/', 'other')
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  **/
-Pnh.prototype.fx_pnhxpi = async function () {
-    return await this.api.request('/pnh/other/fx_pnh.xpi/', 'other')
+Pnh.prototype.fx_pnhxpi = function () {
+    return this.api.request('/pnh/other/fx_pnh.xpi/', 'other')
 }
 
 module.exports = Pnh;

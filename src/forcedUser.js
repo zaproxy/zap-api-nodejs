@@ -30,16 +30,16 @@ function ForcedUser(clientApi) {
 /**
  * Returns 'true' if 'forced user' mode is enabled, 'false' otherwise
  **/
-ForcedUser.prototype.isForcedUserModeEnabled = async function () {
-    return await this.api.request('/forcedUser/view/isForcedUserModeEnabled/')
+ForcedUser.prototype.isForcedUserModeEnabled = function () {
+    return this.api.request('/forcedUser/view/isForcedUserModeEnabled/')
 }
 
 /**
  * Gets the user (ID) set as 'forced user' for the given context (ID)
  * @param {string} contextid
  **/
-ForcedUser.prototype.getForcedUser = async function (args) {
-    return await this.api.request('/forcedUser/view/getForcedUser/', {'contextId': args.contextid })
+ForcedUser.prototype.getForcedUser = function (args) {
+    return this.api.request('/forcedUser/view/getForcedUser/', {'contextId': args.contextid })
 }
 
 /**
@@ -47,16 +47,16 @@ ForcedUser.prototype.getForcedUser = async function (args) {
  * @param {string} contextid
  * @param {string} userid
  **/
-ForcedUser.prototype.setForcedUser = async function (args) {
-    return await this.api.request('/forcedUser/action/setForcedUser/', {'contextId': args.contextid, 'userId': args.userid })
+ForcedUser.prototype.setForcedUser = function (args) {
+    return this.api.request('/forcedUser/action/setForcedUser/', {'contextId': args.contextid, 'userId': args.userid })
 }
 
 /**
  * Sets if 'forced user' mode should be enabled or not
  * @param {string} bool
  **/
-ForcedUser.prototype.setForcedUserModeEnabled = async function (args) {
-    return await this.api.request('/forcedUser/action/setForcedUserModeEnabled/', {'boolean': args.bool })
+ForcedUser.prototype.setForcedUserModeEnabled = function (args) {
+    return this.api.request('/forcedUser/action/setForcedUserModeEnabled/', {'boolean': args.bool })
 }
 
 module.exports = ForcedUser;

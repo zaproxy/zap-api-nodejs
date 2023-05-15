@@ -31,8 +31,8 @@ function Reveal(clientApi) {
  * Tells if shows hidden fields and enables disabled fields
  * This component is optional and therefore the API will only work if it is installed
  **/
-Reveal.prototype.reveal = async function () {
-    return await this.api.request('/reveal/view/reveal/')
+Reveal.prototype.reveal = function () {
+    return this.api.request('/reveal/view/reveal/')
 }
 
 /**
@@ -40,8 +40,8 @@ Reveal.prototype.reveal = async function () {
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} reveal
  **/
-Reveal.prototype.setReveal = async function (args) {
-    return await this.api.request('/reveal/action/setReveal/', {'reveal': args.reveal })
+Reveal.prototype.setReveal = function (args) {
+    return this.api.request('/reveal/action/setReveal/', {'reveal': args.reveal })
 }
 
 module.exports = Reveal;

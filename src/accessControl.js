@@ -32,8 +32,8 @@ function AccessControl(clientApi) {
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} contextid
  **/
-AccessControl.prototype.getScanProgress = async function (args) {
-    return await this.api.request('/accessControl/view/getScanProgress/', {'contextId': args.contextid })
+AccessControl.prototype.getScanProgress = function (args) {
+    return this.api.request('/accessControl/view/getScanProgress/', {'contextId': args.contextid })
 }
 
 /**
@@ -41,8 +41,8 @@ AccessControl.prototype.getScanProgress = async function (args) {
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} contextid
  **/
-AccessControl.prototype.getScanStatus = async function (args) {
-    return await this.api.request('/accessControl/view/getScanStatus/', {'contextId': args.contextid })
+AccessControl.prototype.getScanStatus = function (args) {
+    return this.api.request('/accessControl/view/getScanStatus/', {'contextId': args.contextid })
 }
 
 /**
@@ -54,7 +54,7 @@ AccessControl.prototype.getScanStatus = async function (args) {
  * @param {string} raisealert
  * @param {string} alertrisklevel
  **/
-AccessControl.prototype.scan = async function (args) {
+AccessControl.prototype.scan = function (args) {
   const params = {'contextId': args.contextid, 'userId': args.userid };
   if (args.scanasunauthuser && args.scanasunauthuser !== null) {
     params['scanAsUnAuthUser'] = args.scanasunauthuser;
@@ -65,7 +65,7 @@ AccessControl.prototype.scan = async function (args) {
   if (args.alertrisklevel && args.alertrisklevel !== null) {
     params['alertRiskLevel'] = args.alertrisklevel;
   }
-    return await this.api.request('/accessControl/action/scan/', params)
+    return this.api.request('/accessControl/action/scan/', params)
 }
 
 /**
@@ -74,8 +74,8 @@ AccessControl.prototype.scan = async function (args) {
  * @param {string} contextid
  * @param {string} filename
  **/
-AccessControl.prototype.writeHTMLreport = async function (args) {
-    return await this.api.request('/accessControl/action/writeHTMLreport/', {'contextId': args.contextid, 'fileName': args.filename })
+AccessControl.prototype.writeHTMLreport = function (args) {
+    return this.api.request('/accessControl/action/writeHTMLreport/', {'contextId': args.contextid, 'fileName': args.filename })
 }
 
 module.exports = AccessControl;

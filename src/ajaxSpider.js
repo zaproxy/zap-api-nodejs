@@ -31,16 +31,16 @@ function AjaxSpider(clientApi) {
  * Gets the allowed resources. The allowed resources are always fetched even if out of scope, allowing to include necessary resources (e.g. scripts) from 3rd-parties.
  * This component is optional and therefore the API will only work if it is installed
  **/
-AjaxSpider.prototype.allowedResources = async function () {
-    return await this.api.request('/ajaxSpider/view/allowedResources/')
+AjaxSpider.prototype.allowedResources = function () {
+    return this.api.request('/ajaxSpider/view/allowedResources/')
 }
 
 /**
  * Gets the current status of the crawler. Actual values are Stopped and Running.
  * This component is optional and therefore the API will only work if it is installed
  **/
-AjaxSpider.prototype.status = async function () {
-    return await this.api.request('/ajaxSpider/view/status/')
+AjaxSpider.prototype.status = function () {
+    return this.api.request('/ajaxSpider/view/status/')
 }
 
 /**
@@ -49,7 +49,7 @@ AjaxSpider.prototype.status = async function () {
  * @param {string} start - The position (or offset) within the results to use as a starting position for the information returned.
  * @param {string} count - The number of results to return.
  **/
-AjaxSpider.prototype.results = async function (args) {
+AjaxSpider.prototype.results = function (args) {
   const params = { };
   if (args.start && args.start !== null) {
     params['start'] = args.start;
@@ -57,103 +57,103 @@ AjaxSpider.prototype.results = async function (args) {
   if (args.count && args.count !== null) {
     params['count'] = args.count;
   }
-    return await this.api.request('/ajaxSpider/view/results/', params)
+    return this.api.request('/ajaxSpider/view/results/', params)
 }
 
 /**
  * Gets the number of resources found.
  * This component is optional and therefore the API will only work if it is installed
  **/
-AjaxSpider.prototype.numberOfResults = async function () {
-    return await this.api.request('/ajaxSpider/view/numberOfResults/')
+AjaxSpider.prototype.numberOfResults = function () {
+    return this.api.request('/ajaxSpider/view/numberOfResults/')
 }
 
 /**
  * Gets the full crawled content detected by the AJAX Spider. Returns a set of values based on 'inScope' URLs, 'outOfScope' URLs, and 'errors' encountered during the last/current run of the AJAX Spider.
  * This component is optional and therefore the API will only work if it is installed
  **/
-AjaxSpider.prototype.fullResults = async function () {
-    return await this.api.request('/ajaxSpider/view/fullResults/')
+AjaxSpider.prototype.fullResults = function () {
+    return this.api.request('/ajaxSpider/view/fullResults/')
 }
 
 /**
  * Gets the configured browser to use for crawling.
  * This component is optional and therefore the API will only work if it is installed
  **/
-AjaxSpider.prototype.optionBrowserId = async function () {
-    return await this.api.request('/ajaxSpider/view/optionBrowserId/')
+AjaxSpider.prototype.optionBrowserId = function () {
+    return this.api.request('/ajaxSpider/view/optionBrowserId/')
 }
 
 /**
  * Gets the time to wait after an event (in milliseconds). For example: the wait delay after the cursor hovers over an element, in order for a menu to display, etc.
  * This component is optional and therefore the API will only work if it is installed
  **/
-AjaxSpider.prototype.optionEventWait = async function () {
-    return await this.api.request('/ajaxSpider/view/optionEventWait/')
+AjaxSpider.prototype.optionEventWait = function () {
+    return this.api.request('/ajaxSpider/view/optionEventWait/')
 }
 
 /**
  * Gets the configured value for the max crawl depth.
  * This component is optional and therefore the API will only work if it is installed
  **/
-AjaxSpider.prototype.optionMaxCrawlDepth = async function () {
-    return await this.api.request('/ajaxSpider/view/optionMaxCrawlDepth/')
+AjaxSpider.prototype.optionMaxCrawlDepth = function () {
+    return this.api.request('/ajaxSpider/view/optionMaxCrawlDepth/')
 }
 
 /**
  * Gets the configured value for the maximum crawl states allowed.
  * This component is optional and therefore the API will only work if it is installed
  **/
-AjaxSpider.prototype.optionMaxCrawlStates = async function () {
-    return await this.api.request('/ajaxSpider/view/optionMaxCrawlStates/')
+AjaxSpider.prototype.optionMaxCrawlStates = function () {
+    return this.api.request('/ajaxSpider/view/optionMaxCrawlStates/')
 }
 
 /**
  * Gets the configured max duration of the crawl, the value is in minutes.
  * This component is optional and therefore the API will only work if it is installed
  **/
-AjaxSpider.prototype.optionMaxDuration = async function () {
-    return await this.api.request('/ajaxSpider/view/optionMaxDuration/')
+AjaxSpider.prototype.optionMaxDuration = function () {
+    return this.api.request('/ajaxSpider/view/optionMaxDuration/')
 }
 
 /**
  * Gets the configured number of browsers to be used.
  * This component is optional and therefore the API will only work if it is installed
  **/
-AjaxSpider.prototype.optionNumberOfBrowsers = async function () {
-    return await this.api.request('/ajaxSpider/view/optionNumberOfBrowsers/')
+AjaxSpider.prototype.optionNumberOfBrowsers = function () {
+    return this.api.request('/ajaxSpider/view/optionNumberOfBrowsers/')
 }
 
 /**
  * Gets the configured time to wait after reloading the page, this value is in milliseconds.
  * This component is optional and therefore the API will only work if it is installed
  **/
-AjaxSpider.prototype.optionReloadWait = async function () {
-    return await this.api.request('/ajaxSpider/view/optionReloadWait/')
+AjaxSpider.prototype.optionReloadWait = function () {
+    return this.api.request('/ajaxSpider/view/optionReloadWait/')
 }
 
 /**
  * Gets the configured value for 'Click Default Elements Only', HTML elements such as 'a', 'button', 'input', all associated with some action or links on the page.
  * This component is optional and therefore the API will only work if it is installed
  **/
-AjaxSpider.prototype.optionClickDefaultElems = async function () {
-    return await this.api.request('/ajaxSpider/view/optionClickDefaultElems/')
+AjaxSpider.prototype.optionClickDefaultElems = function () {
+    return this.api.request('/ajaxSpider/view/optionClickDefaultElems/')
 }
 
 /**
  * Gets the value configured for the AJAX Spider to know if it should click on the elements only once.
  * This component is optional and therefore the API will only work if it is installed
  **/
-AjaxSpider.prototype.optionClickElemsOnce = async function () {
-    return await this.api.request('/ajaxSpider/view/optionClickElemsOnce/')
+AjaxSpider.prototype.optionClickElemsOnce = function () {
+    return this.api.request('/ajaxSpider/view/optionClickElemsOnce/')
 }
 
 /**
  * Gets if the AJAX Spider will use random values in form fields when crawling, if set to true.
  * This component is optional and therefore the API will only work if it is installed
  **/
-AjaxSpider.prototype.optionRandomInputs = async function () {
-    return await this.api.request('/ajaxSpider/view/optionRandomInputs/')
+AjaxSpider.prototype.optionRandomInputs = function () {
+    return this.api.request('/ajaxSpider/view/optionRandomInputs/')
 }
 
 /**
@@ -164,7 +164,7 @@ AjaxSpider.prototype.optionRandomInputs = async function () {
  * @param {string} contextname - The name for any defined context. If the value does not match a defined context then an error will occur.
  * @param {string} subtreeonly - A boolean (true/false) indicating whether or not the crawl should be constrained to a specific path (default value is false).
  **/
-AjaxSpider.prototype.scan = async function (args) {
+AjaxSpider.prototype.scan = function (args) {
   const params = { };
   if (args.url && args.url !== null) {
     params['url'] = args.url;
@@ -178,7 +178,7 @@ AjaxSpider.prototype.scan = async function (args) {
   if (args.subtreeonly && args.subtreeonly !== null) {
     params['subtreeOnly'] = args.subtreeonly;
   }
-    return await this.api.request('/ajaxSpider/action/scan/', params)
+    return this.api.request('/ajaxSpider/action/scan/', params)
 }
 
 /**
@@ -189,7 +189,7 @@ AjaxSpider.prototype.scan = async function (args) {
  * @param {string} url - The starting URL (needs to include the 'scheme').
  * @param {string} subtreeonly - A boolean (true/false) indicating whether or not the crawl should be constrained to a specific path (default value is false).
  **/
-AjaxSpider.prototype.scanAsUser = async function (args) {
+AjaxSpider.prototype.scanAsUser = function (args) {
   const params = {'contextName': args.contextname, 'userName': args.username };
   if (args.url && args.url !== null) {
     params['url'] = args.url;
@@ -197,15 +197,15 @@ AjaxSpider.prototype.scanAsUser = async function (args) {
   if (args.subtreeonly && args.subtreeonly !== null) {
     params['subtreeOnly'] = args.subtreeonly;
   }
-    return await this.api.request('/ajaxSpider/action/scanAsUser/', params)
+    return this.api.request('/ajaxSpider/action/scanAsUser/', params)
 }
 
 /**
  * Stops the AJAX Spider.
  * This component is optional and therefore the API will only work if it is installed
  **/
-AjaxSpider.prototype.stop = async function () {
-    return await this.api.request('/ajaxSpider/action/stop/')
+AjaxSpider.prototype.stop = function () {
+    return this.api.request('/ajaxSpider/action/stop/')
 }
 
 /**
@@ -214,12 +214,12 @@ AjaxSpider.prototype.stop = async function () {
  * @param {string} regex - The regular expression of the allowed resource.
  * @param {string} enabled - If the allowed resource should be enabled or not.
  **/
-AjaxSpider.prototype.addAllowedResource = async function (args) {
+AjaxSpider.prototype.addAllowedResource = function (args) {
   const params = {'regex': args.regex };
   if (args.enabled && args.enabled !== null) {
     params['enabled'] = args.enabled;
   }
-    return await this.api.request('/ajaxSpider/action/addAllowedResource/', params)
+    return this.api.request('/ajaxSpider/action/addAllowedResource/', params)
 }
 
 /**
@@ -227,8 +227,8 @@ AjaxSpider.prototype.addAllowedResource = async function (args) {
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} regex - The regular expression of the allowed resource.
  **/
-AjaxSpider.prototype.removeAllowedResource = async function (args) {
-    return await this.api.request('/ajaxSpider/action/removeAllowedResource/', {'regex': args.regex })
+AjaxSpider.prototype.removeAllowedResource = function (args) {
+    return this.api.request('/ajaxSpider/action/removeAllowedResource/', {'regex': args.regex })
 }
 
 /**
@@ -237,8 +237,8 @@ AjaxSpider.prototype.removeAllowedResource = async function (args) {
  * @param {string} regex - The regular expression of the allowed resource.
  * @param {string} enabled - If the allowed resource should be enabled or not.
  **/
-AjaxSpider.prototype.setEnabledAllowedResource = async function (args) {
-    return await this.api.request('/ajaxSpider/action/setEnabledAllowedResource/', {'regex': args.regex, 'enabled': args.enabled })
+AjaxSpider.prototype.setEnabledAllowedResource = function (args) {
+    return this.api.request('/ajaxSpider/action/setEnabledAllowedResource/', {'regex': args.regex, 'enabled': args.enabled })
 }
 
 /**
@@ -246,8 +246,8 @@ AjaxSpider.prototype.setEnabledAllowedResource = async function (args) {
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} string - The name of the browser to be used by the AJAX Spider. (See the Selenium add-on help for a list of supported browsers.)
  **/
-AjaxSpider.prototype.setOptionBrowserId = async function (args) {
-    return await this.api.request('/ajaxSpider/action/setOptionBrowserId/', {'String': args.string })
+AjaxSpider.prototype.setOptionBrowserId = function (args) {
+    return this.api.request('/ajaxSpider/action/setOptionBrowserId/', {'String': args.string })
 }
 
 /**
@@ -255,8 +255,8 @@ AjaxSpider.prototype.setOptionBrowserId = async function (args) {
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} bool - A boolean (true/false) indicating if only default elements such as 'a' 'button' 'input' should be clicked (default is true).
  **/
-AjaxSpider.prototype.setOptionClickDefaultElems = async function (args) {
-    return await this.api.request('/ajaxSpider/action/setOptionClickDefaultElems/', {'Boolean': args.bool })
+AjaxSpider.prototype.setOptionClickDefaultElems = function (args) {
+    return this.api.request('/ajaxSpider/action/setOptionClickDefaultElems/', {'Boolean': args.bool })
 }
 
 /**
@@ -264,8 +264,8 @@ AjaxSpider.prototype.setOptionClickDefaultElems = async function (args) {
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} bool - A boolean (true/false) indicating whether or not the AJAX Spider should only click on elements once. If this is set to false, the crawler will attempt to click multiple times; which is more rigorous but may take considerably more time (default is true).
  **/
-AjaxSpider.prototype.setOptionClickElemsOnce = async function (args) {
-    return await this.api.request('/ajaxSpider/action/setOptionClickElemsOnce/', {'Boolean': args.bool })
+AjaxSpider.prototype.setOptionClickElemsOnce = function (args) {
+    return this.api.request('/ajaxSpider/action/setOptionClickElemsOnce/', {'Boolean': args.bool })
 }
 
 /**
@@ -273,8 +273,8 @@ AjaxSpider.prototype.setOptionClickElemsOnce = async function (args) {
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} integer - The time that the AJAX Spider should wait for each event (default is 1000 milliseconds).
  **/
-AjaxSpider.prototype.setOptionEventWait = async function (args) {
-    return await this.api.request('/ajaxSpider/action/setOptionEventWait/', {'Integer': args.integer })
+AjaxSpider.prototype.setOptionEventWait = function (args) {
+    return this.api.request('/ajaxSpider/action/setOptionEventWait/', {'Integer': args.integer })
 }
 
 /**
@@ -282,8 +282,8 @@ AjaxSpider.prototype.setOptionEventWait = async function (args) {
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} integer - The maximum depth that the crawler should explore (zero means unlimited depth, default is 10).
  **/
-AjaxSpider.prototype.setOptionMaxCrawlDepth = async function (args) {
-    return await this.api.request('/ajaxSpider/action/setOptionMaxCrawlDepth/', {'Integer': args.integer })
+AjaxSpider.prototype.setOptionMaxCrawlDepth = function (args) {
+    return this.api.request('/ajaxSpider/action/setOptionMaxCrawlDepth/', {'Integer': args.integer })
 }
 
 /**
@@ -291,8 +291,8 @@ AjaxSpider.prototype.setOptionMaxCrawlDepth = async function (args) {
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} integer - The maximum number of states that the AJAX Spider should explore (zero means unlimited crawl states, default is 0)
  **/
-AjaxSpider.prototype.setOptionMaxCrawlStates = async function (args) {
-    return await this.api.request('/ajaxSpider/action/setOptionMaxCrawlStates/', {'Integer': args.integer })
+AjaxSpider.prototype.setOptionMaxCrawlStates = function (args) {
+    return this.api.request('/ajaxSpider/action/setOptionMaxCrawlStates/', {'Integer': args.integer })
 }
 
 /**
@@ -300,8 +300,8 @@ AjaxSpider.prototype.setOptionMaxCrawlStates = async function (args) {
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} integer - The maximum amount of time that the AJAX Spider is allowed to run (zero means unlimited running time, default is 60 minutes).
  **/
-AjaxSpider.prototype.setOptionMaxDuration = async function (args) {
-    return await this.api.request('/ajaxSpider/action/setOptionMaxDuration/', {'Integer': args.integer })
+AjaxSpider.prototype.setOptionMaxDuration = function (args) {
+    return this.api.request('/ajaxSpider/action/setOptionMaxDuration/', {'Integer': args.integer })
 }
 
 /**
@@ -309,8 +309,8 @@ AjaxSpider.prototype.setOptionMaxDuration = async function (args) {
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} integer - The number of windows that the AJAX Spider can use. The more windows, the faster the process will be. However, more windows also means greater resource usage (CPU, Memory, etc), and could lead to concurrency issues depending on the app being explored (default is 1).
  **/
-AjaxSpider.prototype.setOptionNumberOfBrowsers = async function (args) {
-    return await this.api.request('/ajaxSpider/action/setOptionNumberOfBrowsers/', {'Integer': args.integer })
+AjaxSpider.prototype.setOptionNumberOfBrowsers = function (args) {
+    return this.api.request('/ajaxSpider/action/setOptionNumberOfBrowsers/', {'Integer': args.integer })
 }
 
 /**
@@ -318,8 +318,8 @@ AjaxSpider.prototype.setOptionNumberOfBrowsers = async function (args) {
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} bool - A boolean (true/false) indicating whether or not random values should be use in form fields. Otherwise, empty values are submitted (default is true).
  **/
-AjaxSpider.prototype.setOptionRandomInputs = async function (args) {
-    return await this.api.request('/ajaxSpider/action/setOptionRandomInputs/', {'Boolean': args.bool })
+AjaxSpider.prototype.setOptionRandomInputs = function (args) {
+    return this.api.request('/ajaxSpider/action/setOptionRandomInputs/', {'Boolean': args.bool })
 }
 
 /**
@@ -327,8 +327,8 @@ AjaxSpider.prototype.setOptionRandomInputs = async function (args) {
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} integer - The number of milliseconds the AJAX Spider should wait after a page is loaded (default is 1000).
  **/
-AjaxSpider.prototype.setOptionReloadWait = async function (args) {
-    return await this.api.request('/ajaxSpider/action/setOptionReloadWait/', {'Integer': args.integer })
+AjaxSpider.prototype.setOptionReloadWait = function (args) {
+    return this.api.request('/ajaxSpider/action/setOptionReloadWait/', {'Integer': args.integer })
 }
 
 module.exports = AjaxSpider;

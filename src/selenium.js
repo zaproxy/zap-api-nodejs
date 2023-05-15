@@ -30,62 +30,62 @@ function Selenium(clientApi) {
 /**
  * This component is optional and therefore the API will only work if it is installed
  **/
-Selenium.prototype.optionBrowserExtensions = async function () {
-    return await this.api.request('/selenium/view/optionBrowserExtensions/')
+Selenium.prototype.optionBrowserExtensions = function () {
+    return this.api.request('/selenium/view/optionBrowserExtensions/')
 }
 
 /**
  * Returns the current path to Chrome binary
  * This component is optional and therefore the API will only work if it is installed
  **/
-Selenium.prototype.optionChromeBinaryPath = async function () {
-    return await this.api.request('/selenium/view/optionChromeBinaryPath/')
+Selenium.prototype.optionChromeBinaryPath = function () {
+    return this.api.request('/selenium/view/optionChromeBinaryPath/')
 }
 
 /**
  * Returns the current path to ChromeDriver
  * This component is optional and therefore the API will only work if it is installed
  **/
-Selenium.prototype.optionChromeDriverPath = async function () {
-    return await this.api.request('/selenium/view/optionChromeDriverPath/')
+Selenium.prototype.optionChromeDriverPath = function () {
+    return this.api.request('/selenium/view/optionChromeDriverPath/')
 }
 
 /**
  * Returns the current path to Firefox binary
  * This component is optional and therefore the API will only work if it is installed
  **/
-Selenium.prototype.optionFirefoxBinaryPath = async function () {
-    return await this.api.request('/selenium/view/optionFirefoxBinaryPath/')
+Selenium.prototype.optionFirefoxBinaryPath = function () {
+    return this.api.request('/selenium/view/optionFirefoxBinaryPath/')
 }
 
 /**
  * Returns the current path to Firefox driver (geckodriver)
  * This component is optional and therefore the API will only work if it is installed
  **/
-Selenium.prototype.optionFirefoxDriverPath = async function () {
-    return await this.api.request('/selenium/view/optionFirefoxDriverPath/')
+Selenium.prototype.optionFirefoxDriverPath = function () {
+    return this.api.request('/selenium/view/optionFirefoxDriverPath/')
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  **/
-Selenium.prototype.optionIeDriverPath = async function () {
-    return await this.api.request('/selenium/view/optionIeDriverPath/')
+Selenium.prototype.optionIeDriverPath = function () {
+    return this.api.request('/selenium/view/optionIeDriverPath/')
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  **/
-Selenium.prototype.optionLastDirectory = async function () {
-    return await this.api.request('/selenium/view/optionLastDirectory/')
+Selenium.prototype.optionLastDirectory = function () {
+    return this.api.request('/selenium/view/optionLastDirectory/')
 }
 
 /**
  * Returns the current path to PhantomJS binary
  * This component is optional and therefore the API will only work if it is installed
  **/
-Selenium.prototype.optionPhantomJsBinaryPath = async function () {
-    return await this.api.request('/selenium/view/optionPhantomJsBinaryPath/')
+Selenium.prototype.optionPhantomJsBinaryPath = function () {
+    return this.api.request('/selenium/view/optionPhantomJsBinaryPath/')
 }
 
 /**
@@ -93,8 +93,8 @@ Selenium.prototype.optionPhantomJsBinaryPath = async function () {
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} string
  **/
-Selenium.prototype.setOptionChromeBinaryPath = async function (args) {
-    return await this.api.request('/selenium/action/setOptionChromeBinaryPath/', {'String': args.string })
+Selenium.prototype.setOptionChromeBinaryPath = function (args) {
+    return this.api.request('/selenium/action/setOptionChromeBinaryPath/', {'String': args.string })
 }
 
 /**
@@ -102,8 +102,8 @@ Selenium.prototype.setOptionChromeBinaryPath = async function (args) {
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} string
  **/
-Selenium.prototype.setOptionChromeDriverPath = async function (args) {
-    return await this.api.request('/selenium/action/setOptionChromeDriverPath/', {'String': args.string })
+Selenium.prototype.setOptionChromeDriverPath = function (args) {
+    return this.api.request('/selenium/action/setOptionChromeDriverPath/', {'String': args.string })
 }
 
 /**
@@ -111,8 +111,8 @@ Selenium.prototype.setOptionChromeDriverPath = async function (args) {
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} string
  **/
-Selenium.prototype.setOptionFirefoxBinaryPath = async function (args) {
-    return await this.api.request('/selenium/action/setOptionFirefoxBinaryPath/', {'String': args.string })
+Selenium.prototype.setOptionFirefoxBinaryPath = function (args) {
+    return this.api.request('/selenium/action/setOptionFirefoxBinaryPath/', {'String': args.string })
 }
 
 /**
@@ -120,22 +120,22 @@ Selenium.prototype.setOptionFirefoxBinaryPath = async function (args) {
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} string
  **/
-Selenium.prototype.setOptionFirefoxDriverPath = async function (args) {
-    return await this.api.request('/selenium/action/setOptionFirefoxDriverPath/', {'String': args.string })
+Selenium.prototype.setOptionFirefoxDriverPath = function (args) {
+    return this.api.request('/selenium/action/setOptionFirefoxDriverPath/', {'String': args.string })
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  **/
-Selenium.prototype.setOptionIeDriverPath = async function (args) {
-    return await this.api.request('/selenium/action/setOptionIeDriverPath/', {'String': args.string })
+Selenium.prototype.setOptionIeDriverPath = function (args) {
+    return this.api.request('/selenium/action/setOptionIeDriverPath/', {'String': args.string })
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  **/
-Selenium.prototype.setOptionLastDirectory = async function (args) {
-    return await this.api.request('/selenium/action/setOptionLastDirectory/', {'String': args.string })
+Selenium.prototype.setOptionLastDirectory = function (args) {
+    return this.api.request('/selenium/action/setOptionLastDirectory/', {'String': args.string })
 }
 
 /**
@@ -143,8 +143,8 @@ Selenium.prototype.setOptionLastDirectory = async function (args) {
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} string
  **/
-Selenium.prototype.setOptionPhantomJsBinaryPath = async function (args) {
-    return await this.api.request('/selenium/action/setOptionPhantomJsBinaryPath/', {'String': args.string })
+Selenium.prototype.setOptionPhantomJsBinaryPath = function (args) {
+    return this.api.request('/selenium/action/setOptionPhantomJsBinaryPath/', {'String': args.string })
 }
 
 module.exports = Selenium;
