@@ -31,8 +31,8 @@ function Websocket(clientApi) {
  * Returns all of the registered web socket channels
  * This component is optional and therefore the API will only work if it is installed
  **/
-Websocket.prototype.channels = async function () {
-    return await this.api.request('/websocket/view/channels/')
+Websocket.prototype.channels = function () {
+    return this.api.request('/websocket/view/channels/')
 }
 
 /**
@@ -41,8 +41,8 @@ Websocket.prototype.channels = async function () {
  * @param {string} channelid
  * @param {string} messageid
  **/
-Websocket.prototype.message = async function (args) {
-    return await this.api.request('/websocket/view/message/', {'channelId': args.channelid, 'messageId': args.messageid })
+Websocket.prototype.message = function (args) {
+    return this.api.request('/websocket/view/message/', {'channelId': args.channelid, 'messageId': args.messageid })
 }
 
 /**
@@ -53,7 +53,7 @@ Websocket.prototype.message = async function (args) {
  * @param {string} count
  * @param {string} payloadpreviewlength
  **/
-Websocket.prototype.messages = async function (args) {
+Websocket.prototype.messages = function (args) {
   const params = { };
   if (args.channelid && args.channelid !== null) {
     params['channelId'] = args.channelid;
@@ -67,15 +67,15 @@ Websocket.prototype.messages = async function (args) {
   if (args.payloadpreviewlength && args.payloadpreviewlength !== null) {
     params['payloadPreviewLength'] = args.payloadpreviewlength;
   }
-    return await this.api.request('/websocket/view/messages/', params)
+    return this.api.request('/websocket/view/messages/', params)
 }
 
 /**
  * Returns a text representation of an intercepted websockets message
  * This component is optional and therefore the API will only work if it is installed
  **/
-Websocket.prototype.breakTextMessage = async function () {
-    return await this.api.request('/websocket/view/breakTextMessage/')
+Websocket.prototype.breakTextMessage = function () {
+    return this.api.request('/websocket/view/breakTextMessage/')
 }
 
 /**
@@ -85,8 +85,8 @@ Websocket.prototype.breakTextMessage = async function () {
  * @param {string} outgoing
  * @param {string} message
  **/
-Websocket.prototype.sendTextMessage = async function (args) {
-    return await this.api.request('/websocket/action/sendTextMessage/', {'channelId': args.channelid, 'outgoing': args.outgoing, 'message': args.message })
+Websocket.prototype.sendTextMessage = function (args) {
+    return this.api.request('/websocket/action/sendTextMessage/', {'channelId': args.channelid, 'outgoing': args.outgoing, 'message': args.message })
 }
 
 /**
@@ -95,8 +95,8 @@ Websocket.prototype.sendTextMessage = async function (args) {
  * @param {string} message
  * @param {string} outgoing
  **/
-Websocket.prototype.setBreakTextMessage = async function (args) {
-    return await this.api.request('/websocket/action/setBreakTextMessage/', {'message': args.message, 'outgoing': args.outgoing })
+Websocket.prototype.setBreakTextMessage = function (args) {
+    return this.api.request('/websocket/action/setBreakTextMessage/', {'message': args.message, 'outgoing': args.outgoing })
 }
 
 module.exports = Websocket;

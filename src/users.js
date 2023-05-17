@@ -31,12 +31,12 @@ function Users(clientApi) {
  * Gets a list of users that belong to the context with the given ID, or all users if none provided.
  * @param {string} contextid - The Context ID
  **/
-Users.prototype.usersList = async function (args) {
+Users.prototype.usersList = function (args) {
   const params = { };
   if (args.contextid && args.contextid !== null) {
     params['contextId'] = args.contextid;
   }
-    return await this.api.request('/users/view/usersList/', params)
+    return this.api.request('/users/view/usersList/', params)
 }
 
 /**
@@ -44,16 +44,16 @@ Users.prototype.usersList = async function (args) {
  * @param {string} contextid - The Context ID
  * @param {string} userid - The User ID
  **/
-Users.prototype.getUserById = async function (args) {
-    return await this.api.request('/users/view/getUserById/', {'contextId': args.contextid, 'userId': args.userid })
+Users.prototype.getUserById = function (args) {
+    return this.api.request('/users/view/getUserById/', {'contextId': args.contextid, 'userId': args.userid })
 }
 
 /**
  * Gets the configuration parameters for the credentials of the context with the given ID.
  * @param {string} contextid - The Context ID
  **/
-Users.prototype.getAuthenticationCredentialsConfigParams = async function (args) {
-    return await this.api.request('/users/view/getAuthenticationCredentialsConfigParams/', {'contextId': args.contextid })
+Users.prototype.getAuthenticationCredentialsConfigParams = function (args) {
+    return this.api.request('/users/view/getAuthenticationCredentialsConfigParams/', {'contextId': args.contextid })
 }
 
 /**
@@ -61,8 +61,8 @@ Users.prototype.getAuthenticationCredentialsConfigParams = async function (args)
  * @param {string} contextid - The Context ID
  * @param {string} userid - the User ID
  **/
-Users.prototype.getAuthenticationCredentials = async function (args) {
-    return await this.api.request('/users/view/getAuthenticationCredentials/', {'contextId': args.contextid, 'userId': args.userid })
+Users.prototype.getAuthenticationCredentials = function (args) {
+    return this.api.request('/users/view/getAuthenticationCredentials/', {'contextId': args.contextid, 'userId': args.userid })
 }
 
 /**
@@ -70,8 +70,8 @@ Users.prototype.getAuthenticationCredentials = async function (args) {
  * @param {string} contextid - The Context ID
  * @param {string} userid - The User ID
  **/
-Users.prototype.getAuthenticationState = async function (args) {
-    return await this.api.request('/users/view/getAuthenticationState/', {'contextId': args.contextid, 'userId': args.userid })
+Users.prototype.getAuthenticationState = function (args) {
+    return this.api.request('/users/view/getAuthenticationState/', {'contextId': args.contextid, 'userId': args.userid })
 }
 
 /**
@@ -79,8 +79,8 @@ Users.prototype.getAuthenticationState = async function (args) {
  * @param {string} contextid - The Context ID
  * @param {string} userid - The User ID
  **/
-Users.prototype.getAuthenticationSession = async function (args) {
-    return await this.api.request('/users/view/getAuthenticationSession/', {'contextId': args.contextid, 'userId': args.userid })
+Users.prototype.getAuthenticationSession = function (args) {
+    return this.api.request('/users/view/getAuthenticationSession/', {'contextId': args.contextid, 'userId': args.userid })
 }
 
 /**
@@ -88,8 +88,8 @@ Users.prototype.getAuthenticationSession = async function (args) {
  * @param {string} contextid - The Context ID
  * @param {string} name
  **/
-Users.prototype.newUser = async function (args) {
-    return await this.api.request('/users/action/newUser/', {'contextId': args.contextid, 'name': args.name })
+Users.prototype.newUser = function (args) {
+    return this.api.request('/users/action/newUser/', {'contextId': args.contextid, 'name': args.name })
 }
 
 /**
@@ -97,8 +97,8 @@ Users.prototype.newUser = async function (args) {
  * @param {string} contextid - The Context ID
  * @param {string} userid - The User ID
  **/
-Users.prototype.removeUser = async function (args) {
-    return await this.api.request('/users/action/removeUser/', {'contextId': args.contextid, 'userId': args.userid })
+Users.prototype.removeUser = function (args) {
+    return this.api.request('/users/action/removeUser/', {'contextId': args.contextid, 'userId': args.userid })
 }
 
 /**
@@ -107,8 +107,8 @@ Users.prototype.removeUser = async function (args) {
  * @param {string} userid - The User ID
  * @param {string} enabled
  **/
-Users.prototype.setUserEnabled = async function (args) {
-    return await this.api.request('/users/action/setUserEnabled/', {'contextId': args.contextid, 'userId': args.userid, 'enabled': args.enabled })
+Users.prototype.setUserEnabled = function (args) {
+    return this.api.request('/users/action/setUserEnabled/', {'contextId': args.contextid, 'userId': args.userid, 'enabled': args.enabled })
 }
 
 /**
@@ -117,8 +117,8 @@ Users.prototype.setUserEnabled = async function (args) {
  * @param {string} userid - The User ID
  * @param {string} name
  **/
-Users.prototype.setUserName = async function (args) {
-    return await this.api.request('/users/action/setUserName/', {'contextId': args.contextid, 'userId': args.userid, 'name': args.name })
+Users.prototype.setUserName = function (args) {
+    return this.api.request('/users/action/setUserName/', {'contextId': args.contextid, 'userId': args.userid, 'name': args.name })
 }
 
 /**
@@ -127,12 +127,12 @@ Users.prototype.setUserName = async function (args) {
  * @param {string} userid - The User ID
  * @param {string} authcredentialsconfigparams
  **/
-Users.prototype.setAuthenticationCredentials = async function (args) {
+Users.prototype.setAuthenticationCredentials = function (args) {
   const params = {'contextId': args.contextid, 'userId': args.userid };
   if (args.authcredentialsconfigparams && args.authcredentialsconfigparams !== null) {
     params['authCredentialsConfigParams'] = args.authcredentialsconfigparams;
   }
-    return await this.api.request('/users/action/setAuthenticationCredentials/', params)
+    return this.api.request('/users/action/setAuthenticationCredentials/', params)
 }
 
 /**
@@ -140,8 +140,8 @@ Users.prototype.setAuthenticationCredentials = async function (args) {
  * @param {string} contextid - The Context ID
  * @param {string} userid - The User ID
  **/
-Users.prototype.authenticateAsUser = async function (args) {
-    return await this.api.request('/users/action/authenticateAsUser/', {'contextId': args.contextid, 'userId': args.userid })
+Users.prototype.authenticateAsUser = function (args) {
+    return this.api.request('/users/action/authenticateAsUser/', {'contextId': args.contextid, 'userId': args.userid })
 }
 
 /**
@@ -149,8 +149,8 @@ Users.prototype.authenticateAsUser = async function (args) {
  * @param {string} contextid - The Context ID
  * @param {string} userid - The User ID
  **/
-Users.prototype.pollAsUser = async function (args) {
-    return await this.api.request('/users/action/pollAsUser/', {'contextId': args.contextid, 'userId': args.userid })
+Users.prototype.pollAsUser = function (args) {
+    return this.api.request('/users/action/pollAsUser/', {'contextId': args.contextid, 'userId': args.userid })
 }
 
 /**
@@ -161,7 +161,7 @@ Users.prototype.pollAsUser = async function (args) {
  * @param {string} lastpolltimeinms - Last Poll Time in Milliseconds - optional, should be a long or 'NOW' for the current time in ms.
  * @param {string} requestssincelastpoll - Requests Since Last Poll - optional, should be an integer.
  **/
-Users.prototype.setAuthenticationState = async function (args) {
+Users.prototype.setAuthenticationState = function (args) {
   const params = {'contextId': args.contextid, 'userId': args.userid };
   if (args.lastpollresult && args.lastpollresult !== null) {
     params['lastPollResult'] = args.lastpollresult;
@@ -172,7 +172,7 @@ Users.prototype.setAuthenticationState = async function (args) {
   if (args.requestssincelastpoll && args.requestssincelastpoll !== null) {
     params['requestsSinceLastPoll'] = args.requestssincelastpoll;
   }
-    return await this.api.request('/users/action/setAuthenticationState/', params)
+    return this.api.request('/users/action/setAuthenticationState/', params)
 }
 
 /**
@@ -185,7 +185,7 @@ Users.prototype.setAuthenticationState = async function (args) {
  * @param {string} path - The Cookie Path - optional default no path
  * @param {string} secure - If the Cookie is secure - optional default false
  **/
-Users.prototype.setCookie = async function (args) {
+Users.prototype.setCookie = function (args) {
   const params = {'contextId': args.contextid, 'userId': args.userid, 'domain': args.domain, 'name': args.name, 'value': args.value };
   if (args.path && args.path !== null) {
     params['path'] = args.path;
@@ -193,7 +193,7 @@ Users.prototype.setCookie = async function (args) {
   if (args.secure && args.secure !== null) {
     params['secure'] = args.secure;
   }
-    return await this.api.request('/users/action/setCookie/', params)
+    return this.api.request('/users/action/setCookie/', params)
 }
 
 module.exports = Users;

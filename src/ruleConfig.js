@@ -31,30 +31,30 @@ function RuleConfig(clientApi) {
  * Show the specified rule configuration
  * @param {string} key
  **/
-RuleConfig.prototype.ruleConfigValue = async function (args) {
-    return await this.api.request('/ruleConfig/view/ruleConfigValue/', {'key': args.key })
+RuleConfig.prototype.ruleConfigValue = function (args) {
+    return this.api.request('/ruleConfig/view/ruleConfigValue/', {'key': args.key })
 }
 
 /**
  * Show all of the rule configurations
  **/
-RuleConfig.prototype.allRuleConfigs = async function () {
-    return await this.api.request('/ruleConfig/view/allRuleConfigs/')
+RuleConfig.prototype.allRuleConfigs = function () {
+    return this.api.request('/ruleConfig/view/allRuleConfigs/')
 }
 
 /**
  * Reset the specified rule configuration, which must already exist
  * @param {string} key
  **/
-RuleConfig.prototype.resetRuleConfigValue = async function (args) {
-    return await this.api.request('/ruleConfig/action/resetRuleConfigValue/', {'key': args.key })
+RuleConfig.prototype.resetRuleConfigValue = function (args) {
+    return this.api.request('/ruleConfig/action/resetRuleConfigValue/', {'key': args.key })
 }
 
 /**
  * Reset all of the rule configurations
  **/
-RuleConfig.prototype.resetAllRuleConfigValues = async function () {
-    return await this.api.request('/ruleConfig/action/resetAllRuleConfigValues/')
+RuleConfig.prototype.resetAllRuleConfigValues = function () {
+    return this.api.request('/ruleConfig/action/resetAllRuleConfigValues/')
 }
 
 /**
@@ -62,12 +62,12 @@ RuleConfig.prototype.resetAllRuleConfigValues = async function () {
  * @param {string} key
  * @param {string} value
  **/
-RuleConfig.prototype.setRuleConfigValue = async function (args) {
+RuleConfig.prototype.setRuleConfigValue = function (args) {
   const params = {'key': args.key };
   if (args.value && args.value !== null) {
     params['value'] = args.value;
   }
-    return await this.api.request('/ruleConfig/action/setRuleConfigValue/', params)
+    return this.api.request('/ruleConfig/action/setRuleConfigValue/', params)
 }
 
 module.exports = RuleConfig;

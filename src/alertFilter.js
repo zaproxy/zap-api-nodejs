@@ -32,16 +32,16 @@ function AlertFilter(clientApi) {
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} contextid
  **/
-AlertFilter.prototype.alertFilterList = async function (args) {
-    return await this.api.request('/alertFilter/view/alertFilterList/', {'contextId': args.contextid })
+AlertFilter.prototype.alertFilterList = function (args) {
+    return this.api.request('/alertFilter/view/alertFilterList/', {'contextId': args.contextid })
 }
 
 /**
  * Lists the global alert filters.
  * This component is optional and therefore the API will only work if it is installed
  **/
-AlertFilter.prototype.globalAlertFilterList = async function () {
-    return await this.api.request('/alertFilter/view/globalAlertFilterList/')
+AlertFilter.prototype.globalAlertFilterList = function () {
+    return this.api.request('/alertFilter/view/globalAlertFilterList/')
 }
 
 /**
@@ -60,7 +60,7 @@ AlertFilter.prototype.globalAlertFilterList = async function () {
  * @param {string} evidence
  * @param {string} evidenceisregex
  **/
-AlertFilter.prototype.addAlertFilter = async function (args) {
+AlertFilter.prototype.addAlertFilter = function (args) {
   const params = {'contextId': args.contextid, 'ruleId': args.ruleid, 'newLevel': args.newlevel };
   if (args.url && args.url !== null) {
     params['url'] = args.url;
@@ -89,7 +89,7 @@ AlertFilter.prototype.addAlertFilter = async function (args) {
   if (args.evidenceisregex && args.evidenceisregex !== null) {
     params['evidenceIsRegex'] = args.evidenceisregex;
   }
-    return await this.api.request('/alertFilter/action/addAlertFilter/', params)
+    return this.api.request('/alertFilter/action/addAlertFilter/', params)
 }
 
 /**
@@ -108,7 +108,7 @@ AlertFilter.prototype.addAlertFilter = async function (args) {
  * @param {string} evidence
  * @param {string} evidenceisregex
  **/
-AlertFilter.prototype.removeAlertFilter = async function (args) {
+AlertFilter.prototype.removeAlertFilter = function (args) {
   const params = {'contextId': args.contextid, 'ruleId': args.ruleid, 'newLevel': args.newlevel };
   if (args.url && args.url !== null) {
     params['url'] = args.url;
@@ -137,7 +137,7 @@ AlertFilter.prototype.removeAlertFilter = async function (args) {
   if (args.evidenceisregex && args.evidenceisregex !== null) {
     params['evidenceIsRegex'] = args.evidenceisregex;
   }
-    return await this.api.request('/alertFilter/action/removeAlertFilter/', params)
+    return this.api.request('/alertFilter/action/removeAlertFilter/', params)
 }
 
 /**
@@ -155,7 +155,7 @@ AlertFilter.prototype.removeAlertFilter = async function (args) {
  * @param {string} evidence
  * @param {string} evidenceisregex
  **/
-AlertFilter.prototype.addGlobalAlertFilter = async function (args) {
+AlertFilter.prototype.addGlobalAlertFilter = function (args) {
   const params = {'ruleId': args.ruleid, 'newLevel': args.newlevel };
   if (args.url && args.url !== null) {
     params['url'] = args.url;
@@ -184,7 +184,7 @@ AlertFilter.prototype.addGlobalAlertFilter = async function (args) {
   if (args.evidenceisregex && args.evidenceisregex !== null) {
     params['evidenceIsRegex'] = args.evidenceisregex;
   }
-    return await this.api.request('/alertFilter/action/addGlobalAlertFilter/', params)
+    return this.api.request('/alertFilter/action/addGlobalAlertFilter/', params)
 }
 
 /**
@@ -202,7 +202,7 @@ AlertFilter.prototype.addGlobalAlertFilter = async function (args) {
  * @param {string} evidence
  * @param {string} evidenceisregex
  **/
-AlertFilter.prototype.removeGlobalAlertFilter = async function (args) {
+AlertFilter.prototype.removeGlobalAlertFilter = function (args) {
   const params = {'ruleId': args.ruleid, 'newLevel': args.newlevel };
   if (args.url && args.url !== null) {
     params['url'] = args.url;
@@ -231,55 +231,55 @@ AlertFilter.prototype.removeGlobalAlertFilter = async function (args) {
   if (args.evidenceisregex && args.evidenceisregex !== null) {
     params['evidenceIsRegex'] = args.evidenceisregex;
   }
-    return await this.api.request('/alertFilter/action/removeGlobalAlertFilter/', params)
+    return this.api.request('/alertFilter/action/removeGlobalAlertFilter/', params)
 }
 
 /**
  * Applies all currently enabled Global and Context alert filters.
  * This component is optional and therefore the API will only work if it is installed
  **/
-AlertFilter.prototype.applyAll = async function () {
-    return await this.api.request('/alertFilter/action/applyAll/')
+AlertFilter.prototype.applyAll = function () {
+    return this.api.request('/alertFilter/action/applyAll/')
 }
 
 /**
  * Applies all currently enabled Context alert filters.
  * This component is optional and therefore the API will only work if it is installed
  **/
-AlertFilter.prototype.applyContext = async function () {
-    return await this.api.request('/alertFilter/action/applyContext/')
+AlertFilter.prototype.applyContext = function () {
+    return this.api.request('/alertFilter/action/applyContext/')
 }
 
 /**
  * Applies all currently enabled Global alert filters.
  * This component is optional and therefore the API will only work if it is installed
  **/
-AlertFilter.prototype.applyGlobal = async function () {
-    return await this.api.request('/alertFilter/action/applyGlobal/')
+AlertFilter.prototype.applyGlobal = function () {
+    return this.api.request('/alertFilter/action/applyGlobal/')
 }
 
 /**
  * Tests all currently enabled Global and Context alert filters.
  * This component is optional and therefore the API will only work if it is installed
  **/
-AlertFilter.prototype.testAll = async function () {
-    return await this.api.request('/alertFilter/action/testAll/')
+AlertFilter.prototype.testAll = function () {
+    return this.api.request('/alertFilter/action/testAll/')
 }
 
 /**
  * Tests all currently enabled Context alert filters.
  * This component is optional and therefore the API will only work if it is installed
  **/
-AlertFilter.prototype.testContext = async function () {
-    return await this.api.request('/alertFilter/action/testContext/')
+AlertFilter.prototype.testContext = function () {
+    return this.api.request('/alertFilter/action/testContext/')
 }
 
 /**
  * Tests all currently enabled Global alert filters.
  * This component is optional and therefore the API will only work if it is installed
  **/
-AlertFilter.prototype.testGlobal = async function () {
-    return await this.api.request('/alertFilter/action/testGlobal/')
+AlertFilter.prototype.testGlobal = function () {
+    return this.api.request('/alertFilter/action/testGlobal/')
 }
 
 module.exports = AlertFilter;

@@ -30,22 +30,22 @@ function Automation(clientApi) {
 /**
  * This component is optional and therefore the API will only work if it is installed
  **/
-Automation.prototype.planProgress = async function (args) {
-    return await this.api.request('/automation/view/planProgress/', {'planId': args.planid })
+Automation.prototype.planProgress = function (args) {
+    return this.api.request('/automation/view/planProgress/', {'planId': args.planid })
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  **/
-Automation.prototype.runPlan = async function (args) {
-    return await this.api.request('/automation/action/runPlan/', {'filePath': args.filepath })
+Automation.prototype.runPlan = function (args) {
+    return this.api.request('/automation/action/runPlan/', {'filePath': args.filepath })
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  **/
-Automation.prototype.endDelayJob = async function () {
-    return await this.api.request('/automation/action/endDelayJob/')
+Automation.prototype.endDelayJob = function () {
+    return this.api.request('/automation/action/endDelayJob/')
 }
 
 module.exports = Automation;

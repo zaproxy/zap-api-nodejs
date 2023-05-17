@@ -32,8 +32,8 @@ function Exim(clientApi) {
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} filepath
  **/
-Exim.prototype.importHar = async function (args) {
-    return await this.api.request('/exim/action/importHar/', {'filePath': args.filepath })
+Exim.prototype.importHar = function (args) {
+    return this.api.request('/exim/action/importHar/', {'filePath': args.filepath })
 }
 
 /**
@@ -41,8 +41,8 @@ Exim.prototype.importHar = async function (args) {
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} filepath
  **/
-Exim.prototype.importUrls = async function (args) {
-    return await this.api.request('/exim/action/importUrls/', {'filePath': args.filepath })
+Exim.prototype.importUrls = function (args) {
+    return this.api.request('/exim/action/importUrls/', {'filePath': args.filepath })
 }
 
 /**
@@ -50,8 +50,8 @@ Exim.prototype.importUrls = async function (args) {
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} filepath
  **/
-Exim.prototype.importZapLogs = async function (args) {
-    return await this.api.request('/exim/action/importZapLogs/', {'filePath': args.filepath })
+Exim.prototype.importZapLogs = function (args) {
+    return this.api.request('/exim/action/importZapLogs/', {'filePath': args.filepath })
 }
 
 /**
@@ -59,8 +59,8 @@ Exim.prototype.importZapLogs = async function (args) {
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} filepath
  **/
-Exim.prototype.importModsec2Logs = async function (args) {
-    return await this.api.request('/exim/action/importModsec2Logs/', {'filePath': args.filepath })
+Exim.prototype.importModsec2Logs = function (args) {
+    return this.api.request('/exim/action/importModsec2Logs/', {'filePath': args.filepath })
 }
 
 /**
@@ -70,7 +70,7 @@ Exim.prototype.importModsec2Logs = async function (args) {
  * @param {string} start - The position (or offset) within the results to use as a starting position for the information returned.
  * @param {string} count - The number of results to return.
  **/
-Exim.prototype.exportHar = async function (args) {
+Exim.prototype.exportHar = function (args) {
   const params = { };
   if (args.baseurl && args.baseurl !== null) {
     params['baseurl'] = args.baseurl;
@@ -81,7 +81,7 @@ Exim.prototype.exportHar = async function (args) {
   if (args.count && args.count !== null) {
     params['count'] = args.count;
   }
-    return await this.api.request('/exim/other/exportHar/', params, 'other')
+    return this.api.request('/exim/other/exportHar/', params, 'other')
 }
 
 /**
@@ -89,8 +89,8 @@ Exim.prototype.exportHar = async function (args) {
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} ids - The ID (number(s)) of the message(s) to be returned.
  **/
-Exim.prototype.exportHarById = async function (args) {
-    return await this.api.request('/exim/other/exportHarById/', {'ids': args.ids }, 'other')
+Exim.prototype.exportHarById = function (args) {
+    return this.api.request('/exim/other/exportHarById/', {'ids': args.ids }, 'other')
 }
 
 /**
@@ -99,12 +99,12 @@ Exim.prototype.exportHarById = async function (args) {
  * @param {string} request - The raw JSON of a HAR request.
  * @param {string} followredirects - True if redirects should be followed, false otherwise.
  **/
-Exim.prototype.sendHarRequest = async function (args) {
+Exim.prototype.sendHarRequest = function (args) {
   const params = {'request': args.request };
   if (args.followredirects && args.followredirects !== null) {
     params['followRedirects'] = args.followredirects;
   }
-    return await this.api.request('/exim/other/sendHarRequest/', params, 'other')
+    return this.api.request('/exim/other/sendHarRequest/', params, 'other')
 }
 
 module.exports = Exim;

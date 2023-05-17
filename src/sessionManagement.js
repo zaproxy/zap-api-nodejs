@@ -30,24 +30,24 @@ function SessionManagement(clientApi) {
 /**
  * Gets the name of the session management methods.
  **/
-SessionManagement.prototype.getSupportedSessionManagementMethods = async function () {
-    return await this.api.request('/sessionManagement/view/getSupportedSessionManagementMethods/')
+SessionManagement.prototype.getSupportedSessionManagementMethods = function () {
+    return this.api.request('/sessionManagement/view/getSupportedSessionManagementMethods/')
 }
 
 /**
  * Gets the configuration parameters for the session management method with the given name.
  * @param {string} methodname
  **/
-SessionManagement.prototype.getSessionManagementMethodConfigParams = async function (args) {
-    return await this.api.request('/sessionManagement/view/getSessionManagementMethodConfigParams/', {'methodName': args.methodname })
+SessionManagement.prototype.getSessionManagementMethodConfigParams = function (args) {
+    return this.api.request('/sessionManagement/view/getSessionManagementMethodConfigParams/', {'methodName': args.methodname })
 }
 
 /**
  * Gets the name of the session management method for the context with the given ID.
  * @param {string} contextid
  **/
-SessionManagement.prototype.getSessionManagementMethod = async function (args) {
-    return await this.api.request('/sessionManagement/view/getSessionManagementMethod/', {'contextId': args.contextid })
+SessionManagement.prototype.getSessionManagementMethod = function (args) {
+    return this.api.request('/sessionManagement/view/getSessionManagementMethod/', {'contextId': args.contextid })
 }
 
 /**
@@ -56,12 +56,12 @@ SessionManagement.prototype.getSessionManagementMethod = async function (args) {
  * @param {string} methodname
  * @param {string} methodconfigparams
  **/
-SessionManagement.prototype.setSessionManagementMethod = async function (args) {
+SessionManagement.prototype.setSessionManagementMethod = function (args) {
   const params = {'contextId': args.contextid, 'methodName': args.methodname };
   if (args.methodconfigparams && args.methodconfigparams !== null) {
     params['methodConfigParams'] = args.methodconfigparams;
   }
-    return await this.api.request('/sessionManagement/action/setSessionManagementMethod/', params)
+    return this.api.request('/sessionManagement/action/setSessionManagementMethod/', params)
 }
 
 module.exports = SessionManagement;

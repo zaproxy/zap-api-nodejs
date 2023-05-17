@@ -31,128 +31,128 @@ function Network(clientApi) {
  * Gets the Root CA certificate validity, in days. Used when generating a new Root CA certificate.
  * This component is optional and therefore the API will only work if it is installed
  **/
-Network.prototype.getRootCaCertValidity = async function () {
-    return await this.api.request('/network/view/getRootCaCertValidity/')
+Network.prototype.getRootCaCertValidity = function () {
+    return this.api.request('/network/view/getRootCaCertValidity/')
 }
 
 /**
  * Gets the server certificate validity, in days. Used when generating server certificates.
  * This component is optional and therefore the API will only work if it is installed
  **/
-Network.prototype.getServerCertValidity = async function () {
-    return await this.api.request('/network/view/getServerCertValidity/')
+Network.prototype.getServerCertValidity = function () {
+    return this.api.request('/network/view/getServerCertValidity/')
 }
 
 /**
  * Gets the aliases used to identify the local servers/proxies.
  * This component is optional and therefore the API will only work if it is installed
  **/
-Network.prototype.getAliases = async function () {
-    return await this.api.request('/network/view/getAliases/')
+Network.prototype.getAliases = function () {
+    return this.api.request('/network/view/getAliases/')
 }
 
 /**
  * Gets the local servers/proxies.
  * This component is optional and therefore the API will only work if it is installed
  **/
-Network.prototype.getLocalServers = async function () {
-    return await this.api.request('/network/view/getLocalServers/')
+Network.prototype.getLocalServers = function () {
+    return this.api.request('/network/view/getLocalServers/')
 }
 
 /**
  * Gets the authorities that will pass-through the local proxies.
  * This component is optional and therefore the API will only work if it is installed
  **/
-Network.prototype.getPassThroughs = async function () {
-    return await this.api.request('/network/view/getPassThroughs/')
+Network.prototype.getPassThroughs = function () {
+    return this.api.request('/network/view/getPassThroughs/')
 }
 
 /**
  * Gets the connection timeout, in seconds.
  * This component is optional and therefore the API will only work if it is installed
  **/
-Network.prototype.getConnectionTimeout = async function () {
-    return await this.api.request('/network/view/getConnectionTimeout/')
+Network.prototype.getConnectionTimeout = function () {
+    return this.api.request('/network/view/getConnectionTimeout/')
 }
 
 /**
  * Gets the default user-agent.
  * This component is optional and therefore the API will only work if it is installed
  **/
-Network.prototype.getDefaultUserAgent = async function () {
-    return await this.api.request('/network/view/getDefaultUserAgent/')
+Network.prototype.getDefaultUserAgent = function () {
+    return this.api.request('/network/view/getDefaultUserAgent/')
 }
 
 /**
  * Gets the TTL (in seconds) of successful DNS queries.
  * This component is optional and therefore the API will only work if it is installed
  **/
-Network.prototype.getDnsTtlSuccessfulQueries = async function () {
-    return await this.api.request('/network/view/getDnsTtlSuccessfulQueries/')
+Network.prototype.getDnsTtlSuccessfulQueries = function () {
+    return this.api.request('/network/view/getDnsTtlSuccessfulQueries/')
 }
 
 /**
  * Gets the HTTP proxy.
  * This component is optional and therefore the API will only work if it is installed
  **/
-Network.prototype.getHttpProxy = async function () {
-    return await this.api.request('/network/view/getHttpProxy/')
+Network.prototype.getHttpProxy = function () {
+    return this.api.request('/network/view/getHttpProxy/')
 }
 
 /**
  * Gets the HTTP proxy exclusions.
  * This component is optional and therefore the API will only work if it is installed
  **/
-Network.prototype.getHttpProxyExclusions = async function () {
-    return await this.api.request('/network/view/getHttpProxyExclusions/')
+Network.prototype.getHttpProxyExclusions = function () {
+    return this.api.request('/network/view/getHttpProxyExclusions/')
 }
 
 /**
  * Gets the SOCKS proxy.
  * This component is optional and therefore the API will only work if it is installed
  **/
-Network.prototype.getSocksProxy = async function () {
-    return await this.api.request('/network/view/getSocksProxy/')
+Network.prototype.getSocksProxy = function () {
+    return this.api.request('/network/view/getSocksProxy/')
 }
 
 /**
  * Tells whether or not the HTTP proxy authentication is enabled.
  * This component is optional and therefore the API will only work if it is installed
  **/
-Network.prototype.isHttpProxyAuthEnabled = async function () {
-    return await this.api.request('/network/view/isHttpProxyAuthEnabled/')
+Network.prototype.isHttpProxyAuthEnabled = function () {
+    return this.api.request('/network/view/isHttpProxyAuthEnabled/')
 }
 
 /**
  * Tells whether or not the HTTP proxy is enabled.
  * This component is optional and therefore the API will only work if it is installed
  **/
-Network.prototype.isHttpProxyEnabled = async function () {
-    return await this.api.request('/network/view/isHttpProxyEnabled/')
+Network.prototype.isHttpProxyEnabled = function () {
+    return this.api.request('/network/view/isHttpProxyEnabled/')
 }
 
 /**
  * Tells whether or not the SOCKS proxy is enabled.
  * This component is optional and therefore the API will only work if it is installed
  **/
-Network.prototype.isSocksProxyEnabled = async function () {
-    return await this.api.request('/network/view/isSocksProxyEnabled/')
+Network.prototype.isSocksProxyEnabled = function () {
+    return this.api.request('/network/view/isSocksProxyEnabled/')
 }
 
 /**
  * Tells whether or not to use global HTTP state.
  * This component is optional and therefore the API will only work if it is installed
  **/
-Network.prototype.isUseGlobalHttpState = async function () {
-    return await this.api.request('/network/view/isUseGlobalHttpState/')
+Network.prototype.isUseGlobalHttpState = function () {
+    return this.api.request('/network/view/isUseGlobalHttpState/')
 }
 
 /**
  * Generates a new Root CA certificate, used to issue server certificates.
  * This component is optional and therefore the API will only work if it is installed
  **/
-Network.prototype.generateRootCaCert = async function () {
-    return await this.api.request('/network/action/generateRootCaCert/')
+Network.prototype.generateRootCaCert = function () {
+    return this.api.request('/network/action/generateRootCaCert/')
 }
 
 /**
@@ -160,8 +160,8 @@ Network.prototype.generateRootCaCert = async function () {
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} filepath - The file system path to the PEM file, containing the certificate and private key.
  **/
-Network.prototype.importRootCaCert = async function (args) {
-    return await this.api.request('/network/action/importRootCaCert/', {'filePath': args.filepath })
+Network.prototype.importRootCaCert = function (args) {
+    return this.api.request('/network/action/importRootCaCert/', {'filePath': args.filepath })
 }
 
 /**
@@ -169,8 +169,8 @@ Network.prototype.importRootCaCert = async function (args) {
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} validity - The number of days that the generated Root CA certificate will be valid for.
  **/
-Network.prototype.setRootCaCertValidity = async function (args) {
-    return await this.api.request('/network/action/setRootCaCertValidity/', {'validity': args.validity })
+Network.prototype.setRootCaCertValidity = function (args) {
+    return this.api.request('/network/action/setRootCaCertValidity/', {'validity': args.validity })
 }
 
 /**
@@ -178,8 +178,8 @@ Network.prototype.setRootCaCertValidity = async function (args) {
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} validity - The number of days that the generated server certificates will be valid for.
  **/
-Network.prototype.setServerCertValidity = async function (args) {
-    return await this.api.request('/network/action/setServerCertValidity/', {'validity': args.validity })
+Network.prototype.setServerCertValidity = function (args) {
+    return this.api.request('/network/action/setServerCertValidity/', {'validity': args.validity })
 }
 
 /**
@@ -188,12 +188,12 @@ Network.prototype.setServerCertValidity = async function (args) {
  * @param {string} name - The name of the alias.
  * @param {string} enabled - The enabled state, true or false.
  **/
-Network.prototype.addAlias = async function (args) {
+Network.prototype.addAlias = function (args) {
   const params = {'name': args.name };
   if (args.enabled && args.enabled !== null) {
     params['enabled'] = args.enabled;
   }
-    return await this.api.request('/network/action/addAlias/', params)
+    return this.api.request('/network/action/addAlias/', params)
 }
 
 /**
@@ -207,7 +207,7 @@ Network.prototype.addAlias = async function (args) {
  * @param {string} decoderesponse - If the response should be decoded, true or false.
  * @param {string} removeacceptencoding - If the request header Accept-Encoding should be removed, true or false.
  **/
-Network.prototype.addLocalServer = async function (args) {
+Network.prototype.addLocalServer = function (args) {
   const params = {'address': args.address, 'port': args.port };
   if (args.api && args.api !== null) {
     params['api'] = args.api;
@@ -224,7 +224,7 @@ Network.prototype.addLocalServer = async function (args) {
   if (args.removeacceptencoding && args.removeacceptencoding !== null) {
     params['removeAcceptEncoding'] = args.removeacceptencoding;
   }
-    return await this.api.request('/network/action/addLocalServer/', params)
+    return this.api.request('/network/action/addLocalServer/', params)
 }
 
 /**
@@ -233,12 +233,12 @@ Network.prototype.addLocalServer = async function (args) {
  * @param {string} authority - The value of the authority, can be a regular expression.
  * @param {string} enabled - The enabled state, true or false.
  **/
-Network.prototype.addPassThrough = async function (args) {
+Network.prototype.addPassThrough = function (args) {
   const params = {'authority': args.authority };
   if (args.enabled && args.enabled !== null) {
     params['enabled'] = args.enabled;
   }
-    return await this.api.request('/network/action/addPassThrough/', params)
+    return this.api.request('/network/action/addPassThrough/', params)
 }
 
 /**
@@ -246,8 +246,8 @@ Network.prototype.addPassThrough = async function (args) {
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} name - The name of the alias.
  **/
-Network.prototype.removeAlias = async function (args) {
-    return await this.api.request('/network/action/removeAlias/', {'name': args.name })
+Network.prototype.removeAlias = function (args) {
+    return this.api.request('/network/action/removeAlias/', {'name': args.name })
 }
 
 /**
@@ -256,8 +256,8 @@ Network.prototype.removeAlias = async function (args) {
  * @param {string} address - The address of the local server/proxy.
  * @param {string} port - The port of the local server/proxy.
  **/
-Network.prototype.removeLocalServer = async function (args) {
-    return await this.api.request('/network/action/removeLocalServer/', {'address': args.address, 'port': args.port })
+Network.prototype.removeLocalServer = function (args) {
+    return this.api.request('/network/action/removeLocalServer/', {'address': args.address, 'port': args.port })
 }
 
 /**
@@ -265,8 +265,8 @@ Network.prototype.removeLocalServer = async function (args) {
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} authority - The value of the authority.
  **/
-Network.prototype.removePassThrough = async function (args) {
-    return await this.api.request('/network/action/removePassThrough/', {'authority': args.authority })
+Network.prototype.removePassThrough = function (args) {
+    return this.api.request('/network/action/removePassThrough/', {'authority': args.authority })
 }
 
 /**
@@ -275,8 +275,8 @@ Network.prototype.removePassThrough = async function (args) {
  * @param {string} name - The name of the alias.
  * @param {string} enabled - The enabled state, true or false.
  **/
-Network.prototype.setAliasEnabled = async function (args) {
-    return await this.api.request('/network/action/setAliasEnabled/', {'name': args.name, 'enabled': args.enabled })
+Network.prototype.setAliasEnabled = function (args) {
+    return this.api.request('/network/action/setAliasEnabled/', {'name': args.name, 'enabled': args.enabled })
 }
 
 /**
@@ -285,8 +285,8 @@ Network.prototype.setAliasEnabled = async function (args) {
  * @param {string} authority - The value of the authority.
  * @param {string} enabled - The enabled state, true or false.
  **/
-Network.prototype.setPassThroughEnabled = async function (args) {
-    return await this.api.request('/network/action/setPassThroughEnabled/', {'authority': args.authority, 'enabled': args.enabled })
+Network.prototype.setPassThroughEnabled = function (args) {
+    return this.api.request('/network/action/setPassThroughEnabled/', {'authority': args.authority, 'enabled': args.enabled })
 }
 
 /**
@@ -294,8 +294,8 @@ Network.prototype.setPassThroughEnabled = async function (args) {
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} timeout - The timeout, in seconds.
  **/
-Network.prototype.setConnectionTimeout = async function (args) {
-    return await this.api.request('/network/action/setConnectionTimeout/', {'timeout': args.timeout })
+Network.prototype.setConnectionTimeout = function (args) {
+    return this.api.request('/network/action/setConnectionTimeout/', {'timeout': args.timeout })
 }
 
 /**
@@ -303,8 +303,8 @@ Network.prototype.setConnectionTimeout = async function (args) {
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} useragent - The default user-agent.
  **/
-Network.prototype.setDefaultUserAgent = async function (args) {
-    return await this.api.request('/network/action/setDefaultUserAgent/', {'userAgent': args.useragent })
+Network.prototype.setDefaultUserAgent = function (args) {
+    return this.api.request('/network/action/setDefaultUserAgent/', {'userAgent': args.useragent })
 }
 
 /**
@@ -312,8 +312,8 @@ Network.prototype.setDefaultUserAgent = async function (args) {
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} ttl - The TTL, in seconds. Negative number, cache forever. Zero, disables caching. Positive number, the number of seconds the successful DNS queries will be cached.
  **/
-Network.prototype.setDnsTtlSuccessfulQueries = async function (args) {
-    return await this.api.request('/network/action/setDnsTtlSuccessfulQueries/', {'ttl': args.ttl })
+Network.prototype.setDnsTtlSuccessfulQueries = function (args) {
+    return this.api.request('/network/action/setDnsTtlSuccessfulQueries/', {'ttl': args.ttl })
 }
 
 /**
@@ -322,12 +322,12 @@ Network.prototype.setDnsTtlSuccessfulQueries = async function (args) {
  * @param {string} host - The value of the host, a regular expression.
  * @param {string} enabled - The enabled state, true or false.
  **/
-Network.prototype.addHttpProxyExclusion = async function (args) {
+Network.prototype.addHttpProxyExclusion = function (args) {
   const params = {'host': args.host };
   if (args.enabled && args.enabled !== null) {
     params['enabled'] = args.enabled;
   }
-    return await this.api.request('/network/action/addHttpProxyExclusion/', params)
+    return this.api.request('/network/action/addHttpProxyExclusion/', params)
 }
 
 /**
@@ -335,8 +335,8 @@ Network.prototype.addHttpProxyExclusion = async function (args) {
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} host - The value of the host.
  **/
-Network.prototype.removeHttpProxyExclusion = async function (args) {
-    return await this.api.request('/network/action/removeHttpProxyExclusion/', {'host': args.host })
+Network.prototype.removeHttpProxyExclusion = function (args) {
+    return this.api.request('/network/action/removeHttpProxyExclusion/', {'host': args.host })
 }
 
 /**
@@ -348,7 +348,7 @@ Network.prototype.removeHttpProxyExclusion = async function (args) {
  * @param {string} username - The user name.
  * @param {string} password - The password.
  **/
-Network.prototype.setHttpProxy = async function (args) {
+Network.prototype.setHttpProxy = function (args) {
   const params = {'host': args.host, 'port': args.port };
   if (args.realm && args.realm !== null) {
     params['realm'] = args.realm;
@@ -359,7 +359,7 @@ Network.prototype.setHttpProxy = async function (args) {
   if (args.password && args.password !== null) {
     params['password'] = args.password;
   }
-    return await this.api.request('/network/action/setHttpProxy/', params)
+    return this.api.request('/network/action/setHttpProxy/', params)
 }
 
 /**
@@ -367,8 +367,8 @@ Network.prototype.setHttpProxy = async function (args) {
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} enabled - The enabled state, true or false.
  **/
-Network.prototype.setHttpProxyAuthEnabled = async function (args) {
-    return await this.api.request('/network/action/setHttpProxyAuthEnabled/', {'enabled': args.enabled })
+Network.prototype.setHttpProxyAuthEnabled = function (args) {
+    return this.api.request('/network/action/setHttpProxyAuthEnabled/', {'enabled': args.enabled })
 }
 
 /**
@@ -376,8 +376,8 @@ Network.prototype.setHttpProxyAuthEnabled = async function (args) {
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} enabled - The enabled state, true or false.
  **/
-Network.prototype.setHttpProxyEnabled = async function (args) {
-    return await this.api.request('/network/action/setHttpProxyEnabled/', {'enabled': args.enabled })
+Network.prototype.setHttpProxyEnabled = function (args) {
+    return this.api.request('/network/action/setHttpProxyEnabled/', {'enabled': args.enabled })
 }
 
 /**
@@ -386,8 +386,8 @@ Network.prototype.setHttpProxyEnabled = async function (args) {
  * @param {string} host - The value of the host.
  * @param {string} enabled - The enabled state, true or false.
  **/
-Network.prototype.setHttpProxyExclusionEnabled = async function (args) {
-    return await this.api.request('/network/action/setHttpProxyExclusionEnabled/', {'host': args.host, 'enabled': args.enabled })
+Network.prototype.setHttpProxyExclusionEnabled = function (args) {
+    return this.api.request('/network/action/setHttpProxyExclusionEnabled/', {'host': args.host, 'enabled': args.enabled })
 }
 
 /**
@@ -400,7 +400,7 @@ Network.prototype.setHttpProxyExclusionEnabled = async function (args) {
  * @param {string} username - The user name.
  * @param {string} password - The password.
  **/
-Network.prototype.setSocksProxy = async function (args) {
+Network.prototype.setSocksProxy = function (args) {
   const params = {'host': args.host, 'port': args.port };
   if (args.version && args.version !== null) {
     params['version'] = args.version;
@@ -414,7 +414,7 @@ Network.prototype.setSocksProxy = async function (args) {
   if (args.password && args.password !== null) {
     params['password'] = args.password;
   }
-    return await this.api.request('/network/action/setSocksProxy/', params)
+    return this.api.request('/network/action/setSocksProxy/', params)
 }
 
 /**
@@ -422,8 +422,8 @@ Network.prototype.setSocksProxy = async function (args) {
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} enabled - The enabled state, true or false.
  **/
-Network.prototype.setSocksProxyEnabled = async function (args) {
-    return await this.api.request('/network/action/setSocksProxyEnabled/', {'enabled': args.enabled })
+Network.prototype.setSocksProxyEnabled = function (args) {
+    return this.api.request('/network/action/setSocksProxyEnabled/', {'enabled': args.enabled })
 }
 
 /**
@@ -431,8 +431,8 @@ Network.prototype.setSocksProxyEnabled = async function (args) {
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} use - The use state, true or false.
  **/
-Network.prototype.setUseGlobalHttpState = async function (args) {
-    return await this.api.request('/network/action/setUseGlobalHttpState/', {'use': args.use })
+Network.prototype.setUseGlobalHttpState = function (args) {
+    return this.api.request('/network/action/setUseGlobalHttpState/', {'use': args.use })
 }
 
 /**
@@ -442,12 +442,12 @@ Network.prototype.setUseGlobalHttpState = async function (args) {
  * @param {string} password - The password for the file.
  * @param {string} index - The index of the certificate in the file, defaults to 0.
  **/
-Network.prototype.addPkcs12ClientCertificate = async function (args) {
+Network.prototype.addPkcs12ClientCertificate = function (args) {
   const params = {'filePath': args.filepath, 'password': args.password };
   if (args.index && args.index !== null) {
     params['index'] = args.index;
   }
-    return await this.api.request('/network/action/addPkcs12ClientCertificate/', params)
+    return this.api.request('/network/action/addPkcs12ClientCertificate/', params)
 }
 
 /**
@@ -455,16 +455,16 @@ Network.prototype.addPkcs12ClientCertificate = async function (args) {
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} use - The use state, true or false.
  **/
-Network.prototype.setUseClientCertificate = async function (args) {
-    return await this.api.request('/network/action/setUseClientCertificate/', {'use': args.use })
+Network.prototype.setUseClientCertificate = function (args) {
+    return this.api.request('/network/action/setUseClientCertificate/', {'use': args.use })
 }
 
 /**
  * Provides a PAC file, proxying through the main proxy.
  * This component is optional and therefore the API will only work if it is installed
  **/
-Network.prototype.proxypac = async function () {
-    return await this.api.request('/network/other/proxy.pac/', 'other')
+Network.prototype.proxypac = function () {
+    return this.api.request('/network/other/proxy.pac/', 'other')
 }
 
 /**
@@ -472,16 +472,16 @@ Network.prototype.proxypac = async function () {
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} proxy - The JSON object containing the HTTP proxy configuration.
  **/
-Network.prototype.setProxy = async function (args) {
-    return await this.api.request('/network/other/setProxy/', {'proxy': args.proxy }, 'other')
+Network.prototype.setProxy = function (args) {
+    return this.api.request('/network/other/setProxy/', {'proxy': args.proxy }, 'other')
 }
 
 /**
  * Gets the Root CA certificate used to issue server certificates. Suitable to import into client applications (e.g. browsers).
  * This component is optional and therefore the API will only work if it is installed
  **/
-Network.prototype.rootCaCert = async function () {
-    return await this.api.request('/network/other/rootCaCert/', 'other')
+Network.prototype.rootCaCert = function () {
+    return this.api.request('/network/other/rootCaCert/', 'other')
 }
 
 module.exports = Network;

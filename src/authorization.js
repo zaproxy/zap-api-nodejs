@@ -31,8 +31,8 @@ function Authorization(clientApi) {
  * Obtains all the configuration of the authorization detection method that is currently set for a context.
  * @param {string} contextid
  **/
-Authorization.prototype.getAuthorizationDetectionMethod = async function (args) {
-    return await this.api.request('/authorization/view/getAuthorizationDetectionMethod/', {'contextId': args.contextid })
+Authorization.prototype.getAuthorizationDetectionMethod = function (args) {
+    return this.api.request('/authorization/view/getAuthorizationDetectionMethod/', {'contextId': args.contextid })
 }
 
 /**
@@ -43,7 +43,7 @@ Authorization.prototype.getAuthorizationDetectionMethod = async function (args) 
  * @param {string} statuscode
  * @param {string} logicaloperator
  **/
-Authorization.prototype.setBasicAuthorizationDetectionMethod = async function (args) {
+Authorization.prototype.setBasicAuthorizationDetectionMethod = function (args) {
   const params = {'contextId': args.contextid };
   if (args.headerregex && args.headerregex !== null) {
     params['headerRegex'] = args.headerregex;
@@ -57,7 +57,7 @@ Authorization.prototype.setBasicAuthorizationDetectionMethod = async function (a
   if (args.logicaloperator && args.logicaloperator !== null) {
     params['logicalOperator'] = args.logicaloperator;
   }
-    return await this.api.request('/authorization/action/setBasicAuthorizationDetectionMethod/', params)
+    return this.api.request('/authorization/action/setBasicAuthorizationDetectionMethod/', params)
 }
 
 module.exports = Authorization;

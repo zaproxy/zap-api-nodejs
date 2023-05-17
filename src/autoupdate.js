@@ -30,236 +30,236 @@ function Autoupdate(clientApi) {
 /**
  * Returns the latest version number
  **/
-Autoupdate.prototype.latestVersionNumber = async function () {
-    return await this.api.request('/autoupdate/view/latestVersionNumber/')
+Autoupdate.prototype.latestVersionNumber = function () {
+    return this.api.request('/autoupdate/view/latestVersionNumber/')
 }
 
 /**
  * Returns 'true' if ZAP is on the latest version
  **/
-Autoupdate.prototype.isLatestVersion = async function () {
-    return await this.api.request('/autoupdate/view/isLatestVersion/')
+Autoupdate.prototype.isLatestVersion = function () {
+    return this.api.request('/autoupdate/view/isLatestVersion/')
 }
 
 /**
  * Return a list of all of the installed add-ons
  **/
-Autoupdate.prototype.installedAddons = async function () {
-    return await this.api.request('/autoupdate/view/installedAddons/')
+Autoupdate.prototype.installedAddons = function () {
+    return this.api.request('/autoupdate/view/installedAddons/')
 }
 
 /**
  * Returns a list with all local add-ons, installed or not.
  **/
-Autoupdate.prototype.localAddons = async function () {
-    return await this.api.request('/autoupdate/view/localAddons/')
+Autoupdate.prototype.localAddons = function () {
+    return this.api.request('/autoupdate/view/localAddons/')
 }
 
 /**
  * Return a list of any add-ons that have been added to the Marketplace since the last check for updates
  **/
-Autoupdate.prototype.newAddons = async function () {
-    return await this.api.request('/autoupdate/view/newAddons/')
+Autoupdate.prototype.newAddons = function () {
+    return this.api.request('/autoupdate/view/newAddons/')
 }
 
 /**
  * Return a list of any add-ons that have been changed in the Marketplace since the last check for updates
  **/
-Autoupdate.prototype.updatedAddons = async function () {
-    return await this.api.request('/autoupdate/view/updatedAddons/')
+Autoupdate.prototype.updatedAddons = function () {
+    return this.api.request('/autoupdate/view/updatedAddons/')
 }
 
 /**
  * Return a list of all of the add-ons on the ZAP Marketplace (this information is read once and then cached)
  **/
-Autoupdate.prototype.marketplaceAddons = async function () {
-    return await this.api.request('/autoupdate/view/marketplaceAddons/')
+Autoupdate.prototype.marketplaceAddons = function () {
+    return this.api.request('/autoupdate/view/marketplaceAddons/')
 }
 
 /**
  * 
  **/
-Autoupdate.prototype.optionAddonDirectories = async function () {
-    return await this.api.request('/autoupdate/view/optionAddonDirectories/')
+Autoupdate.prototype.optionAddonDirectories = function () {
+    return this.api.request('/autoupdate/view/optionAddonDirectories/')
 }
 
 /**
  * 
  **/
-Autoupdate.prototype.optionDayLastChecked = async function () {
-    return await this.api.request('/autoupdate/view/optionDayLastChecked/')
+Autoupdate.prototype.optionDayLastChecked = function () {
+    return this.api.request('/autoupdate/view/optionDayLastChecked/')
 }
 
 /**
  * 
  **/
-Autoupdate.prototype.optionDayLastInstallWarned = async function () {
-    return await this.api.request('/autoupdate/view/optionDayLastInstallWarned/')
+Autoupdate.prototype.optionDayLastInstallWarned = function () {
+    return this.api.request('/autoupdate/view/optionDayLastInstallWarned/')
 }
 
 /**
  * 
  **/
-Autoupdate.prototype.optionDayLastUpdateWarned = async function () {
-    return await this.api.request('/autoupdate/view/optionDayLastUpdateWarned/')
+Autoupdate.prototype.optionDayLastUpdateWarned = function () {
+    return this.api.request('/autoupdate/view/optionDayLastUpdateWarned/')
 }
 
 /**
  * 
  **/
-Autoupdate.prototype.optionDownloadDirectory = async function () {
-    return await this.api.request('/autoupdate/view/optionDownloadDirectory/')
+Autoupdate.prototype.optionDownloadDirectory = function () {
+    return this.api.request('/autoupdate/view/optionDownloadDirectory/')
 }
 
 /**
  * 
  **/
-Autoupdate.prototype.optionCheckAddonUpdates = async function () {
-    return await this.api.request('/autoupdate/view/optionCheckAddonUpdates/')
+Autoupdate.prototype.optionCheckAddonUpdates = function () {
+    return this.api.request('/autoupdate/view/optionCheckAddonUpdates/')
 }
 
 /**
  * 
  **/
-Autoupdate.prototype.optionCheckOnStart = async function () {
-    return await this.api.request('/autoupdate/view/optionCheckOnStart/')
+Autoupdate.prototype.optionCheckOnStart = function () {
+    return this.api.request('/autoupdate/view/optionCheckOnStart/')
 }
 
 /**
  * 
  **/
-Autoupdate.prototype.optionDownloadNewRelease = async function () {
-    return await this.api.request('/autoupdate/view/optionDownloadNewRelease/')
+Autoupdate.prototype.optionDownloadNewRelease = function () {
+    return this.api.request('/autoupdate/view/optionDownloadNewRelease/')
 }
 
 /**
  * 
  **/
-Autoupdate.prototype.optionInstallAddonUpdates = async function () {
-    return await this.api.request('/autoupdate/view/optionInstallAddonUpdates/')
+Autoupdate.prototype.optionInstallAddonUpdates = function () {
+    return this.api.request('/autoupdate/view/optionInstallAddonUpdates/')
 }
 
 /**
  * 
  **/
-Autoupdate.prototype.optionInstallScannerRules = async function () {
-    return await this.api.request('/autoupdate/view/optionInstallScannerRules/')
+Autoupdate.prototype.optionInstallScannerRules = function () {
+    return this.api.request('/autoupdate/view/optionInstallScannerRules/')
 }
 
 /**
  * 
  **/
-Autoupdate.prototype.optionReportAlphaAddons = async function () {
-    return await this.api.request('/autoupdate/view/optionReportAlphaAddons/')
+Autoupdate.prototype.optionReportAlphaAddons = function () {
+    return this.api.request('/autoupdate/view/optionReportAlphaAddons/')
 }
 
 /**
  * 
  **/
-Autoupdate.prototype.optionReportBetaAddons = async function () {
-    return await this.api.request('/autoupdate/view/optionReportBetaAddons/')
+Autoupdate.prototype.optionReportBetaAddons = function () {
+    return this.api.request('/autoupdate/view/optionReportBetaAddons/')
 }
 
 /**
  * 
  **/
-Autoupdate.prototype.optionReportReleaseAddons = async function () {
-    return await this.api.request('/autoupdate/view/optionReportReleaseAddons/')
+Autoupdate.prototype.optionReportReleaseAddons = function () {
+    return this.api.request('/autoupdate/view/optionReportReleaseAddons/')
 }
 
 /**
  * Downloads the latest release, if any 
  **/
-Autoupdate.prototype.downloadLatestRelease = async function () {
-    return await this.api.request('/autoupdate/action/downloadLatestRelease/')
+Autoupdate.prototype.downloadLatestRelease = function () {
+    return this.api.request('/autoupdate/action/downloadLatestRelease/')
 }
 
 /**
  * Installs or updates the specified add-on, returning when complete (i.e. not asynchronously)
  * @param {string} id
  **/
-Autoupdate.prototype.installAddon = async function (args) {
-    return await this.api.request('/autoupdate/action/installAddon/', {'id': args.id })
+Autoupdate.prototype.installAddon = function (args) {
+    return this.api.request('/autoupdate/action/installAddon/', {'id': args.id })
 }
 
 /**
  * 
  * @param {string} file
  **/
-Autoupdate.prototype.installLocalAddon = async function (args) {
-    return await this.api.request('/autoupdate/action/installLocalAddon/', {'file': args.file })
+Autoupdate.prototype.installLocalAddon = function (args) {
+    return this.api.request('/autoupdate/action/installLocalAddon/', {'file': args.file })
 }
 
 /**
  * Uninstalls the specified add-on 
  * @param {string} id
  **/
-Autoupdate.prototype.uninstallAddon = async function (args) {
-    return await this.api.request('/autoupdate/action/uninstallAddon/', {'id': args.id })
+Autoupdate.prototype.uninstallAddon = function (args) {
+    return this.api.request('/autoupdate/action/uninstallAddon/', {'id': args.id })
 }
 
 /**
  * 
  * @param {string} bool
  **/
-Autoupdate.prototype.setOptionCheckAddonUpdates = async function (args) {
-    return await this.api.request('/autoupdate/action/setOptionCheckAddonUpdates/', {'Boolean': args.bool })
+Autoupdate.prototype.setOptionCheckAddonUpdates = function (args) {
+    return this.api.request('/autoupdate/action/setOptionCheckAddonUpdates/', {'Boolean': args.bool })
 }
 
 /**
  * 
  * @param {string} bool
  **/
-Autoupdate.prototype.setOptionCheckOnStart = async function (args) {
-    return await this.api.request('/autoupdate/action/setOptionCheckOnStart/', {'Boolean': args.bool })
+Autoupdate.prototype.setOptionCheckOnStart = function (args) {
+    return this.api.request('/autoupdate/action/setOptionCheckOnStart/', {'Boolean': args.bool })
 }
 
 /**
  * 
  * @param {string} bool
  **/
-Autoupdate.prototype.setOptionDownloadNewRelease = async function (args) {
-    return await this.api.request('/autoupdate/action/setOptionDownloadNewRelease/', {'Boolean': args.bool })
+Autoupdate.prototype.setOptionDownloadNewRelease = function (args) {
+    return this.api.request('/autoupdate/action/setOptionDownloadNewRelease/', {'Boolean': args.bool })
 }
 
 /**
  * 
  * @param {string} bool
  **/
-Autoupdate.prototype.setOptionInstallAddonUpdates = async function (args) {
-    return await this.api.request('/autoupdate/action/setOptionInstallAddonUpdates/', {'Boolean': args.bool })
+Autoupdate.prototype.setOptionInstallAddonUpdates = function (args) {
+    return this.api.request('/autoupdate/action/setOptionInstallAddonUpdates/', {'Boolean': args.bool })
 }
 
 /**
  * 
  * @param {string} bool
  **/
-Autoupdate.prototype.setOptionInstallScannerRules = async function (args) {
-    return await this.api.request('/autoupdate/action/setOptionInstallScannerRules/', {'Boolean': args.bool })
+Autoupdate.prototype.setOptionInstallScannerRules = function (args) {
+    return this.api.request('/autoupdate/action/setOptionInstallScannerRules/', {'Boolean': args.bool })
 }
 
 /**
  * 
  * @param {string} bool
  **/
-Autoupdate.prototype.setOptionReportAlphaAddons = async function (args) {
-    return await this.api.request('/autoupdate/action/setOptionReportAlphaAddons/', {'Boolean': args.bool })
+Autoupdate.prototype.setOptionReportAlphaAddons = function (args) {
+    return this.api.request('/autoupdate/action/setOptionReportAlphaAddons/', {'Boolean': args.bool })
 }
 
 /**
  * 
  * @param {string} bool
  **/
-Autoupdate.prototype.setOptionReportBetaAddons = async function (args) {
-    return await this.api.request('/autoupdate/action/setOptionReportBetaAddons/', {'Boolean': args.bool })
+Autoupdate.prototype.setOptionReportBetaAddons = function (args) {
+    return this.api.request('/autoupdate/action/setOptionReportBetaAddons/', {'Boolean': args.bool })
 }
 
 /**
  * 
  * @param {string} bool
  **/
-Autoupdate.prototype.setOptionReportReleaseAddons = async function (args) {
-    return await this.api.request('/autoupdate/action/setOptionReportReleaseAddons/', {'Boolean': args.bool })
+Autoupdate.prototype.setOptionReportReleaseAddons = function (args) {
+    return this.api.request('/autoupdate/action/setOptionReportReleaseAddons/', {'Boolean': args.bool })
 }
 
 module.exports = Autoupdate;

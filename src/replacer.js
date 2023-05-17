@@ -31,8 +31,8 @@ function Replacer(clientApi) {
  * Returns full details of all of the rules
  * This component is optional and therefore the API will only work if it is installed
  **/
-Replacer.prototype.rules = async function () {
-    return await this.api.request('/replacer/view/rules/')
+Replacer.prototype.rules = function () {
+    return this.api.request('/replacer/view/rules/')
 }
 
 /**
@@ -47,7 +47,7 @@ Replacer.prototype.rules = async function () {
  * @param {string} initiators
  * @param {string} url - A regular expression to match the URL of the message, if empty the rule applies to all messages.
  **/
-Replacer.prototype.addRule = async function (args) {
+Replacer.prototype.addRule = function (args) {
   const params = {'description': args.description, 'enabled': args.enabled, 'matchType': args.matchtype, 'matchRegex': args.matchregex, 'matchString': args.matchstring };
   if (args.replacement && args.replacement !== null) {
     params['replacement'] = args.replacement;
@@ -58,7 +58,7 @@ Replacer.prototype.addRule = async function (args) {
   if (args.url && args.url !== null) {
     params['url'] = args.url;
   }
-    return await this.api.request('/replacer/action/addRule/', params)
+    return this.api.request('/replacer/action/addRule/', params)
 }
 
 /**
@@ -66,8 +66,8 @@ Replacer.prototype.addRule = async function (args) {
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} description
  **/
-Replacer.prototype.removeRule = async function (args) {
-    return await this.api.request('/replacer/action/removeRule/', {'description': args.description })
+Replacer.prototype.removeRule = function (args) {
+    return this.api.request('/replacer/action/removeRule/', {'description': args.description })
 }
 
 /**
@@ -76,8 +76,8 @@ Replacer.prototype.removeRule = async function (args) {
  * @param {string} description
  * @param {string} bool
  **/
-Replacer.prototype.setEnabled = async function (args) {
-    return await this.api.request('/replacer/action/setEnabled/', {'description': args.description, 'bool': args.bool })
+Replacer.prototype.setEnabled = function (args) {
+    return this.api.request('/replacer/action/setEnabled/', {'description': args.description, 'bool': args.bool })
 }
 
 module.exports = Replacer;

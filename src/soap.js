@@ -32,8 +32,8 @@ function Soap(clientApi) {
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} file
  **/
-Soap.prototype.importFile = async function (args) {
-    return await this.api.request('/soap/action/importFile/', {'file': args.file })
+Soap.prototype.importFile = function (args) {
+    return this.api.request('/soap/action/importFile/', {'file': args.file })
 }
 
 /**
@@ -41,8 +41,8 @@ Soap.prototype.importFile = async function (args) {
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} url
  **/
-Soap.prototype.importUrl = async function (args) {
-    return await this.api.request('/soap/action/importUrl/', {'url': args.url })
+Soap.prototype.importUrl = function (args) {
+    return this.api.request('/soap/action/importUrl/', {'url': args.url })
 }
 
 module.exports = Soap;

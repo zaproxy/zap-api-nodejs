@@ -31,8 +31,8 @@ function Reports(clientApi) {
  * View available templates.
  * This component is optional and therefore the API will only work if it is installed
  **/
-Reports.prototype.templates = async function () {
-    return await this.api.request('/reports/view/templates/')
+Reports.prototype.templates = function () {
+    return this.api.request('/reports/view/templates/')
 }
 
 /**
@@ -40,8 +40,8 @@ Reports.prototype.templates = async function () {
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} template - Template Label
  **/
-Reports.prototype.templateDetails = async function (args) {
-    return await this.api.request('/reports/view/templateDetails/', {'template': args.template })
+Reports.prototype.templateDetails = function (args) {
+    return this.api.request('/reports/view/templateDetails/', {'template': args.template })
 }
 
 /**
@@ -61,7 +61,7 @@ Reports.prototype.templateDetails = async function (args) {
  * @param {string} reportdir - Path to directory in which the generated report should be placed.
  * @param {string} display - Display the generated report. Either "true" or "false".
  **/
-Reports.prototype.generate = async function (args) {
+Reports.prototype.generate = function (args) {
   const params = {'title': args.title, 'template': args.template };
   if (args.theme && args.theme !== null) {
     params['theme'] = args.theme;
@@ -96,7 +96,7 @@ Reports.prototype.generate = async function (args) {
   if (args.display && args.display !== null) {
     params['display'] = args.display;
   }
-    return await this.api.request('/reports/action/generate/', params)
+    return this.api.request('/reports/action/generate/', params)
 }
 
 module.exports = Reports;
