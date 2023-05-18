@@ -17,14 +17,13 @@
  * limitations under the License.
  */
 
-
-'use strict';
+'use strict'
 
 /**
  * This file was automatically generated.
  */
-function Reports(clientApi) {
-  this.api = clientApi;
+function Reports (clientApi) {
+  this.api = clientApi
 }
 
 /**
@@ -32,7 +31,7 @@ function Reports(clientApi) {
  * This component is optional and therefore the API will only work if it is installed
  **/
 Reports.prototype.templates = function () {
-    return this.api.request('/reports/view/templates/')
+  return this.api.request('/reports/view/templates/')
 }
 
 /**
@@ -41,7 +40,7 @@ Reports.prototype.templates = function () {
  * @param {string} template - Template Label
  **/
 Reports.prototype.templateDetails = function (args) {
-    return this.api.request('/reports/view/templateDetails/', {'template': args.template })
+  return this.api.request('/reports/view/templateDetails/', { template: args.template })
 }
 
 /**
@@ -62,41 +61,41 @@ Reports.prototype.templateDetails = function (args) {
  * @param {string} display - Display the generated report. Either "true" or "false".
  **/
 Reports.prototype.generate = function (args) {
-  const params = {'title': args.title, 'template': args.template };
+  const params = { title: args.title, template: args.template }
   if (args.theme && args.theme !== null) {
-    params['theme'] = args.theme;
+    params.theme = args.theme
   }
   if (args.description && args.description !== null) {
-    params['description'] = args.description;
+    params.description = args.description
   }
   if (args.contexts && args.contexts !== null) {
-    params['contexts'] = args.contexts;
+    params.contexts = args.contexts
   }
   if (args.sites && args.sites !== null) {
-    params['sites'] = args.sites;
+    params.sites = args.sites
   }
   if (args.sections && args.sections !== null) {
-    params['sections'] = args.sections;
+    params.sections = args.sections
   }
   if (args.includedconfidences && args.includedconfidences !== null) {
-    params['includedConfidences'] = args.includedconfidences;
+    params.includedConfidences = args.includedconfidences
   }
   if (args.includedrisks && args.includedrisks !== null) {
-    params['includedRisks'] = args.includedrisks;
+    params.includedRisks = args.includedrisks
   }
   if (args.reportfilename && args.reportfilename !== null) {
-    params['reportFileName'] = args.reportfilename;
+    params.reportFileName = args.reportfilename
   }
   if (args.reportfilenamepattern && args.reportfilenamepattern !== null) {
-    params['reportFileNamePattern'] = args.reportfilenamepattern;
+    params.reportFileNamePattern = args.reportfilenamepattern
   }
   if (args.reportdir && args.reportdir !== null) {
-    params['reportDir'] = args.reportdir;
+    params.reportDir = args.reportdir
   }
   if (args.display && args.display !== null) {
-    params['display'] = args.display;
+    params.display = args.display
   }
-    return this.api.request('/reports/action/generate/', params)
+  return this.api.request('/reports/action/generate/', params)
 }
 
-module.exports = Reports;
+module.exports = Reports

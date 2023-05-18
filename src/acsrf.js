@@ -17,28 +17,27 @@
  * limitations under the License.
  */
 
-
-'use strict';
+'use strict'
 
 /**
  * This file was automatically generated.
  */
-function Acsrf(clientApi) {
-  this.api = clientApi;
+function Acsrf (clientApi) {
+  this.api = clientApi
 }
 
 /**
  * Lists the names of all anti-CSRF tokens
  **/
 Acsrf.prototype.optionTokensNames = function () {
-    return this.api.request('/acsrf/view/optionTokensNames/')
+  return this.api.request('/acsrf/view/optionTokensNames/')
 }
 
 /**
  * Define if ZAP should detect CSRF tokens by searching for partial matches
  **/
 Acsrf.prototype.optionPartialMatchingEnabled = function () {
-    return this.api.request('/acsrf/view/optionPartialMatchingEnabled/')
+  return this.api.request('/acsrf/view/optionPartialMatchingEnabled/')
 }
 
 /**
@@ -46,7 +45,7 @@ Acsrf.prototype.optionPartialMatchingEnabled = function () {
  * @param {string} string
  **/
 Acsrf.prototype.addOptionToken = function (args) {
-    return this.api.request('/acsrf/action/addOptionToken/', {'String': args.string })
+  return this.api.request('/acsrf/action/addOptionToken/', { String: args.string })
 }
 
 /**
@@ -54,7 +53,7 @@ Acsrf.prototype.addOptionToken = function (args) {
  * @param {string} string
  **/
 Acsrf.prototype.removeOptionToken = function (args) {
-    return this.api.request('/acsrf/action/removeOptionToken/', {'String': args.string })
+  return this.api.request('/acsrf/action/removeOptionToken/', { String: args.string })
 }
 
 /**
@@ -62,7 +61,7 @@ Acsrf.prototype.removeOptionToken = function (args) {
  * @param {string} bool
  **/
 Acsrf.prototype.setOptionPartialMatchingEnabled = function (args) {
-    return this.api.request('/acsrf/action/setOptionPartialMatchingEnabled/', {'Boolean': args.bool })
+  return this.api.request('/acsrf/action/setOptionPartialMatchingEnabled/', { Boolean: args.bool })
 }
 
 /**
@@ -71,11 +70,11 @@ Acsrf.prototype.setOptionPartialMatchingEnabled = function (args) {
  * @param {string} actionurl - Define the action URL to be used in the generated form
  **/
 Acsrf.prototype.genForm = function (args) {
-  const params = {'hrefId': args.hrefid };
+  const params = { hrefId: args.hrefid }
   if (args.actionurl && args.actionurl !== null) {
-    params['actionUrl'] = args.actionurl;
+    params.actionUrl = args.actionurl
   }
-    return this.api.request('/acsrf/other/genForm/', params, 'other')
+  return this.api.request('/acsrf/other/genForm/', params, 'other')
 }
 
-module.exports = Acsrf;
+module.exports = Acsrf

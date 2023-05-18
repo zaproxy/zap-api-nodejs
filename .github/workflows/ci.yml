@@ -15,3 +15,6 @@ jobs:
         with:
           node-version: 17
       - run: npm ci
+
+      - name: Run eslint
+        run: npm run lint

@@ -17,14 +17,13 @@
  * limitations under the License.
  */
 
-
-'use strict';
+'use strict'
 
 /**
  * This file was automatically generated.
  */
-function Alert(clientApi) {
-  this.api = clientApi;
+function Alert (clientApi) {
+  this.api = clientApi
 }
 
 /**
@@ -32,7 +31,7 @@ function Alert(clientApi) {
  * @param {string} id
  **/
 Alert.prototype.alert = function (args) {
-    return this.api.request('/alert/view/alert/', {'id': args.id })
+  return this.api.request('/alert/view/alert/', { id: args.id })
 }
 
 /**
@@ -43,20 +42,20 @@ Alert.prototype.alert = function (args) {
  * @param {string} riskid
  **/
 Alert.prototype.alerts = function (args) {
-  const params = { };
+  const params = { }
   if (args.baseurl && args.baseurl !== null) {
-    params['baseurl'] = args.baseurl;
+    params.baseurl = args.baseurl
   }
   if (args.start && args.start !== null) {
-    params['start'] = args.start;
+    params.start = args.start
   }
   if (args.count && args.count !== null) {
-    params['count'] = args.count;
+    params.count = args.count
   }
   if (args.riskid && args.riskid !== null) {
-    params['riskId'] = args.riskid;
+    params.riskId = args.riskid
   }
-    return this.api.request('/alert/view/alerts/', params)
+  return this.api.request('/alert/view/alerts/', params)
 }
 
 /**
@@ -64,11 +63,11 @@ Alert.prototype.alerts = function (args) {
  * @param {string} baseurl
  **/
 Alert.prototype.alertsSummary = function (args) {
-  const params = { };
+  const params = { }
   if (args.baseurl && args.baseurl !== null) {
-    params['baseurl'] = args.baseurl;
+    params.baseurl = args.baseurl
   }
-    return this.api.request('/alert/view/alertsSummary/', params)
+  return this.api.request('/alert/view/alertsSummary/', params)
 }
 
 /**
@@ -77,14 +76,14 @@ Alert.prototype.alertsSummary = function (args) {
  * @param {string} riskid
  **/
 Alert.prototype.numberOfAlerts = function (args) {
-  const params = { };
+  const params = { }
   if (args.baseurl && args.baseurl !== null) {
-    params['baseurl'] = args.baseurl;
+    params.baseurl = args.baseurl
   }
   if (args.riskid && args.riskid !== null) {
-    params['riskId'] = args.riskid;
+    params.riskId = args.riskid
   }
-    return this.api.request('/alert/view/numberOfAlerts/', params)
+  return this.api.request('/alert/view/numberOfAlerts/', params)
 }
 
 /**
@@ -93,14 +92,14 @@ Alert.prototype.numberOfAlerts = function (args) {
  * @param {string} recurse
  **/
 Alert.prototype.alertsByRisk = function (args) {
-  const params = { };
+  const params = { }
   if (args.url && args.url !== null) {
-    params['url'] = args.url;
+    params.url = args.url
   }
   if (args.recurse && args.recurse !== null) {
-    params['recurse'] = args.recurse;
+    params.recurse = args.recurse
   }
-    return this.api.request('/alert/view/alertsByRisk/', params)
+  return this.api.request('/alert/view/alertsByRisk/', params)
 }
 
 /**
@@ -109,29 +108,29 @@ Alert.prototype.alertsByRisk = function (args) {
  * @param {string} recurse
  **/
 Alert.prototype.alertCountsByRisk = function (args) {
-  const params = { };
+  const params = { }
   if (args.url && args.url !== null) {
-    params['url'] = args.url;
+    params.url = args.url
   }
   if (args.recurse && args.recurse !== null) {
-    params['recurse'] = args.recurse;
+    params.recurse = args.recurse
   }
-    return this.api.request('/alert/view/alertCountsByRisk/', params)
+  return this.api.request('/alert/view/alertCountsByRisk/', params)
 }
 
 /**
  * Deletes all alerts of the current session.
  **/
 Alert.prototype.deleteAllAlerts = function () {
-    return this.api.request('/alert/action/deleteAllAlerts/')
+  return this.api.request('/alert/action/deleteAllAlerts/')
 }
 
 /**
- * Deletes the alert with the given ID. 
+ * Deletes the alert with the given ID.
  * @param {string} id
  **/
 Alert.prototype.deleteAlert = function (args) {
-    return this.api.request('/alert/action/deleteAlert/', {'id': args.id })
+  return this.api.request('/alert/action/deleteAlert/', { id: args.id })
 }
 
 /**
@@ -140,7 +139,7 @@ Alert.prototype.deleteAlert = function (args) {
  * @param {string} confidenceid - The numeric confidence representation ('1 - Low' through '3 - High' [user set values '0 - False Positive', and '4 - User Confirmed' are also available]).
  **/
 Alert.prototype.updateAlertsConfidence = function (args) {
-    return this.api.request('/alert/action/updateAlertsConfidence/', {'ids': args.ids, 'confidenceId': args.confidenceid })
+  return this.api.request('/alert/action/updateAlertsConfidence/', { ids: args.ids, confidenceId: args.confidenceid })
 }
 
 /**
@@ -149,7 +148,7 @@ Alert.prototype.updateAlertsConfidence = function (args) {
  * @param {string} riskid - The numeric risk representation ('0 - Informational' through '3 - High').
  **/
 Alert.prototype.updateAlertsRisk = function (args) {
-    return this.api.request('/alert/action/updateAlertsRisk/', {'ids': args.ids, 'riskId': args.riskid })
+  return this.api.request('/alert/action/updateAlertsRisk/', { ids: args.ids, riskId: args.riskid })
 }
 
 /**
@@ -169,32 +168,32 @@ Alert.prototype.updateAlertsRisk = function (args) {
  * @param {string} wascid - The WASC identifier associated with the alert.
  **/
 Alert.prototype.updateAlert = function (args) {
-  const params = {'id': args.id, 'name': args.name, 'riskId': args.riskid, 'confidenceId': args.confidenceid, 'description': args.description };
+  const params = { id: args.id, name: args.name, riskId: args.riskid, confidenceId: args.confidenceid, description: args.description }
   if (args.param && args.param !== null) {
-    params['param'] = args.param;
+    params.param = args.param
   }
   if (args.attack && args.attack !== null) {
-    params['attack'] = args.attack;
+    params.attack = args.attack
   }
   if (args.otherinfo && args.otherinfo !== null) {
-    params['otherInfo'] = args.otherinfo;
+    params.otherInfo = args.otherinfo
   }
   if (args.solution && args.solution !== null) {
-    params['solution'] = args.solution;
+    params.solution = args.solution
   }
   if (args.references && args.references !== null) {
-    params['references'] = args.references;
+    params.references = args.references
   }
   if (args.evidence && args.evidence !== null) {
-    params['evidence'] = args.evidence;
+    params.evidence = args.evidence
   }
   if (args.cweid && args.cweid !== null) {
-    params['cweId'] = args.cweid;
+    params.cweId = args.cweid
   }
   if (args.wascid && args.wascid !== null) {
-    params['wascId'] = args.wascid;
+    params.wascId = args.wascid
   }
-    return this.api.request('/alert/action/updateAlert/', params)
+  return this.api.request('/alert/action/updateAlert/', params)
 }
 
 /**
@@ -214,32 +213,32 @@ Alert.prototype.updateAlert = function (args) {
  * @param {string} wascid - The WASC identifier associated with the alert.
  **/
 Alert.prototype.addAlert = function (args) {
-  const params = {'messageId': args.messageid, 'name': args.name, 'riskId': args.riskid, 'confidenceId': args.confidenceid, 'description': args.description };
+  const params = { messageId: args.messageid, name: args.name, riskId: args.riskid, confidenceId: args.confidenceid, description: args.description }
   if (args.param && args.param !== null) {
-    params['param'] = args.param;
+    params.param = args.param
   }
   if (args.attack && args.attack !== null) {
-    params['attack'] = args.attack;
+    params.attack = args.attack
   }
   if (args.otherinfo && args.otherinfo !== null) {
-    params['otherInfo'] = args.otherinfo;
+    params.otherInfo = args.otherinfo
   }
   if (args.solution && args.solution !== null) {
-    params['solution'] = args.solution;
+    params.solution = args.solution
   }
   if (args.references && args.references !== null) {
-    params['references'] = args.references;
+    params.references = args.references
   }
   if (args.evidence && args.evidence !== null) {
-    params['evidence'] = args.evidence;
+    params.evidence = args.evidence
   }
   if (args.cweid && args.cweid !== null) {
-    params['cweId'] = args.cweid;
+    params.cweId = args.cweid
   }
   if (args.wascid && args.wascid !== null) {
-    params['wascId'] = args.wascid;
+    params.wascId = args.wascid
   }
-    return this.api.request('/alert/action/addAlert/', params)
+  return this.api.request('/alert/action/addAlert/', params)
 }
 
-module.exports = Alert;
+module.exports = Alert

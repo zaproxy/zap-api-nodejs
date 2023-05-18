@@ -17,35 +17,34 @@
  * limitations under the License.
  */
 
-
-'use strict';
+'use strict'
 
 /**
  * This file was automatically generated.
  */
-function Script(clientApi) {
-  this.api = clientApi;
+function Script (clientApi) {
+  this.api = clientApi
 }
 
 /**
  * Lists the script engines available
  **/
 Script.prototype.listEngines = function () {
-    return this.api.request('/script/view/listEngines/')
+  return this.api.request('/script/view/listEngines/')
 }
 
 /**
  * Lists the script types available.
  **/
 Script.prototype.listTypes = function () {
-    return this.api.request('/script/view/listTypes/')
+  return this.api.request('/script/view/listTypes/')
 }
 
 /**
  * Lists the scripts available, with its engine, name, description, type and error state.
  **/
 Script.prototype.listScripts = function () {
-    return this.api.request('/script/view/listScripts/')
+  return this.api.request('/script/view/listScripts/')
 }
 
 /**
@@ -53,7 +52,7 @@ Script.prototype.listScripts = function () {
  * @param {string} varkey
  **/
 Script.prototype.globalVar = function (args) {
-    return this.api.request('/script/view/globalVar/', {'varKey': args.varkey })
+  return this.api.request('/script/view/globalVar/', { varKey: args.varkey })
 }
 
 /**
@@ -61,21 +60,21 @@ Script.prototype.globalVar = function (args) {
  * @param {string} varkey - The key of the variable.
  **/
 Script.prototype.globalCustomVar = function (args) {
-    return this.api.request('/script/view/globalCustomVar/', {'varKey': args.varkey })
+  return this.api.request('/script/view/globalCustomVar/', { varKey: args.varkey })
 }
 
 /**
  * Gets all the global variables (key/value pairs).
  **/
 Script.prototype.globalVars = function () {
-    return this.api.request('/script/view/globalVars/')
+  return this.api.request('/script/view/globalVars/')
 }
 
 /**
  * Gets all the global custom variables (key/value pairs, the value is the string representation).
  **/
 Script.prototype.globalCustomVars = function () {
-    return this.api.request('/script/view/globalCustomVars/')
+  return this.api.request('/script/view/globalCustomVars/')
 }
 
 /**
@@ -84,7 +83,7 @@ Script.prototype.globalCustomVars = function () {
  * @param {string} varkey
  **/
 Script.prototype.scriptVar = function (args) {
-    return this.api.request('/script/view/scriptVar/', {'scriptName': args.scriptname, 'varKey': args.varkey })
+  return this.api.request('/script/view/scriptVar/', { scriptName: args.scriptname, varKey: args.varkey })
 }
 
 /**
@@ -93,7 +92,7 @@ Script.prototype.scriptVar = function (args) {
  * @param {string} varkey - The key of the variable.
  **/
 Script.prototype.scriptCustomVar = function (args) {
-    return this.api.request('/script/view/scriptCustomVar/', {'scriptName': args.scriptname, 'varKey': args.varkey })
+  return this.api.request('/script/view/scriptCustomVar/', { scriptName: args.scriptname, varKey: args.varkey })
 }
 
 /**
@@ -101,7 +100,7 @@ Script.prototype.scriptCustomVar = function (args) {
  * @param {string} scriptname
  **/
 Script.prototype.scriptVars = function (args) {
-    return this.api.request('/script/view/scriptVars/', {'scriptName': args.scriptname })
+  return this.api.request('/script/view/scriptVars/', { scriptName: args.scriptname })
 }
 
 /**
@@ -109,7 +108,7 @@ Script.prototype.scriptVars = function (args) {
  * @param {string} scriptname - The name of the script.
  **/
 Script.prototype.scriptCustomVars = function (args) {
-    return this.api.request('/script/view/scriptCustomVars/', {'scriptName': args.scriptname })
+  return this.api.request('/script/view/scriptCustomVars/', { scriptName: args.scriptname })
 }
 
 /**
@@ -117,7 +116,7 @@ Script.prototype.scriptCustomVars = function (args) {
  * @param {string} scriptname
  **/
 Script.prototype.enable = function (args) {
-    return this.api.request('/script/action/enable/', {'scriptName': args.scriptname })
+  return this.api.request('/script/action/enable/', { scriptName: args.scriptname })
 }
 
 /**
@@ -125,7 +124,7 @@ Script.prototype.enable = function (args) {
  * @param {string} scriptname
  **/
 Script.prototype.disable = function (args) {
-    return this.api.request('/script/action/disable/', {'scriptName': args.scriptname })
+  return this.api.request('/script/action/disable/', { scriptName: args.scriptname })
 }
 
 /**
@@ -138,14 +137,14 @@ Script.prototype.disable = function (args) {
  * @param {string} charset
  **/
 Script.prototype.load = function (args) {
-  const params = {'scriptName': args.scriptname, 'scriptType': args.scripttype, 'scriptEngine': args.scriptengine, 'fileName': args.filename };
+  const params = { scriptName: args.scriptname, scriptType: args.scripttype, scriptEngine: args.scriptengine, fileName: args.filename }
   if (args.scriptdescription && args.scriptdescription !== null) {
-    params['scriptDescription'] = args.scriptdescription;
+    params.scriptDescription = args.scriptdescription
   }
   if (args.charset && args.charset !== null) {
-    params['charset'] = args.charset;
+    params.charset = args.charset
   }
-    return this.api.request('/script/action/load/', params)
+  return this.api.request('/script/action/load/', params)
 }
 
 /**
@@ -153,7 +152,7 @@ Script.prototype.load = function (args) {
  * @param {string} scriptname
  **/
 Script.prototype.remove = function (args) {
-    return this.api.request('/script/action/remove/', {'scriptName': args.scriptname })
+  return this.api.request('/script/action/remove/', { scriptName: args.scriptname })
 }
 
 /**
@@ -161,7 +160,7 @@ Script.prototype.remove = function (args) {
  * @param {string} scriptname
  **/
 Script.prototype.runStandAloneScript = function (args) {
-    return this.api.request('/script/action/runStandAloneScript/', {'scriptName': args.scriptname })
+  return this.api.request('/script/action/runStandAloneScript/', { scriptName: args.scriptname })
 }
 
 /**
@@ -169,7 +168,7 @@ Script.prototype.runStandAloneScript = function (args) {
  * @param {string} varkey
  **/
 Script.prototype.clearGlobalVar = function (args) {
-    return this.api.request('/script/action/clearGlobalVar/', {'varKey': args.varkey })
+  return this.api.request('/script/action/clearGlobalVar/', { varKey: args.varkey })
 }
 
 /**
@@ -177,14 +176,14 @@ Script.prototype.clearGlobalVar = function (args) {
  * @param {string} varkey - The key of the variable.
  **/
 Script.prototype.clearGlobalCustomVar = function (args) {
-    return this.api.request('/script/action/clearGlobalCustomVar/', {'varKey': args.varkey })
+  return this.api.request('/script/action/clearGlobalCustomVar/', { varKey: args.varkey })
 }
 
 /**
  * Clears the global variables.
  **/
 Script.prototype.clearGlobalVars = function () {
-    return this.api.request('/script/action/clearGlobalVars/')
+  return this.api.request('/script/action/clearGlobalVars/')
 }
 
 /**
@@ -193,7 +192,7 @@ Script.prototype.clearGlobalVars = function () {
  * @param {string} varkey
  **/
 Script.prototype.clearScriptVar = function (args) {
-    return this.api.request('/script/action/clearScriptVar/', {'scriptName': args.scriptname, 'varKey': args.varkey })
+  return this.api.request('/script/action/clearScriptVar/', { scriptName: args.scriptname, varKey: args.varkey })
 }
 
 /**
@@ -202,7 +201,7 @@ Script.prototype.clearScriptVar = function (args) {
  * @param {string} varkey - The key of the variable.
  **/
 Script.prototype.clearScriptCustomVar = function (args) {
-    return this.api.request('/script/action/clearScriptCustomVar/', {'scriptName': args.scriptname, 'varKey': args.varkey })
+  return this.api.request('/script/action/clearScriptCustomVar/', { scriptName: args.scriptname, varKey: args.varkey })
 }
 
 /**
@@ -210,7 +209,7 @@ Script.prototype.clearScriptCustomVar = function (args) {
  * @param {string} scriptname
  **/
 Script.prototype.clearScriptVars = function (args) {
-    return this.api.request('/script/action/clearScriptVars/', {'scriptName': args.scriptname })
+  return this.api.request('/script/action/clearScriptVars/', { scriptName: args.scriptname })
 }
 
 /**
@@ -220,11 +219,11 @@ Script.prototype.clearScriptVars = function (args) {
  * @param {string} varvalue
  **/
 Script.prototype.setScriptVar = function (args) {
-  const params = {'scriptName': args.scriptname, 'varKey': args.varkey };
+  const params = { scriptName: args.scriptname, varKey: args.varkey }
   if (args.varvalue && args.varvalue !== null) {
-    params['varValue'] = args.varvalue;
+    params.varValue = args.varvalue
   }
-    return this.api.request('/script/action/setScriptVar/', params)
+  return this.api.request('/script/action/setScriptVar/', params)
 }
 
 /**
@@ -233,11 +232,11 @@ Script.prototype.setScriptVar = function (args) {
  * @param {string} varvalue
  **/
 Script.prototype.setGlobalVar = function (args) {
-  const params = {'varKey': args.varkey };
+  const params = { varKey: args.varkey }
   if (args.varvalue && args.varvalue !== null) {
-    params['varValue'] = args.varvalue;
+    params.varValue = args.varvalue
   }
-    return this.api.request('/script/action/setGlobalVar/', params)
+  return this.api.request('/script/action/setGlobalVar/', params)
 }
 
-module.exports = Script;
+module.exports = Script

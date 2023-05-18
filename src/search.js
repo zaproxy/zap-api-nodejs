@@ -17,14 +17,13 @@
  * limitations under the License.
  */
 
-
-'use strict';
+'use strict'
 
 /**
  * This file was automatically generated.
  */
-function Search(clientApi) {
-  this.api = clientApi;
+function Search (clientApi) {
+  this.api = clientApi
 }
 
 /**
@@ -35,17 +34,17 @@ function Search(clientApi) {
  * @param {string} count
  **/
 Search.prototype.urlsByUrlRegex = function (args) {
-  const params = {'regex': args.regex };
+  const params = { regex: args.regex }
   if (args.baseurl && args.baseurl !== null) {
-    params['baseurl'] = args.baseurl;
+    params.baseurl = args.baseurl
   }
   if (args.start && args.start !== null) {
-    params['start'] = args.start;
+    params.start = args.start
   }
   if (args.count && args.count !== null) {
-    params['count'] = args.count;
+    params.count = args.count
   }
-    return this.api.request('/search/view/urlsByUrlRegex/', params)
+  return this.api.request('/search/view/urlsByUrlRegex/', params)
 }
 
 /**
@@ -56,17 +55,17 @@ Search.prototype.urlsByUrlRegex = function (args) {
  * @param {string} count
  **/
 Search.prototype.urlsByRequestRegex = function (args) {
-  const params = {'regex': args.regex };
+  const params = { regex: args.regex }
   if (args.baseurl && args.baseurl !== null) {
-    params['baseurl'] = args.baseurl;
+    params.baseurl = args.baseurl
   }
   if (args.start && args.start !== null) {
-    params['start'] = args.start;
+    params.start = args.start
   }
   if (args.count && args.count !== null) {
-    params['count'] = args.count;
+    params.count = args.count
   }
-    return this.api.request('/search/view/urlsByRequestRegex/', params)
+  return this.api.request('/search/view/urlsByRequestRegex/', params)
 }
 
 /**
@@ -77,17 +76,17 @@ Search.prototype.urlsByRequestRegex = function (args) {
  * @param {string} count
  **/
 Search.prototype.urlsByResponseRegex = function (args) {
-  const params = {'regex': args.regex };
+  const params = { regex: args.regex }
   if (args.baseurl && args.baseurl !== null) {
-    params['baseurl'] = args.baseurl;
+    params.baseurl = args.baseurl
   }
   if (args.start && args.start !== null) {
-    params['start'] = args.start;
+    params.start = args.start
   }
   if (args.count && args.count !== null) {
-    params['count'] = args.count;
+    params.count = args.count
   }
-    return this.api.request('/search/view/urlsByResponseRegex/', params)
+  return this.api.request('/search/view/urlsByResponseRegex/', params)
 }
 
 /**
@@ -98,17 +97,17 @@ Search.prototype.urlsByResponseRegex = function (args) {
  * @param {string} count
  **/
 Search.prototype.urlsByHeaderRegex = function (args) {
-  const params = {'regex': args.regex };
+  const params = { regex: args.regex }
   if (args.baseurl && args.baseurl !== null) {
-    params['baseurl'] = args.baseurl;
+    params.baseurl = args.baseurl
   }
   if (args.start && args.start !== null) {
-    params['start'] = args.start;
+    params.start = args.start
   }
   if (args.count && args.count !== null) {
-    params['count'] = args.count;
+    params.count = args.count
   }
-    return this.api.request('/search/view/urlsByHeaderRegex/', params)
+  return this.api.request('/search/view/urlsByHeaderRegex/', params)
 }
 
 /**
@@ -119,17 +118,17 @@ Search.prototype.urlsByHeaderRegex = function (args) {
  * @param {string} count
  **/
 Search.prototype.messagesByUrlRegex = function (args) {
-  const params = {'regex': args.regex };
+  const params = { regex: args.regex }
   if (args.baseurl && args.baseurl !== null) {
-    params['baseurl'] = args.baseurl;
+    params.baseurl = args.baseurl
   }
   if (args.start && args.start !== null) {
-    params['start'] = args.start;
+    params.start = args.start
   }
   if (args.count && args.count !== null) {
-    params['count'] = args.count;
+    params.count = args.count
   }
-    return this.api.request('/search/view/messagesByUrlRegex/', params)
+  return this.api.request('/search/view/messagesByUrlRegex/', params)
 }
 
 /**
@@ -140,17 +139,17 @@ Search.prototype.messagesByUrlRegex = function (args) {
  * @param {string} count
  **/
 Search.prototype.messagesByRequestRegex = function (args) {
-  const params = {'regex': args.regex };
+  const params = { regex: args.regex }
   if (args.baseurl && args.baseurl !== null) {
-    params['baseurl'] = args.baseurl;
+    params.baseurl = args.baseurl
   }
   if (args.start && args.start !== null) {
-    params['start'] = args.start;
+    params.start = args.start
   }
   if (args.count && args.count !== null) {
-    params['count'] = args.count;
+    params.count = args.count
   }
-    return this.api.request('/search/view/messagesByRequestRegex/', params)
+  return this.api.request('/search/view/messagesByRequestRegex/', params)
 }
 
 /**
@@ -161,17 +160,17 @@ Search.prototype.messagesByRequestRegex = function (args) {
  * @param {string} count
  **/
 Search.prototype.messagesByResponseRegex = function (args) {
-  const params = {'regex': args.regex };
+  const params = { regex: args.regex }
   if (args.baseurl && args.baseurl !== null) {
-    params['baseurl'] = args.baseurl;
+    params.baseurl = args.baseurl
   }
   if (args.start && args.start !== null) {
-    params['start'] = args.start;
+    params.start = args.start
   }
   if (args.count && args.count !== null) {
-    params['count'] = args.count;
+    params.count = args.count
   }
-    return this.api.request('/search/view/messagesByResponseRegex/', params)
+  return this.api.request('/search/view/messagesByResponseRegex/', params)
 }
 
 /**
@@ -182,17 +181,17 @@ Search.prototype.messagesByResponseRegex = function (args) {
  * @param {string} count
  **/
 Search.prototype.messagesByHeaderRegex = function (args) {
-  const params = {'regex': args.regex };
+  const params = { regex: args.regex }
   if (args.baseurl && args.baseurl !== null) {
-    params['baseurl'] = args.baseurl;
+    params.baseurl = args.baseurl
   }
   if (args.start && args.start !== null) {
-    params['start'] = args.start;
+    params.start = args.start
   }
   if (args.count && args.count !== null) {
-    params['count'] = args.count;
+    params.count = args.count
   }
-    return this.api.request('/search/view/messagesByHeaderRegex/', params)
+  return this.api.request('/search/view/messagesByHeaderRegex/', params)
 }
 
 /**
@@ -203,17 +202,17 @@ Search.prototype.messagesByHeaderRegex = function (args) {
  * @param {string} count
  **/
 Search.prototype.harByUrlRegex = function (args) {
-  const params = {'regex': args.regex };
+  const params = { regex: args.regex }
   if (args.baseurl && args.baseurl !== null) {
-    params['baseurl'] = args.baseurl;
+    params.baseurl = args.baseurl
   }
   if (args.start && args.start !== null) {
-    params['start'] = args.start;
+    params.start = args.start
   }
   if (args.count && args.count !== null) {
-    params['count'] = args.count;
+    params.count = args.count
   }
-    return this.api.request('/search/other/harByUrlRegex/', params, 'other')
+  return this.api.request('/search/other/harByUrlRegex/', params, 'other')
 }
 
 /**
@@ -224,17 +223,17 @@ Search.prototype.harByUrlRegex = function (args) {
  * @param {string} count
  **/
 Search.prototype.harByRequestRegex = function (args) {
-  const params = {'regex': args.regex };
+  const params = { regex: args.regex }
   if (args.baseurl && args.baseurl !== null) {
-    params['baseurl'] = args.baseurl;
+    params.baseurl = args.baseurl
   }
   if (args.start && args.start !== null) {
-    params['start'] = args.start;
+    params.start = args.start
   }
   if (args.count && args.count !== null) {
-    params['count'] = args.count;
+    params.count = args.count
   }
-    return this.api.request('/search/other/harByRequestRegex/', params, 'other')
+  return this.api.request('/search/other/harByRequestRegex/', params, 'other')
 }
 
 /**
@@ -245,17 +244,17 @@ Search.prototype.harByRequestRegex = function (args) {
  * @param {string} count
  **/
 Search.prototype.harByResponseRegex = function (args) {
-  const params = {'regex': args.regex };
+  const params = { regex: args.regex }
   if (args.baseurl && args.baseurl !== null) {
-    params['baseurl'] = args.baseurl;
+    params.baseurl = args.baseurl
   }
   if (args.start && args.start !== null) {
-    params['start'] = args.start;
+    params.start = args.start
   }
   if (args.count && args.count !== null) {
-    params['count'] = args.count;
+    params.count = args.count
   }
-    return this.api.request('/search/other/harByResponseRegex/', params, 'other')
+  return this.api.request('/search/other/harByResponseRegex/', params, 'other')
 }
 
 /**
@@ -266,17 +265,17 @@ Search.prototype.harByResponseRegex = function (args) {
  * @param {string} count
  **/
 Search.prototype.harByHeaderRegex = function (args) {
-  const params = {'regex': args.regex };
+  const params = { regex: args.regex }
   if (args.baseurl && args.baseurl !== null) {
-    params['baseurl'] = args.baseurl;
+    params.baseurl = args.baseurl
   }
   if (args.start && args.start !== null) {
-    params['start'] = args.start;
+    params.start = args.start
   }
   if (args.count && args.count !== null) {
-    params['count'] = args.count;
+    params.count = args.count
   }
-    return this.api.request('/search/other/harByHeaderRegex/', params, 'other')
+  return this.api.request('/search/other/harByHeaderRegex/', params, 'other')
 }
 
-module.exports = Search;
+module.exports = Search

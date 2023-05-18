@@ -17,14 +17,13 @@
  * limitations under the License.
  */
 
-
-'use strict';
+'use strict'
 
 /**
  * This file was automatically generated.
  */
-function AlertFilter(clientApi) {
-  this.api = clientApi;
+function AlertFilter (clientApi) {
+  this.api = clientApi
 }
 
 /**
@@ -33,7 +32,7 @@ function AlertFilter(clientApi) {
  * @param {string} contextid
  **/
 AlertFilter.prototype.alertFilterList = function (args) {
-    return this.api.request('/alertFilter/view/alertFilterList/', {'contextId': args.contextid })
+  return this.api.request('/alertFilter/view/alertFilterList/', { contextId: args.contextid })
 }
 
 /**
@@ -41,11 +40,11 @@ AlertFilter.prototype.alertFilterList = function (args) {
  * This component is optional and therefore the API will only work if it is installed
  **/
 AlertFilter.prototype.globalAlertFilterList = function () {
-    return this.api.request('/alertFilter/view/globalAlertFilterList/')
+  return this.api.request('/alertFilter/view/globalAlertFilterList/')
 }
 
 /**
- * Adds a new alert filter for the context with the given ID. 
+ * Adds a new alert filter for the context with the given ID.
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} contextid
  * @param {string} ruleid
@@ -61,35 +60,35 @@ AlertFilter.prototype.globalAlertFilterList = function () {
  * @param {string} evidenceisregex
  **/
 AlertFilter.prototype.addAlertFilter = function (args) {
-  const params = {'contextId': args.contextid, 'ruleId': args.ruleid, 'newLevel': args.newlevel };
+  const params = { contextId: args.contextid, ruleId: args.ruleid, newLevel: args.newlevel }
   if (args.url && args.url !== null) {
-    params['url'] = args.url;
+    params.url = args.url
   }
   if (args.urlisregex && args.urlisregex !== null) {
-    params['urlIsRegex'] = args.urlisregex;
+    params.urlIsRegex = args.urlisregex
   }
   if (args.parameter && args.parameter !== null) {
-    params['parameter'] = args.parameter;
+    params.parameter = args.parameter
   }
   if (args.enabled && args.enabled !== null) {
-    params['enabled'] = args.enabled;
+    params.enabled = args.enabled
   }
   if (args.parameterisregex && args.parameterisregex !== null) {
-    params['parameterIsRegex'] = args.parameterisregex;
+    params.parameterIsRegex = args.parameterisregex
   }
   if (args.attack && args.attack !== null) {
-    params['attack'] = args.attack;
+    params.attack = args.attack
   }
   if (args.attackisregex && args.attackisregex !== null) {
-    params['attackIsRegex'] = args.attackisregex;
+    params.attackIsRegex = args.attackisregex
   }
   if (args.evidence && args.evidence !== null) {
-    params['evidence'] = args.evidence;
+    params.evidence = args.evidence
   }
   if (args.evidenceisregex && args.evidenceisregex !== null) {
-    params['evidenceIsRegex'] = args.evidenceisregex;
+    params.evidenceIsRegex = args.evidenceisregex
   }
-    return this.api.request('/alertFilter/action/addAlertFilter/', params)
+  return this.api.request('/alertFilter/action/addAlertFilter/', params)
 }
 
 /**
@@ -109,39 +108,39 @@ AlertFilter.prototype.addAlertFilter = function (args) {
  * @param {string} evidenceisregex
  **/
 AlertFilter.prototype.removeAlertFilter = function (args) {
-  const params = {'contextId': args.contextid, 'ruleId': args.ruleid, 'newLevel': args.newlevel };
+  const params = { contextId: args.contextid, ruleId: args.ruleid, newLevel: args.newlevel }
   if (args.url && args.url !== null) {
-    params['url'] = args.url;
+    params.url = args.url
   }
   if (args.urlisregex && args.urlisregex !== null) {
-    params['urlIsRegex'] = args.urlisregex;
+    params.urlIsRegex = args.urlisregex
   }
   if (args.parameter && args.parameter !== null) {
-    params['parameter'] = args.parameter;
+    params.parameter = args.parameter
   }
   if (args.enabled && args.enabled !== null) {
-    params['enabled'] = args.enabled;
+    params.enabled = args.enabled
   }
   if (args.parameterisregex && args.parameterisregex !== null) {
-    params['parameterIsRegex'] = args.parameterisregex;
+    params.parameterIsRegex = args.parameterisregex
   }
   if (args.attack && args.attack !== null) {
-    params['attack'] = args.attack;
+    params.attack = args.attack
   }
   if (args.attackisregex && args.attackisregex !== null) {
-    params['attackIsRegex'] = args.attackisregex;
+    params.attackIsRegex = args.attackisregex
   }
   if (args.evidence && args.evidence !== null) {
-    params['evidence'] = args.evidence;
+    params.evidence = args.evidence
   }
   if (args.evidenceisregex && args.evidenceisregex !== null) {
-    params['evidenceIsRegex'] = args.evidenceisregex;
+    params.evidenceIsRegex = args.evidenceisregex
   }
-    return this.api.request('/alertFilter/action/removeAlertFilter/', params)
+  return this.api.request('/alertFilter/action/removeAlertFilter/', params)
 }
 
 /**
- * Adds a new global alert filter. 
+ * Adds a new global alert filter.
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} ruleid
  * @param {string} newlevel
@@ -156,35 +155,35 @@ AlertFilter.prototype.removeAlertFilter = function (args) {
  * @param {string} evidenceisregex
  **/
 AlertFilter.prototype.addGlobalAlertFilter = function (args) {
-  const params = {'ruleId': args.ruleid, 'newLevel': args.newlevel };
+  const params = { ruleId: args.ruleid, newLevel: args.newlevel }
   if (args.url && args.url !== null) {
-    params['url'] = args.url;
+    params.url = args.url
   }
   if (args.urlisregex && args.urlisregex !== null) {
-    params['urlIsRegex'] = args.urlisregex;
+    params.urlIsRegex = args.urlisregex
   }
   if (args.parameter && args.parameter !== null) {
-    params['parameter'] = args.parameter;
+    params.parameter = args.parameter
   }
   if (args.enabled && args.enabled !== null) {
-    params['enabled'] = args.enabled;
+    params.enabled = args.enabled
   }
   if (args.parameterisregex && args.parameterisregex !== null) {
-    params['parameterIsRegex'] = args.parameterisregex;
+    params.parameterIsRegex = args.parameterisregex
   }
   if (args.attack && args.attack !== null) {
-    params['attack'] = args.attack;
+    params.attack = args.attack
   }
   if (args.attackisregex && args.attackisregex !== null) {
-    params['attackIsRegex'] = args.attackisregex;
+    params.attackIsRegex = args.attackisregex
   }
   if (args.evidence && args.evidence !== null) {
-    params['evidence'] = args.evidence;
+    params.evidence = args.evidence
   }
   if (args.evidenceisregex && args.evidenceisregex !== null) {
-    params['evidenceIsRegex'] = args.evidenceisregex;
+    params.evidenceIsRegex = args.evidenceisregex
   }
-    return this.api.request('/alertFilter/action/addGlobalAlertFilter/', params)
+  return this.api.request('/alertFilter/action/addGlobalAlertFilter/', params)
 }
 
 /**
@@ -203,35 +202,35 @@ AlertFilter.prototype.addGlobalAlertFilter = function (args) {
  * @param {string} evidenceisregex
  **/
 AlertFilter.prototype.removeGlobalAlertFilter = function (args) {
-  const params = {'ruleId': args.ruleid, 'newLevel': args.newlevel };
+  const params = { ruleId: args.ruleid, newLevel: args.newlevel }
   if (args.url && args.url !== null) {
-    params['url'] = args.url;
+    params.url = args.url
   }
   if (args.urlisregex && args.urlisregex !== null) {
-    params['urlIsRegex'] = args.urlisregex;
+    params.urlIsRegex = args.urlisregex
   }
   if (args.parameter && args.parameter !== null) {
-    params['parameter'] = args.parameter;
+    params.parameter = args.parameter
   }
   if (args.enabled && args.enabled !== null) {
-    params['enabled'] = args.enabled;
+    params.enabled = args.enabled
   }
   if (args.parameterisregex && args.parameterisregex !== null) {
-    params['parameterIsRegex'] = args.parameterisregex;
+    params.parameterIsRegex = args.parameterisregex
   }
   if (args.attack && args.attack !== null) {
-    params['attack'] = args.attack;
+    params.attack = args.attack
   }
   if (args.attackisregex && args.attackisregex !== null) {
-    params['attackIsRegex'] = args.attackisregex;
+    params.attackIsRegex = args.attackisregex
   }
   if (args.evidence && args.evidence !== null) {
-    params['evidence'] = args.evidence;
+    params.evidence = args.evidence
   }
   if (args.evidenceisregex && args.evidenceisregex !== null) {
-    params['evidenceIsRegex'] = args.evidenceisregex;
+    params.evidenceIsRegex = args.evidenceisregex
   }
-    return this.api.request('/alertFilter/action/removeGlobalAlertFilter/', params)
+  return this.api.request('/alertFilter/action/removeGlobalAlertFilter/', params)
 }
 
 /**
@@ -239,7 +238,7 @@ AlertFilter.prototype.removeGlobalAlertFilter = function (args) {
  * This component is optional and therefore the API will only work if it is installed
  **/
 AlertFilter.prototype.applyAll = function () {
-    return this.api.request('/alertFilter/action/applyAll/')
+  return this.api.request('/alertFilter/action/applyAll/')
 }
 
 /**
@@ -247,7 +246,7 @@ AlertFilter.prototype.applyAll = function () {
  * This component is optional and therefore the API will only work if it is installed
  **/
 AlertFilter.prototype.applyContext = function () {
-    return this.api.request('/alertFilter/action/applyContext/')
+  return this.api.request('/alertFilter/action/applyContext/')
 }
 
 /**
@@ -255,7 +254,7 @@ AlertFilter.prototype.applyContext = function () {
  * This component is optional and therefore the API will only work if it is installed
  **/
 AlertFilter.prototype.applyGlobal = function () {
-    return this.api.request('/alertFilter/action/applyGlobal/')
+  return this.api.request('/alertFilter/action/applyGlobal/')
 }
 
 /**
@@ -263,7 +262,7 @@ AlertFilter.prototype.applyGlobal = function () {
  * This component is optional and therefore the API will only work if it is installed
  **/
 AlertFilter.prototype.testAll = function () {
-    return this.api.request('/alertFilter/action/testAll/')
+  return this.api.request('/alertFilter/action/testAll/')
 }
 
 /**
@@ -271,7 +270,7 @@ AlertFilter.prototype.testAll = function () {
  * This component is optional and therefore the API will only work if it is installed
  **/
 AlertFilter.prototype.testContext = function () {
-    return this.api.request('/alertFilter/action/testContext/')
+  return this.api.request('/alertFilter/action/testContext/')
 }
 
 /**
@@ -279,7 +278,7 @@ AlertFilter.prototype.testContext = function () {
  * This component is optional and therefore the API will only work if it is installed
  **/
 AlertFilter.prototype.testGlobal = function () {
-    return this.api.request('/alertFilter/action/testGlobal/')
+  return this.api.request('/alertFilter/action/testGlobal/')
 }
 
-module.exports = AlertFilter;
+module.exports = AlertFilter

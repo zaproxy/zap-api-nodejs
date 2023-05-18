@@ -17,21 +17,20 @@
  * limitations under the License.
  */
 
-
-'use strict';
+'use strict'
 
 /**
  * This file was automatically generated.
  */
-function ForcedUser(clientApi) {
-  this.api = clientApi;
+function ForcedUser (clientApi) {
+  this.api = clientApi
 }
 
 /**
  * Returns 'true' if 'forced user' mode is enabled, 'false' otherwise
  **/
 ForcedUser.prototype.isForcedUserModeEnabled = function () {
-    return this.api.request('/forcedUser/view/isForcedUserModeEnabled/')
+  return this.api.request('/forcedUser/view/isForcedUserModeEnabled/')
 }
 
 /**
@@ -39,7 +38,7 @@ ForcedUser.prototype.isForcedUserModeEnabled = function () {
  * @param {string} contextid
  **/
 ForcedUser.prototype.getForcedUser = function (args) {
-    return this.api.request('/forcedUser/view/getForcedUser/', {'contextId': args.contextid })
+  return this.api.request('/forcedUser/view/getForcedUser/', { contextId: args.contextid })
 }
 
 /**
@@ -48,7 +47,7 @@ ForcedUser.prototype.getForcedUser = function (args) {
  * @param {string} userid
  **/
 ForcedUser.prototype.setForcedUser = function (args) {
-    return this.api.request('/forcedUser/action/setForcedUser/', {'contextId': args.contextid, 'userId': args.userid })
+  return this.api.request('/forcedUser/action/setForcedUser/', { contextId: args.contextid, userId: args.userid })
 }
 
 /**
@@ -56,7 +55,7 @@ ForcedUser.prototype.setForcedUser = function (args) {
  * @param {string} bool
  **/
 ForcedUser.prototype.setForcedUserModeEnabled = function (args) {
-    return this.api.request('/forcedUser/action/setForcedUserModeEnabled/', {'boolean': args.bool })
+  return this.api.request('/forcedUser/action/setForcedUserModeEnabled/', { boolean: args.bool })
 }
 
-module.exports = ForcedUser;
+module.exports = ForcedUser

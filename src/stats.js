@@ -17,14 +17,13 @@
  * limitations under the License.
  */
 
-
-'use strict';
+'use strict'
 
 /**
  * This file was automatically generated.
  */
-function Stats(clientApi) {
-  this.api = clientApi;
+function Stats (clientApi) {
+  this.api = clientApi
 }
 
 /**
@@ -32,11 +31,11 @@ function Stats(clientApi) {
  * @param {string} keyprefix
  **/
 Stats.prototype.stats = function (args) {
-  const params = { };
+  const params = { }
   if (args.keyprefix && args.keyprefix !== null) {
-    params['keyPrefix'] = args.keyprefix;
+    params.keyPrefix = args.keyprefix
   }
-    return this.api.request('/stats/view/stats/', params)
+  return this.api.request('/stats/view/stats/', params)
 }
 
 /**
@@ -44,11 +43,11 @@ Stats.prototype.stats = function (args) {
  * @param {string} keyprefix
  **/
 Stats.prototype.allSitesStats = function (args) {
-  const params = { };
+  const params = { }
   if (args.keyprefix && args.keyprefix !== null) {
-    params['keyPrefix'] = args.keyprefix;
+    params.keyPrefix = args.keyprefix
   }
-    return this.api.request('/stats/view/allSitesStats/', params)
+  return this.api.request('/stats/view/allSitesStats/', params)
 }
 
 /**
@@ -57,46 +56,46 @@ Stats.prototype.allSitesStats = function (args) {
  * @param {string} keyprefix
  **/
 Stats.prototype.siteStats = function (args) {
-  const params = {'site': args.site };
+  const params = { site: args.site }
   if (args.keyprefix && args.keyprefix !== null) {
-    params['keyPrefix'] = args.keyprefix;
+    params.keyPrefix = args.keyprefix
   }
-    return this.api.request('/stats/view/siteStats/', params)
+  return this.api.request('/stats/view/siteStats/', params)
 }
 
 /**
  * Gets the Statsd service hostname
  **/
 Stats.prototype.optionStatsdHost = function () {
-    return this.api.request('/stats/view/optionStatsdHost/')
+  return this.api.request('/stats/view/optionStatsdHost/')
 }
 
 /**
  * Gets the Statsd service port
  **/
 Stats.prototype.optionStatsdPort = function () {
-    return this.api.request('/stats/view/optionStatsdPort/')
+  return this.api.request('/stats/view/optionStatsdPort/')
 }
 
 /**
  * Gets the prefix to be applied to all stats sent to the configured Statsd service
  **/
 Stats.prototype.optionStatsdPrefix = function () {
-    return this.api.request('/stats/view/optionStatsdPrefix/')
+  return this.api.request('/stats/view/optionStatsdPrefix/')
 }
 
 /**
  * Returns 'true' if in memory statistics are enabled, otherwise returns 'false'
  **/
 Stats.prototype.optionInMemoryEnabled = function () {
-    return this.api.request('/stats/view/optionInMemoryEnabled/')
+  return this.api.request('/stats/view/optionInMemoryEnabled/')
 }
 
 /**
  * Returns 'true' if a Statsd server has been correctly configured, otherwise returns 'false'
  **/
 Stats.prototype.optionStatsdEnabled = function () {
-    return this.api.request('/stats/view/optionStatsdEnabled/')
+  return this.api.request('/stats/view/optionStatsdEnabled/')
 }
 
 /**
@@ -104,11 +103,11 @@ Stats.prototype.optionStatsdEnabled = function () {
  * @param {string} keyprefix
  **/
 Stats.prototype.clearStats = function (args) {
-  const params = { };
+  const params = { }
   if (args.keyprefix && args.keyprefix !== null) {
-    params['keyPrefix'] = args.keyprefix;
+    params.keyPrefix = args.keyprefix
   }
-    return this.api.request('/stats/action/clearStats/', params)
+  return this.api.request('/stats/action/clearStats/', params)
 }
 
 /**
@@ -116,7 +115,7 @@ Stats.prototype.clearStats = function (args) {
  * @param {string} string
  **/
 Stats.prototype.setOptionStatsdHost = function (args) {
-    return this.api.request('/stats/action/setOptionStatsdHost/', {'String': args.string })
+  return this.api.request('/stats/action/setOptionStatsdHost/', { String: args.string })
 }
 
 /**
@@ -124,7 +123,7 @@ Stats.prototype.setOptionStatsdHost = function (args) {
  * @param {string} string
  **/
 Stats.prototype.setOptionStatsdPrefix = function (args) {
-    return this.api.request('/stats/action/setOptionStatsdPrefix/', {'String': args.string })
+  return this.api.request('/stats/action/setOptionStatsdPrefix/', { String: args.string })
 }
 
 /**
@@ -132,7 +131,7 @@ Stats.prototype.setOptionStatsdPrefix = function (args) {
  * @param {string} bool
  **/
 Stats.prototype.setOptionInMemoryEnabled = function (args) {
-    return this.api.request('/stats/action/setOptionInMemoryEnabled/', {'Boolean': args.bool })
+  return this.api.request('/stats/action/setOptionInMemoryEnabled/', { Boolean: args.bool })
 }
 
 /**
@@ -140,7 +139,7 @@ Stats.prototype.setOptionInMemoryEnabled = function (args) {
  * @param {string} integer
  **/
 Stats.prototype.setOptionStatsdPort = function (args) {
-    return this.api.request('/stats/action/setOptionStatsdPort/', {'Integer': args.integer })
+  return this.api.request('/stats/action/setOptionStatsdPort/', { Integer: args.integer })
 }
 
-module.exports = Stats;
+module.exports = Stats

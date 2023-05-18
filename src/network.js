@@ -17,14 +17,13 @@
  * limitations under the License.
  */
 
-
-'use strict';
+'use strict'
 
 /**
  * This file was automatically generated.
  */
-function Network(clientApi) {
-  this.api = clientApi;
+function Network (clientApi) {
+  this.api = clientApi
 }
 
 /**
@@ -32,7 +31,7 @@ function Network(clientApi) {
  * This component is optional and therefore the API will only work if it is installed
  **/
 Network.prototype.getRootCaCertValidity = function () {
-    return this.api.request('/network/view/getRootCaCertValidity/')
+  return this.api.request('/network/view/getRootCaCertValidity/')
 }
 
 /**
@@ -40,7 +39,7 @@ Network.prototype.getRootCaCertValidity = function () {
  * This component is optional and therefore the API will only work if it is installed
  **/
 Network.prototype.getServerCertValidity = function () {
-    return this.api.request('/network/view/getServerCertValidity/')
+  return this.api.request('/network/view/getServerCertValidity/')
 }
 
 /**
@@ -48,7 +47,7 @@ Network.prototype.getServerCertValidity = function () {
  * This component is optional and therefore the API will only work if it is installed
  **/
 Network.prototype.getAliases = function () {
-    return this.api.request('/network/view/getAliases/')
+  return this.api.request('/network/view/getAliases/')
 }
 
 /**
@@ -56,7 +55,7 @@ Network.prototype.getAliases = function () {
  * This component is optional and therefore the API will only work if it is installed
  **/
 Network.prototype.getLocalServers = function () {
-    return this.api.request('/network/view/getLocalServers/')
+  return this.api.request('/network/view/getLocalServers/')
 }
 
 /**
@@ -64,7 +63,7 @@ Network.prototype.getLocalServers = function () {
  * This component is optional and therefore the API will only work if it is installed
  **/
 Network.prototype.getPassThroughs = function () {
-    return this.api.request('/network/view/getPassThroughs/')
+  return this.api.request('/network/view/getPassThroughs/')
 }
 
 /**
@@ -72,7 +71,7 @@ Network.prototype.getPassThroughs = function () {
  * This component is optional and therefore the API will only work if it is installed
  **/
 Network.prototype.getConnectionTimeout = function () {
-    return this.api.request('/network/view/getConnectionTimeout/')
+  return this.api.request('/network/view/getConnectionTimeout/')
 }
 
 /**
@@ -80,7 +79,7 @@ Network.prototype.getConnectionTimeout = function () {
  * This component is optional and therefore the API will only work if it is installed
  **/
 Network.prototype.getDefaultUserAgent = function () {
-    return this.api.request('/network/view/getDefaultUserAgent/')
+  return this.api.request('/network/view/getDefaultUserAgent/')
 }
 
 /**
@@ -88,7 +87,7 @@ Network.prototype.getDefaultUserAgent = function () {
  * This component is optional and therefore the API will only work if it is installed
  **/
 Network.prototype.getDnsTtlSuccessfulQueries = function () {
-    return this.api.request('/network/view/getDnsTtlSuccessfulQueries/')
+  return this.api.request('/network/view/getDnsTtlSuccessfulQueries/')
 }
 
 /**
@@ -96,7 +95,7 @@ Network.prototype.getDnsTtlSuccessfulQueries = function () {
  * This component is optional and therefore the API will only work if it is installed
  **/
 Network.prototype.getHttpProxy = function () {
-    return this.api.request('/network/view/getHttpProxy/')
+  return this.api.request('/network/view/getHttpProxy/')
 }
 
 /**
@@ -104,7 +103,7 @@ Network.prototype.getHttpProxy = function () {
  * This component is optional and therefore the API will only work if it is installed
  **/
 Network.prototype.getHttpProxyExclusions = function () {
-    return this.api.request('/network/view/getHttpProxyExclusions/')
+  return this.api.request('/network/view/getHttpProxyExclusions/')
 }
 
 /**
@@ -112,7 +111,7 @@ Network.prototype.getHttpProxyExclusions = function () {
  * This component is optional and therefore the API will only work if it is installed
  **/
 Network.prototype.getSocksProxy = function () {
-    return this.api.request('/network/view/getSocksProxy/')
+  return this.api.request('/network/view/getSocksProxy/')
 }
 
 /**
@@ -120,7 +119,7 @@ Network.prototype.getSocksProxy = function () {
  * This component is optional and therefore the API will only work if it is installed
  **/
 Network.prototype.isHttpProxyAuthEnabled = function () {
-    return this.api.request('/network/view/isHttpProxyAuthEnabled/')
+  return this.api.request('/network/view/isHttpProxyAuthEnabled/')
 }
 
 /**
@@ -128,7 +127,7 @@ Network.prototype.isHttpProxyAuthEnabled = function () {
  * This component is optional and therefore the API will only work if it is installed
  **/
 Network.prototype.isHttpProxyEnabled = function () {
-    return this.api.request('/network/view/isHttpProxyEnabled/')
+  return this.api.request('/network/view/isHttpProxyEnabled/')
 }
 
 /**
@@ -136,7 +135,7 @@ Network.prototype.isHttpProxyEnabled = function () {
  * This component is optional and therefore the API will only work if it is installed
  **/
 Network.prototype.isSocksProxyEnabled = function () {
-    return this.api.request('/network/view/isSocksProxyEnabled/')
+  return this.api.request('/network/view/isSocksProxyEnabled/')
 }
 
 /**
@@ -144,7 +143,7 @@ Network.prototype.isSocksProxyEnabled = function () {
  * This component is optional and therefore the API will only work if it is installed
  **/
 Network.prototype.isUseGlobalHttpState = function () {
-    return this.api.request('/network/view/isUseGlobalHttpState/')
+  return this.api.request('/network/view/isUseGlobalHttpState/')
 }
 
 /**
@@ -152,7 +151,7 @@ Network.prototype.isUseGlobalHttpState = function () {
  * This component is optional and therefore the API will only work if it is installed
  **/
 Network.prototype.generateRootCaCert = function () {
-    return this.api.request('/network/action/generateRootCaCert/')
+  return this.api.request('/network/action/generateRootCaCert/')
 }
 
 /**
@@ -161,7 +160,7 @@ Network.prototype.generateRootCaCert = function () {
  * @param {string} filepath - The file system path to the PEM file, containing the certificate and private key.
  **/
 Network.prototype.importRootCaCert = function (args) {
-    return this.api.request('/network/action/importRootCaCert/', {'filePath': args.filepath })
+  return this.api.request('/network/action/importRootCaCert/', { filePath: args.filepath })
 }
 
 /**
@@ -170,7 +169,7 @@ Network.prototype.importRootCaCert = function (args) {
  * @param {string} validity - The number of days that the generated Root CA certificate will be valid for.
  **/
 Network.prototype.setRootCaCertValidity = function (args) {
-    return this.api.request('/network/action/setRootCaCertValidity/', {'validity': args.validity })
+  return this.api.request('/network/action/setRootCaCertValidity/', { validity: args.validity })
 }
 
 /**
@@ -179,7 +178,7 @@ Network.prototype.setRootCaCertValidity = function (args) {
  * @param {string} validity - The number of days that the generated server certificates will be valid for.
  **/
 Network.prototype.setServerCertValidity = function (args) {
-    return this.api.request('/network/action/setServerCertValidity/', {'validity': args.validity })
+  return this.api.request('/network/action/setServerCertValidity/', { validity: args.validity })
 }
 
 /**
@@ -189,11 +188,11 @@ Network.prototype.setServerCertValidity = function (args) {
  * @param {string} enabled - The enabled state, true or false.
  **/
 Network.prototype.addAlias = function (args) {
-  const params = {'name': args.name };
+  const params = { name: args.name }
   if (args.enabled && args.enabled !== null) {
-    params['enabled'] = args.enabled;
+    params.enabled = args.enabled
   }
-    return this.api.request('/network/action/addAlias/', params)
+  return this.api.request('/network/action/addAlias/', params)
 }
 
 /**
@@ -208,23 +207,23 @@ Network.prototype.addAlias = function (args) {
  * @param {string} removeacceptencoding - If the request header Accept-Encoding should be removed, true or false.
  **/
 Network.prototype.addLocalServer = function (args) {
-  const params = {'address': args.address, 'port': args.port };
+  const params = { address: args.address, port: args.port }
   if (args.api && args.api !== null) {
-    params['api'] = args.api;
+    params.api = args.api
   }
   if (args.proxy && args.proxy !== null) {
-    params['proxy'] = args.proxy;
+    params.proxy = args.proxy
   }
   if (args.behindnat && args.behindnat !== null) {
-    params['behindNat'] = args.behindnat;
+    params.behindNat = args.behindnat
   }
   if (args.decoderesponse && args.decoderesponse !== null) {
-    params['decodeResponse'] = args.decoderesponse;
+    params.decodeResponse = args.decoderesponse
   }
   if (args.removeacceptencoding && args.removeacceptencoding !== null) {
-    params['removeAcceptEncoding'] = args.removeacceptencoding;
+    params.removeAcceptEncoding = args.removeacceptencoding
   }
-    return this.api.request('/network/action/addLocalServer/', params)
+  return this.api.request('/network/action/addLocalServer/', params)
 }
 
 /**
@@ -234,11 +233,11 @@ Network.prototype.addLocalServer = function (args) {
  * @param {string} enabled - The enabled state, true or false.
  **/
 Network.prototype.addPassThrough = function (args) {
-  const params = {'authority': args.authority };
+  const params = { authority: args.authority }
   if (args.enabled && args.enabled !== null) {
-    params['enabled'] = args.enabled;
+    params.enabled = args.enabled
   }
-    return this.api.request('/network/action/addPassThrough/', params)
+  return this.api.request('/network/action/addPassThrough/', params)
 }
 
 /**
@@ -247,7 +246,7 @@ Network.prototype.addPassThrough = function (args) {
  * @param {string} name - The name of the alias.
  **/
 Network.prototype.removeAlias = function (args) {
-    return this.api.request('/network/action/removeAlias/', {'name': args.name })
+  return this.api.request('/network/action/removeAlias/', { name: args.name })
 }
 
 /**
@@ -257,7 +256,7 @@ Network.prototype.removeAlias = function (args) {
  * @param {string} port - The port of the local server/proxy.
  **/
 Network.prototype.removeLocalServer = function (args) {
-    return this.api.request('/network/action/removeLocalServer/', {'address': args.address, 'port': args.port })
+  return this.api.request('/network/action/removeLocalServer/', { address: args.address, port: args.port })
 }
 
 /**
@@ -266,7 +265,7 @@ Network.prototype.removeLocalServer = function (args) {
  * @param {string} authority - The value of the authority.
  **/
 Network.prototype.removePassThrough = function (args) {
-    return this.api.request('/network/action/removePassThrough/', {'authority': args.authority })
+  return this.api.request('/network/action/removePassThrough/', { authority: args.authority })
 }
 
 /**
@@ -276,7 +275,7 @@ Network.prototype.removePassThrough = function (args) {
  * @param {string} enabled - The enabled state, true or false.
  **/
 Network.prototype.setAliasEnabled = function (args) {
-    return this.api.request('/network/action/setAliasEnabled/', {'name': args.name, 'enabled': args.enabled })
+  return this.api.request('/network/action/setAliasEnabled/', { name: args.name, enabled: args.enabled })
 }
 
 /**
@@ -286,7 +285,7 @@ Network.prototype.setAliasEnabled = function (args) {
  * @param {string} enabled - The enabled state, true or false.
  **/
 Network.prototype.setPassThroughEnabled = function (args) {
-    return this.api.request('/network/action/setPassThroughEnabled/', {'authority': args.authority, 'enabled': args.enabled })
+  return this.api.request('/network/action/setPassThroughEnabled/', { authority: args.authority, enabled: args.enabled })
 }
 
 /**
@@ -295,7 +294,7 @@ Network.prototype.setPassThroughEnabled = function (args) {
  * @param {string} timeout - The timeout, in seconds.
  **/
 Network.prototype.setConnectionTimeout = function (args) {
-    return this.api.request('/network/action/setConnectionTimeout/', {'timeout': args.timeout })
+  return this.api.request('/network/action/setConnectionTimeout/', { timeout: args.timeout })
 }
 
 /**
@@ -304,7 +303,7 @@ Network.prototype.setConnectionTimeout = function (args) {
  * @param {string} useragent - The default user-agent.
  **/
 Network.prototype.setDefaultUserAgent = function (args) {
-    return this.api.request('/network/action/setDefaultUserAgent/', {'userAgent': args.useragent })
+  return this.api.request('/network/action/setDefaultUserAgent/', { userAgent: args.useragent })
 }
 
 /**
@@ -313,7 +312,7 @@ Network.prototype.setDefaultUserAgent = function (args) {
  * @param {string} ttl - The TTL, in seconds. Negative number, cache forever. Zero, disables caching. Positive number, the number of seconds the successful DNS queries will be cached.
  **/
 Network.prototype.setDnsTtlSuccessfulQueries = function (args) {
-    return this.api.request('/network/action/setDnsTtlSuccessfulQueries/', {'ttl': args.ttl })
+  return this.api.request('/network/action/setDnsTtlSuccessfulQueries/', { ttl: args.ttl })
 }
 
 /**
@@ -323,11 +322,11 @@ Network.prototype.setDnsTtlSuccessfulQueries = function (args) {
  * @param {string} enabled - The enabled state, true or false.
  **/
 Network.prototype.addHttpProxyExclusion = function (args) {
-  const params = {'host': args.host };
+  const params = { host: args.host }
   if (args.enabled && args.enabled !== null) {
-    params['enabled'] = args.enabled;
+    params.enabled = args.enabled
   }
-    return this.api.request('/network/action/addHttpProxyExclusion/', params)
+  return this.api.request('/network/action/addHttpProxyExclusion/', params)
 }
 
 /**
@@ -336,7 +335,7 @@ Network.prototype.addHttpProxyExclusion = function (args) {
  * @param {string} host - The value of the host.
  **/
 Network.prototype.removeHttpProxyExclusion = function (args) {
-    return this.api.request('/network/action/removeHttpProxyExclusion/', {'host': args.host })
+  return this.api.request('/network/action/removeHttpProxyExclusion/', { host: args.host })
 }
 
 /**
@@ -349,17 +348,17 @@ Network.prototype.removeHttpProxyExclusion = function (args) {
  * @param {string} password - The password.
  **/
 Network.prototype.setHttpProxy = function (args) {
-  const params = {'host': args.host, 'port': args.port };
+  const params = { host: args.host, port: args.port }
   if (args.realm && args.realm !== null) {
-    params['realm'] = args.realm;
+    params.realm = args.realm
   }
   if (args.username && args.username !== null) {
-    params['username'] = args.username;
+    params.username = args.username
   }
   if (args.password && args.password !== null) {
-    params['password'] = args.password;
+    params.password = args.password
   }
-    return this.api.request('/network/action/setHttpProxy/', params)
+  return this.api.request('/network/action/setHttpProxy/', params)
 }
 
 /**
@@ -368,7 +367,7 @@ Network.prototype.setHttpProxy = function (args) {
  * @param {string} enabled - The enabled state, true or false.
  **/
 Network.prototype.setHttpProxyAuthEnabled = function (args) {
-    return this.api.request('/network/action/setHttpProxyAuthEnabled/', {'enabled': args.enabled })
+  return this.api.request('/network/action/setHttpProxyAuthEnabled/', { enabled: args.enabled })
 }
 
 /**
@@ -377,7 +376,7 @@ Network.prototype.setHttpProxyAuthEnabled = function (args) {
  * @param {string} enabled - The enabled state, true or false.
  **/
 Network.prototype.setHttpProxyEnabled = function (args) {
-    return this.api.request('/network/action/setHttpProxyEnabled/', {'enabled': args.enabled })
+  return this.api.request('/network/action/setHttpProxyEnabled/', { enabled: args.enabled })
 }
 
 /**
@@ -387,7 +386,7 @@ Network.prototype.setHttpProxyEnabled = function (args) {
  * @param {string} enabled - The enabled state, true or false.
  **/
 Network.prototype.setHttpProxyExclusionEnabled = function (args) {
-    return this.api.request('/network/action/setHttpProxyExclusionEnabled/', {'host': args.host, 'enabled': args.enabled })
+  return this.api.request('/network/action/setHttpProxyExclusionEnabled/', { host: args.host, enabled: args.enabled })
 }
 
 /**
@@ -401,20 +400,20 @@ Network.prototype.setHttpProxyExclusionEnabled = function (args) {
  * @param {string} password - The password.
  **/
 Network.prototype.setSocksProxy = function (args) {
-  const params = {'host': args.host, 'port': args.port };
+  const params = { host: args.host, port: args.port }
   if (args.version && args.version !== null) {
-    params['version'] = args.version;
+    params.version = args.version
   }
   if (args.usedns && args.usedns !== null) {
-    params['useDns'] = args.usedns;
+    params.useDns = args.usedns
   }
   if (args.username && args.username !== null) {
-    params['username'] = args.username;
+    params.username = args.username
   }
   if (args.password && args.password !== null) {
-    params['password'] = args.password;
+    params.password = args.password
   }
-    return this.api.request('/network/action/setSocksProxy/', params)
+  return this.api.request('/network/action/setSocksProxy/', params)
 }
 
 /**
@@ -423,7 +422,7 @@ Network.prototype.setSocksProxy = function (args) {
  * @param {string} enabled - The enabled state, true or false.
  **/
 Network.prototype.setSocksProxyEnabled = function (args) {
-    return this.api.request('/network/action/setSocksProxyEnabled/', {'enabled': args.enabled })
+  return this.api.request('/network/action/setSocksProxyEnabled/', { enabled: args.enabled })
 }
 
 /**
@@ -432,7 +431,7 @@ Network.prototype.setSocksProxyEnabled = function (args) {
  * @param {string} use - The use state, true or false.
  **/
 Network.prototype.setUseGlobalHttpState = function (args) {
-    return this.api.request('/network/action/setUseGlobalHttpState/', {'use': args.use })
+  return this.api.request('/network/action/setUseGlobalHttpState/', { use: args.use })
 }
 
 /**
@@ -443,11 +442,11 @@ Network.prototype.setUseGlobalHttpState = function (args) {
  * @param {string} index - The index of the certificate in the file, defaults to 0.
  **/
 Network.prototype.addPkcs12ClientCertificate = function (args) {
-  const params = {'filePath': args.filepath, 'password': args.password };
+  const params = { filePath: args.filepath, password: args.password }
   if (args.index && args.index !== null) {
-    params['index'] = args.index;
+    params.index = args.index
   }
-    return this.api.request('/network/action/addPkcs12ClientCertificate/', params)
+  return this.api.request('/network/action/addPkcs12ClientCertificate/', params)
 }
 
 /**
@@ -456,7 +455,7 @@ Network.prototype.addPkcs12ClientCertificate = function (args) {
  * @param {string} use - The use state, true or false.
  **/
 Network.prototype.setUseClientCertificate = function (args) {
-    return this.api.request('/network/action/setUseClientCertificate/', {'use': args.use })
+  return this.api.request('/network/action/setUseClientCertificate/', { use: args.use })
 }
 
 /**
@@ -464,7 +463,7 @@ Network.prototype.setUseClientCertificate = function (args) {
  * This component is optional and therefore the API will only work if it is installed
  **/
 Network.prototype.proxypac = function () {
-    return this.api.request('/network/other/proxy.pac/', 'other')
+  return this.api.request('/network/other/proxy.pac/', 'other')
 }
 
 /**
@@ -473,7 +472,7 @@ Network.prototype.proxypac = function () {
  * @param {string} proxy - The JSON object containing the HTTP proxy configuration.
  **/
 Network.prototype.setProxy = function (args) {
-    return this.api.request('/network/other/setProxy/', {'proxy': args.proxy }, 'other')
+  return this.api.request('/network/other/setProxy/', { proxy: args.proxy }, 'other')
 }
 
 /**
@@ -481,7 +480,7 @@ Network.prototype.setProxy = function (args) {
  * This component is optional and therefore the API will only work if it is installed
  **/
 Network.prototype.rootCaCert = function () {
-    return this.api.request('/network/other/rootCaCert/', 'other')
+  return this.api.request('/network/other/rootCaCert/', 'other')
 }
 
-module.exports = Network;
+module.exports = Network

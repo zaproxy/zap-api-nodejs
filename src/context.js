@@ -17,21 +17,20 @@
  * limitations under the License.
  */
 
-
-'use strict';
+'use strict'
 
 /**
  * This file was automatically generated.
  */
-function Context(clientApi) {
-  this.api = clientApi;
+function Context (clientApi) {
+  this.api = clientApi
 }
 
 /**
  * List context names of current session
  **/
 Context.prototype.contextList = function () {
-    return this.api.request('/context/view/contextList/')
+  return this.api.request('/context/view/contextList/')
 }
 
 /**
@@ -39,7 +38,7 @@ Context.prototype.contextList = function () {
  * @param {string} contextname - The name of the context
  **/
 Context.prototype.excludeRegexs = function (args) {
-    return this.api.request('/context/view/excludeRegexs/', {'contextName': args.contextname })
+  return this.api.request('/context/view/excludeRegexs/', { contextName: args.contextname })
 }
 
 /**
@@ -47,7 +46,7 @@ Context.prototype.excludeRegexs = function (args) {
  * @param {string} contextname - The name of the context
  **/
 Context.prototype.includeRegexs = function (args) {
-    return this.api.request('/context/view/includeRegexs/', {'contextName': args.contextname })
+  return this.api.request('/context/view/includeRegexs/', { contextName: args.contextname })
 }
 
 /**
@@ -55,14 +54,14 @@ Context.prototype.includeRegexs = function (args) {
  * @param {string} contextname - The name of the context
  **/
 Context.prototype.context = function (args) {
-    return this.api.request('/context/view/context/', {'contextName': args.contextname })
+  return this.api.request('/context/view/context/', { contextName: args.contextname })
 }
 
 /**
  * Lists the names of all built in technologies
  **/
 Context.prototype.technologyList = function () {
-    return this.api.request('/context/view/technologyList/')
+  return this.api.request('/context/view/technologyList/')
 }
 
 /**
@@ -70,7 +69,7 @@ Context.prototype.technologyList = function () {
  * @param {string} contextname - The name of the context
  **/
 Context.prototype.includedTechnologyList = function (args) {
-    return this.api.request('/context/view/includedTechnologyList/', {'contextName': args.contextname })
+  return this.api.request('/context/view/includedTechnologyList/', { contextName: args.contextname })
 }
 
 /**
@@ -78,7 +77,7 @@ Context.prototype.includedTechnologyList = function (args) {
  * @param {string} contextname - The name of the context
  **/
 Context.prototype.excludedTechnologyList = function (args) {
-    return this.api.request('/context/view/excludedTechnologyList/', {'contextName': args.contextname })
+  return this.api.request('/context/view/excludedTechnologyList/', { contextName: args.contextname })
 }
 
 /**
@@ -86,7 +85,7 @@ Context.prototype.excludedTechnologyList = function (args) {
  * @param {string} contextname - The name of the context
  **/
 Context.prototype.urls = function (args) {
-    return this.api.request('/context/view/urls/', {'contextName': args.contextname })
+  return this.api.request('/context/view/urls/', { contextName: args.contextname })
 }
 
 /**
@@ -95,7 +94,7 @@ Context.prototype.urls = function (args) {
  * @param {string} regex
  **/
 Context.prototype.excludeFromContext = function (args) {
-    return this.api.request('/context/action/excludeFromContext/', {'contextName': args.contextname, 'regex': args.regex })
+  return this.api.request('/context/action/excludeFromContext/', { contextName: args.contextname, regex: args.regex })
 }
 
 /**
@@ -104,7 +103,7 @@ Context.prototype.excludeFromContext = function (args) {
  * @param {string} regex
  **/
 Context.prototype.includeInContext = function (args) {
-    return this.api.request('/context/action/includeInContext/', {'contextName': args.contextname, 'regex': args.regex })
+  return this.api.request('/context/action/includeInContext/', { contextName: args.contextname, regex: args.regex })
 }
 
 /**
@@ -114,7 +113,7 @@ Context.prototype.includeInContext = function (args) {
  * @param {string} excregexs
  **/
 Context.prototype.setContextRegexs = function (args) {
-    return this.api.request('/context/action/setContextRegexs/', {'contextName': args.contextname, 'incRegexs': args.incregexs, 'excRegexs': args.excregexs })
+  return this.api.request('/context/action/setContextRegexs/', { contextName: args.contextname, incRegexs: args.incregexs, excRegexs: args.excregexs })
 }
 
 /**
@@ -128,23 +127,23 @@ Context.prototype.setContextRegexs = function (args) {
  * @param {string} pollfrequencyunits - One of REQUESTS, SECONDS, must be supplied if checkingStrategy = POLL_URL, otherwise ignored
  **/
 Context.prototype.setContextCheckingStrategy = function (args) {
-  const params = {'contextName': args.contextname, 'checkingStrategy': args.checkingstrategy };
+  const params = { contextName: args.contextname, checkingStrategy: args.checkingstrategy }
   if (args.pollurl && args.pollurl !== null) {
-    params['pollUrl'] = args.pollurl;
+    params.pollUrl = args.pollurl
   }
   if (args.polldata && args.polldata !== null) {
-    params['pollData'] = args.polldata;
+    params.pollData = args.polldata
   }
   if (args.pollheaders && args.pollheaders !== null) {
-    params['pollHeaders'] = args.pollheaders;
+    params.pollHeaders = args.pollheaders
   }
   if (args.pollfrequency && args.pollfrequency !== null) {
-    params['pollFrequency'] = args.pollfrequency;
+    params.pollFrequency = args.pollfrequency
   }
   if (args.pollfrequencyunits && args.pollfrequencyunits !== null) {
-    params['pollFrequencyUnits'] = args.pollfrequencyunits;
+    params.pollFrequencyUnits = args.pollfrequencyunits
   }
-    return this.api.request('/context/action/setContextCheckingStrategy/', params)
+  return this.api.request('/context/action/setContextCheckingStrategy/', params)
 }
 
 /**
@@ -152,7 +151,7 @@ Context.prototype.setContextCheckingStrategy = function (args) {
  * @param {string} contextname - The name of the context
  **/
 Context.prototype.newContext = function (args) {
-    return this.api.request('/context/action/newContext/', {'contextName': args.contextname })
+  return this.api.request('/context/action/newContext/', { contextName: args.contextname })
 }
 
 /**
@@ -160,7 +159,7 @@ Context.prototype.newContext = function (args) {
  * @param {string} contextname - The name of the context
  **/
 Context.prototype.removeContext = function (args) {
-    return this.api.request('/context/action/removeContext/', {'contextName': args.contextname })
+  return this.api.request('/context/action/removeContext/', { contextName: args.contextname })
 }
 
 /**
@@ -169,7 +168,7 @@ Context.prototype.removeContext = function (args) {
  * @param {string} contextfile
  **/
 Context.prototype.exportContext = function (args) {
-    return this.api.request('/context/action/exportContext/', {'contextName': args.contextname, 'contextFile': args.contextfile })
+  return this.api.request('/context/action/exportContext/', { contextName: args.contextname, contextFile: args.contextfile })
 }
 
 /**
@@ -177,7 +176,7 @@ Context.prototype.exportContext = function (args) {
  * @param {string} contextfile
  **/
 Context.prototype.importContext = function (args) {
-    return this.api.request('/context/action/importContext/', {'contextFile': args.contextfile })
+  return this.api.request('/context/action/importContext/', { contextFile: args.contextfile })
 }
 
 /**
@@ -186,7 +185,7 @@ Context.prototype.importContext = function (args) {
  * @param {string} technologynames
  **/
 Context.prototype.includeContextTechnologies = function (args) {
-    return this.api.request('/context/action/includeContextTechnologies/', {'contextName': args.contextname, 'technologyNames': args.technologynames })
+  return this.api.request('/context/action/includeContextTechnologies/', { contextName: args.contextname, technologyNames: args.technologynames })
 }
 
 /**
@@ -194,7 +193,7 @@ Context.prototype.includeContextTechnologies = function (args) {
  * @param {string} contextname - The name of the context
  **/
 Context.prototype.includeAllContextTechnologies = function (args) {
-    return this.api.request('/context/action/includeAllContextTechnologies/', {'contextName': args.contextname })
+  return this.api.request('/context/action/includeAllContextTechnologies/', { contextName: args.contextname })
 }
 
 /**
@@ -203,7 +202,7 @@ Context.prototype.includeAllContextTechnologies = function (args) {
  * @param {string} technologynames
  **/
 Context.prototype.excludeContextTechnologies = function (args) {
-    return this.api.request('/context/action/excludeContextTechnologies/', {'contextName': args.contextname, 'technologyNames': args.technologynames })
+  return this.api.request('/context/action/excludeContextTechnologies/', { contextName: args.contextname, technologyNames: args.technologynames })
 }
 
 /**
@@ -211,7 +210,7 @@ Context.prototype.excludeContextTechnologies = function (args) {
  * @param {string} contextname - The name of the context
  **/
 Context.prototype.excludeAllContextTechnologies = function (args) {
-    return this.api.request('/context/action/excludeAllContextTechnologies/', {'contextName': args.contextname })
+  return this.api.request('/context/action/excludeAllContextTechnologies/', { contextName: args.contextname })
 }
 
 /**
@@ -220,7 +219,7 @@ Context.prototype.excludeAllContextTechnologies = function (args) {
  * @param {string} booleaninscope
  **/
 Context.prototype.setContextInScope = function (args) {
-    return this.api.request('/context/action/setContextInScope/', {'contextName': args.contextname, 'booleanInScope': args.booleaninscope })
+  return this.api.request('/context/action/setContextInScope/', { contextName: args.contextname, booleanInScope: args.booleaninscope })
 }
 
-module.exports = Context;
+module.exports = Context

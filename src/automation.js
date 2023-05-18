@@ -17,35 +17,34 @@
  * limitations under the License.
  */
 
-
-'use strict';
+'use strict'
 
 /**
  * This file was automatically generated.
  */
-function Automation(clientApi) {
-  this.api = clientApi;
+function Automation (clientApi) {
+  this.api = clientApi
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  **/
 Automation.prototype.planProgress = function (args) {
-    return this.api.request('/automation/view/planProgress/', {'planId': args.planid })
+  return this.api.request('/automation/view/planProgress/', { planId: args.planid })
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  **/
 Automation.prototype.runPlan = function (args) {
-    return this.api.request('/automation/action/runPlan/', {'filePath': args.filepath })
+  return this.api.request('/automation/action/runPlan/', { filePath: args.filepath })
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  **/
 Automation.prototype.endDelayJob = function () {
-    return this.api.request('/automation/action/endDelayJob/')
+  return this.api.request('/automation/action/endDelayJob/')
 }
 
-module.exports = Automation;
+module.exports = Automation

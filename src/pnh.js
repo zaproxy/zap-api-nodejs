@@ -17,70 +17,69 @@
  * limitations under the License.
  */
 
-
-'use strict';
+'use strict'
 
 /**
  * This file was automatically generated.
  */
-function Pnh(clientApi) {
-  this.api = clientApi;
+function Pnh (clientApi) {
+  this.api = clientApi
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  **/
 Pnh.prototype.monitor = function (args) {
-    return this.api.request('/pnh/action/monitor/', {'id': args.id, 'message': args.message })
+  return this.api.request('/pnh/action/monitor/', { id: args.id, message: args.message })
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  **/
 Pnh.prototype.oracle = function (args) {
-    return this.api.request('/pnh/action/oracle/', {'id': args.id })
+  return this.api.request('/pnh/action/oracle/', { id: args.id })
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  **/
 Pnh.prototype.startMonitoring = function (args) {
-    return this.api.request('/pnh/action/startMonitoring/', {'url': args.url })
+  return this.api.request('/pnh/action/startMonitoring/', { url: args.url })
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  **/
 Pnh.prototype.stopMonitoring = function (args) {
-    return this.api.request('/pnh/action/stopMonitoring/', {'id': args.id })
+  return this.api.request('/pnh/action/stopMonitoring/', { id: args.id })
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  **/
 Pnh.prototype.pnh = function () {
-    return this.api.request('/pnh/other/pnh/', 'other')
+  return this.api.request('/pnh/other/pnh/', 'other')
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  **/
 Pnh.prototype.manifest = function () {
-    return this.api.request('/pnh/other/manifest/', 'other')
+  return this.api.request('/pnh/other/manifest/', 'other')
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  **/
 Pnh.prototype.service = function () {
-    return this.api.request('/pnh/other/service/', 'other')
+  return this.api.request('/pnh/other/service/', 'other')
 }
 
 /**
  * This component is optional and therefore the API will only work if it is installed
  **/
 Pnh.prototype.fx_pnhxpi = function () {
-    return this.api.request('/pnh/other/fx_pnh.xpi/', 'other')
+  return this.api.request('/pnh/other/fx_pnh.xpi/', 'other')
 }
 
-module.exports = Pnh;
+module.exports = Pnh

@@ -17,21 +17,20 @@
  * limitations under the License.
  */
 
-
-'use strict';
+'use strict'
 
 /**
  * This file was automatically generated.
  */
-function SessionManagement(clientApi) {
-  this.api = clientApi;
+function SessionManagement (clientApi) {
+  this.api = clientApi
 }
 
 /**
  * Gets the name of the session management methods.
  **/
 SessionManagement.prototype.getSupportedSessionManagementMethods = function () {
-    return this.api.request('/sessionManagement/view/getSupportedSessionManagementMethods/')
+  return this.api.request('/sessionManagement/view/getSupportedSessionManagementMethods/')
 }
 
 /**
@@ -39,7 +38,7 @@ SessionManagement.prototype.getSupportedSessionManagementMethods = function () {
  * @param {string} methodname
  **/
 SessionManagement.prototype.getSessionManagementMethodConfigParams = function (args) {
-    return this.api.request('/sessionManagement/view/getSessionManagementMethodConfigParams/', {'methodName': args.methodname })
+  return this.api.request('/sessionManagement/view/getSessionManagementMethodConfigParams/', { methodName: args.methodname })
 }
 
 /**
@@ -47,7 +46,7 @@ SessionManagement.prototype.getSessionManagementMethodConfigParams = function (a
  * @param {string} contextid
  **/
 SessionManagement.prototype.getSessionManagementMethod = function (args) {
-    return this.api.request('/sessionManagement/view/getSessionManagementMethod/', {'contextId': args.contextid })
+  return this.api.request('/sessionManagement/view/getSessionManagementMethod/', { contextId: args.contextid })
 }
 
 /**
@@ -57,11 +56,11 @@ SessionManagement.prototype.getSessionManagementMethod = function (args) {
  * @param {string} methodconfigparams
  **/
 SessionManagement.prototype.setSessionManagementMethod = function (args) {
-  const params = {'contextId': args.contextid, 'methodName': args.methodname };
+  const params = { contextId: args.contextid, methodName: args.methodname }
   if (args.methodconfigparams && args.methodconfigparams !== null) {
-    params['methodConfigParams'] = args.methodconfigparams;
+    params.methodConfigParams = args.methodconfigparams
   }
-    return this.api.request('/sessionManagement/action/setSessionManagementMethod/', params)
+  return this.api.request('/sessionManagement/action/setSessionManagementMethod/', params)
 }
 
-module.exports = SessionManagement;
+module.exports = SessionManagement

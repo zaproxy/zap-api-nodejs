@@ -17,14 +17,13 @@
  * limitations under the License.
  */
 
-
-'use strict';
+'use strict'
 
 /**
  * This file was automatically generated.
  */
-function Graphql(clientApi) {
-  this.api = clientApi;
+function Graphql (clientApi) {
+  this.api = clientApi
 }
 
 /**
@@ -32,7 +31,7 @@ function Graphql(clientApi) {
  * This component is optional and therefore the API will only work if it is installed
  **/
 Graphql.prototype.optionArgsType = function () {
-    return this.api.request('/graphql/view/optionArgsType/')
+  return this.api.request('/graphql/view/optionArgsType/')
 }
 
 /**
@@ -40,7 +39,7 @@ Graphql.prototype.optionArgsType = function () {
  * This component is optional and therefore the API will only work if it is installed
  **/
 Graphql.prototype.optionLenientMaxQueryDepthEnabled = function () {
-    return this.api.request('/graphql/view/optionLenientMaxQueryDepthEnabled/')
+  return this.api.request('/graphql/view/optionLenientMaxQueryDepthEnabled/')
 }
 
 /**
@@ -48,7 +47,7 @@ Graphql.prototype.optionLenientMaxQueryDepthEnabled = function () {
  * This component is optional and therefore the API will only work if it is installed
  **/
 Graphql.prototype.optionMaxAdditionalQueryDepth = function () {
-    return this.api.request('/graphql/view/optionMaxAdditionalQueryDepth/')
+  return this.api.request('/graphql/view/optionMaxAdditionalQueryDepth/')
 }
 
 /**
@@ -56,7 +55,7 @@ Graphql.prototype.optionMaxAdditionalQueryDepth = function () {
  * This component is optional and therefore the API will only work if it is installed
  **/
 Graphql.prototype.optionMaxArgsDepth = function () {
-    return this.api.request('/graphql/view/optionMaxArgsDepth/')
+  return this.api.request('/graphql/view/optionMaxArgsDepth/')
 }
 
 /**
@@ -64,7 +63,7 @@ Graphql.prototype.optionMaxArgsDepth = function () {
  * This component is optional and therefore the API will only work if it is installed
  **/
 Graphql.prototype.optionMaxQueryDepth = function () {
-    return this.api.request('/graphql/view/optionMaxQueryDepth/')
+  return this.api.request('/graphql/view/optionMaxQueryDepth/')
 }
 
 /**
@@ -72,7 +71,7 @@ Graphql.prototype.optionMaxQueryDepth = function () {
  * This component is optional and therefore the API will only work if it is installed
  **/
 Graphql.prototype.optionOptionalArgsEnabled = function () {
-    return this.api.request('/graphql/view/optionOptionalArgsEnabled/')
+  return this.api.request('/graphql/view/optionOptionalArgsEnabled/')
 }
 
 /**
@@ -80,7 +79,7 @@ Graphql.prototype.optionOptionalArgsEnabled = function () {
  * This component is optional and therefore the API will only work if it is installed
  **/
 Graphql.prototype.optionQuerySplitType = function () {
-    return this.api.request('/graphql/view/optionQuerySplitType/')
+  return this.api.request('/graphql/view/optionQuerySplitType/')
 }
 
 /**
@@ -88,7 +87,7 @@ Graphql.prototype.optionQuerySplitType = function () {
  * This component is optional and therefore the API will only work if it is installed
  **/
 Graphql.prototype.optionRequestMethod = function () {
-    return this.api.request('/graphql/view/optionRequestMethod/')
+  return this.api.request('/graphql/view/optionRequestMethod/')
 }
 
 /**
@@ -98,7 +97,7 @@ Graphql.prototype.optionRequestMethod = function () {
  * @param {string} file - The File That Contains the GraphQL Schema.
  **/
 Graphql.prototype.importFile = function (args) {
-    return this.api.request('/graphql/action/importFile/', {'endurl': args.endurl, 'file': args.file })
+  return this.api.request('/graphql/action/importFile/', { endurl: args.endurl, file: args.file })
 }
 
 /**
@@ -108,11 +107,11 @@ Graphql.prototype.importFile = function (args) {
  * @param {string} url - The URL Locating the GraphQL Schema.
  **/
 Graphql.prototype.importUrl = function (args) {
-  const params = {'endurl': args.endurl };
+  const params = { endurl: args.endurl }
   if (args.url && args.url !== null) {
-    params['url'] = args.url;
+    params.url = args.url
   }
-    return this.api.request('/graphql/action/importUrl/', params)
+  return this.api.request('/graphql/action/importUrl/', params)
 }
 
 /**
@@ -121,7 +120,7 @@ Graphql.prototype.importUrl = function (args) {
  * @param {string} string - Can be "INLINE", "VARIABLES", or "BOTH".
  **/
 Graphql.prototype.setOptionArgsType = function (args) {
-    return this.api.request('/graphql/action/setOptionArgsType/', {'String': args.string })
+  return this.api.request('/graphql/action/setOptionArgsType/', { String: args.string })
 }
 
 /**
@@ -130,7 +129,7 @@ Graphql.prototype.setOptionArgsType = function (args) {
  * @param {string} string - Can be "LEAF", "ROOT_FIELD", or "OPERATION".
  **/
 Graphql.prototype.setOptionQuerySplitType = function (args) {
-    return this.api.request('/graphql/action/setOptionQuerySplitType/', {'String': args.string })
+  return this.api.request('/graphql/action/setOptionQuerySplitType/', { String: args.string })
 }
 
 /**
@@ -139,7 +138,7 @@ Graphql.prototype.setOptionQuerySplitType = function (args) {
  * @param {string} string - Can be "POST_JSON", "POST_GRAPHQL", or "GET".
  **/
 Graphql.prototype.setOptionRequestMethod = function (args) {
-    return this.api.request('/graphql/action/setOptionRequestMethod/', {'String': args.string })
+  return this.api.request('/graphql/action/setOptionRequestMethod/', { String: args.string })
 }
 
 /**
@@ -148,7 +147,7 @@ Graphql.prototype.setOptionRequestMethod = function (args) {
  * @param {string} bool - Enforce Leniently (true or false).
  **/
 Graphql.prototype.setOptionLenientMaxQueryDepthEnabled = function (args) {
-    return this.api.request('/graphql/action/setOptionLenientMaxQueryDepthEnabled/', {'Boolean': args.bool })
+  return this.api.request('/graphql/action/setOptionLenientMaxQueryDepthEnabled/', { Boolean: args.bool })
 }
 
 /**
@@ -157,7 +156,7 @@ Graphql.prototype.setOptionLenientMaxQueryDepthEnabled = function (args) {
  * @param {string} integer - The Maximum Additional Depth.
  **/
 Graphql.prototype.setOptionMaxAdditionalQueryDepth = function (args) {
-    return this.api.request('/graphql/action/setOptionMaxAdditionalQueryDepth/', {'Integer': args.integer })
+  return this.api.request('/graphql/action/setOptionMaxAdditionalQueryDepth/', { Integer: args.integer })
 }
 
 /**
@@ -166,7 +165,7 @@ Graphql.prototype.setOptionMaxAdditionalQueryDepth = function (args) {
  * @param {string} integer - The Maximum Depth.
  **/
 Graphql.prototype.setOptionMaxArgsDepth = function (args) {
-    return this.api.request('/graphql/action/setOptionMaxArgsDepth/', {'Integer': args.integer })
+  return this.api.request('/graphql/action/setOptionMaxArgsDepth/', { Integer: args.integer })
 }
 
 /**
@@ -175,7 +174,7 @@ Graphql.prototype.setOptionMaxArgsDepth = function (args) {
  * @param {string} integer - The Maximum Depth.
  **/
 Graphql.prototype.setOptionMaxQueryDepth = function (args) {
-    return this.api.request('/graphql/action/setOptionMaxQueryDepth/', {'Integer': args.integer })
+  return this.api.request('/graphql/action/setOptionMaxQueryDepth/', { Integer: args.integer })
 }
 
 /**
@@ -184,7 +183,7 @@ Graphql.prototype.setOptionMaxQueryDepth = function (args) {
  * @param {string} bool - Specify Optional Arguments (true or false).
  **/
 Graphql.prototype.setOptionOptionalArgsEnabled = function (args) {
-    return this.api.request('/graphql/action/setOptionOptionalArgsEnabled/', {'Boolean': args.bool })
+  return this.api.request('/graphql/action/setOptionOptionalArgsEnabled/', { Boolean: args.bool })
 }
 
-module.exports = Graphql;
+module.exports = Graphql

@@ -17,56 +17,55 @@
  * limitations under the License.
  */
 
-
-'use strict';
+'use strict'
 
 /**
  * This file was automatically generated.
  */
-function Pscan(clientApi) {
-  this.api = clientApi;
+function Pscan (clientApi) {
+  this.api = clientApi
 }
 
 /**
  * Tells whether or not the passive scan should be performed only on messages that are in scope.
  **/
 Pscan.prototype.scanOnlyInScope = function () {
-    return this.api.request('/pscan/view/scanOnlyInScope/')
+  return this.api.request('/pscan/view/scanOnlyInScope/')
 }
 
 /**
  * The number of records the passive scanner still has to scan
  **/
 Pscan.prototype.recordsToScan = function () {
-    return this.api.request('/pscan/view/recordsToScan/')
+  return this.api.request('/pscan/view/recordsToScan/')
 }
 
 /**
  * Lists all passive scan rules with their ID, name, enabled state, and alert threshold.
  **/
 Pscan.prototype.scanners = function () {
-    return this.api.request('/pscan/view/scanners/')
+  return this.api.request('/pscan/view/scanners/')
 }
 
 /**
  * Show information about the passive scan rule currently being run (if any).
  **/
 Pscan.prototype.currentRule = function () {
-    return this.api.request('/pscan/view/currentRule/')
+  return this.api.request('/pscan/view/currentRule/')
 }
 
 /**
  * Show information about the passive scan tasks currently being run (if any).
  **/
 Pscan.prototype.currentTasks = function () {
-    return this.api.request('/pscan/view/currentTasks/')
+  return this.api.request('/pscan/view/currentTasks/')
 }
 
 /**
  * Gets the maximum number of alerts a passive scan rule should raise.
  **/
 Pscan.prototype.maxAlertsPerRule = function () {
-    return this.api.request('/pscan/view/maxAlertsPerRule/')
+  return this.api.request('/pscan/view/maxAlertsPerRule/')
 }
 
 /**
@@ -74,7 +73,7 @@ Pscan.prototype.maxAlertsPerRule = function () {
  * @param {string} enabled
  **/
 Pscan.prototype.setEnabled = function (args) {
-    return this.api.request('/pscan/action/setEnabled/', {'enabled': args.enabled })
+  return this.api.request('/pscan/action/setEnabled/', { enabled: args.enabled })
 }
 
 /**
@@ -82,21 +81,21 @@ Pscan.prototype.setEnabled = function (args) {
  * @param {string} onlyinscope
  **/
 Pscan.prototype.setScanOnlyInScope = function (args) {
-    return this.api.request('/pscan/action/setScanOnlyInScope/', {'onlyInScope': args.onlyinscope })
+  return this.api.request('/pscan/action/setScanOnlyInScope/', { onlyInScope: args.onlyinscope })
 }
 
 /**
  * Enables all passive scan rules
  **/
 Pscan.prototype.enableAllScanners = function () {
-    return this.api.request('/pscan/action/enableAllScanners/')
+  return this.api.request('/pscan/action/enableAllScanners/')
 }
 
 /**
  * Disables all passive scan rules
  **/
 Pscan.prototype.disableAllScanners = function () {
-    return this.api.request('/pscan/action/disableAllScanners/')
+  return this.api.request('/pscan/action/disableAllScanners/')
 }
 
 /**
@@ -104,7 +103,7 @@ Pscan.prototype.disableAllScanners = function () {
  * @param {string} ids
  **/
 Pscan.prototype.enableScanners = function (args) {
-    return this.api.request('/pscan/action/enableScanners/', {'ids': args.ids })
+  return this.api.request('/pscan/action/enableScanners/', { ids: args.ids })
 }
 
 /**
@@ -112,7 +111,7 @@ Pscan.prototype.enableScanners = function (args) {
  * @param {string} ids
  **/
 Pscan.prototype.disableScanners = function (args) {
-    return this.api.request('/pscan/action/disableScanners/', {'ids': args.ids })
+  return this.api.request('/pscan/action/disableScanners/', { ids: args.ids })
 }
 
 /**
@@ -121,7 +120,7 @@ Pscan.prototype.disableScanners = function (args) {
  * @param {string} alertthreshold
  **/
 Pscan.prototype.setScannerAlertThreshold = function (args) {
-    return this.api.request('/pscan/action/setScannerAlertThreshold/', {'id': args.id, 'alertThreshold': args.alertthreshold })
+  return this.api.request('/pscan/action/setScannerAlertThreshold/', { id: args.id, alertThreshold: args.alertthreshold })
 }
 
 /**
@@ -129,28 +128,28 @@ Pscan.prototype.setScannerAlertThreshold = function (args) {
  * @param {string} maxalerts
  **/
 Pscan.prototype.setMaxAlertsPerRule = function (args) {
-    return this.api.request('/pscan/action/setMaxAlertsPerRule/', {'maxAlerts': args.maxalerts })
+  return this.api.request('/pscan/action/setMaxAlertsPerRule/', { maxAlerts: args.maxalerts })
 }
 
 /**
  * Disables all passive scan tags.
  **/
 Pscan.prototype.disableAllTags = function () {
-    return this.api.request('/pscan/action/disableAllTags/')
+  return this.api.request('/pscan/action/disableAllTags/')
 }
 
 /**
  * Enables all passive scan tags.
  **/
 Pscan.prototype.enableAllTags = function () {
-    return this.api.request('/pscan/action/enableAllTags/')
+  return this.api.request('/pscan/action/enableAllTags/')
 }
 
 /**
  * Clears the passive scan queue.
  **/
 Pscan.prototype.clearQueue = function () {
-    return this.api.request('/pscan/action/clearQueue/')
+  return this.api.request('/pscan/action/clearQueue/')
 }
 
-module.exports = Pscan;
+module.exports = Pscan
