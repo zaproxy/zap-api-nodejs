@@ -17,7 +17,7 @@
   "licenses": [
     {
       "type": "Apache",
-      "url": "https://github.com/zaproxy/zap-api-nodejs/blob/master/LICENSE"
+      "url": "https://github.com/zaproxy/zap-api-nodejs/blob/main/LICENSE"
     }
   ],
   "main": "src/index.js",
