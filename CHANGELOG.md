@@ -51,7 +51,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 * Minimum NodeJS version is now 8.6.0 (breaking change)
 * Source no longer in zaproxy/nodejs/api/zapv2. Now in its own repository [zaproxy/zap-api-nodejs](https://github.com/zaproxy/zap-api-nodejs)
-* License changed from MIT to [Apache 2.0](https://github.com/zaproxy/zap-api-nodejs/blob/master/LICENSE)
+* License changed from MIT to [Apache 2.0](https://github.com/zaproxy/zap-api-nodejs/blob/main/LICENSE)
 * Replaced many `var`s with `const`s
 
 ### Removed
