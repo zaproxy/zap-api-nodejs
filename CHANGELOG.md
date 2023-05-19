@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
-## [Unreleased]
+## [2.0.0-rc.1] - 2023-05-19
 ### Added
 * Add the API of the following add-ons:
     * Access Control version 8
@@ -33,6 +33,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ### Removed
 * The APIs for the add-ons Import files containing URLs and Log File Importer were removed, superseded by Import/Export add-on.
+
 ## [1.0.1] - 2019-08-30 - lodash security fix
 
 ### Security
@@ -66,6 +67,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 ## 0.3.0 - 2017-12-04
 
 
-[Unreleased]: https://github.com/zaproxy/zap-api-nodejs/compare/v1.0.1...HEAD
+[2.0.0-rc.1]: https://github.com/zaproxy/zap-api-nodejs/compare/v1.0.1...v2.0.0-rc.1
 [1.0.1]: https://github.com/zaproxy/zap-api-nodejs/compare/v1.0.0-rc.1...v1.0.1
 [1.0.0-rc.1]: https://github.com/zaproxy/zap-api-nodejs/compare/ccad7bac914e3572dba4e9d09fc2114bb5208d8d...v1.0.0-rc.1

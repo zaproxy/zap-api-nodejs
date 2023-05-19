@@ -1,7 +1,7 @@
 {
   "name": "zaproxy",
-  "description": "ZAProxy Client API for Node.js",
-  "version": "1.0.1",
+  "description": "ZAP API Client for Node.js",
+  "version": "2.0.0-rc.1",
   "homepage": "https://github.com/zaproxy/zap-api-nodejs",
   "author": {
     "name": "Najam Ul Saqib",
@@ -12,7 +12,7 @@
     "url": "https://github.com/zaproxy/zap-api-nodejs.git"
   },
   "bugs": {
-    "url": "https://github.com/zaproxy/zaproxy/issues"
+    "url": "https://github.com/zaproxy/zap-api-nodejs/issues"
   },
   "licenses": [
     {
