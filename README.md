@@ -81,4 +81,4 @@ For help using the OWASP ZAP API refer to:
 
 ## Issues
 
-To report issues related to the OWASP ZAP Node API, bugs and enhancements requests, use the [issue tracker of the main OWASP ZAP project](https://github.com/zaproxy/zaproxy/issues).
+To report issues related to the OWASP ZAP Node API, bugs and enhancements requests, use the [issue tracker of this project](https://github.com/zaproxy/zap-api-nodejs/issues).
