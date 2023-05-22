@@ -64,6 +64,10 @@ let response = await zaproxy.spider.scanAsUser(params);
 console.log(response);
 ```
 
+### Encountering Errors
+
+When encountering an error, like attempting to retrieve a non-existent context, a rejected promise will be returned. The rejection will contain an `ApiClientError` object, which encapsulates the specific details of the original error. This `ApiClientError` object offers valuable information regarding the failed request, and the original error can be accessed through the `cause` property. The response details, if any, are available through the `response` property, containing the `status` and `data` (body).
+
 ## API
 
 For a full API list, see [https://www.zaproxy.org/docs/api/](https://www.zaproxy.org/docs/api/).
