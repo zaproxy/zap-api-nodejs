@@ -18,7 +18,7 @@
 <br/><br/>
 </div>
 
-The NodeJS implementation to access the [OWASP ZAP API](https://github.com/zaproxy/zaproxy/wiki/ApiDetails). For more information
+The NodeJS implementation to access the [OWASP ZAP API](https://www.zaproxy.org/docs/api/). For more information
 about OWASP ZAP consult the (main) [OWASP ZAP project](https://github.com/zaproxy/zaproxy/).
 
 ## Install
@@ -66,11 +66,8 @@ console.log(response);
 
 ## API
 
-For a full API list, see [https://github.com/zaproxy/zaproxy/wiki/ApiGen_Index](https://github.com/zaproxy/zaproxy/wiki/ApiGen_Index).
+For a full API list, see [https://www.zaproxy.org/docs/api/](https://www.zaproxy.org/docs/api/).
 
-The Node API methods have the same signature as the API documentation, featuring both callback and promise based interfaces, making everyone happy.
-
-The API key is no longer explicitly required on any Node API method invocations. Unless you have disabled the API key when running ZAP, simply provide it on Node API instantiation as mentioned in the [Usage](#usage) section and it will be provided automatically with each request to the ZAP API.
 
 ## Getting Help
 
