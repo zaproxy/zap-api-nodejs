@@ -68,7 +68,6 @@ console.log(response);
 
 For a full API list, see [https://www.zaproxy.org/docs/api/](https://www.zaproxy.org/docs/api/).
 
-The API key is no longer explicitly required on any Node API method invocations. Unless you have disabled the API key when running ZAP, simply provide it on Node API instantiation as mentioned in the [Usage](#usage) section and it will be provided automatically with each request to the ZAP API.
 
 ## Getting Help
 
