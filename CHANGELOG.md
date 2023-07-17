@@ -7,6 +7,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 ### Changed
 * Update the link to API docs in README.md
 
+### Fixed
+* Return errors (e.g. connection, ZAP API) with a rejected promise.
+
 ## [2.0.0-rc.1] - 2023-05-19
 ### Added
 * Add the API of the following add-ons:

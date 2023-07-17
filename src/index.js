@@ -109,6 +109,17 @@ function ClientApi (options) {
   this.websocket = new Websocket(this)
 }
 
+class ApiClientError extends Error {
+  constructor (err) {
+    super(err.message, { cause: err })
+    this.name = 'ApiClientError'
+    this.response = {
+      status: err.response?.status,
+      data: err.response?.data
+    }
+  }
+}
+
 ClientApi.prototype.request = async (url, data, format) => {
   try {
     let requestConfig = structuredClone(defaultAxiosConfig)
@@ -122,7 +133,7 @@ ClientApi.prototype.request = async (url, data, format) => {
 
     return response.data
   } catch (error) {
-    console.log(error.message, ', Data:', error.response?.data)
+    return Promise.reject(new ApiClientError(error))
   }
 }
 
