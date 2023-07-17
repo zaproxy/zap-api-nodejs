@@ -58,6 +58,7 @@ AlertFilter.prototype.globalAlertFilterList = function () {
  * @param {string} attackisregex
  * @param {string} evidence
  * @param {string} evidenceisregex
+ * @param {string} methods
  **/
 AlertFilter.prototype.addAlertFilter = function (args) {
   const params = { contextId: args.contextid, ruleId: args.ruleid, newLevel: args.newlevel }
@@ -88,6 +89,9 @@ AlertFilter.prototype.addAlertFilter = function (args) {
   if (args.evidenceisregex && args.evidenceisregex !== null) {
     params.evidenceIsRegex = args.evidenceisregex
   }
+  if (args.methods && args.methods !== null) {
+    params.methods = args.methods
+  }
   return this.api.request('/alertFilter/action/addAlertFilter/', params)
 }
 
@@ -106,6 +110,7 @@ AlertFilter.prototype.addAlertFilter = function (args) {
  * @param {string} attackisregex
  * @param {string} evidence
  * @param {string} evidenceisregex
+ * @param {string} methods
  **/
 AlertFilter.prototype.removeAlertFilter = function (args) {
   const params = { contextId: args.contextid, ruleId: args.ruleid, newLevel: args.newlevel }
@@ -136,6 +141,9 @@ AlertFilter.prototype.removeAlertFilter = function (args) {
   if (args.evidenceisregex && args.evidenceisregex !== null) {
     params.evidenceIsRegex = args.evidenceisregex
   }
+  if (args.methods && args.methods !== null) {
+    params.methods = args.methods
+  }
   return this.api.request('/alertFilter/action/removeAlertFilter/', params)
 }
 
@@ -153,6 +161,7 @@ AlertFilter.prototype.removeAlertFilter = function (args) {
  * @param {string} attackisregex
  * @param {string} evidence
  * @param {string} evidenceisregex
+ * @param {string} methods
  **/
 AlertFilter.prototype.addGlobalAlertFilter = function (args) {
   const params = { ruleId: args.ruleid, newLevel: args.newlevel }
@@ -183,6 +192,9 @@ AlertFilter.prototype.addGlobalAlertFilter = function (args) {
   if (args.evidenceisregex && args.evidenceisregex !== null) {
     params.evidenceIsRegex = args.evidenceisregex
   }
+  if (args.methods && args.methods !== null) {
+    params.methods = args.methods
+  }
   return this.api.request('/alertFilter/action/addGlobalAlertFilter/', params)
 }
 
@@ -200,6 +212,7 @@ AlertFilter.prototype.addGlobalAlertFilter = function (args) {
  * @param {string} attackisregex
  * @param {string} evidence
  * @param {string} evidenceisregex
+ * @param {string} methods
  **/
 AlertFilter.prototype.removeGlobalAlertFilter = function (args) {
   const params = { ruleId: args.ruleid, newLevel: args.newlevel }
@@ -229,6 +242,9 @@ AlertFilter.prototype.removeGlobalAlertFilter = function (args) {
   }
   if (args.evidenceisregex && args.evidenceisregex !== null) {
     params.evidenceIsRegex = args.evidenceisregex
+  }
+  if (args.methods && args.methods !== null) {
+    params.methods = args.methods
   }
   return this.api.request('/alertFilter/action/removeGlobalAlertFilter/', params)
 }

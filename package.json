@@ -1,7 +1,7 @@
 {
   "name": "zaproxy",
   "description": "ZAP API Client for Node.js",
-  "version": "2.0.0-rc.1",
+  "version": "2.0.0-rc.2",
   "homepage": "https://github.com/zaproxy/zap-api-nodejs",
   "author": {
     "name": "Najam Ul Saqib",
