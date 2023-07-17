@@ -147,6 +147,14 @@ Network.prototype.isUseGlobalHttpState = function () {
 }
 
 /**
+ * List of rate limit rules.
+ * This component is optional and therefore the API will only work if it is installed
+ **/
+Network.prototype.getRateLimitRules = function () {
+  return this.api.request('/network/view/getRateLimitRules/')
+}
+
+/**
  * Generates a new Root CA certificate, used to issue server certificates.
  * This component is optional and therefore the API will only work if it is installed
  **/
@@ -456,6 +464,39 @@ Network.prototype.addPkcs12ClientCertificate = function (args) {
  **/
 Network.prototype.setUseClientCertificate = function (args) {
   return this.api.request('/network/action/setUseClientCertificate/', { use: args.use })
+}
+
+/**
+ * Adds a rate limit rule
+ * This component is optional and therefore the API will only work if it is installed
+ * @param {string} description - A description that allows you to identify the rule. Each rule must have a unique description.
+ * @param {string} enabled - The enabled state, true or false.
+ * @param {string} matchregex - Regex used to match the host.
+ * @param {string} matchstring - Plain string match is handled based on DNS conventions. If the string has one or two components.
+ * @param {string} requestspersecond - The maximum number of requests per second.
+ * @param {string} groupby - How to group hosts when applying rate limiting: rule or host
+ **/
+Network.prototype.addRateLimitRule = function (args) {
+  return this.api.request('/network/action/addRateLimitRule/', { description: args.description, enabled: args.enabled, matchRegex: args.matchregex, matchString: args.matchstring, requestsPerSecond: args.requestspersecond, groupBy: args.groupby })
+}
+
+/**
+ * Remove a rate limit rule
+ * This component is optional and therefore the API will only work if it is installed
+ * @param {string} description - The description of the rule to remove.
+ **/
+Network.prototype.removeRateLimitRule = function (args) {
+  return this.api.request('/network/action/removeRateLimitRule/', { description: args.description })
+}
+
+/**
+ * Set enabled state for a rate limit rule.
+ * This component is optional and therefore the API will only work if it is installed
+ * @param {string} description - The description of the rule to modify.
+ * @param {string} enabled - The enabled state, true or false.
+ **/
+Network.prototype.setRateLimitRuleEnabled = function (args) {
+  return this.api.request('/network/action/setRateLimitRuleEnabled/', { description: args.description, enabled: args.enabled })
 }
 
 /**

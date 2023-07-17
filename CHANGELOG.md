@@ -3,9 +3,16 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
-## [Unreleased]
+## [2.0.0-rc.2] - 2023-07-17
 ### Changed
 * Update the link to API docs in README.md
+* Update core APIs for 2.13.
+* Update the APIs of the following add-ons:
+    * AJAX Spider version 23.15.0;
+    * Alert Filters version 17;
+    * GraphQL Support version 0.18.0;
+    * Network version 0.10.0;
+    * Selenium version 15.13.0.
 
 ### Fixed
 * Return errors (e.g. connection, ZAP API) with a rejected promise.
@@ -74,7 +81,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 ## 0.3.0 - 2017-12-04
 
 
-[Unreleased]: https://github.com/zaproxy/zap-api-nodejs/compare/v2.0.0-rc.1...HEAD
+[2.0.0-rc.2]: https://github.com/zaproxy/zap-api-nodejs/compare/v2.0.0-rc.1...v2.0.0-rc.2
 [2.0.0-rc.1]: https://github.com/zaproxy/zap-api-nodejs/compare/v1.0.1...v2.0.0-rc.1
 [1.0.1]: https://github.com/zaproxy/zap-api-nodejs/compare/v1.0.0-rc.1...v1.0.1
 [1.0.0-rc.1]: https://github.com/zaproxy/zap-api-nodejs/compare/ccad7bac914e3572dba4e9d09fc2114bb5208d8d...v1.0.0-rc.1

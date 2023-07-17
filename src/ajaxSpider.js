@@ -35,6 +35,15 @@ AjaxSpider.prototype.allowedResources = function () {
 }
 
 /**
+ * Gets the excluded elements. The excluded elements are not clicked during crawling, for example, to prevent logging out.
+ * This component is optional and therefore the API will only work if it is installed
+ * @param {string} contextname - The name of the context.
+ **/
+AjaxSpider.prototype.excludedElements = function (args) {
+  return this.api.request('/ajaxSpider/view/excludedElements/', { contextName: args.contextname })
+}
+
+/**
  * Gets the current status of the crawler. Actual values are Stopped and Running.
  * This component is optional and therefore the API will only work if it is installed
  **/
@@ -219,6 +228,84 @@ AjaxSpider.prototype.addAllowedResource = function (args) {
     params.enabled = args.enabled
   }
   return this.api.request('/ajaxSpider/action/addAllowedResource/', params)
+}
+
+/**
+ * Adds an excluded element to a context.
+ * This component is optional and therefore the API will only work if it is installed
+ * @param {string} contextname - The name of the context.
+ * @param {string} description - The description of the excluded element.
+ * @param {string} element - The element to exclude.
+ * @param {string} xpath - The XPath of the element.
+ * @param {string} text - The text of the element.
+ * @param {string} attributename - The attribute name of the element.
+ * @param {string} attributevalue - The attribute value of the element.
+ * @param {string} enabled - The enabled state, true or false.
+ **/
+AjaxSpider.prototype.addExcludedElement = function (args) {
+  const params = { contextName: args.contextname, description: args.description, element: args.element }
+  if (args.xpath && args.xpath !== null) {
+    params.xpath = args.xpath
+  }
+  if (args.text && args.text !== null) {
+    params.text = args.text
+  }
+  if (args.attributename && args.attributename !== null) {
+    params.attributeName = args.attributename
+  }
+  if (args.attributevalue && args.attributevalue !== null) {
+    params.attributeValue = args.attributevalue
+  }
+  if (args.enabled && args.enabled !== null) {
+    params.enabled = args.enabled
+  }
+  return this.api.request('/ajaxSpider/action/addExcludedElement/', params)
+}
+
+/**
+ * Modifies an excluded element of a context.
+ * This component is optional and therefore the API will only work if it is installed
+ * @param {string} contextname - The name of the context.
+ * @param {string} description - The description of the excluded element.
+ * @param {string} element - The element to exclude.
+ * @param {string} descriptionnew - The new description.
+ * @param {string} xpath - The XPath of the element.
+ * @param {string} text - The text of the element.
+ * @param {string} attributename - The attribute name of the element.
+ * @param {string} attributevalue - The attribute value of the element.
+ * @param {string} enabled - The enabled state, true or false.
+ **/
+AjaxSpider.prototype.modifyExcludedElement = function (args) {
+  const params = { contextName: args.contextname, description: args.description, element: args.element }
+  if (args.descriptionnew && args.descriptionnew !== null) {
+    params.descriptionNew = args.descriptionnew
+  }
+  if (args.xpath && args.xpath !== null) {
+    params.xpath = args.xpath
+  }
+  if (args.text && args.text !== null) {
+    params.text = args.text
+  }
+  if (args.attributename && args.attributename !== null) {
+    params.attributeName = args.attributename
+  }
+  if (args.attributevalue && args.attributevalue !== null) {
+    params.attributeValue = args.attributevalue
+  }
+  if (args.enabled && args.enabled !== null) {
+    params.enabled = args.enabled
+  }
+  return this.api.request('/ajaxSpider/action/modifyExcludedElement/', params)
+}
+
+/**
+ * Removes an excluded element from a context.
+ * This component is optional and therefore the API will only work if it is installed
+ * @param {string} contextname - The name of the context.
+ * @param {string} description - The description of the excluded element.
+ **/
+AjaxSpider.prototype.removeExcludedElement = function (args) {
+  return this.api.request('/ajaxSpider/action/removeExcludedElement/', { contextName: args.contextname, description: args.description })
 }
 
 /**

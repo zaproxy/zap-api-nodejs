@@ -183,6 +183,13 @@ Ascan.prototype.optionHostPerScan = function () {
 }
 
 /**
+ * Gets the maximum number of alerts that a rule can raise before being skipped.
+ **/
+Ascan.prototype.optionMaxAlertsPerRule = function () {
+  return this.api.request('/ascan/view/optionMaxAlertsPerRule/')
+}
+
+/**
  *
  **/
 Ascan.prototype.optionMaxChartTimeInMins = function () {
@@ -734,6 +741,14 @@ Ascan.prototype.setOptionHostPerScan = function (args) {
  **/
 Ascan.prototype.setOptionInjectPluginIdInHeader = function (args) {
   return this.api.request('/ascan/action/setOptionInjectPluginIdInHeader/', { Boolean: args.bool })
+}
+
+/**
+ * Sets the maximum number of alerts that a rule can raise before being skipped.
+ * @param {string} integer - The maximum alerts.
+ **/
+Ascan.prototype.setOptionMaxAlertsPerRule = function (args) {
+  return this.api.request('/ascan/action/setOptionMaxAlertsPerRule/', { Integer: args.integer })
 }
 
 /**

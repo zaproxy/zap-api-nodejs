@@ -80,7 +80,6 @@ Selenium.prototype.optionLastDirectory = function () {
 }
 
 /**
- * Returns the current path to PhantomJS binary
  * This component is optional and therefore the API will only work if it is installed
  **/
 Selenium.prototype.optionPhantomJsBinaryPath = function () {
@@ -138,9 +137,7 @@ Selenium.prototype.setOptionLastDirectory = function (args) {
 }
 
 /**
- * Sets the current path to PhantomJS binary
  * This component is optional and therefore the API will only work if it is installed
- * @param {string} string
  **/
 Selenium.prototype.setOptionPhantomJsBinaryPath = function (args) {
   return this.api.request('/selenium/action/setOptionPhantomJsBinaryPath/', { String: args.string })

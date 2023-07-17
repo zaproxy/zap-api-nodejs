@@ -75,6 +75,14 @@ Graphql.prototype.optionOptionalArgsEnabled = function () {
 }
 
 /**
+ * Returns whether the query generator is enabled.
+ * This component is optional and therefore the API will only work if it is installed
+ **/
+Graphql.prototype.optionQueryGenEnabled = function () {
+  return this.api.request('/graphql/view/optionQueryGenEnabled/')
+}
+
+/**
  * Returns the current level for which a single query is generated.
  * This component is optional and therefore the API will only work if it is installed
  **/
@@ -184,6 +192,15 @@ Graphql.prototype.setOptionMaxQueryDepth = function (args) {
  **/
 Graphql.prototype.setOptionOptionalArgsEnabled = function (args) {
   return this.api.request('/graphql/action/setOptionOptionalArgsEnabled/', { Boolean: args.bool })
+}
+
+/**
+ * Sets whether the query generator is enabled.
+ * This component is optional and therefore the API will only work if it is installed
+ * @param {string} bool - Enable query generation (true or false).
+ **/
+Graphql.prototype.setOptionQueryGenEnabled = function (args) {
+  return this.api.request('/graphql/action/setOptionQueryGenEnabled/', { Boolean: args.bool })
 }
 
 module.exports = Graphql
