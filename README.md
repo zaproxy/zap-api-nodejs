@@ -5,7 +5,7 @@
   </a>
   <br/>
 <br/>
-<h2>OWASP ZAP Node API</h2>
+<h2>ZAP Node API</h2>
 <br/><br/>
 
 <a href="https://www.apache.org/licenses/LICENSE-2.0.html" title="License">
@@ -18,8 +18,8 @@
 <br/><br/>
 </div>
 
-The NodeJS implementation to access the [OWASP ZAP API](https://www.zaproxy.org/docs/api/). For more information
-about OWASP ZAP consult the (main) [OWASP ZAP project](https://github.com/zaproxy/zaproxy/).
+The NodeJS implementation to access the [ZAP API](https://www.zaproxy.org/docs/api/). For more information
+about ZAP consult the (main) [ZAP project](https://github.com/zaproxy/zaproxy/).
 
 ## Install
 
@@ -75,11 +75,11 @@ For a full API list, see [https://www.zaproxy.org/docs/api/](https://www.zaproxy
 
 ## Getting Help
 
-For help using the OWASP ZAP API refer to:
+For help using the ZAP API refer to:
 
   * [API Documentation](https://www.zaproxy.org/docs/api/);
-  * [OWASP ZAP User Group](https://groups.google.com/group/zaproxy-users) - for asking questions;
+  * [ZAP User Group](https://groups.google.com/group/zaproxy-users) - for asking questions;
 
 ## Issues
 
-To report issues related to the OWASP ZAP Node API, bugs and enhancements requests, use the [issue tracker of this project](https://github.com/zaproxy/zap-api-nodejs/issues).
+To report issues related to the ZAP Node API, bugs and enhancements requests, use the [issue tracker of this project](https://github.com/zaproxy/zap-api-nodejs/issues).
