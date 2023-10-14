@@ -42,7 +42,7 @@ Core.prototype.sites = function () {
 
 /**
  * Gets the URLs accessed through/by ZAP, optionally filtering by (base) URL.
- * @param {string} baseurl
+ * @param {string} baseurl - The highest URL in the Sites tree under which URLs should be included.
  **/
 Core.prototype.urls = function (args) {
   const params = { }
@@ -74,7 +74,7 @@ Core.prototype.message = function (args) {
 
 /**
  * Gets the HTTP messages sent by ZAP, request and response, optionally filtered by URL and paginated with 'start' position and 'count' of messages
- * @param {string} baseurl
+ * @param {string} baseurl - The highest URL in the Sites tree under which messages should be included.
  * @param {string} start
  * @param {string} count
  **/
@@ -102,7 +102,7 @@ Core.prototype.messagesById = function (args) {
 
 /**
  * Gets the number of messages, optionally filtering by URL
- * @param {string} baseurl
+ * @param {string} baseurl - The highest URL in the Sites tree under which messages should be included.
  **/
 Core.prototype.numberOfMessages = function (args) {
   const params = { }
@@ -213,7 +213,7 @@ Core.prototype.alert = function (args) {
 
 /**
  * Gets the alerts raised by ZAP, optionally filtering by URL or riskId, and paginating with 'start' position and 'count' of alerts
- * @param {string} baseurl
+ * @param {string} baseurl - The highest URL in the Sites tree under which alerts should be included.
  * @param {string} start
  * @param {string} count
  * @param {string} riskid
@@ -237,7 +237,7 @@ Core.prototype.alerts = function (args) {
 
 /**
  * Gets number of alerts grouped by each risk level, optionally filtering by URL
- * @param {string} baseurl
+ * @param {string} baseurl - The highest URL in the Sites tree under which alerts should be included.
  **/
 Core.prototype.alertsSummary = function (args) {
   const params = { }
@@ -249,7 +249,7 @@ Core.prototype.alertsSummary = function (args) {
 
 /**
  * Gets the number of alerts, optionally filtering by URL or riskId
- * @param {string} baseurl
+ * @param {string} baseurl - The highest URL in the Sites tree under which alerts should be included.
  * @param {string} riskid
  **/
 Core.prototype.numberOfAlerts = function (args) {
@@ -626,6 +626,14 @@ Core.prototype.disableClientCertificate = function () {
 }
 
 /**
+ * Create a zip file of the ZAP core and add-on SBOMs
+ * @param {string} filepath - The path of the zip file to create
+ **/
+Core.prototype.createSbomZip = function (args) {
+  return this.api.request('/core/action/createSbomZip/', { filePath: args.filepath })
+}
+
+/**
  * Deletes all alerts of the current session.
  **/
 Core.prototype.deleteAllAlerts = function () {
@@ -857,6 +865,23 @@ Core.prototype.sendHarRequest = function (args) {
     params.followRedirects = args.followredirects
   }
   return this.api.request('/core/other/sendHarRequest/', params, 'other')
+}
+
+/**
+ * Download a file from the transfer directory
+ * @param {string} filename - The name of the file, may include subdirectories
+ **/
+Core.prototype.fileDownload = function (args) {
+  return this.api.request('/core/other/fileDownload/', { fileName: args.filename }, 'other')
+}
+
+/**
+ * Upload a file to the transfer directory. Only POST requests accepted with encodings of "multipart/form-data" or "application/x-www-form-urlencoded".
+ * @param {string} filename - The name of the file, may include subdirectories.
+ * @param {string} filecontents - The contents of the file.
+ **/
+Core.prototype.fileUpload = function (args) {
+  return this.api.request('/core/other/fileUpload/', { fileName: args.filename, fileContents: args.filecontents }, 'other')
 }
 
 module.exports = Core

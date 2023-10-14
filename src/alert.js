@@ -36,10 +36,11 @@ Alert.prototype.alert = function (args) {
 
 /**
  * Gets the alerts raised by ZAP, optionally filtering by URL or riskId, and paginating with 'start' position and 'count' of alerts
- * @param {string} baseurl
+ * @param {string} baseurl - The highest URL in the Sites tree under which alerts should be included.
  * @param {string} start
  * @param {string} count
  * @param {string} riskid
+ * @param {string} contextname - Optionally, the Context name which the Alerts' URLs are associated with.
  **/
 Alert.prototype.alerts = function (args) {
   const params = { }
@@ -55,12 +56,15 @@ Alert.prototype.alerts = function (args) {
   if (args.riskid && args.riskid !== null) {
     params.riskId = args.riskid
   }
+  if (args.contextname && args.contextname !== null) {
+    params.contextName = args.contextname
+  }
   return this.api.request('/alert/view/alerts/', params)
 }
 
 /**
  * Gets number of alerts grouped by each risk level, optionally filtering by URL
- * @param {string} baseurl
+ * @param {string} baseurl - The highest URL in the Sites tree under which alerts should be included.
  **/
 Alert.prototype.alertsSummary = function (args) {
   const params = { }
@@ -72,7 +76,7 @@ Alert.prototype.alertsSummary = function (args) {
 
 /**
  * Gets the number of alerts, optionally filtering by URL or riskId
- * @param {string} baseurl
+ * @param {string} baseurl - The highest URL in the Sites tree under which alerts should be included.
  * @param {string} riskid
  **/
 Alert.prototype.numberOfAlerts = function (args) {
@@ -123,6 +127,26 @@ Alert.prototype.alertCountsByRisk = function (args) {
  **/
 Alert.prototype.deleteAllAlerts = function () {
   return this.api.request('/alert/action/deleteAllAlerts/')
+}
+
+/**
+ * Deletes all the alerts optionally filtered by URL which fall within the Context with the provided name, risk, or base URL.
+ * @param {string} contextname - The name of the Context for which the alerts should be deleted.
+ * @param {string} baseurl - The highest URL in the Sites tree under which alerts should be deleted.
+ * @param {string} riskid - The numeric risk representation ('0 - Informational' through '3 - High').
+ **/
+Alert.prototype.deleteAlerts = function (args) {
+  const params = { }
+  if (args.contextname && args.contextname !== null) {
+    params.contextName = args.contextname
+  }
+  if (args.baseurl && args.baseurl !== null) {
+    params.baseurl = args.baseurl
+  }
+  if (args.riskid && args.riskid !== null) {
+    params.riskId = args.riskid
+  }
+  return this.api.request('/alert/action/deleteAlerts/', params)
 }
 
 /**

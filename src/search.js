@@ -29,7 +29,7 @@ function Search (clientApi) {
 /**
  * Returns the URLs of the HTTP messages that match the given regular expression in the URL optionally filtered by URL and paginated with 'start' position and 'count' of messages.
  * @param {string} regex
- * @param {string} baseurl
+ * @param {string} baseurl - The highest URL in the Sites tree under which URLs should be included.
  * @param {string} start
  * @param {string} count
  **/
@@ -50,7 +50,7 @@ Search.prototype.urlsByUrlRegex = function (args) {
 /**
  * Returns the URLs of the HTTP messages that match the given regular expression in the request optionally filtered by URL and paginated with 'start' position and 'count' of messages.
  * @param {string} regex
- * @param {string} baseurl
+ * @param {string} baseurl - The highest URL in the Sites tree under which URLs should be included.
  * @param {string} start
  * @param {string} count
  **/
@@ -71,7 +71,7 @@ Search.prototype.urlsByRequestRegex = function (args) {
 /**
  * Returns the URLs of the HTTP messages that match the given regular expression in the response optionally filtered by URL and paginated with 'start' position and 'count' of messages.
  * @param {string} regex
- * @param {string} baseurl
+ * @param {string} baseurl - The highest URL in the Sites tree under which URLs should be included.
  * @param {string} start
  * @param {string} count
  **/
@@ -92,7 +92,7 @@ Search.prototype.urlsByResponseRegex = function (args) {
 /**
  * Returns the URLs of the HTTP messages that match the given regular expression in the header(s) optionally filtered by URL and paginated with 'start' position and 'count' of messages.
  * @param {string} regex
- * @param {string} baseurl
+ * @param {string} baseurl - The highest URL in the Sites tree under which URLs should be included.
  * @param {string} start
  * @param {string} count
  **/
@@ -113,7 +113,7 @@ Search.prototype.urlsByHeaderRegex = function (args) {
 /**
  * Returns the HTTP messages that match the given regular expression in the URL optionally filtered by URL and paginated with 'start' position and 'count' of messages.
  * @param {string} regex
- * @param {string} baseurl
+ * @param {string} baseurl - The highest URL in the Sites tree under which messages should be included.
  * @param {string} start
  * @param {string} count
  **/
@@ -134,7 +134,7 @@ Search.prototype.messagesByUrlRegex = function (args) {
 /**
  * Returns the HTTP messages that match the given regular expression in the request optionally filtered by URL and paginated with 'start' position and 'count' of messages.
  * @param {string} regex
- * @param {string} baseurl
+ * @param {string} baseurl - The highest URL in the Sites tree under which messages should be included.
  * @param {string} start
  * @param {string} count
  **/
@@ -155,7 +155,7 @@ Search.prototype.messagesByRequestRegex = function (args) {
 /**
  * Returns the HTTP messages that match the given regular expression in the response optionally filtered by URL and paginated with 'start' position and 'count' of messages.
  * @param {string} regex
- * @param {string} baseurl
+ * @param {string} baseurl - The highest URL in the Sites tree under which messages should be included.
  * @param {string} start
  * @param {string} count
  **/
@@ -176,7 +176,7 @@ Search.prototype.messagesByResponseRegex = function (args) {
 /**
  * Returns the HTTP messages that match the given regular expression in the header(s) optionally filtered by URL and paginated with 'start' position and 'count' of messages.
  * @param {string} regex
- * @param {string} baseurl
+ * @param {string} baseurl - The highest URL in the Sites tree under which messages should be included.
  * @param {string} start
  * @param {string} count
  **/
