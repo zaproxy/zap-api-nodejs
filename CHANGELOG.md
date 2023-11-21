@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
+### Changed
+* Allow to call the ZAP API with custom HTTP method (e.g. file upload).
 
 ## [2.0.0-rc.3] - 2023-10-14
 ### Changed
