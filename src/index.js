@@ -120,16 +120,23 @@ class ApiClientError extends Error {
   }
 }
 
-ClientApi.prototype.request = async (url, data, format) => {
+ClientApi.prototype.request = async (url, data, format, method = 'GET') => {
   try {
     let requestConfig = structuredClone(defaultAxiosConfig)
+    requestConfig.method = method
+    requestConfig.url = url
     if (data) {
-      requestConfig.params = { ...requestConfig.params, ...data }
+      if (method === 'GET') {
+        requestConfig.params = data
+      } else {
+        requestConfig.headers = { ...requestConfig.headers, ...{ 'content-type': 'application/x-www-form-urlencoded' } }
+        requestConfig.data = data
+      }
     }
     if (format === 'other') {
       requestConfig = { ...requestConfig, baseURL: BASE_URL_OTHER }
     }
-    const response = await axios.get(url, requestConfig)
+    const response = await axios.request(requestConfig)
 
     return response.data
   } catch (error) {
