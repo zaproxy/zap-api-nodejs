@@ -4,8 +4,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
+### Added
+* Add the API of the following add-on:
+    * Custom Payloads version 0.13.0.
+
 ### Changed
 * Allow to call the ZAP API with custom HTTP method (e.g. file upload).
+* Update the APIs of the following add-on:
+    * Selenium version 15.16.0.
+
+### Fixed
+* Correct the HTTP method used by `fileUpload` core API.
 
 ## [2.0.0-rc.3] - 2023-10-14
 ### Changed

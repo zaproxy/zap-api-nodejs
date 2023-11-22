@@ -881,7 +881,7 @@ Core.prototype.fileDownload = function (args) {
  * @param {string} filecontents - The contents of the file.
  **/
 Core.prototype.fileUpload = function (args) {
-  return this.api.request('/core/other/fileUpload/', { fileName: args.filename, fileContents: args.filecontents }, 'other')
+  return this.api.request('/core/other/fileUpload/', { fileName: args.filename, fileContents: args.filecontents }, 'other', 'POST')
 }
 
 module.exports = Core
