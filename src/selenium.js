@@ -58,6 +58,13 @@ Selenium.prototype.optionFirefoxBinaryPath = function () {
 }
 
 /**
+ * This component is optional and therefore the API will only work if it is installed
+ **/
+Selenium.prototype.optionFirefoxDefaultProfile = function () {
+  return this.api.request('/selenium/view/optionFirefoxDefaultProfile/')
+}
+
+/**
  * Returns the current path to Firefox driver (geckodriver)
  * This component is optional and therefore the API will only work if it is installed
  **/
@@ -84,6 +91,15 @@ Selenium.prototype.optionLastDirectory = function () {
  **/
 Selenium.prototype.optionPhantomJsBinaryPath = function () {
   return this.api.request('/selenium/view/optionPhantomJsBinaryPath/')
+}
+
+/**
+ * Gets the browser arguments.
+ * This component is optional and therefore the API will only work if it is installed
+ * @param {string} browser - The browser, chrome or firefox.
+ **/
+Selenium.prototype.getBrowserArguments = function (args) {
+  return this.api.request('/selenium/view/getBrowserArguments/', { browser: args.browser })
 }
 
 /**
@@ -114,6 +130,13 @@ Selenium.prototype.setOptionFirefoxBinaryPath = function (args) {
 }
 
 /**
+ * This component is optional and therefore the API will only work if it is installed
+ **/
+Selenium.prototype.setOptionFirefoxDefaultProfile = function (args) {
+  return this.api.request('/selenium/action/setOptionFirefoxDefaultProfile/', { String: args.string })
+}
+
+/**
  * Sets the current path to Firefox driver (geckodriver)
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} string
@@ -141,6 +164,42 @@ Selenium.prototype.setOptionLastDirectory = function (args) {
  **/
 Selenium.prototype.setOptionPhantomJsBinaryPath = function (args) {
   return this.api.request('/selenium/action/setOptionPhantomJsBinaryPath/', { String: args.string })
+}
+
+/**
+ * Adds a browser argument.
+ * This component is optional and therefore the API will only work if it is installed
+ * @param {string} browser - The browser, chrome or firefox.
+ * @param {string} argument - The argument.
+ * @param {string} enabled - The enabled state, true or false.
+ **/
+Selenium.prototype.addBrowserArgument = function (args) {
+  const params = { browser: args.browser, argument: args.argument }
+  if (args.enabled && args.enabled !== null) {
+    params.enabled = args.enabled
+  }
+  return this.api.request('/selenium/action/addBrowserArgument/', params)
+}
+
+/**
+ * Removes a browser argument.
+ * This component is optional and therefore the API will only work if it is installed
+ * @param {string} browser - The browser, chrome or firefox.
+ * @param {string} argument - The argument.
+ **/
+Selenium.prototype.removeBrowserArgument = function (args) {
+  return this.api.request('/selenium/action/removeBrowserArgument/', { browser: args.browser, argument: args.argument })
+}
+
+/**
+ * Sets whether or not a browser argument is enabled.
+ * This component is optional and therefore the API will only work if it is installed
+ * @param {string} browser - The browser, chrome or firefox.
+ * @param {string} argument - The argument.
+ * @param {string} enabled - The enabled state, true or false.
+ **/
+Selenium.prototype.setBrowserArgumentEnabled = function (args) {
+  return this.api.request('/selenium/action/setBrowserArgumentEnabled/', { browser: args.browser, argument: args.argument, enabled: args.enabled })
 }
 
 module.exports = Selenium
