@@ -264,6 +264,18 @@ Core.prototype.numberOfAlerts = function (args) {
 }
 
 /**
+ * The detailed logging config, optionally filtered based on a name (ex: starts with).
+ * @param {string} name - The name for which the logger details should be provided (this value will be used as a case insensitive starts with filter).
+ **/
+Core.prototype.getLogLevel = function (args) {
+  const params = { }
+  if (args.name && args.name !== null) {
+    params.name = args.name
+  }
+  return this.api.request('/core/view/getLogLevel/', params)
+}
+
+/**
  * Gets the user agent that ZAP should use when creating HTTP messages (for example, spider messages or CONNECT requests to outgoing proxy).
  **/
 Core.prototype.optionDefaultUserAgent = function () {
@@ -646,6 +658,15 @@ Core.prototype.deleteAllAlerts = function () {
  **/
 Core.prototype.deleteAlert = function (args) {
   return this.api.request('/core/action/deleteAlert/', { id: args.id })
+}
+
+/**
+ * Sets the logging level for a given logger name.
+ * @param {string} name - The logger name for which the logging level should be set.
+ * @param {string} loglevel - The logging level which should be set.
+ **/
+Core.prototype.setLogLevel = function (args) {
+  return this.api.request('/core/action/setLogLevel/', { name: args.name, logLevel: args.loglevel })
 }
 
 /**

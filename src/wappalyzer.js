@@ -27,7 +27,7 @@ function Wappalyzer (clientApi) {
 }
 
 /**
- * Lists all the sites recognized by the wappalyzer addon.
+ * Lists all the sites recognized by the Technology Detection add-on.
  * This component is optional and therefore the API will only work if it is installed
  **/
 Wappalyzer.prototype.listSites = function () {
