@@ -260,6 +260,13 @@ Ascan.prototype.optionAllowAttackOnStart = function () {
 }
 
 /**
+ * Tells whether or not the active scanner should encode cookie values.
+ **/
+Ascan.prototype.optionEncodeCookieValues = function () {
+  return this.api.request('/ascan/view/optionEncodeCookieValues/')
+}
+
+/**
  * Tells whether or not the active scanner should inject the HTTP request header X-ZAP-Scan-ID, with the ID of the scan rule that's sending the requests.
  **/
 Ascan.prototype.optionInjectPluginIdInHeader = function () {
@@ -717,6 +724,14 @@ Ascan.prototype.setOptionAllowAttackOnStart = function (args) {
  **/
 Ascan.prototype.setOptionDelayInMs = function (args) {
   return this.api.request('/ascan/action/setOptionDelayInMs/', { Integer: args.integer })
+}
+
+/**
+ * Sets whether or not the active scanner should encode cookie values.
+ * @param {string} bool
+ **/
+Ascan.prototype.setOptionEncodeCookieValues = function (args) {
+  return this.api.request('/ascan/action/setOptionEncodeCookieValues/', { Boolean: args.bool })
 }
 
 /**

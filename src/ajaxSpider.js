@@ -337,7 +337,7 @@ AjaxSpider.prototype.setOptionBrowserId = function (args) {
 }
 
 /**
- * Sets whether or not the the AJAX Spider will only click on the default HTML elements.
+ * Sets whether or not the AJAX Spider will only click on the default HTML elements.
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} bool - A boolean (true/false) indicating if only default elements such as 'a' 'button' 'input' should be clicked (default is true).
  **/
