@@ -28,6 +28,7 @@ function Script (clientApi) {
 
 /**
  * Lists the script engines available
+ * This component is optional and therefore the API will only work if it is installed
  **/
 Script.prototype.listEngines = function () {
   return this.api.request('/script/view/listEngines/')
@@ -35,6 +36,7 @@ Script.prototype.listEngines = function () {
 
 /**
  * Lists the script types available.
+ * This component is optional and therefore the API will only work if it is installed
  **/
 Script.prototype.listTypes = function () {
   return this.api.request('/script/view/listTypes/')
@@ -42,6 +44,7 @@ Script.prototype.listTypes = function () {
 
 /**
  * Lists the scripts available, with its engine, name, description, type and error state.
+ * This component is optional and therefore the API will only work if it is installed
  **/
 Script.prototype.listScripts = function () {
   return this.api.request('/script/view/listScripts/')
@@ -49,6 +52,7 @@ Script.prototype.listScripts = function () {
 
 /**
  * Gets the value of the global variable with the given key. Returns an API error (DOES_NOT_EXIST) if no value was previously set.
+ * This component is optional and therefore the API will only work if it is installed
  * @param {string} varkey
  **/
 Script.prototype.globalVar = function (args) {
@@ -57,6 +61,7 @@ Script.prototype.globalVar = function (args) {
 
 /**
  * Gets the value (string representation) of a global custom variable. Returns an API error (DOES_NOT_EXIST) if no value was previously set.
+ * This component is optional and therefore the API will only work if it is installed
  * @param {string} varkey - The key of the variable.
  **/
 Script.prototype.globalCustomVar = function (args) {
@@ -65,6 +70,7 @@ Script.prototype.globalCustomVar = function (args) {
 
 /**
  * Gets all the global variables (key/value pairs).
+ * This component is optional and therefore the API will only work if it is installed
  **/
 Script.prototype.globalVars = function () {
   return this.api.request('/script/view/globalVars/')
@@ -72,6 +78,7 @@ Script.prototype.globalVars = function () {
 
 /**
  * Gets all the global custom variables (key/value pairs, the value is the string representation).
+ * This component is optional and therefore the API will only work if it is installed
  **/
 Script.prototype.globalCustomVars = function () {
   return this.api.request('/script/view/globalCustomVars/')
@@ -79,6 +86,7 @@ Script.prototype.globalCustomVars = function () {
 
 /**
  * Gets the value of the variable with the given key for the given script. Returns an API error (DOES_NOT_EXIST) if no script with the given name exists or if no value was previously set.
+ * This component is optional and therefore the API will only work if it is installed
  * @param {string} scriptname
  * @param {string} varkey
  **/
@@ -88,6 +96,7 @@ Script.prototype.scriptVar = function (args) {
 
 /**
  * Gets the value (string representation) of a custom variable. Returns an API error (DOES_NOT_EXIST) if no script with the given name exists or if no value was previously set.
+ * This component is optional and therefore the API will only work if it is installed
  * @param {string} scriptname - The name of the script.
  * @param {string} varkey - The key of the variable.
  **/
@@ -97,6 +106,7 @@ Script.prototype.scriptCustomVar = function (args) {
 
 /**
  * Gets all the variables (key/value pairs) of the given script. Returns an API error (DOES_NOT_EXIST) if no script with the given name exists.
+ * This component is optional and therefore the API will only work if it is installed
  * @param {string} scriptname
  **/
 Script.prototype.scriptVars = function (args) {
@@ -105,6 +115,7 @@ Script.prototype.scriptVars = function (args) {
 
 /**
  * Gets all the custom variables (key/value pairs, the value is the string representation) of a script. Returns an API error (DOES_NOT_EXIST) if no script with the given name exists.
+ * This component is optional and therefore the API will only work if it is installed
  * @param {string} scriptname - The name of the script.
  **/
 Script.prototype.scriptCustomVars = function (args) {
@@ -113,6 +124,7 @@ Script.prototype.scriptCustomVars = function (args) {
 
 /**
  * Enables the script with the given name
+ * This component is optional and therefore the API will only work if it is installed
  * @param {string} scriptname
  **/
 Script.prototype.enable = function (args) {
@@ -121,6 +133,7 @@ Script.prototype.enable = function (args) {
 
 /**
  * Disables the script with the given name
+ * This component is optional and therefore the API will only work if it is installed
  * @param {string} scriptname
  **/
 Script.prototype.disable = function (args) {
@@ -129,6 +142,7 @@ Script.prototype.disable = function (args) {
 
 /**
  * Loads a script into ZAP from the given local file, with the given name, type and engine, optionally with a description, and a charset name to read the script (the charset name is required if the script is not in UTF-8, for example, in ISO-8859-1).
+ * This component is optional and therefore the API will only work if it is installed
  * @param {string} scriptname
  * @param {string} scripttype
  * @param {string} scriptengine
@@ -149,6 +163,7 @@ Script.prototype.load = function (args) {
 
 /**
  * Removes the script with the given name
+ * This component is optional and therefore the API will only work if it is installed
  * @param {string} scriptname
  **/
 Script.prototype.remove = function (args) {
@@ -157,6 +172,7 @@ Script.prototype.remove = function (args) {
 
 /**
  * Runs the stand alone script with the given name
+ * This component is optional and therefore the API will only work if it is installed
  * @param {string} scriptname
  **/
 Script.prototype.runStandAloneScript = function (args) {
@@ -165,6 +181,7 @@ Script.prototype.runStandAloneScript = function (args) {
 
 /**
  * Clears the global variable with the given key.
+ * This component is optional and therefore the API will only work if it is installed
  * @param {string} varkey
  **/
 Script.prototype.clearGlobalVar = function (args) {
@@ -173,6 +190,7 @@ Script.prototype.clearGlobalVar = function (args) {
 
 /**
  * Clears a global custom variable.
+ * This component is optional and therefore the API will only work if it is installed
  * @param {string} varkey - The key of the variable.
  **/
 Script.prototype.clearGlobalCustomVar = function (args) {
@@ -181,6 +199,7 @@ Script.prototype.clearGlobalCustomVar = function (args) {
 
 /**
  * Clears the global variables.
+ * This component is optional and therefore the API will only work if it is installed
  **/
 Script.prototype.clearGlobalVars = function () {
   return this.api.request('/script/action/clearGlobalVars/')
@@ -188,6 +207,7 @@ Script.prototype.clearGlobalVars = function () {
 
 /**
  * Clears the variable with the given key of the given script. Returns an API error (DOES_NOT_EXIST) if no script with the given name exists.
+ * This component is optional and therefore the API will only work if it is installed
  * @param {string} scriptname
  * @param {string} varkey
  **/
@@ -197,6 +217,7 @@ Script.prototype.clearScriptVar = function (args) {
 
 /**
  * Clears a script custom variable.
+ * This component is optional and therefore the API will only work if it is installed
  * @param {string} scriptname - The name of the script.
  * @param {string} varkey - The key of the variable.
  **/
@@ -206,6 +227,7 @@ Script.prototype.clearScriptCustomVar = function (args) {
 
 /**
  * Clears the variables of the given script. Returns an API error (DOES_NOT_EXIST) if no script with the given name exists.
+ * This component is optional and therefore the API will only work if it is installed
  * @param {string} scriptname
  **/
 Script.prototype.clearScriptVars = function (args) {
@@ -214,6 +236,7 @@ Script.prototype.clearScriptVars = function (args) {
 
 /**
  * Sets the value of the variable with the given key of the given script. Returns an API error (DOES_NOT_EXIST) if no script with the given name exists.
+ * This component is optional and therefore the API will only work if it is installed
  * @param {string} scriptname
  * @param {string} varkey
  * @param {string} varvalue
@@ -228,6 +251,7 @@ Script.prototype.setScriptVar = function (args) {
 
 /**
  * Sets the value of the global variable with the given key.
+ * This component is optional and therefore the API will only work if it is installed
  * @param {string} varkey
  * @param {string} varvalue
  **/

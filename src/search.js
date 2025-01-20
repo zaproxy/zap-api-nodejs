@@ -69,6 +69,27 @@ Search.prototype.urlsByTagRegex = function (args) {
 }
 
 /**
+ * Returns the URLs of the HTTP messages that match the given regular expression in their note optionally filtered by URL and paginated with 'start' position and 'count' of messages.
+ * @param {string} regex
+ * @param {string} baseurl - The highest URL in the Sites tree under which URLs should be included.
+ * @param {string} start
+ * @param {string} count
+ **/
+Search.prototype.urlsByNoteRegex = function (args) {
+  const params = { regex: args.regex }
+  if (args.baseurl && args.baseurl !== null) {
+    params.baseurl = args.baseurl
+  }
+  if (args.start && args.start !== null) {
+    params.start = args.start
+  }
+  if (args.count && args.count !== null) {
+    params.count = args.count
+  }
+  return this.api.request('/search/view/urlsByNoteRegex/', params)
+}
+
+/**
  * Returns the URLs of the HTTP messages that match the given regular expression in the request optionally filtered by URL and paginated with 'start' position and 'count' of messages.
  * @param {string} regex
  * @param {string} baseurl - The highest URL in the Sites tree under which URLs should be included.
@@ -174,6 +195,27 @@ Search.prototype.messagesByTagRegex = function (args) {
 }
 
 /**
+ * Returns the HTTP messages that match the given regular expression in their note optionally filtered by URL and paginated with 'start' position and 'count' of messages.
+ * @param {string} regex
+ * @param {string} baseurl - The highest URL in the Sites tree under which messages should be included.
+ * @param {string} start
+ * @param {string} count
+ **/
+Search.prototype.messagesByNoteRegex = function (args) {
+  const params = { regex: args.regex }
+  if (args.baseurl && args.baseurl !== null) {
+    params.baseurl = args.baseurl
+  }
+  if (args.start && args.start !== null) {
+    params.start = args.start
+  }
+  if (args.count && args.count !== null) {
+    params.count = args.count
+  }
+  return this.api.request('/search/view/messagesByNoteRegex/', params)
+}
+
+/**
  * Returns the HTTP messages that match the given regular expression in the request optionally filtered by URL and paginated with 'start' position and 'count' of messages.
  * @param {string} regex
  * @param {string} baseurl - The highest URL in the Sites tree under which messages should be included.
@@ -276,6 +318,27 @@ Search.prototype.harByTagRegex = function (args) {
     params.count = args.count
   }
   return this.api.request('/search/other/harByTagRegex/', params, 'other')
+}
+
+/**
+ * Returns the HTTP messages, in HAR format, that match the given regular expression in their note optionally filtered by URL and paginated with 'start' position and 'count' of messages.
+ * @param {string} regex
+ * @param {string} baseurl - The highest URL in the Sites tree under which URLs should be included.
+ * @param {string} start
+ * @param {string} count
+ **/
+Search.prototype.harByNoteRegex = function (args) {
+  const params = { regex: args.regex }
+  if (args.baseurl && args.baseurl !== null) {
+    params.baseurl = args.baseurl
+  }
+  if (args.start && args.start !== null) {
+    params.start = args.start
+  }
+  if (args.count && args.count !== null) {
+    params.count = args.count
+  }
+  return this.api.request('/search/other/harByNoteRegex/', params, 'other')
 }
 
 /**

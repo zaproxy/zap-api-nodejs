@@ -63,6 +63,24 @@ Exim.prototype.importModsec2Logs = function (args) {
 }
 
 /**
+ * Exports the Sites Tree in the Sites Tree YAML format.
+ * This component is optional and therefore the API will only work if it is installed
+ * @param {string} filepath
+ **/
+Exim.prototype.exportSitesTree = function (args) {
+  return this.api.request('/exim/action/exportSitesTree/', { filePath: args.filepath })
+}
+
+/**
+ * Prunes the Sites Tree based on a file in the Sites Tree YAML format.
+ * This component is optional and therefore the API will only work if it is installed
+ * @param {string} filepath
+ **/
+Exim.prototype.pruneSitesTree = function (args) {
+  return this.api.request('/exim/action/pruneSitesTree/', { filePath: args.filepath })
+}
+
+/**
  * Gets the HTTP messages sent through/by ZAP, in HAR format, optionally filtered by URL and paginated with 'start' position and 'count' of messages
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} baseurl - The URL below which messages should be included.

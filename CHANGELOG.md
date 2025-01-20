@@ -3,7 +3,22 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
-## [Unreleased]
+## [2.0.0-rc.6] - 2025-01-20
+### Added
+- Add the API of the following add-on:
+  - OAST Support
+
+### Changed
+- Update core APIs for 2.16.
+- Update the APIs of the following add-ons:
+  - AJAX Spider
+  - Import/Export
+  - OpenAPI Support
+  - Passive Scanner
+  - Replacer
+  - Script Console
+  - Selenium
+  - Spider
 
 ## [2.0.0-rc.5] - 2024-04-10
 ### Changed
@@ -104,7 +119,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 ## 0.3.0 - 2017-12-04
 
 
-[Unreleased]: https://github.com/zaproxy/zap-api-nodejs/compare/v2.0.0-rc.5...HEAD
+[2.0.0-rc.6]: https://github.com/zaproxy/zap-api-nodejs/compare/v2.0.0-rc.5...v2.0.0-rc.6
 [2.0.0-rc.5]: https://github.com/zaproxy/zap-api-nodejs/compare/v2.0.0-rc.4...v2.0.0-rc.5
 [2.0.0-rc.4]: https://github.com/zaproxy/zap-api-nodejs/compare/v2.0.0-rc.3...v2.0.0-rc.4
 [2.0.0-rc.3]: https://github.com/zaproxy/zap-api-nodejs/compare/v2.0.0-rc.2...v2.0.0-rc.3
