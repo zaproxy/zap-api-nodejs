@@ -157,6 +157,13 @@ AjaxSpider.prototype.optionClickElemsOnce = function () {
 }
 
 /**
+ * This component is optional and therefore the API will only work if it is installed
+ **/
+AjaxSpider.prototype.optionEnableExtensions = function () {
+  return this.api.request('/ajaxSpider/view/optionEnableExtensions/')
+}
+
+/**
  * Gets if the AJAX Spider will use random values in form fields when crawling, if set to true.
  * This component is optional and therefore the API will only work if it is installed
  **/
@@ -352,6 +359,13 @@ AjaxSpider.prototype.setOptionClickDefaultElems = function (args) {
  **/
 AjaxSpider.prototype.setOptionClickElemsOnce = function (args) {
   return this.api.request('/ajaxSpider/action/setOptionClickElemsOnce/', { Boolean: args.bool })
+}
+
+/**
+ * This component is optional and therefore the API will only work if it is installed
+ **/
+AjaxSpider.prototype.setOptionEnableExtensions = function (args) {
+  return this.api.request('/ajaxSpider/action/setOptionEnableExtensions/', { Boolean: args.bool })
 }
 
 /**

@@ -28,13 +28,15 @@ function Pscan (clientApi) {
 
 /**
  * Tells whether or not the passive scan should be performed only on messages that are in scope.
+ * This component is optional and therefore the API will only work if it is installed
  **/
 Pscan.prototype.scanOnlyInScope = function () {
   return this.api.request('/pscan/view/scanOnlyInScope/')
 }
 
 /**
- * The number of records the passive scanner still has to scan
+ * The number of records the passive scanner still has to scan.
+ * This component is optional and therefore the API will only work if it is installed
  **/
 Pscan.prototype.recordsToScan = function () {
   return this.api.request('/pscan/view/recordsToScan/')
@@ -42,20 +44,23 @@ Pscan.prototype.recordsToScan = function () {
 
 /**
  * Lists all passive scan rules with their ID, name, enabled state, and alert threshold.
+ * This component is optional and therefore the API will only work if it is installed
  **/
 Pscan.prototype.scanners = function () {
   return this.api.request('/pscan/view/scanners/')
 }
 
 /**
- * Show information about the passive scan rule currently being run (if any).
+ * Shows information about the passive scan rule currently being run (if any).
+ * This component is optional and therefore the API will only work if it is installed
  **/
 Pscan.prototype.currentRule = function () {
   return this.api.request('/pscan/view/currentRule/')
 }
 
 /**
- * Show information about the passive scan tasks currently being run (if any).
+ * Shows information about the passive scan tasks currently being run (if any).
+ * This component is optional and therefore the API will only work if it is installed
  **/
 Pscan.prototype.currentTasks = function () {
   return this.api.request('/pscan/view/currentTasks/')
@@ -63,6 +68,7 @@ Pscan.prototype.currentTasks = function () {
 
 /**
  * Gets the maximum number of alerts a passive scan rule should raise.
+ * This component is optional and therefore the API will only work if it is installed
  **/
 Pscan.prototype.maxAlertsPerRule = function () {
   return this.api.request('/pscan/view/maxAlertsPerRule/')
@@ -70,7 +76,8 @@ Pscan.prototype.maxAlertsPerRule = function () {
 
 /**
  * Sets whether or not the passive scanning is enabled (Note: the enabled state is not persisted).
- * @param {string} enabled
+ * This component is optional and therefore the API will only work if it is installed
+ * @param {string} enabled - The enabled state, true or false.
  **/
 Pscan.prototype.setEnabled = function (args) {
   return this.api.request('/pscan/action/setEnabled/', { enabled: args.enabled })
@@ -78,54 +85,61 @@ Pscan.prototype.setEnabled = function (args) {
 
 /**
  * Sets whether or not the passive scan should be performed only on messages that are in scope.
- * @param {string} onlyinscope
+ * This component is optional and therefore the API will only work if it is installed
+ * @param {string} onlyinscope - The scan state, true or false.
  **/
 Pscan.prototype.setScanOnlyInScope = function (args) {
   return this.api.request('/pscan/action/setScanOnlyInScope/', { onlyInScope: args.onlyinscope })
 }
 
 /**
- * Enables all passive scan rules
+ * Enables all passive scan rules.
+ * This component is optional and therefore the API will only work if it is installed
  **/
 Pscan.prototype.enableAllScanners = function () {
   return this.api.request('/pscan/action/enableAllScanners/')
 }
 
 /**
- * Disables all passive scan rules
+ * Disables all passive scan rules.
+ * This component is optional and therefore the API will only work if it is installed
  **/
 Pscan.prototype.disableAllScanners = function () {
   return this.api.request('/pscan/action/disableAllScanners/')
 }
 
 /**
- * Enables all passive scan rules with the given IDs (comma separated list of IDs)
- * @param {string} ids
+ * Enables passive scan rules.
+ * This component is optional and therefore the API will only work if it is installed
+ * @param {string} ids - A comma separated list of scan rule IDs.
  **/
 Pscan.prototype.enableScanners = function (args) {
   return this.api.request('/pscan/action/enableScanners/', { ids: args.ids })
 }
 
 /**
- * Disables all passive scan rules with the given IDs (comma separated list of IDs)
- * @param {string} ids
+ * Disables passive scan rules.
+ * This component is optional and therefore the API will only work if it is installed
+ * @param {string} ids - A comma separated list of scan rule IDs.
  **/
 Pscan.prototype.disableScanners = function (args) {
   return this.api.request('/pscan/action/disableScanners/', { ids: args.ids })
 }
 
 /**
- * Sets the alert threshold of the passive scan rule with the given ID, accepted values for alert threshold: OFF, DEFAULT, LOW, MEDIUM and HIGH
- * @param {string} id
- * @param {string} alertthreshold
+ * Sets the alert threshold of a passive scan rule.
+ * This component is optional and therefore the API will only work if it is installed
+ * @param {string} id - The ID of the scan rule.
+ * @param {string} alertthreshold - The alert threshold: OFF, DEFAULT, LOW, MEDIUM and HIGH
  **/
 Pscan.prototype.setScannerAlertThreshold = function (args) {
   return this.api.request('/pscan/action/setScannerAlertThreshold/', { id: args.id, alertThreshold: args.alertthreshold })
 }
 
 /**
- * Sets the maximum number of alerts a passive scan rule should raise.
- * @param {string} maxalerts
+ * Sets the maximum number of alerts a passive scan rule can raise.
+ * This component is optional and therefore the API will only work if it is installed
+ * @param {string} maxalerts - The maximum number of alerts.
  **/
 Pscan.prototype.setMaxAlertsPerRule = function (args) {
   return this.api.request('/pscan/action/setMaxAlertsPerRule/', { maxAlerts: args.maxalerts })
@@ -133,6 +147,7 @@ Pscan.prototype.setMaxAlertsPerRule = function (args) {
 
 /**
  * Disables all passive scan tags.
+ * This component is optional and therefore the API will only work if it is installed
  **/
 Pscan.prototype.disableAllTags = function () {
   return this.api.request('/pscan/action/disableAllTags/')
@@ -140,6 +155,7 @@ Pscan.prototype.disableAllTags = function () {
 
 /**
  * Enables all passive scan tags.
+ * This component is optional and therefore the API will only work if it is installed
  **/
 Pscan.prototype.enableAllTags = function () {
   return this.api.request('/pscan/action/enableAllTags/')
@@ -147,6 +163,7 @@ Pscan.prototype.enableAllTags = function () {
 
 /**
  * Clears the passive scan queue.
+ * This component is optional and therefore the API will only work if it is installed
  **/
 Pscan.prototype.clearQueue = function () {
   return this.api.request('/pscan/action/clearQueue/')

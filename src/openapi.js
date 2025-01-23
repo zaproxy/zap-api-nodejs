@@ -31,7 +31,8 @@ function Openapi (clientApi) {
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} file - The file that contains the OpenAPI definition.
  * @param {string} target - The Target URL to override the server URL present in the definition.
- * @param {string} contextid
+ * @param {string} contextid - The ID of the context. Defaults to the first context, if any.
+ * @param {string} userid - The ID of the user.
  **/
 Openapi.prototype.importFile = function (args) {
   const params = { file: args.file }
@@ -41,6 +42,9 @@ Openapi.prototype.importFile = function (args) {
   if (args.contextid && args.contextid !== null) {
     params.contextId = args.contextid
   }
+  if (args.userid && args.userid !== null) {
+    params.userId = args.userid
+  }
   return this.api.request('/openapi/action/importFile/', params)
 }
 
@@ -49,7 +53,8 @@ Openapi.prototype.importFile = function (args) {
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} url - The URL locating the OpenAPI definition.
  * @param {string} hostoverride - The Target URL (called hostOverride for historical reasons) to override the server URL present in the definition.
- * @param {string} contextid
+ * @param {string} contextid - The ID of the context. Defaults to the first context, if any.
+ * @param {string} userid - The ID of the user.
  **/
 Openapi.prototype.importUrl = function (args) {
   const params = { url: args.url }
@@ -58,6 +63,9 @@ Openapi.prototype.importUrl = function (args) {
   }
   if (args.contextid && args.contextid !== null) {
     params.contextId = args.contextid
+  }
+  if (args.userid && args.userid !== null) {
+    params.userId = args.userid
   }
   return this.api.request('/openapi/action/importUrl/', params)
 }

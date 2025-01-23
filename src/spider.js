@@ -174,14 +174,6 @@ Spider.prototype.optionMaxScansInUI = function () {
  *
  * This component is optional and therefore the API will only work if it is installed
  **/
-Spider.prototype.optionRequestWaitTime = function () {
-  return this.api.request('/spider/view/optionRequestWaitTime/')
-}
-
-/**
- *
- * This component is optional and therefore the API will only work if it is installed
- **/
 Spider.prototype.optionSkipURLString = function () {
   return this.api.request('/spider/view/optionSkipURLString/')
 }
@@ -665,15 +657,6 @@ Spider.prototype.setOptionPostForm = function (args) {
  **/
 Spider.prototype.setOptionProcessForm = function (args) {
   return this.api.request('/spider/action/setOptionProcessForm/', { Boolean: args.bool })
-}
-
-/**
- *
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} integer
- **/
-Spider.prototype.setOptionRequestWaitTime = function (args) {
-  return this.api.request('/spider/action/setOptionRequestWaitTime/', { Integer: args.integer })
 }
 
 /**

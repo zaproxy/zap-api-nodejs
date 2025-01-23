@@ -182,6 +182,15 @@ Selenium.prototype.addBrowserArgument = function (args) {
 }
 
 /**
+ * Launches a browser proxying through ZAP, for manual usage.
+ * This component is optional and therefore the API will only work if it is installed
+ * @param {string} browser - The browser, chrome or firefox.
+ **/
+Selenium.prototype.launchBrowser = function (args) {
+  return this.api.request('/selenium/action/launchBrowser/', { browser: args.browser })
+}
+
+/**
  * Removes a browser argument.
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} browser - The browser, chrome or firefox.
