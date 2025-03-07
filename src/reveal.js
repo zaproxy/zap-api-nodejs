@@ -17,30 +17,29 @@
  * limitations under the License.
  */
 
-'use strict'
+'use strict';
 
-/**
- * This file was automatically generated.
- */
-function Reveal (clientApi) {
-  this.api = clientApi
+class Reveal {
+  constructor(clientApi) {
+    this.api = clientApi;
+  }
+
+  /**
+   * Retrieves the current reveal setting (i.e. whether hidden fields are shown and disabled fields enabled).
+   * This component is optional and will only work if it is installed.
+   * @returns {Promise<any>} A promise resolving with the reveal state.
+   */
+  reveal = () => this.api.request('/reveal/view/reveal');
+
+  /**
+   * Sets whether hidden fields should be shown and disabled fields enabled.
+   * This component is optional and will only work if it is installed.
+   * @param {{ reveal: string }} args - Object containing:
+   *   - reveal: The reveal setting (e.g. "true" or "false").
+   * @returns {Promise<any>} A promise resolving when the setting is applied.
+   */
+  setReveal = ({ reveal }) =>
+    this.api.request('/reveal/action/setReveal', { reveal });
 }
 
-/**
- * Tells if shows hidden fields and enables disabled fields
- * This component is optional and therefore the API will only work if it is installed
- **/
-Reveal.prototype.reveal = function () {
-  return this.api.request('/reveal/view/reveal/')
-}
-
-/**
- * Sets if shows hidden fields and enables disabled fields
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} reveal
- **/
-Reveal.prototype.setReveal = function (args) {
-  return this.api.request('/reveal/action/setReveal/', { reveal: args.reveal })
-}
-
-module.exports = Reveal
+module.exports = Reveal;

@@ -16,67 +16,71 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+'use strict';
 
-'use strict'
-
-/**
- * This file was automatically generated.
- */
-function Replacer (clientApi) {
-  this.api = clientApi
-}
-
-/**
- * Returns full details of all of the rules
- * This component is optional and therefore the API will only work if it is installed
- **/
-Replacer.prototype.rules = function () {
-  return this.api.request('/replacer/view/rules/')
-}
-
-/**
- * Adds a replacer rule. For the parameters: desc is a user friendly description, enabled is true or false, matchType is one of [REQ_HEADER, REQ_HEADER_STR, REQ_BODY_STR, RESP_HEADER, RESP_HEADER_STR, RESP_BODY_STR], matchRegex should be true if the matchString should be treated as a regex otherwise false, matchString is the string that will be matched against, replacement is the replacement string, initiators may be blank (for all initiators) or a comma separated list of integers as defined in <a href="https://www.zaproxy.org/docs/constants/">Request Initiator Constants</a>
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} description
- * @param {string} enabled
- * @param {string} matchtype
- * @param {string} matchregex
- * @param {string} matchstring
- * @param {string} replacement
- * @param {string} initiators
- * @param {string} url - A regular expression to match the URL of the message, if empty the rule applies to all messages.
- **/
-Replacer.prototype.addRule = function (args) {
-  const params = { description: args.description, enabled: args.enabled, matchType: args.matchtype, matchRegex: args.matchregex, matchString: args.matchstring }
-  if (args.replacement && args.replacement !== null) {
-    params.replacement = args.replacement
+class Replacer {
+  constructor(clientApi) {
+    this.api = clientApi;
   }
-  if (args.initiators && args.initiators !== null) {
-    params.initiators = args.initiators
-  }
-  if (args.url && args.url !== null) {
-    params.url = args.url
-  }
-  return this.api.request('/replacer/action/addRule/', params)
+
+  /**
+   * Returns full details of all the rules.
+   * This component is optional and will only work if it is installed.
+   *
+   * @returns {Promise<any>} A promise resolving with the rules.
+   */
+  rules = () =>
+    this.api.request('/replacer/view/rules');
+
+  /**
+   * Adds a replacer rule.
+   * This component is optional and will only work if it is installed.
+   *
+   * @param {{
+   *   description: string,
+   *   enabled: string,
+   *   matchType: string,
+   *   matchRegex: string,
+   *   matchString: string,
+   *   replacement?: string,
+   *   initiators?: string,
+   *   url?: string,
+   * }} args - Object containing:
+   *   - description: A user-friendly description.
+   *   - enabled: 'true' or 'false' indicating whether the rule is enabled.
+   *   - matchType: One of [REQ_HEADER, REQ_HEADER_STR, REQ_BODY_STR, RESP_HEADER, RESP_HEADER_STR, RESP_BODY_STR].
+   *   - matchRegex: 'true' if the matchString should be treated as a regex, otherwise 'false'.
+   *   - matchString: The string to be matched.
+   *   - replacement: (Optional) The replacement string.
+   *   - initiators: (Optional) A comma-separated list of initiator IDs.
+   *   - url: (Optional) A regex to match the URL of the message.
+   * @returns {Promise<any>} A promise resolving with the result.
+   */
+  addRule = ({ description, enabled, matchType, matchRegex, matchString, replacement, initiators, url }) =>
+    this.api.request('/replacer/action/addRule', { description, enabled, matchType, matchRegex, matchString, replacement, initiators, url });
+
+  /**
+   * Removes the rule with the given description.
+   * This component is optional and will only work if it is installed.
+   *
+   * @param {{ description: string }} args - Object containing:
+   *   - description: The rule description.
+   * @returns {Promise<any>} A promise resolving with the result.
+   */
+  removeRule = ({ description }) =>
+    this.api.request('/replacer/action/removeRule', { description });
+
+  /**
+   * Enables or disables the rule with the given description.
+   * This component is optional and will only work if it is installed.
+   *
+   * @param {{ description: string, bool: string }} args - Object containing:
+   *   - description: The rule description.
+   *   - bool: "true" or "false" indicating if the rule should be enabled.
+   * @returns {Promise<any>} A promise resolving with the result.
+   */
+  setEnabled = ({ description, bool }) =>
+    this.api.request('/replacer/action/setEnabled', { description, bool });
 }
 
-/**
- * Removes the rule with the given description
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} description
- **/
-Replacer.prototype.removeRule = function (args) {
-  return this.api.request('/replacer/action/removeRule/', { description: args.description })
-}
-
-/**
- * Enables or disables the rule with the given description based on the bool parameter
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} description
- * @param {string} bool
- **/
-Replacer.prototype.setEnabled = function (args) {
-  return this.api.request('/replacer/action/setEnabled/', { description: args.description, bool: args.bool })
-}
-
-module.exports = Replacer
+module.exports = Replacer;

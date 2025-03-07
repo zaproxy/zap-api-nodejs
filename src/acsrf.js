@@ -17,64 +17,56 @@
  * limitations under the License.
  */
 
-'use strict'
+'use strict';
 
-/**
- * This file was automatically generated.
- */
-function Acsrf (clientApi) {
-  this.api = clientApi
-}
-
-/**
- * Lists the names of all anti-CSRF tokens
- **/
-Acsrf.prototype.optionTokensNames = function () {
-  return this.api.request('/acsrf/view/optionTokensNames/')
-}
-
-/**
- * Define if ZAP should detect CSRF tokens by searching for partial matches
- **/
-Acsrf.prototype.optionPartialMatchingEnabled = function () {
-  return this.api.request('/acsrf/view/optionPartialMatchingEnabled/')
-}
-
-/**
- * Adds an anti-CSRF token with the given name, enabled by default
- * @param {string} string
- **/
-Acsrf.prototype.addOptionToken = function (args) {
-  return this.api.request('/acsrf/action/addOptionToken/', { String: args.string })
-}
-
-/**
- * Removes the anti-CSRF token with the given name
- * @param {string} string
- **/
-Acsrf.prototype.removeOptionToken = function (args) {
-  return this.api.request('/acsrf/action/removeOptionToken/', { String: args.string })
-}
-
-/**
- * Define if ZAP should detect CSRF tokens by searching for partial matches.
- * @param {string} bool
- **/
-Acsrf.prototype.setOptionPartialMatchingEnabled = function (args) {
-  return this.api.request('/acsrf/action/setOptionPartialMatchingEnabled/', { Boolean: args.bool })
-}
-
-/**
- * Generate a form for testing lack of anti-CSRF tokens - typically invoked via ZAP
- * @param {string} hrefid - Define which request will be used
- * @param {string} actionurl - Define the action URL to be used in the generated form
- **/
-Acsrf.prototype.genForm = function (args) {
-  const params = { hrefId: args.hrefid }
-  if (args.actionurl && args.actionurl !== null) {
-    params.actionUrl = args.actionurl
+class Acsrf {
+  constructor(clientApi) {
+    this.api = clientApi;
   }
-  return this.api.request('/acsrf/other/genForm/', params, 'other')
+
+  /**
+   * Lists the names of all anti-CSRF tokens.
+   * @returns {Promise}
+   */
+  optionTokensNames = () => this.api.request('/acsrf/view/optionTokensNames');
+
+  /**
+   * Define if ZAP should detect CSRF tokens by searching for partial matches.
+   * @returns {Promise}
+   */
+  optionPartialMatchingEnabled = () => this.api.request('/acsrf/view/optionPartialMatchingEnabled');
+
+  /**
+   * Adds an anti-CSRF token with the given name, enabled by default.
+   * @param {{ tokenName: string }} args
+   * @returns {Promise}
+   */
+  addOptionToken = ({ tokenName }) =>
+    this.api.request('/acsrf/action/addOptionToken', { 'String': `${tokenName}` });
+
+  /**
+   * Removes the anti-CSRF token with the given name.
+   * @param {{ tokenName: string }} args
+   * @returns {Promise}
+   */
+  removeOptionToken = ({ tokenName }) =>
+    this.api.request('/acsrf/action/removeOptionToken', { 'String': tokenName });
+
+  /**
+   * Define if ZAP should detect CSRF tokens by searching for partial matches.
+   * @param {boolean} isSet
+   * @returns {Promise}
+   */
+  setOptionPartialMatchingEnabled = isSet =>
+    this.api.request('/acsrf/action/setOptionPartialMatchingEnabled', { 'Boolean': `${isSet}` });
+
+  /**
+   * Generate a form for testing lack of anti-CSRF tokens - typically invoked via ZAP.
+   * @param {{ hrefId: string, actionUrl: string }} args - Defines which request will be used and the action URL.
+   * @returns {Promise}
+   */
+  genForm = ({ hrefId, actionUrl }) =>
+    this.api.request('/acsrf/other/genForm/', { hrefId, actionUrl });
 }
 
-module.exports = Acsrf
+module.exports = Acsrf;

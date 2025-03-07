@@ -17,45 +17,43 @@
  * limitations under the License.
  */
 
-'use strict'
+'use strict';
 
-/**
- * This file was automatically generated.
- */
-function ForcedUser (clientApi) {
-  this.api = clientApi
+class ForcedUser {
+  constructor(clientApi) {
+    this.api = clientApi;
+  }
+
+  /**
+   * Returns 'true' if 'forced user' mode is enabled, 'false' otherwise.
+   * @returns {Promise<any>} A promise that resolves with the forced user mode status.
+   */
+  isForcedUserModeEnabled = () =>
+    this.api.request('/forcedUser/view/isForcedUserModeEnabled');
+
+  /**
+   * Gets the user (ID) set as the forced user for the specified context.
+   * @param {{ contextId: string }} args - Object containing the context ID.
+   * @returns {Promise<any>} A promise that resolves with the forced user ID.
+   */
+  getForcedUser = ({ contextId }) =>
+    this.api.request('/forcedUser/view/getForcedUser', { contextId });
+
+  /**
+   * Sets the user (ID) to be used as the forced user for the specified context.
+   * @param {{ contextId: string, userId: string }} args - Object containing the context ID and user ID.
+   * @returns {Promise<any>} A promise that resolves when the forced user is set.
+   */
+  setForcedUser = ({ contextId, userId }) =>
+    this.api.request('/forcedUser/action/setForcedUser', { contextId, userId });
+
+  /**
+   * Enables or disables forced user mode.
+   * @param {{ isSet: string }} args - Object containing a string value that represents the boolean state.
+   * @returns {Promise<any>} A promise that resolves when the forced user mode is updated.
+   */
+  setForcedUserModeEnabled = ({ isSet }) =>
+    this.api.request('/forcedUser/action/setForcedUserModeEnabled', { boolean: `${isSet}` });
 }
 
-/**
- * Returns 'true' if 'forced user' mode is enabled, 'false' otherwise
- **/
-ForcedUser.prototype.isForcedUserModeEnabled = function () {
-  return this.api.request('/forcedUser/view/isForcedUserModeEnabled/')
-}
-
-/**
- * Gets the user (ID) set as 'forced user' for the given context (ID)
- * @param {string} contextid
- **/
-ForcedUser.prototype.getForcedUser = function (args) {
-  return this.api.request('/forcedUser/view/getForcedUser/', { contextId: args.contextid })
-}
-
-/**
- * Sets the user (ID) that should be used in 'forced user' mode for the given context (ID)
- * @param {string} contextid
- * @param {string} userid
- **/
-ForcedUser.prototype.setForcedUser = function (args) {
-  return this.api.request('/forcedUser/action/setForcedUser/', { contextId: args.contextid, userId: args.userid })
-}
-
-/**
- * Sets if 'forced user' mode should be enabled or not
- * @param {string} bool
- **/
-ForcedUser.prototype.setForcedUserModeEnabled = function (args) {
-  return this.api.request('/forcedUser/action/setForcedUserModeEnabled/', { boolean: args.bool })
-}
-
-module.exports = ForcedUser
+module.exports = ForcedUser;

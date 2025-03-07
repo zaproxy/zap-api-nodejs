@@ -17,31 +17,34 @@
  * limitations under the License.
  */
 
-'use strict'
+'use strict';
 
-/**
- * This file was automatically generated.
- */
-function Soap (clientApi) {
-  this.api = clientApi
+class Soap {
+  constructor(clientApi) {
+    this.api = clientApi;
+  }
+
+  /**
+   * Imports a WSDL definition from a local file.
+   * This component is optional and will only work if it is installed.
+   *
+   * @param {{ file: string }} args - Object containing:
+   *   - file: The file path of the WSDL definition.
+   * @returns {Promise<any>} A promise resolving with the result.
+   */
+  importFile = ({ file }) =>
+    this.api.request('/soap/action/importFile', { file });
+
+  /**
+   * Imports a WSDL definition from a URL.
+   * This component is optional and will only work if it is installed.
+   *
+   * @param {{ url: string }} args - Object containing:
+   *   - url: The URL locating the WSDL definition.
+   * @returns {Promise<any>} A promise resolving with the result.
+   */
+  importUrl = ({ url }) =>
+    this.api.request('/soap/action/importUrl', { url });
 }
 
-/**
- * Import a WSDL definition from local file.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} file
- **/
-Soap.prototype.importFile = function (args) {
-  return this.api.request('/soap/action/importFile/', { file: args.file })
-}
-
-/**
- * Import a WSDL definition from a URL.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} url
- **/
-Soap.prototype.importUrl = function (args) {
-  return this.api.request('/soap/action/importUrl/', { url: args.url })
-}
-
-module.exports = Soap
+module.exports = Soap;

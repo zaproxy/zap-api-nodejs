@@ -17,56 +17,65 @@
  * limitations under the License.
  */
 
-'use strict'
+'use strict';
 
 /**
- * This file was automatically generated.
+ * Class representing the RuleConfig API for ZAProxy.
  */
-function RuleConfig (clientApi) {
-  this.api = clientApi
-}
-
-/**
- * Show the specified rule configuration
- * @param {string} key
- **/
-RuleConfig.prototype.ruleConfigValue = function (args) {
-  return this.api.request('/ruleConfig/view/ruleConfigValue/', { key: args.key })
-}
-
-/**
- * Show all of the rule configurations
- **/
-RuleConfig.prototype.allRuleConfigs = function () {
-  return this.api.request('/ruleConfig/view/allRuleConfigs/')
-}
-
-/**
- * Reset the specified rule configuration, which must already exist
- * @param {string} key
- **/
-RuleConfig.prototype.resetRuleConfigValue = function (args) {
-  return this.api.request('/ruleConfig/action/resetRuleConfigValue/', { key: args.key })
-}
-
-/**
- * Reset all of the rule configurations
- **/
-RuleConfig.prototype.resetAllRuleConfigValues = function () {
-  return this.api.request('/ruleConfig/action/resetAllRuleConfigValues/')
-}
-
-/**
- * Set the specified rule configuration, which must already exist
- * @param {string} key
- * @param {string} value
- **/
-RuleConfig.prototype.setRuleConfigValue = function (args) {
-  const params = { key: args.key }
-  if (args.value && args.value !== null) {
-    params.value = args.value
+class RuleConfig {
+  /**
+   * @param {object} clientApi - The client API instance.
+   */
+  constructor(clientApi) {
+    this.api = clientApi;
   }
-  return this.api.request('/ruleConfig/action/setRuleConfigValue/', params)
+
+  /**
+   * Shows the specified rule configuration.
+   *
+   * @param {{ key: string }} args - Object containing:
+   *   - key: The key of the rule configuration.
+   * @returns {Promise<any>} A promise resolving with the rule configuration value.
+   */
+  ruleConfigValue = ({ key }) =>
+    this.api.request('/ruleConfig/view/ruleConfigValue', { key });
+
+  /**
+   * Shows all of the rule configurations.
+   *
+   * @returns {Promise<any>} A promise resolving with all rule configurations.
+   */
+  allRuleConfigs = () =>
+    this.api.request('/ruleConfig/view/allRuleConfigs');
+
+  /**
+   * Resets the specified rule configuration.
+   *
+   * @param {{ key: string }} args - Object containing:
+   *   - key: The key of the rule configuration to reset.
+   * @returns {Promise<any>} A promise resolving when the rule configuration is reset.
+   */
+  resetRuleConfigValue = ({ key }) =>
+    this.api.request('/ruleConfig/action/resetRuleConfigValue', { key });
+
+  /**
+   * Resets all the rule configurations.
+   *
+   * @returns {Promise<any>} A promise resolving when all rule configurations are reset.
+   */
+  resetAllRuleConfigValues = () =>
+    this.api.request('/ruleConfig/action/resetAllRuleConfigValues');
+
+  /**
+   * Sets the specified rule configuration.
+   *
+   * @param {{ key: string, value: string }} args - Object containing:
+   *   - key: The key of the rule configuration.
+   *   - value: The value to set.
+   * @returns {Promise<any>} A promise resolving when the rule configuration is set.
+   */
+  setRuleConfigValue = ({ key, value }) =>
+    this.api.request('/ruleConfig/action/setRuleConfigValue', { key, value });
 }
 
-module.exports = RuleConfig
+module.exports = RuleConfig;

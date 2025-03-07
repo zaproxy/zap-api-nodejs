@@ -17,133 +17,175 @@
  * limitations under the License.
  */
 
-const axios = require('axios')
-const AccessControl = require('./accessControl')
-const Acsrf = require('./acsrf')
-const AjaxSpider = require('./ajaxSpider')
-const Alert = require('./alert')
-const AlertFilter = require('./alertFilter')
-const Ascan = require('./ascan')
-const Authentication = require('./authentication')
-const Authorization = require('./authorization')
-const Automation = require('./automation')
-const Autoupdate = require('./autoupdate')
-const Brk = require('./brk')
-const Context = require('./context')
-const Core = require('./core')
-const Exim = require('./exim')
-const ForcedUser = require('./forcedUser')
-const Graphql = require('./graphql')
-const HttpSessions = require('./httpSessions')
-const Network = require('./network')
-const Oast = require('./oast')
-const Openapi = require('./openapi')
-const Params = require('./params')
-const Pnh = require('./pnh')
-const Pscan = require('./pscan')
-const Reports = require('./reports')
-const Replacer = require('./replacer')
-const Reveal = require('./reveal')
-const Retest = require('./retest')
-const Revisit = require('./revisit')
-const RuleConfig = require('./ruleConfig')
-const Script = require('./script')
-const Search = require('./search')
-const Selenium = require('./selenium')
-const SessionManagement = require('./sessionManagement')
-const Soap = require('./soap')
-const Spider = require('./spider')
-const Stats = require('./stats')
-const Users = require('./users')
-const Wappalyzer = require('./wappalyzer')
-const Websocket = require('./websocket')
+'use strict';
 
-const BASE_URL_JSON = 'http://zap/JSON'
-const BASE_URL_OTHER = 'http://zap/OTHER'
-function ClientApi (options) {
-  /* global defaultAxiosConfig */
-  // eslint-disable-next-line no-global-assign
-  defaultAxiosConfig = {
-    params: {},
-    baseURL: BASE_URL_JSON,
-    headers: options.apiKey ? { 'X-ZAP-API-Key': options.apiKey } : {},
-    proxy: options.proxy
-  }
+const axios = require('axios');
+const AccessControl = require('./accessControl');
+const Acsrf = require('./acsrf');
+const AjaxSpider = require('./ajaxSpider');
+const Alert = require('./alert');
+const AlertFilter = require('./alertFilter');
+const Ascan = require('./ascan');
+const Authentication = require('./authentication');
+const Authorization = require('./authorization');
+const Automation = require('./automation');
+const Autoupdate = require('./autoupdate');
+const Brk = require('./brk');
+const Context = require('./context');
+const Core = require('./core');
+const Exim = require('./exim');
+const ForcedUser = require('./forcedUser');
+const Graphql = require('./graphql');
+const HttpSessions = require('./httpSessions');
+const Network = require('./network');
+const Oast = require('./oast');
+const Openapi = require('./openapi');
+const Params = require('./params');
+const Pnh = require('./pnh');
+const Pscan = require('./pscan');
+const Reports = require('./reports');
+const Replacer = require('./replacer');
+const Reveal = require('./reveal');
+const Retest = require('./retest');
+const Revisit = require('./revisit');
+const RuleConfig = require('./ruleConfig');
+const Script = require('./script');
+const Search = require('./search');
+const Selenium = require('./selenium');
+const SessionManagement = require('./sessionManagement');
+const Soap = require('./soap');
+const Spider = require('./spider');
+const Stats = require('./stats');
+const Users = require('./users');
+const Wappalyzer = require('./wappalyzer');
+const Websocket = require('./websocket');
+const { AxiosError } = require("axios");
 
-  this.accessControl = new AccessControl(this)
-  this.acsrf = new Acsrf(this)
-  this.ajaxSpider = new AjaxSpider(this)
-  this.alert = new Alert(this)
-  this.alertFilter = new AlertFilter(this)
-  this.ascan = new Ascan(this)
-  this.authentication = new Authentication(this)
-  this.authorization = new Authorization(this)
-  this.automation = new Automation(this)
-  this.autoupdate = new Autoupdate(this)
-  this.brk = new Brk(this)
-  this.context = new Context(this)
-  this.core = new Core(this)
-  this.exim = new Exim(this)
-  this.forcedUser = new ForcedUser(this)
-  this.graphql = new Graphql(this)
-  this.httpSessions = new HttpSessions(this)
-  this.network = new Network(this)
-  this.oast = new Oast(this)
-  this.openapi = new Openapi(this)
-  this.params = new Params(this)
-  this.pnh = new Pnh(this)
-  this.pscan = new Pscan(this)
-  this.replacer = new Replacer(this)
-  this.reports = new Reports(this)
-  this.retest = new Retest(this)
-  this.reveal = new Reveal(this)
-  this.revisit = new Revisit(this)
-  this.ruleConfig = new RuleConfig(this)
-  this.script = new Script(this)
-  this.search = new Search(this)
-  this.selenium = new Selenium(this)
-  this.sessionManagement = new SessionManagement(this)
-  this.soap = new Soap(this)
-  this.spider = new Spider(this)
-  this.stats = new Stats(this)
-  this.users = new Users(this)
-  this.wappalyzer = new Wappalyzer(this)
-  this.websocket = new Websocket(this)
-}
+const BASE_URL_JSON = 'http://zap/JSON';
+const BASE_URL_OTHER = 'http://zap/OTHER';
 
-class ApiClientError extends Error {
-  constructor (err) {
-    super(err.message, { cause: err })
-    this.name = 'ApiClientError'
+class ApiClientError extends AxiosError {
+  /**
+   * @type {{ code: string; message: string; detail?: string }} response
+   * @param {AxiosError} err - The original error.
+   */
+  constructor(err) {
+    super(err.message, { cause: err });
+    this.name = 'ApiClientError';
     this.response = {
       status: err.response?.status,
-      data: err.response?.data
-    }
+      data: err.response?.data,
+    };
   }
 }
 
-ClientApi.prototype.request = async (url, data, format, method = 'GET') => {
-  try {
-    let requestConfig = structuredClone(defaultAxiosConfig)
-    requestConfig.method = method
-    requestConfig.url = url
-    if (data) {
-      if (method === 'GET') {
-        requestConfig.params = data
-      } else {
-        requestConfig.headers = { ...requestConfig.headers, ...{ 'content-type': 'application/x-www-form-urlencoded' } }
-        requestConfig.data = data
+/**
+ * Class representing the ZAP client API.
+ */
+class ClientApi {
+  #defaultAxiosConfig;
+
+  /**
+   * @param {{ apiKey: string; proxy: string; }} options - API connection options.
+   */
+  constructor(options) {
+    this.#defaultAxiosConfig = {
+      params: {},
+      baseURL: BASE_URL_JSON,
+      headers: options.apiKey ? { 'X-ZAP-API-Key': options.apiKey } : {},
+      proxy: options.proxy,
+    };
+
+    this.accessControl = new AccessControl(this);
+    this.acsrf = new Acsrf(this);
+    this.ajaxSpider = new AjaxSpider(this);
+    this.alert = new Alert(this);
+    this.alertFilter = new AlertFilter(this);
+    this.ascan = new Ascan(this);
+    this.authentication = new Authentication(this);
+    this.authorization = new Authorization(this);
+    this.automation = new Automation(this);
+    this.autoupdate = new Autoupdate(this);
+    this.brk = new Brk(this);
+    this.context = new Context(this);
+    this.core = new Core(this);
+    this.exim = new Exim(this);
+    this.forcedUser = new ForcedUser(this);
+    this.graphql = new Graphql(this);
+    this.httpSessions = new HttpSessions(this);
+    this.network = new Network(this);
+    this.oast = new Oast(this);
+    this.openapi = new Openapi(this);
+    this.params = new Params(this);
+    this.pnh = new Pnh(this);
+    this.pscan = new Pscan(this);
+    this.replacer = new Replacer(this);
+    this.reports = new Reports(this);
+    this.retest = new Retest(this);
+    this.reveal = new Reveal(this);
+    this.revisit = new Revisit(this);
+    this.ruleConfig = new RuleConfig(this);
+    this.script = new Script(this);
+    this.search = new Search(this);
+    this.selenium = new Selenium(this);
+    this.sessionManagement = new SessionManagement(this);
+    this.soap = new Soap(this);
+    this.spider = new Spider(this);
+    this.stats = new Stats(this);
+    this.users = new Users(this);
+    this.wappalyzer = new Wappalyzer(this);
+    this.websocket = new Websocket(this);
+  }
+
+  /**
+   * Makes an API request to ZAP.
+   *
+   * @param {string} url - The endpoint URL.
+   * @param {object} [data] - The request data.
+   * @param {string} [format] - The response format.
+   * @param {string} [method='GET'] - The HTTP method.
+   * @returns {Promise<any>} A promise resolving with the response data.
+   */
+  request = async (url, data, format, method = 'GET') => {
+    try {
+      let requestConfig = structuredClone(this.#defaultAxiosConfig);
+      requestConfig.method = method;
+      requestConfig.url = url;
+
+      if (data) {
+        if (method === 'GET') {
+          requestConfig.params = data;
+        } else {
+          requestConfig.headers = {
+            ...requestConfig.headers,
+            'content-type': 'application/x-www-form-urlencoded',
+          };
+          requestConfig.data = data;
+        }
       }
-    }
-    if (format === 'other') {
-      requestConfig = { ...requestConfig, baseURL: BASE_URL_OTHER }
-    }
-    const response = await axios.request(requestConfig)
 
-    return response.data
-  } catch (error) {
-    return Promise.reject(new ApiClientError(error))
-  }
+      if (format === 'other') {
+        requestConfig = { ...requestConfig, baseURL: BASE_URL_OTHER };
+      }
+
+      const response = await axios.request(requestConfig);
+      return response.data;
+    } catch (error) {
+      return Promise.reject(new ApiClientError(error));
+    }
+  };
+
+  /**
+   * Makes a request to the "other" endpoint.
+   *
+   * @param {string} url - The endpoint URL.
+   * @param {object} [data] - The request data.
+   * @param {string} [method='GET'] - The HTTP method.
+   * @returns {Promise<any>} A promise resolving with the response data.
+   */
+  requestOther = async (url, data, method = 'GET') => {
+    return this.request(url, data, 'other', method);
+  };
 }
 
-module.exports = ClientApi
+module.exports = ClientApi;

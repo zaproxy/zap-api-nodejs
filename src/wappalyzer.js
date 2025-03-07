@@ -17,38 +17,41 @@
  * limitations under the License.
  */
 
-'use strict'
+'use strict';
 
-/**
- * This file was automatically generated.
- */
-function Wappalyzer (clientApi) {
-  this.api = clientApi
+class Wappalyzer {
+  constructor(clientApi) {
+    this.api = clientApi;
+  }
+
+  /**
+   * Lists all the sites recognized by the wappalyzer addon.
+   * This component is optional and therefore the API will only work if it is installed.
+   *
+   * @returns {Promise<any>} A promise resolving with the recognized sites.
+   */
+  listSites = () =>
+    this.api.request('/wappalyzer/view/listSites');
+
+  /**
+   * Lists all sites and their associated applications (technologies).
+   * This component is optional and therefore the API will only work if it is installed.
+   *
+   * @returns {Promise<any>} A promise resolving with sites and their technologies.
+   */
+  listAll = () =>
+    this.api.request('/wappalyzer/view/listAll');
+
+  /**
+   * Lists all the applications (technologies) associated with a specific site.
+   * This component is optional and therefore the API will only work if it is installed.
+   *
+   * @param {{ site: string }} args - Object containing:
+   *   - site: The site URL.
+   * @returns {Promise<any>} A promise resolving with the site's technologies.
+   */
+  listSite = ({ site }) =>
+    this.api.request('/wappalyzer/view/listSite', { site });
 }
 
-/**
- * Lists all the sites recognized by the Technology Detection add-on.
- * This component is optional and therefore the API will only work if it is installed
- **/
-Wappalyzer.prototype.listSites = function () {
-  return this.api.request('/wappalyzer/view/listSites/')
-}
-
-/**
- * Lists all sites and their associated applications (technologies).
- * This component is optional and therefore the API will only work if it is installed
- **/
-Wappalyzer.prototype.listAll = function () {
-  return this.api.request('/wappalyzer/view/listAll/')
-}
-
-/**
- * Lists all the applications (technologies) associated with a specific site.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} site
- **/
-Wappalyzer.prototype.listSite = function (args) {
-  return this.api.request('/wappalyzer/view/listSite/', { site: args.site })
-}
-
-module.exports = Wappalyzer
+module.exports = Wappalyzer;

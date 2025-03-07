@@ -16,35 +16,42 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-'use strict'
-
 /**
- * This file was automatically generated.
+ * Class for managing Automation API requests for ZAP Proxy.
+ * This component is optional and will only work if it is installed.
+ *
+ * @param {object} clientApi - The client API instance.
  */
-function Automation (clientApi) {
-  this.api = clientApi
+class Automation {
+  constructor(clientApi) {
+    this.api = clientApi;
+  }
+
+  /**
+   * Retrieves the progress of the specified automation plan.
+   *
+   * @param {{ planId: string }} args - Object containing the plan ID.
+   * @returns {Promise} - A promise that resolves with the plan progress details.
+   */
+  planProgress = ({ planId }) =>
+    this.api.request('/automation/view/planProgress', { planId });
+
+  /**
+   * Runs the specified automation plan.
+   *
+   * @param {{ filePath: string }} args - Object containing the file path of the automation plan.
+   * @returns {Promise} - A promise that resolves when the plan is started.
+   */
+  runPlan = ({ filePath }) =>
+    this.api.request('/automation/action/runPlan', { filePath });
+
+  /**
+   * Ends the current delay job.
+   *
+   * @returns {Promise} - A promise that resolves when the delay job is ended.
+   */
+  endDelayJob = () =>
+    this.api.request('/automation/action/endDelayJob');
 }
 
-/**
- * This component is optional and therefore the API will only work if it is installed
- **/
-Automation.prototype.planProgress = function (args) {
-  return this.api.request('/automation/view/planProgress/', { planId: args.planid })
-}
-
-/**
- * This component is optional and therefore the API will only work if it is installed
- **/
-Automation.prototype.runPlan = function (args) {
-  return this.api.request('/automation/action/runPlan/', { filePath: args.filepath })
-}
-
-/**
- * This component is optional and therefore the API will only work if it is installed
- **/
-Automation.prototype.endDelayJob = function () {
-  return this.api.request('/automation/action/endDelayJob/')
-}
-
-module.exports = Automation
+module.exports = Automation;

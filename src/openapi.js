@@ -17,57 +17,46 @@
  * limitations under the License.
  */
 
-'use strict'
+'use strict';
 
-/**
- * This file was automatically generated.
- */
-function Openapi (clientApi) {
-  this.api = clientApi
+class Openapi {
+  /**
+   * @param {object} clientApi - The client API instance.
+   */
+  constructor(clientApi) {
+    this.api = clientApi;
+  }
+
+  /**
+   * Imports an OpenAPI definition from a local file.
+   * This component is optional and will only work if it is installed.
+   *
+   * @param {{ file: string, target?: string, contextId?: string, userId?: string }} args - Object containing:
+   *   - file: The file that contains the OpenAPI definition.
+   *   - target: (Optional) The target URL to override the server URL in the definition.
+   *   - contextId: (Optional) The context ID.
+   *   - userId: (Optional) The user ID.
+   * @returns {Promise<any>} A promise resolving with the import result.
+   */
+  importFile = ({ file, target, contextId, userId }) => {
+    return this.api.request('/openapi/action/importFile', { file, target, contextId, userId });
+  };
+
+  /**
+   * Imports an OpenAPI definition from a URL.
+   * This component is optional and will only work if it is installed.
+   *
+   * @param {{ url: string, hostOverride?: string, contextId?: string, userId?: string }} args - Object containing:
+   *   - url: The URL locating the OpenAPI definition.
+   *   - hostOverride: (Optional) The target URL to override the server URL in the definition.
+   *   - contextId: (Optional) The context ID.
+   *   - userId: (Optional) The user ID.
+   * @returns {Promise<any>} A promise resolving with the import result.
+   */
+  importUrl = ({ url, hostOverride, contextId, userId }) => {
+    return this.api.request('/openapi/action/importUrl', { url, hostOverride, contextId, userId });
+  };
 }
 
-/**
- * Imports an OpenAPI definition from a local file.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} file - The file that contains the OpenAPI definition.
- * @param {string} target - The Target URL to override the server URL present in the definition.
- * @param {string} contextid - The ID of the context. Defaults to the first context, if any.
- * @param {string} userid - The ID of the user.
- **/
-Openapi.prototype.importFile = function (args) {
-  const params = { file: args.file }
-  if (args.target && args.target !== null) {
-    params.target = args.target
-  }
-  if (args.contextid && args.contextid !== null) {
-    params.contextId = args.contextid
-  }
-  if (args.userid && args.userid !== null) {
-    params.userId = args.userid
-  }
-  return this.api.request('/openapi/action/importFile/', params)
-}
+module.exports = Openapi;
 
-/**
- * Imports an OpenAPI definition from a URL.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} url - The URL locating the OpenAPI definition.
- * @param {string} hostoverride - The Target URL (called hostOverride for historical reasons) to override the server URL present in the definition.
- * @param {string} contextid - The ID of the context. Defaults to the first context, if any.
- * @param {string} userid - The ID of the user.
- **/
-Openapi.prototype.importUrl = function (args) {
-  const params = { url: args.url }
-  if (args.hostoverride && args.hostoverride !== null) {
-    params.hostOverride = args.hostoverride
-  }
-  if (args.contextid && args.contextid !== null) {
-    params.contextId = args.contextid
-  }
-  if (args.userid && args.userid !== null) {
-    params.userId = args.userid
-  }
-  return this.api.request('/openapi/action/importUrl/', params)
-}
-
-module.exports = Openapi

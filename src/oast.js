@@ -17,111 +17,105 @@
  * limitations under the License.
  */
 
-'use strict'
+'use strict';
 
-/**
- * This file was automatically generated.
- */
-function Oast (clientApi) {
-  this.api = clientApi
+class Oast {
+  constructor(clientApi) {
+    this.api = clientApi;
+  }
+
+  /**
+   * Gets the service used with the active scanner, if any.
+   * This component is optional and therefore the API will only work if it is installed.
+   * @returns {Promise<any>} A promise that resolves with the active scan service.
+   */
+  getActiveScanService = () =>
+    this.api.request('/oast/view/getActiveScanService/');
+
+  /**
+   * Gets all the services.
+   * This component is optional and therefore the API will only work if it is installed.
+   * @returns {Promise<any>} A promise that resolves with all the services.
+   */
+  getServices = () =>
+    this.api.request('/oast/view/getServices/');
+
+  /**
+   * Gets the BOAST options.
+   * This component is optional and therefore the API will only work if it is installed.
+   * @returns {Promise<any>} A promise that resolves with the BOAST options.
+   */
+  getBoastOptions = () =>
+    this.api.request('/oast/view/getBoastOptions/');
+
+  /**
+   * Gets the Callback options.
+   * This component is optional and therefore the API will only work if it is installed.
+   * @returns {Promise<any>} A promise that resolves with the callback options.
+   */
+  getCallbackOptions = () =>
+    this.api.request('/oast/view/getCallbackOptions/');
+
+  /**
+   * Gets the Interactsh options.
+   * This component is optional and therefore the API will only work if it is installed.
+   * @returns {Promise<any>} A promise that resolves with the Interactsh options.
+   */
+  getInteractshOptions = () =>
+    this.api.request('/oast/view/getInteractshOptions/');
+
+  /**
+   * Gets the number of days the OAST records will be kept for.
+   * This component is optional and therefore the API will only work if it is installed.
+   * @returns {Promise<any>} A promise that resolves with the number of days to keep records.
+   */
+  getDaysToKeepRecords = () =>
+    this.api.request('/oast/view/getDaysToKeepRecords/');
+
+  /**
+   * Sets the service used with the active scanner.
+   * This component is optional and therefore the API will only work if it is installed.
+   * @param {{ name: string }} args - Object containing the service name.
+   * @returns {Promise<any>} A promise that resolves when the active scan service is set.
+   */
+  setActiveScanService = ({ name }) =>
+    this.api.request('/oast/action/setActiveScanService/', { name });
+
+  /**
+   * Sets the BOAST options.
+   * This component is optional and therefore the API will only work if it is installed.
+   * @param {{ server: string, pollinsecs: string }} args - Object containing the server URL and polling frequency.
+   * @returns {Promise<any>} A promise that resolves when the BOAST options are set.
+   */
+  setBoastOptions = ({ server, pollinsecs }) =>
+    this.api.request('/oast/action/setBoastOptions/', { server, pollInSecs: pollinsecs });
+
+  /**
+   * Sets the Callback options.
+   * This component is optional and therefore the API will only work if it is installed.
+   * @param {{ localaddress: string, remoteaddress: string, port: string }} args - Object containing the local address, remote address, and port.
+   * @returns {Promise<any>} A promise that resolves when the callback options are set.
+   */
+  setCallbackOptions = ({ localaddress, remoteaddress, port }) =>
+    this.api.request('/oast/action/setCallbackOptions/', { localAddress: localaddress, remoteAddress: remoteaddress, port });
+
+  /**
+   * Sets the Interactsh options.
+   * This component is optional and therefore the API will only work if it is installed.
+   * @param {{ server: string, pollinsecs: string, authtoken: string }} args - Object containing the server URL, polling frequency, and authentication token.
+   * @returns {Promise<any>} A promise that resolves when the Interactsh options are set.
+   */
+  setInteractshOptions = ({ server, pollinsecs, authtoken }) =>
+    this.api.request('/oast/action/setInteractshOptions/', { server, pollInSecs: pollinsecs, authToken: authtoken });
+
+  /**
+   * Sets the number of days the OAST records will be kept for.
+   * This component is optional and therefore the API will only work if it is installed.
+   * @param {{ days: string }} args - Object containing the number of days.
+   * @returns {Promise<any>} A promise that resolves when the days to keep records is set.
+   */
+  setDaysToKeepRecords = ({ days }) =>
+    this.api.request('/oast/action/setDaysToKeepRecords/', { days });
 }
 
-/**
- * Gets the service used with the active scanner, if any.
- * This component is optional and therefore the API will only work if it is installed
- **/
-Oast.prototype.getActiveScanService = function () {
-  return this.api.request('/oast/view/getActiveScanService/')
-}
-
-/**
- * Gets all of the services.
- * This component is optional and therefore the API will only work if it is installed
- **/
-Oast.prototype.getServices = function () {
-  return this.api.request('/oast/view/getServices/')
-}
-
-/**
- * Gets the BOAST options.
- * This component is optional and therefore the API will only work if it is installed
- **/
-Oast.prototype.getBoastOptions = function () {
-  return this.api.request('/oast/view/getBoastOptions/')
-}
-
-/**
- * Gets the Callback options.
- * This component is optional and therefore the API will only work if it is installed
- **/
-Oast.prototype.getCallbackOptions = function () {
-  return this.api.request('/oast/view/getCallbackOptions/')
-}
-
-/**
- * Gets the Interactsh options.
- * This component is optional and therefore the API will only work if it is installed
- **/
-Oast.prototype.getInteractshOptions = function () {
-  return this.api.request('/oast/view/getInteractshOptions/')
-}
-
-/**
- * Gets the number of days the OAST records will be kept for.
- * This component is optional and therefore the API will only work if it is installed
- **/
-Oast.prototype.getDaysToKeepRecords = function () {
-  return this.api.request('/oast/view/getDaysToKeepRecords/')
-}
-
-/**
- * Sets the service used with the active scanner.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} name - The name of the service.
- **/
-Oast.prototype.setActiveScanService = function (args) {
-  return this.api.request('/oast/action/setActiveScanService/', { name: args.name })
-}
-
-/**
- * Sets the BOAST options.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} server - The server URL.
- * @param {string} pollinsecs - The polling frequency.
- **/
-Oast.prototype.setBoastOptions = function (args) {
-  return this.api.request('/oast/action/setBoastOptions/', { server: args.server, pollInSecs: args.pollinsecs })
-}
-
-/**
- * Sets the Callback options.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} localaddress - The local address
- * @param {string} remoteaddress - The remote address.
- * @param {string} port - The port to listen on.
- **/
-Oast.prototype.setCallbackOptions = function (args) {
-  return this.api.request('/oast/action/setCallbackOptions/', { localAddress: args.localaddress, remoteAddress: args.remoteaddress, port: args.port })
-}
-
-/**
- * Sets the Interactsh options.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} server - The server URL.
- * @param {string} pollinsecs - The polling frequency.
- * @param {string} authtoken - The Interactsh authentication token.
- **/
-Oast.prototype.setInteractshOptions = function (args) {
-  return this.api.request('/oast/action/setInteractshOptions/', { server: args.server, pollInSecs: args.pollinsecs, authToken: args.authtoken })
-}
-
-/**
- * Sets the number of days the OAST records will be kept for.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} days - The number of days.
- **/
-Oast.prototype.setDaysToKeepRecords = function (args) {
-  return this.api.request('/oast/action/setDaysToKeepRecords/', { days: args.days })
-}
-
-module.exports = Oast
+module.exports = Oast;

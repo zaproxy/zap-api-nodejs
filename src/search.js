@@ -17,391 +17,206 @@
  * limitations under the License.
  */
 
-'use strict'
+'use strict';
 
 /**
- * This file was automatically generated.
+ * Class representing the Selenium API for ZAProxy.
  */
-function Search (clientApi) {
-  this.api = clientApi
+class Selenium {
+  /**
+   * @param {object} clientApi - The client API instance.
+   */
+  constructor(clientApi) {
+    this.api = clientApi;
+  }
+
+  /**
+   * Returns the browser extensions option.
+   * @returns {Promise<any>} A promise that resolves with the option.
+   */
+  optionBrowserExtensions = () =>
+    this.api.request('/selenium/view/optionBrowserExtensions');
+
+  /**
+   * Returns the current path to the Chrome binary.
+   * @returns {Promise<any>} A promise that resolves with the Chrome binary path.
+   */
+  optionChromeBinaryPath = () =>
+    this.api.request('/selenium/view/optionChromeBinaryPath');
+
+  /**
+   * Returns the current path to ChromeDriver.
+   * @returns {Promise<any>} A promise that resolves with the ChromeDriver path.
+   */
+  optionChromeDriverPath = () =>
+    this.api.request('/selenium/view/optionChromeDriverPath');
+
+  /**
+   * Returns the current path to the Firefox binary.
+   * @returns {Promise<any>} A promise that resolves with the Firefox binary path.
+   */
+  optionFirefoxBinaryPath = () =>
+    this.api.request('/selenium/view/optionFirefoxBinaryPath');
+
+  /**
+   * Returns the current default Firefox profile name.
+   * @returns {Promise<any>} A promise that resolves with the default Firefox profile.
+   */
+  optionFirefoxDefaultProfile = () =>
+    this.api.request('/selenium/view/optionFirefoxDefaultProfile');
+
+  /**
+   * Returns the current path to the Firefox driver (geckodriver).
+   * @returns {Promise<any>} A promise that resolves with the Firefox driver path.
+   */
+  optionFirefoxDriverPath = () =>
+    this.api.request('/selenium/view/optionFirefoxDriverPath');
+
+  /**
+   * Returns the current path to the IEDriverServer.
+   * @returns {Promise<any>} A promise that resolves with the IEDriverServer path.
+   */
+  optionIeDriverPath = () =>
+    this.api.request('/selenium/view/optionIeDriverPath');
+
+  /**
+   * Returns the last used directory path.
+   * @returns {Promise<any>} A promise that resolves with the last used directory.
+   */
+  optionLastDirectory = () =>
+    this.api.request('/selenium/view/optionLastDirectory');
+
+  /**
+   * Returns the current path to the PhantomJS binary.
+   * @returns {Promise<any>} A promise that resolves with the PhantomJS binary path.
+   */
+  optionPhantomJsBinaryPath = () =>
+    this.api.request('/selenium/view/optionPhantomJsBinaryPath');
+
+  /**
+   * Gets the browser arguments.
+   * @param {{ browser: string }} args - Object containing:
+   *   - browser: The browser name, e.g. "chrome" or "firefox".
+   * @returns {Promise<any>} A promise that resolves with the browser arguments.
+   */
+  getBrowserArguments = ({ browser }) =>
+    this.api.request('/selenium/view/getBrowserArguments', { browser });
+
+  /**
+   * Sets the current path to the Chrome binary.
+   * @param {{ string: string }} args - Object containing:
+   *   - string: The path to the Chrome binary.
+   * @returns {Promise<any>} A promise that resolves when the path is set.
+   */
+  setOptionChromeBinaryPath = ({ string }) =>
+    this.api.request('/selenium/action/setOptionChromeBinaryPath', { String: string });
+
+  /**
+   * Sets the current path to ChromeDriver.
+   * @param {{ string: string }} args - Object containing:
+   *   - string: The path to ChromeDriver.
+   * @returns {Promise<any>} A promise that resolves when the path is set.
+   */
+  setOptionChromeDriverPath = ({ string }) =>
+    this.api.request('/selenium/action/setOptionChromeDriverPath', { String: string });
+
+  /**
+   * Sets the current path to the Firefox binary.
+   * @param {{ string: string }} args - Object containing:
+   *   - string: The path to the Firefox binary.
+   * @returns {Promise<any>} A promise that resolves when the path is set.
+   */
+  setOptionFirefoxBinaryPath = ({ string }) =>
+    this.api.request('/selenium/action/setOptionFirefoxBinaryPath', { String: string });
+
+  /**
+   * Sets the default Firefox profile.
+   * @param {{ string: string }} args - Object containing:
+   *   - string: The default Firefox profile name.
+   * @returns {Promise<any>} A promise that resolves when the profile is set.
+   */
+  setOptionFirefoxDefaultProfile = ({ string }) =>
+    this.api.request('/selenium/action/setOptionFirefoxDefaultProfile', { String: string });
+
+  /**
+   * Sets the current path to the Firefox driver (geckodriver).
+   * @param {{ string: string }} args - Object containing:
+   *   - string: The path to the Firefox driver.
+   * @returns {Promise<any>} A promise that resolves when the path is set.
+   */
+  setOptionFirefoxDriverPath = ({ string }) =>
+    this.api.request('/selenium/action/setOptionFirefoxDriverPath', { String: string });
+
+  /**
+   * Sets the current path to IEDriverServer.
+   * @param {{ string: string }} args - Object containing:
+   *   - string: The path to the IEDriverServer.
+   * @returns {Promise<any>} A promise that resolves when the path is set.
+   */
+  setOptionIeDriverPath = ({ string }) =>
+    this.api.request('/selenium/action/setOptionIeDriverPath', { String: string });
+
+  /**
+   * Sets the last used directory path.
+   * @param {{ string: string }} args - Object containing:
+   *   - string: The directory path.
+   * @returns {Promise<any>} A promise that resolves when the directory is set.
+   */
+  setOptionLastDirectory = ({ string }) =>
+    this.api.request('/selenium/action/setOptionLastDirectory', { String: string });
+
+  /**
+   * Sets the current path to the PhantomJS binary.
+   * @param {{ string: string }} args - Object containing:
+   *   - string: The path to the PhantomJS binary.
+   * @returns {Promise<any>} A promise that resolves when the path is set.
+   */
+  setOptionPhantomJsBinaryPath = ({ string }) =>
+    this.api.request('/selenium/action/setOptionPhantomJsBinaryPath', { String: string });
+
+  /**
+   * Adds a browser argument.
+   * @param {{ browser: string, argument: string, enabled?: string }} args - Object containing:
+   *   - browser: The browser, e.g. "chrome" or "firefox".
+   *   - argument: The argument to add.
+   *   - enabled: (Optional) The enabled state ("true" or "false").
+   * @returns {Promise<any>} A promise that resolves when the argument is added.
+   */
+  addBrowserArgument = ({ browser, argument, enabled }) => {
+    const params = { browser, argument };
+    if (enabled) params.enabled = enabled;
+    return this.api.request('/selenium/action/addBrowserArgument', params);
+  };
+
+  /**
+   * Launches a browser proxying through ZAP.
+   * @param {{ browser: string }} args - Object containing:
+   *   - browser: The browser to launch (e.g. "chrome" or "firefox").
+   * @returns {Promise<any>} A promise that resolves when the browser is launched.
+   */
+  launchBrowser = ({ browser }) =>
+    this.api.request('/selenium/action/launchBrowser', { browser });
+
+  /**
+   * Removes a browser argument.
+   * @param {{ browser: string, argument: string }} args - Object containing:
+   *   - browser: The browser (e.g. "chrome" or "firefox").
+   *   - argument: The argument to remove.
+   * @returns {Promise<any>} A promise that resolves when the argument is removed.
+   */
+  removeBrowserArgument = ({ browser, argument }) =>
+    this.api.request('/selenium/action/removeBrowserArgument', { browser, argument });
+
+  /**
+   * Sets whether a browser argument is enabled.
+   * @param {{ browser: string, argument: string, enabled: string }} args - Object containing:
+   *   - browser: The browser (e.g. "chrome" or "firefox").
+   *   - argument: The argument.
+   *   - enabled: The enabled state ("true" or "false").
+   * @returns {Promise<any>} A promise that resolves when the setting is applied.
+   */
+  setBrowserArgumentEnabled = ({ browser, argument, enabled }) =>
+    this.api.request('/selenium/action/setBrowserArgumentEnabled', { browser, argument, enabled });
 }
 
-/**
- * Returns the URLs of the HTTP messages that match the given regular expression in the URL optionally filtered by URL and paginated with 'start' position and 'count' of messages.
- * @param {string} regex
- * @param {string} baseurl - The highest URL in the Sites tree under which URLs should be included.
- * @param {string} start
- * @param {string} count
- **/
-Search.prototype.urlsByUrlRegex = function (args) {
-  const params = { regex: args.regex }
-  if (args.baseurl && args.baseurl !== null) {
-    params.baseurl = args.baseurl
-  }
-  if (args.start && args.start !== null) {
-    params.start = args.start
-  }
-  if (args.count && args.count !== null) {
-    params.count = args.count
-  }
-  return this.api.request('/search/view/urlsByUrlRegex/', params)
-}
-
-/**
- * Returns the URLs of the HTTP messages that match the given regular expression in their history Tags optionally filtered by URL and paginated with 'start' position and 'count' of messages.
- * @param {string} regex
- * @param {string} baseurl - The highest URL in the Sites tree under which URLs should be included.
- * @param {string} start
- * @param {string} count
- **/
-Search.prototype.urlsByTagRegex = function (args) {
-  const params = { regex: args.regex }
-  if (args.baseurl && args.baseurl !== null) {
-    params.baseurl = args.baseurl
-  }
-  if (args.start && args.start !== null) {
-    params.start = args.start
-  }
-  if (args.count && args.count !== null) {
-    params.count = args.count
-  }
-  return this.api.request('/search/view/urlsByTagRegex/', params)
-}
-
-/**
- * Returns the URLs of the HTTP messages that match the given regular expression in their note optionally filtered by URL and paginated with 'start' position and 'count' of messages.
- * @param {string} regex
- * @param {string} baseurl - The highest URL in the Sites tree under which URLs should be included.
- * @param {string} start
- * @param {string} count
- **/
-Search.prototype.urlsByNoteRegex = function (args) {
-  const params = { regex: args.regex }
-  if (args.baseurl && args.baseurl !== null) {
-    params.baseurl = args.baseurl
-  }
-  if (args.start && args.start !== null) {
-    params.start = args.start
-  }
-  if (args.count && args.count !== null) {
-    params.count = args.count
-  }
-  return this.api.request('/search/view/urlsByNoteRegex/', params)
-}
-
-/**
- * Returns the URLs of the HTTP messages that match the given regular expression in the request optionally filtered by URL and paginated with 'start' position and 'count' of messages.
- * @param {string} regex
- * @param {string} baseurl - The highest URL in the Sites tree under which URLs should be included.
- * @param {string} start
- * @param {string} count
- **/
-Search.prototype.urlsByRequestRegex = function (args) {
-  const params = { regex: args.regex }
-  if (args.baseurl && args.baseurl !== null) {
-    params.baseurl = args.baseurl
-  }
-  if (args.start && args.start !== null) {
-    params.start = args.start
-  }
-  if (args.count && args.count !== null) {
-    params.count = args.count
-  }
-  return this.api.request('/search/view/urlsByRequestRegex/', params)
-}
-
-/**
- * Returns the URLs of the HTTP messages that match the given regular expression in the response optionally filtered by URL and paginated with 'start' position and 'count' of messages.
- * @param {string} regex
- * @param {string} baseurl - The highest URL in the Sites tree under which URLs should be included.
- * @param {string} start
- * @param {string} count
- **/
-Search.prototype.urlsByResponseRegex = function (args) {
-  const params = { regex: args.regex }
-  if (args.baseurl && args.baseurl !== null) {
-    params.baseurl = args.baseurl
-  }
-  if (args.start && args.start !== null) {
-    params.start = args.start
-  }
-  if (args.count && args.count !== null) {
-    params.count = args.count
-  }
-  return this.api.request('/search/view/urlsByResponseRegex/', params)
-}
-
-/**
- * Returns the URLs of the HTTP messages that match the given regular expression in the header(s) optionally filtered by URL and paginated with 'start' position and 'count' of messages.
- * @param {string} regex
- * @param {string} baseurl - The highest URL in the Sites tree under which URLs should be included.
- * @param {string} start
- * @param {string} count
- **/
-Search.prototype.urlsByHeaderRegex = function (args) {
-  const params = { regex: args.regex }
-  if (args.baseurl && args.baseurl !== null) {
-    params.baseurl = args.baseurl
-  }
-  if (args.start && args.start !== null) {
-    params.start = args.start
-  }
-  if (args.count && args.count !== null) {
-    params.count = args.count
-  }
-  return this.api.request('/search/view/urlsByHeaderRegex/', params)
-}
-
-/**
- * Returns the HTTP messages that match the given regular expression in the URL optionally filtered by URL and paginated with 'start' position and 'count' of messages.
- * @param {string} regex
- * @param {string} baseurl - The highest URL in the Sites tree under which messages should be included.
- * @param {string} start
- * @param {string} count
- **/
-Search.prototype.messagesByUrlRegex = function (args) {
-  const params = { regex: args.regex }
-  if (args.baseurl && args.baseurl !== null) {
-    params.baseurl = args.baseurl
-  }
-  if (args.start && args.start !== null) {
-    params.start = args.start
-  }
-  if (args.count && args.count !== null) {
-    params.count = args.count
-  }
-  return this.api.request('/search/view/messagesByUrlRegex/', params)
-}
-
-/**
- * Returns the HTTP messages that match the given regular expression in their history Tags optionally filtered by URL and paginated with 'start' position and 'count' of messages.
- * @param {string} regex
- * @param {string} baseurl - The highest URL in the Sites tree under which messages should be included.
- * @param {string} start
- * @param {string} count
- **/
-Search.prototype.messagesByTagRegex = function (args) {
-  const params = { regex: args.regex }
-  if (args.baseurl && args.baseurl !== null) {
-    params.baseurl = args.baseurl
-  }
-  if (args.start && args.start !== null) {
-    params.start = args.start
-  }
-  if (args.count && args.count !== null) {
-    params.count = args.count
-  }
-  return this.api.request('/search/view/messagesByTagRegex/', params)
-}
-
-/**
- * Returns the HTTP messages that match the given regular expression in their note optionally filtered by URL and paginated with 'start' position and 'count' of messages.
- * @param {string} regex
- * @param {string} baseurl - The highest URL in the Sites tree under which messages should be included.
- * @param {string} start
- * @param {string} count
- **/
-Search.prototype.messagesByNoteRegex = function (args) {
-  const params = { regex: args.regex }
-  if (args.baseurl && args.baseurl !== null) {
-    params.baseurl = args.baseurl
-  }
-  if (args.start && args.start !== null) {
-    params.start = args.start
-  }
-  if (args.count && args.count !== null) {
-    params.count = args.count
-  }
-  return this.api.request('/search/view/messagesByNoteRegex/', params)
-}
-
-/**
- * Returns the HTTP messages that match the given regular expression in the request optionally filtered by URL and paginated with 'start' position and 'count' of messages.
- * @param {string} regex
- * @param {string} baseurl - The highest URL in the Sites tree under which messages should be included.
- * @param {string} start
- * @param {string} count
- **/
-Search.prototype.messagesByRequestRegex = function (args) {
-  const params = { regex: args.regex }
-  if (args.baseurl && args.baseurl !== null) {
-    params.baseurl = args.baseurl
-  }
-  if (args.start && args.start !== null) {
-    params.start = args.start
-  }
-  if (args.count && args.count !== null) {
-    params.count = args.count
-  }
-  return this.api.request('/search/view/messagesByRequestRegex/', params)
-}
-
-/**
- * Returns the HTTP messages that match the given regular expression in the response optionally filtered by URL and paginated with 'start' position and 'count' of messages.
- * @param {string} regex
- * @param {string} baseurl - The highest URL in the Sites tree under which messages should be included.
- * @param {string} start
- * @param {string} count
- **/
-Search.prototype.messagesByResponseRegex = function (args) {
-  const params = { regex: args.regex }
-  if (args.baseurl && args.baseurl !== null) {
-    params.baseurl = args.baseurl
-  }
-  if (args.start && args.start !== null) {
-    params.start = args.start
-  }
-  if (args.count && args.count !== null) {
-    params.count = args.count
-  }
-  return this.api.request('/search/view/messagesByResponseRegex/', params)
-}
-
-/**
- * Returns the HTTP messages that match the given regular expression in the header(s) optionally filtered by URL and paginated with 'start' position and 'count' of messages.
- * @param {string} regex
- * @param {string} baseurl - The highest URL in the Sites tree under which messages should be included.
- * @param {string} start
- * @param {string} count
- **/
-Search.prototype.messagesByHeaderRegex = function (args) {
-  const params = { regex: args.regex }
-  if (args.baseurl && args.baseurl !== null) {
-    params.baseurl = args.baseurl
-  }
-  if (args.start && args.start !== null) {
-    params.start = args.start
-  }
-  if (args.count && args.count !== null) {
-    params.count = args.count
-  }
-  return this.api.request('/search/view/messagesByHeaderRegex/', params)
-}
-
-/**
- * Returns the HTTP messages, in HAR format, that match the given regular expression in the URL optionally filtered by URL and paginated with 'start' position and 'count' of messages.
- * @param {string} regex
- * @param {string} baseurl
- * @param {string} start
- * @param {string} count
- **/
-Search.prototype.harByUrlRegex = function (args) {
-  const params = { regex: args.regex }
-  if (args.baseurl && args.baseurl !== null) {
-    params.baseurl = args.baseurl
-  }
-  if (args.start && args.start !== null) {
-    params.start = args.start
-  }
-  if (args.count && args.count !== null) {
-    params.count = args.count
-  }
-  return this.api.request('/search/other/harByUrlRegex/', params, 'other')
-}
-
-/**
- * Returns the HTTP messages, in HAR format, that match the given regular expression in their history Tags optionally filtered by URL and paginated with 'start' position and 'count' of messages.
- * @param {string} regex
- * @param {string} baseurl - The highest URL in the Sites tree under which URLs should be included.
- * @param {string} start
- * @param {string} count
- **/
-Search.prototype.harByTagRegex = function (args) {
-  const params = { regex: args.regex }
-  if (args.baseurl && args.baseurl !== null) {
-    params.baseurl = args.baseurl
-  }
-  if (args.start && args.start !== null) {
-    params.start = args.start
-  }
-  if (args.count && args.count !== null) {
-    params.count = args.count
-  }
-  return this.api.request('/search/other/harByTagRegex/', params, 'other')
-}
-
-/**
- * Returns the HTTP messages, in HAR format, that match the given regular expression in their note optionally filtered by URL and paginated with 'start' position and 'count' of messages.
- * @param {string} regex
- * @param {string} baseurl - The highest URL in the Sites tree under which URLs should be included.
- * @param {string} start
- * @param {string} count
- **/
-Search.prototype.harByNoteRegex = function (args) {
-  const params = { regex: args.regex }
-  if (args.baseurl && args.baseurl !== null) {
-    params.baseurl = args.baseurl
-  }
-  if (args.start && args.start !== null) {
-    params.start = args.start
-  }
-  if (args.count && args.count !== null) {
-    params.count = args.count
-  }
-  return this.api.request('/search/other/harByNoteRegex/', params, 'other')
-}
-
-/**
- * Returns the HTTP messages, in HAR format, that match the given regular expression in the request optionally filtered by URL and paginated with 'start' position and 'count' of messages.
- * @param {string} regex
- * @param {string} baseurl
- * @param {string} start
- * @param {string} count
- **/
-Search.prototype.harByRequestRegex = function (args) {
-  const params = { regex: args.regex }
-  if (args.baseurl && args.baseurl !== null) {
-    params.baseurl = args.baseurl
-  }
-  if (args.start && args.start !== null) {
-    params.start = args.start
-  }
-  if (args.count && args.count !== null) {
-    params.count = args.count
-  }
-  return this.api.request('/search/other/harByRequestRegex/', params, 'other')
-}
-
-/**
- * Returns the HTTP messages, in HAR format, that match the given regular expression in the response optionally filtered by URL and paginated with 'start' position and 'count' of messages.
- * @param {string} regex
- * @param {string} baseurl
- * @param {string} start
- * @param {string} count
- **/
-Search.prototype.harByResponseRegex = function (args) {
-  const params = { regex: args.regex }
-  if (args.baseurl && args.baseurl !== null) {
-    params.baseurl = args.baseurl
-  }
-  if (args.start && args.start !== null) {
-    params.start = args.start
-  }
-  if (args.count && args.count !== null) {
-    params.count = args.count
-  }
-  return this.api.request('/search/other/harByResponseRegex/', params, 'other')
-}
-
-/**
- * Returns the HTTP messages, in HAR format, that match the given regular expression in the header(s) optionally filtered by URL and paginated with 'start' position and 'count' of messages.
- * @param {string} regex
- * @param {string} baseurl
- * @param {string} start
- * @param {string} count
- **/
-Search.prototype.harByHeaderRegex = function (args) {
-  const params = { regex: args.regex }
-  if (args.baseurl && args.baseurl !== null) {
-    params.baseurl = args.baseurl
-  }
-  if (args.start && args.start !== null) {
-    params.start = args.start
-  }
-  if (args.count && args.count !== null) {
-    params.count = args.count
-  }
-  return this.api.request('/search/other/harByHeaderRegex/', params, 'other')
-}
-
-module.exports = Search
+module.exports = Selenium;

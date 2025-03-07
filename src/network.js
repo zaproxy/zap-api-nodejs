@@ -17,511 +17,476 @@
  * limitations under the License.
  */
 
-'use strict'
+'use strict';
 
-/**
- * This file was automatically generated.
- */
-function Network (clientApi) {
-  this.api = clientApi
-}
-
-/**
- * Gets the Root CA certificate validity, in days. Used when generating a new Root CA certificate.
- * This component is optional and therefore the API will only work if it is installed
- **/
-Network.prototype.getRootCaCertValidity = function () {
-  return this.api.request('/network/view/getRootCaCertValidity/')
-}
-
-/**
- * Gets the server certificate validity, in days. Used when generating server certificates.
- * This component is optional and therefore the API will only work if it is installed
- **/
-Network.prototype.getServerCertValidity = function () {
-  return this.api.request('/network/view/getServerCertValidity/')
-}
-
-/**
- * Gets the aliases used to identify the local servers/proxies.
- * This component is optional and therefore the API will only work if it is installed
- **/
-Network.prototype.getAliases = function () {
-  return this.api.request('/network/view/getAliases/')
-}
-
-/**
- * Gets the local servers/proxies.
- * This component is optional and therefore the API will only work if it is installed
- **/
-Network.prototype.getLocalServers = function () {
-  return this.api.request('/network/view/getLocalServers/')
-}
-
-/**
- * Gets the authorities that will pass-through the local proxies.
- * This component is optional and therefore the API will only work if it is installed
- **/
-Network.prototype.getPassThroughs = function () {
-  return this.api.request('/network/view/getPassThroughs/')
-}
-
-/**
- * Gets the connection timeout, in seconds.
- * This component is optional and therefore the API will only work if it is installed
- **/
-Network.prototype.getConnectionTimeout = function () {
-  return this.api.request('/network/view/getConnectionTimeout/')
-}
-
-/**
- * Gets the default user-agent.
- * This component is optional and therefore the API will only work if it is installed
- **/
-Network.prototype.getDefaultUserAgent = function () {
-  return this.api.request('/network/view/getDefaultUserAgent/')
-}
-
-/**
- * Gets the TTL (in seconds) of successful DNS queries.
- * This component is optional and therefore the API will only work if it is installed
- **/
-Network.prototype.getDnsTtlSuccessfulQueries = function () {
-  return this.api.request('/network/view/getDnsTtlSuccessfulQueries/')
-}
-
-/**
- * Gets the HTTP proxy.
- * This component is optional and therefore the API will only work if it is installed
- **/
-Network.prototype.getHttpProxy = function () {
-  return this.api.request('/network/view/getHttpProxy/')
-}
-
-/**
- * Gets the HTTP proxy exclusions.
- * This component is optional and therefore the API will only work if it is installed
- **/
-Network.prototype.getHttpProxyExclusions = function () {
-  return this.api.request('/network/view/getHttpProxyExclusions/')
-}
-
-/**
- * Gets the SOCKS proxy.
- * This component is optional and therefore the API will only work if it is installed
- **/
-Network.prototype.getSocksProxy = function () {
-  return this.api.request('/network/view/getSocksProxy/')
-}
-
-/**
- * Tells whether or not the HTTP proxy authentication is enabled.
- * This component is optional and therefore the API will only work if it is installed
- **/
-Network.prototype.isHttpProxyAuthEnabled = function () {
-  return this.api.request('/network/view/isHttpProxyAuthEnabled/')
-}
-
-/**
- * Tells whether or not the HTTP proxy is enabled.
- * This component is optional and therefore the API will only work if it is installed
- **/
-Network.prototype.isHttpProxyEnabled = function () {
-  return this.api.request('/network/view/isHttpProxyEnabled/')
-}
-
-/**
- * Tells whether or not the SOCKS proxy is enabled.
- * This component is optional and therefore the API will only work if it is installed
- **/
-Network.prototype.isSocksProxyEnabled = function () {
-  return this.api.request('/network/view/isSocksProxyEnabled/')
-}
-
-/**
- * Tells whether or not to use global HTTP state.
- * This component is optional and therefore the API will only work if it is installed
- **/
-Network.prototype.isUseGlobalHttpState = function () {
-  return this.api.request('/network/view/isUseGlobalHttpState/')
-}
-
-/**
- * List of rate limit rules.
- * This component is optional and therefore the API will only work if it is installed
- **/
-Network.prototype.getRateLimitRules = function () {
-  return this.api.request('/network/view/getRateLimitRules/')
-}
-
-/**
- * Generates a new Root CA certificate, used to issue server certificates.
- * This component is optional and therefore the API will only work if it is installed
- **/
-Network.prototype.generateRootCaCert = function () {
-  return this.api.request('/network/action/generateRootCaCert/')
-}
-
-/**
- * Imports a Root CA certificate to be used to issue server certificates.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} filepath - The file system path to the PEM file, containing the certificate and private key.
- **/
-Network.prototype.importRootCaCert = function (args) {
-  return this.api.request('/network/action/importRootCaCert/', { filePath: args.filepath })
-}
-
-/**
- * Sets the Root CA certificate validity. Used when generating a new Root CA certificate.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} validity - The number of days that the generated Root CA certificate will be valid for.
- **/
-Network.prototype.setRootCaCertValidity = function (args) {
-  return this.api.request('/network/action/setRootCaCertValidity/', { validity: args.validity })
-}
-
-/**
- * Sets the server certificate validity. Used when generating server certificates.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} validity - The number of days that the generated server certificates will be valid for.
- **/
-Network.prototype.setServerCertValidity = function (args) {
-  return this.api.request('/network/action/setServerCertValidity/', { validity: args.validity })
-}
-
-/**
- * Adds an alias for the local servers/proxies.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} name - The name of the alias.
- * @param {string} enabled - The enabled state, true or false.
- **/
-Network.prototype.addAlias = function (args) {
-  const params = { name: args.name }
-  if (args.enabled && args.enabled !== null) {
-    params.enabled = args.enabled
+class Network {
+  constructor(clientApi) {
+    this.api = clientApi;
   }
-  return this.api.request('/network/action/addAlias/', params)
+
+  /**
+   * Gets the Root CA certificate validity, in days.
+   * Used when generating a new Root CA certificate.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @returns {Promise<any>} A promise resolving with the Root CA certificate validity.
+   */
+  getRootCaCertValidity = () =>
+    this.api.request('/network/view/getRootCaCertValidity');
+
+  /**
+   * Gets the server certificate validity, in days.
+   * Used when generating server certificates.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @returns {Promise<any>} A promise resolving with the server certificate validity.
+   */
+  getServerCertValidity = () =>
+    this.api.request('/network/view/getServerCertValidity');
+
+  /**
+   * Gets the aliases used to identify the local servers/proxies.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @returns {Promise<any>} A promise resolving with the aliases.
+   */
+  getAliases = () =>
+    this.api.request('/network/view/getAliases');
+
+  /**
+   * Gets the local servers/proxies.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @returns {Promise<any>} A promise resolving with the local servers.
+   */
+  getLocalServers = () =>
+    this.api.request('/network/view/getLocalServers');
+
+  /**
+   * Gets the authorities that will pass-through the local proxies.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @returns {Promise<any>} A promise resolving with the pass-through authorities.
+   */
+  getPassThroughs = () =>
+    this.api.request('/network/view/getPassThroughs');
+
+  /**
+   * Gets the connection timeout, in seconds.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @returns {Promise<any>} A promise resolving with the connection timeout.
+   */
+  getConnectionTimeout = () =>
+    this.api.request('/network/view/getConnectionTimeout');
+
+  /**
+   * Gets the default user-agent.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @returns {Promise<any>} A promise resolving with the default user-agent.
+   */
+  getDefaultUserAgent = () =>
+    this.api.request('/network/view/getDefaultUserAgent');
+
+  /**
+   * Gets the TTL (in seconds) of successful DNS queries.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @returns {Promise<any>} A promise resolving with the TTL of successful DNS queries.
+   */
+  getDnsTtlSuccessfulQueries = () =>
+    this.api.request('/network/view/getDnsTtlSuccessfulQueries');
+
+  /**
+   * Gets the HTTP proxy.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @returns {Promise<any>} A promise resolving with the HTTP proxy.
+   */
+  getHttpProxy = () =>
+    this.api.request('/network/view/getHttpProxy');
+
+  /**
+   * Gets the HTTP proxy exclusions.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @returns {Promise<any>} A promise resolving with the HTTP proxy exclusions.
+   */
+  getHttpProxyExclusions = () =>
+    this.api.request('/network/view/getHttpProxyExclusions');
+
+  /**
+   * Gets the SOCKS proxy.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @returns {Promise<any>} A promise resolving with the SOCKS proxy.
+   */
+  getSocksProxy = () =>
+    this.api.request('/network/view/getSocksProxy');
+
+  /**
+   * Tells whether the HTTP proxy authentication is enabled.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @returns {Promise<any>} A promise resolving with the authentication status.
+   */
+  isHttpProxyAuthEnabled = () =>
+    this.api.request('/network/view/isHttpProxyAuthEnabled');
+
+  /**
+   * Tells whether the HTTP proxy is enabled.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @returns {Promise<any>} A promise resolving with the enabled status.
+   */
+  isHttpProxyEnabled = () =>
+    this.api.request('/network/view/isHttpProxyEnabled');
+
+  /**
+   * Tells whether the SOCKS proxy is enabled.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @returns {Promise<any>} A promise resolving with the enabled status.
+   */
+  isSocksProxyEnabled = () =>
+    this.api.request('/network/view/isSocksProxyEnabled');
+
+  /**
+   * Tells whether to use global HTTP state.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @returns {Promise<any>} A promise resolving with the global HTTP state usage.
+   */
+  isUseGlobalHttpState = () =>
+    this.api.request('/network/view/isUseGlobalHttpState');
+
+  /**
+   * Generates a new Root CA certificate, used to issue server certificates.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @returns {Promise<any>} A promise resolving when the certificate is generated.
+   */
+  generateRootCaCert = () =>
+    this.api.request('/network/action/generateRootCaCert');
+
+  /**
+   * Imports a Root CA certificate to be used to issue server certificates.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @param {{ filepath: string }} args - Object containing the file path to the PEM file.
+   * @returns {Promise<any>} A promise resolving when the certificate is imported.
+   */
+  importRootCaCert = ({ filepath }) =>
+    this.api.request('/network/action/importRootCaCert', { filePath: filepath });
+
+  /**
+   * Sets the Root CA certificate validity.
+   * Used when generating a new Root CA certificate.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @param {{ validity: string }} args - Object containing the validity (in days).
+   * @returns {Promise<any>} A promise resolving when the validity is set.
+   */
+  setRootCaCertValidity = ({ validity }) =>
+    this.api.request('/network/action/setRootCaCertValidity', { validity });
+
+  /**
+   * Sets the server certificate validity.
+   * Used when generating server certificates.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @param {{ validity: string }} args - Object containing the validity (in days).
+   * @returns {Promise<any>} A promise resolving when the validity is set.
+   */
+  setServerCertValidity = ({ validity }) =>
+    this.api.request('/network/action/setServerCertValidity', { validity });
+
+  /**
+   * Adds an alias for the local servers/proxies.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @param {{ name: string, enabled?: string }} args - Object containing the alias name and optional enabled state.
+   * @returns {Promise<any>} A promise resolving when the alias is added.
+   */
+  addAlias = ({ name, enabled }) => {
+    const params = { name };
+    if (enabled) params.enabled = enabled;
+    return this.api.request('/network/action/addAlias', params);
+  };
+
+  /**
+   * Adds a local server/proxy.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @param {{
+   *   address: string,
+   *   port: string,
+   *   api?: string,
+   *   proxy?: string,
+   *   behindNat?: string,
+   *   decodeResponse?: string,
+   *   removeAcceptEncoding?: string,
+   * }} args - Object containing the server details.
+   * @returns {Promise<any>} A promise resolving when the server is added.
+   */
+  addLocalServer = ({ address, port, api, proxy, behindNat, decodeResponse, removeAcceptEncoding }) => {
+    return this.api.request('/network/action/addLocalServer', { address, port, api, proxy, behindNat, decodeResponse, removeAcceptEncoding });
+  };
+
+  /**
+   * Adds an authority to pass-through the local proxies.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @param {{ authority: string, enabled?: string }} args - Object containing the authority and optional enabled state.
+   * @returns {Promise<any>} A promise resolving when the authority is added.
+   */
+  addPassThrough = ({ authority, enabled }) => {
+    const params = { authority };
+    if (enabled) params.enabled = enabled;
+    return this.api.request('/network/action/addPassThrough', params);
+  };
+
+  /**
+   * Removes an alias.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @param {{ name: string }} args - Object containing the alias name.
+   * @returns {Promise<any>} A promise resolving when the alias is removed.
+   */
+  removeAlias = ({ name }) =>
+    this.api.request('/network/action/removeAlias', { name });
+
+  /**
+   * Removes a local server/proxy.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @param {{ address: string, port: string }} args - Object containing the address and port.
+   * @returns {Promise<any>} A promise resolving when the server is removed.
+   */
+  removeLocalServer = ({ address, port }) =>
+    this.api.request('/network/action/removeLocalServer', { address, port });
+
+  /**
+   * Removes a pass-through.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @param {{ authority: string }} args - Object containing the authority.
+   * @returns {Promise<any>} A promise resolving when the pass-through is removed.
+   */
+  removePassThrough = ({ authority }) =>
+    this.api.request('/network/action/removePassThrough', { authority });
+
+  /**
+   * Sets whether an alias is enabled.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @param {{ name: string, enabled: string }} args - Object containing the alias name and enabled state.
+   * @returns {Promise<any>} A promise resolving when the alias state is updated.
+   */
+  setAliasEnabled = ({ name, enabled }) =>
+    this.api.request('/network/action/setAliasEnabled', { name, enabled });
+
+  /**
+   * Sets whether a pass-through is enabled.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @param {{ authority: string, enabled: string }} args - Object containing the authority and enabled state.
+   * @returns {Promise<any>} A promise resolving when the pass-through state is updated.
+   */
+  setPassThroughEnabled = ({ authority, enabled }) =>
+    this.api.request('/network/action/setPassThroughEnabled', { authority, enabled });
+
+  /**
+   * Sets the connection timeout, for reads and connects.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @param {{ timeout: string }} args - Object containing the timeout (in seconds).
+   * @returns {Promise<any>} A promise resolving when the timeout is set.
+   */
+  setConnectionTimeout = ({ timeout }) =>
+    this.api.request('/network/action/setConnectionTimeout', { timeout });
+
+  /**
+   * Sets the default user-agent.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @param {{ useragent: string }} args - Object containing the default user-agent.
+   * @returns {Promise<any>} A promise resolving when the user-agent is set.
+   */
+  setDefaultUserAgent = ({ useragent }) =>
+    this.api.request('/network/action/setDefaultUserAgent', { userAgent: useragent });
+
+  /**
+   * Sets the TTL of successful DNS queries.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @param {{ ttl: string }} args - Object containing the TTL (in seconds).
+   * @returns {Promise<any>} A promise resolving when the TTL is set.
+   */
+  setDnsTtlSuccessfulQueries = ({ ttl }) =>
+    this.api.request('/network/action/setDnsTtlSuccessfulQueries', { ttl });
+
+  /**
+   * Adds a host to be excluded from the HTTP proxy.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @param {{ host: string, enabled?: string }} args - Object containing the host and optional enabled state.
+   * @returns {Promise<any>} A promise resolving when the exclusion is added.
+   */
+  addHttpProxyExclusion = ({ host, enabled }) => {
+    const params = { host };
+    if (enabled) params.enabled = enabled;
+    return this.api.request('/network/action/addHttpProxyExclusion', params);
+  };
+
+  /**
+   * Removes an HTTP proxy exclusion.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @param {{ host: string }} args - Object containing the host.
+   * @returns {Promise<any>} A promise resolving when the exclusion is removed.
+   */
+  removeHttpProxyExclusion = ({ host }) =>
+    this.api.request('/network/action/removeHttpProxyExclusion', { host });
+
+  /**
+   * Sets the HTTP proxy configuration.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @param {{
+   *   host: string,
+   *   port: string,
+   *   realm?: string,
+   *   username?: string,
+   *   password?: string,
+   * }} args - Object containing the proxy configuration.
+   * @returns {Promise<any>} A promise resolving when the proxy is set.
+   */
+  setHttpProxy = ({ host, port, realm, username, password }) => {
+    return this.api.request('/network/action/setHttpProxy', { host, port, realm, username, password });
+  };
+
+  /**
+   * Sets whether the HTTP proxy authentication is enabled.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @param {{ enabled: string }} args - Object containing the enabled state.
+   * @returns {Promise<any>} A promise resolving when the authentication state is set.
+   */
+  setHttpProxyAuthEnabled = ({ enabled }) =>
+    this.api.request('/network/action/setHttpProxyAuthEnabled', { enabled });
+
+  /**
+   * Sets whether the HTTP proxy is enabled.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @param {{ enabled: string }} args - Object containing the enabled state.
+   * @returns {Promise<any>} A promise resolving when the proxy state is set.
+   */
+  setHttpProxyEnabled = ({ enabled }) =>
+    this.api.request('/network/action/setHttpProxyEnabled', { enabled });
+
+  /**
+   * Sets whether an HTTP proxy exclusion is enabled.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @param {{ host: string, enabled: string }} args - Object containing the host and enabled state.
+   * @returns {Promise<any>} A promise resolving when the exclusion state is set.
+   */
+  setHttpProxyExclusionEnabled = ({ host, enabled }) =>
+    this.api.request('/network/action/setHttpProxyExclusionEnabled', { host, enabled });
+
+  /**
+   * Sets the SOCKS proxy configuration.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @param {{
+   *   host: string,
+   *   port: string,
+   *   version?: string,
+   *   useDns?: string,
+   *   username?: string,
+   *   password?: string,
+   * }} args - Object containing the SOCKS proxy configuration.
+   * @returns {Promise<any>} A promise resolving when the configuration is set.
+   */
+  setSocksProxy = ({ host, port, version, useDns, username, password }) => {
+    return this.api.request('/network/action/setSocksProxy', { host, port, version, useDns, username, password });
+  };
+
+  /**
+   * Sets whether the SOCKS proxy is enabled.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @param {{ enabled: string }} args - Object containing the enabled state.
+   * @returns {Promise<any>} A promise resolving when the proxy state is set.
+   */
+  setSocksProxyEnabled = ({ enabled }) =>
+    this.api.request('/network/action/setSocksProxyEnabled', { enabled });
+
+  /**
+   * Sets whether to use the global HTTP state.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @param {{ use: string }} args - Object containing the use state.
+   * @returns {Promise<any>} A promise resolving when the global HTTP state is updated.
+   */
+  setUseGlobalHttpState = ({ use }) =>
+    this.api.request('/network/action/setUseGlobalHttpState', { use });
+
+  /**
+   * Adds a client certificate contained in a PKCS#12 file.
+   * The certificate is automatically set as active and used.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @param {{ filepath: string, password: string, index?: string }} args - Object containing the file path, password, and optional index.
+   * @returns {Promise<any>} A promise resolving when the certificate is added.
+   */
+  addPkcs12ClientCertificate = ({ filepath, password, index }) => {
+    const params = { filePath: filepath, password };
+    if (index) params.index = index;
+    return this.api.request('/network/action/addPkcs12ClientCertificate', params);
+  };
+
+  /**
+   * Sets whether to use the active client certificate.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @param {{ use: string }} args - Object containing the use state.
+   * @returns {Promise<any>} A promise resolving when the client certificate state is updated.
+   */
+  setUseClientCertificate = ({ use }) =>
+    this.api.request('/network/action/setUseClientCertificate', { use });
+
+  /**
+   * Provides a PAC file, proxying through the main proxy.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @returns {Promise<any>} A promise resolving with the PAC file content.
+   */
+  proxypac = () =>
+    this.api.request('/network/other/proxy.pac/');
+
+  /**
+   * Sets the HTTP proxy configuration using a JSON object.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @param {{ proxy: string }} args - Object containing the HTTP proxy configuration.
+   * @returns {Promise<any>} A promise resolving when the proxy is set.
+   */
+  setProxy = ({ proxy }) =>
+    this.api.request('/network/other/setProxy/', { proxy });
+
+  /**
+   * Gets the Root CA certificate used to issue server certificates.
+   * Suitable for import into client applications (e.g. browsers).
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @returns {Promise<any>} A promise resolving with the Root CA certificate.
+   */
+  rootCaCert = () =>
+    this.api.request('/network/other/rootCaCert/');
 }
 
-/**
- * Adds a local server/proxy.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} address - The address of the local server/proxy.
- * @param {string} port - The port of the local server/proxy.
- * @param {string} api - If the ZAP API is available, true or false.
- * @param {string} proxy - If the local server should proxy, true or false.
- * @param {string} behindnat - If the local server is behind NAT, true or false.
- * @param {string} decoderesponse - If the response should be decoded, true or false.
- * @param {string} removeacceptencoding - If the request header Accept-Encoding should be removed, true or false.
- **/
-Network.prototype.addLocalServer = function (args) {
-  const params = { address: args.address, port: args.port }
-  if (args.api && args.api !== null) {
-    params.api = args.api
-  }
-  if (args.proxy && args.proxy !== null) {
-    params.proxy = args.proxy
-  }
-  if (args.behindnat && args.behindnat !== null) {
-    params.behindNat = args.behindnat
-  }
-  if (args.decoderesponse && args.decoderesponse !== null) {
-    params.decodeResponse = args.decoderesponse
-  }
-  if (args.removeacceptencoding && args.removeacceptencoding !== null) {
-    params.removeAcceptEncoding = args.removeacceptencoding
-  }
-  return this.api.request('/network/action/addLocalServer/', params)
-}
-
-/**
- * Adds an authority to pass-through the local proxies.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} authority - The value of the authority, can be a regular expression.
- * @param {string} enabled - The enabled state, true or false.
- **/
-Network.prototype.addPassThrough = function (args) {
-  const params = { authority: args.authority }
-  if (args.enabled && args.enabled !== null) {
-    params.enabled = args.enabled
-  }
-  return this.api.request('/network/action/addPassThrough/', params)
-}
-
-/**
- * Removes an alias.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} name - The name of the alias.
- **/
-Network.prototype.removeAlias = function (args) {
-  return this.api.request('/network/action/removeAlias/', { name: args.name })
-}
-
-/**
- * Removes a local server/proxy.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} address - The address of the local server/proxy.
- * @param {string} port - The port of the local server/proxy.
- **/
-Network.prototype.removeLocalServer = function (args) {
-  return this.api.request('/network/action/removeLocalServer/', { address: args.address, port: args.port })
-}
-
-/**
- * Removes a pass-through.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} authority - The value of the authority.
- **/
-Network.prototype.removePassThrough = function (args) {
-  return this.api.request('/network/action/removePassThrough/', { authority: args.authority })
-}
-
-/**
- * Sets whether or not an alias is enabled.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} name - The name of the alias.
- * @param {string} enabled - The enabled state, true or false.
- **/
-Network.prototype.setAliasEnabled = function (args) {
-  return this.api.request('/network/action/setAliasEnabled/', { name: args.name, enabled: args.enabled })
-}
-
-/**
- * Sets whether or not a pass-through is enabled.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} authority - The value of the authority.
- * @param {string} enabled - The enabled state, true or false.
- **/
-Network.prototype.setPassThroughEnabled = function (args) {
-  return this.api.request('/network/action/setPassThroughEnabled/', { authority: args.authority, enabled: args.enabled })
-}
-
-/**
- * Sets the timeout, for reads and connects.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} timeout - The timeout, in seconds.
- **/
-Network.prototype.setConnectionTimeout = function (args) {
-  return this.api.request('/network/action/setConnectionTimeout/', { timeout: args.timeout })
-}
-
-/**
- * Sets the default user-agent.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} useragent - The default user-agent.
- **/
-Network.prototype.setDefaultUserAgent = function (args) {
-  return this.api.request('/network/action/setDefaultUserAgent/', { userAgent: args.useragent })
-}
-
-/**
- * Sets the TTL of successful DNS queries.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} ttl - The TTL, in seconds. Negative number, cache forever. Zero, disables caching. Positive number, the number of seconds the successful DNS queries will be cached.
- **/
-Network.prototype.setDnsTtlSuccessfulQueries = function (args) {
-  return this.api.request('/network/action/setDnsTtlSuccessfulQueries/', { ttl: args.ttl })
-}
-
-/**
- * Adds a host to be excluded from the HTTP proxy.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} host - The value of the host, a regular expression.
- * @param {string} enabled - The enabled state, true or false.
- **/
-Network.prototype.addHttpProxyExclusion = function (args) {
-  const params = { host: args.host }
-  if (args.enabled && args.enabled !== null) {
-    params.enabled = args.enabled
-  }
-  return this.api.request('/network/action/addHttpProxyExclusion/', params)
-}
-
-/**
- * Removes an HTTP proxy exclusion.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} host - The value of the host.
- **/
-Network.prototype.removeHttpProxyExclusion = function (args) {
-  return this.api.request('/network/action/removeHttpProxyExclusion/', { host: args.host })
-}
-
-/**
- * Sets the HTTP proxy configuration.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} host - The host, name or address.
- * @param {string} port - The port.
- * @param {string} realm - The authentication realm.
- * @param {string} username - The user name.
- * @param {string} password - The password.
- **/
-Network.prototype.setHttpProxy = function (args) {
-  const params = { host: args.host, port: args.port }
-  if (args.realm && args.realm !== null) {
-    params.realm = args.realm
-  }
-  if (args.username && args.username !== null) {
-    params.username = args.username
-  }
-  if (args.password && args.password !== null) {
-    params.password = args.password
-  }
-  return this.api.request('/network/action/setHttpProxy/', params)
-}
-
-/**
- * Sets whether or not the HTTP proxy authentication is enabled.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} enabled - The enabled state, true or false.
- **/
-Network.prototype.setHttpProxyAuthEnabled = function (args) {
-  return this.api.request('/network/action/setHttpProxyAuthEnabled/', { enabled: args.enabled })
-}
-
-/**
- * Sets whether or not the HTTP proxy is enabled.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} enabled - The enabled state, true or false.
- **/
-Network.prototype.setHttpProxyEnabled = function (args) {
-  return this.api.request('/network/action/setHttpProxyEnabled/', { enabled: args.enabled })
-}
-
-/**
- * Sets whether or not an HTTP proxy exclusion is enabled.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} host - The value of the host.
- * @param {string} enabled - The enabled state, true or false.
- **/
-Network.prototype.setHttpProxyExclusionEnabled = function (args) {
-  return this.api.request('/network/action/setHttpProxyExclusionEnabled/', { host: args.host, enabled: args.enabled })
-}
-
-/**
- * Sets the SOCKS proxy configuration.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} host - The host, name or address.
- * @param {string} port - The port.
- * @param {string} version - The SOCKS version.
- * @param {string} usedns - If the names should be resolved by the SOCKS proxy, true or false.
- * @param {string} username - The user name.
- * @param {string} password - The password.
- **/
-Network.prototype.setSocksProxy = function (args) {
-  const params = { host: args.host, port: args.port }
-  if (args.version && args.version !== null) {
-    params.version = args.version
-  }
-  if (args.usedns && args.usedns !== null) {
-    params.useDns = args.usedns
-  }
-  if (args.username && args.username !== null) {
-    params.username = args.username
-  }
-  if (args.password && args.password !== null) {
-    params.password = args.password
-  }
-  return this.api.request('/network/action/setSocksProxy/', params)
-}
-
-/**
- * Sets whether or not the SOCKS proxy is enabled.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} enabled - The enabled state, true or false.
- **/
-Network.prototype.setSocksProxyEnabled = function (args) {
-  return this.api.request('/network/action/setSocksProxyEnabled/', { enabled: args.enabled })
-}
-
-/**
- * Sets whether or not to use the global HTTP state.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} use - The use state, true or false.
- **/
-Network.prototype.setUseGlobalHttpState = function (args) {
-  return this.api.request('/network/action/setUseGlobalHttpState/', { use: args.use })
-}
-
-/**
- * Adds a client certificate contained in a PKCS#12 file, the certificate is automatically set as active and used.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} filepath - The file path.
- * @param {string} password - The password for the file.
- * @param {string} index - The index of the certificate in the file, defaults to 0.
- **/
-Network.prototype.addPkcs12ClientCertificate = function (args) {
-  const params = { filePath: args.filepath, password: args.password }
-  if (args.index && args.index !== null) {
-    params.index = args.index
-  }
-  return this.api.request('/network/action/addPkcs12ClientCertificate/', params)
-}
-
-/**
- * Sets whether or not to use the active client certificate.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} use - The use state, true or false.
- **/
-Network.prototype.setUseClientCertificate = function (args) {
-  return this.api.request('/network/action/setUseClientCertificate/', { use: args.use })
-}
-
-/**
- * Adds a rate limit rule
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} description - A description that allows you to identify the rule. Each rule must have a unique description.
- * @param {string} enabled - The enabled state, true or false.
- * @param {string} matchregex - Regex used to match the host.
- * @param {string} matchstring - Plain string match is handled based on DNS conventions. If the string has one or two components.
- * @param {string} requestspersecond - The maximum number of requests per second.
- * @param {string} groupby - How to group hosts when applying rate limiting: rule or host
- **/
-Network.prototype.addRateLimitRule = function (args) {
-  return this.api.request('/network/action/addRateLimitRule/', { description: args.description, enabled: args.enabled, matchRegex: args.matchregex, matchString: args.matchstring, requestsPerSecond: args.requestspersecond, groupBy: args.groupby })
-}
-
-/**
- * Remove a rate limit rule
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} description - The description of the rule to remove.
- **/
-Network.prototype.removeRateLimitRule = function (args) {
-  return this.api.request('/network/action/removeRateLimitRule/', { description: args.description })
-}
-
-/**
- * Set enabled state for a rate limit rule.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} description - The description of the rule to modify.
- * @param {string} enabled - The enabled state, true or false.
- **/
-Network.prototype.setRateLimitRuleEnabled = function (args) {
-  return this.api.request('/network/action/setRateLimitRuleEnabled/', { description: args.description, enabled: args.enabled })
-}
-
-/**
- * Provides a PAC file, proxying through the main proxy.
- * This component is optional and therefore the API will only work if it is installed
- **/
-Network.prototype.proxypac = function () {
-  return this.api.request('/network/other/proxy.pac/', 'other')
-}
-
-/**
- * Sets the HTTP proxy configuration.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} proxy - The JSON object containing the HTTP proxy configuration.
- **/
-Network.prototype.setProxy = function (args) {
-  return this.api.request('/network/other/setProxy/', { proxy: args.proxy }, 'other')
-}
-
-/**
- * Gets the Root CA certificate used to issue server certificates. Suitable to import into client applications (e.g. browsers).
- * This component is optional and therefore the API will only work if it is installed
- **/
-Network.prototype.rootCaCert = function () {
-  return this.api.request('/network/other/rootCaCert/', 'other')
-}
-
-module.exports = Network
+module.exports = Network;

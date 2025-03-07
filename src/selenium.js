@@ -17,198 +17,58 @@
  * limitations under the License.
  */
 
-'use strict'
+'use strict';
 
 /**
- * This file was automatically generated.
+ * Class representing the SessionManagement API for ZAProxy.
  */
-function Selenium (clientApi) {
-  this.api = clientApi
-}
-
-/**
- * This component is optional and therefore the API will only work if it is installed
- **/
-Selenium.prototype.optionBrowserExtensions = function () {
-  return this.api.request('/selenium/view/optionBrowserExtensions/')
-}
-
-/**
- * Returns the current path to Chrome binary
- * This component is optional and therefore the API will only work if it is installed
- **/
-Selenium.prototype.optionChromeBinaryPath = function () {
-  return this.api.request('/selenium/view/optionChromeBinaryPath/')
-}
-
-/**
- * Returns the current path to ChromeDriver
- * This component is optional and therefore the API will only work if it is installed
- **/
-Selenium.prototype.optionChromeDriverPath = function () {
-  return this.api.request('/selenium/view/optionChromeDriverPath/')
-}
-
-/**
- * Returns the current path to Firefox binary
- * This component is optional and therefore the API will only work if it is installed
- **/
-Selenium.prototype.optionFirefoxBinaryPath = function () {
-  return this.api.request('/selenium/view/optionFirefoxBinaryPath/')
-}
-
-/**
- * This component is optional and therefore the API will only work if it is installed
- **/
-Selenium.prototype.optionFirefoxDefaultProfile = function () {
-  return this.api.request('/selenium/view/optionFirefoxDefaultProfile/')
-}
-
-/**
- * Returns the current path to Firefox driver (geckodriver)
- * This component is optional and therefore the API will only work if it is installed
- **/
-Selenium.prototype.optionFirefoxDriverPath = function () {
-  return this.api.request('/selenium/view/optionFirefoxDriverPath/')
-}
-
-/**
- * This component is optional and therefore the API will only work if it is installed
- **/
-Selenium.prototype.optionIeDriverPath = function () {
-  return this.api.request('/selenium/view/optionIeDriverPath/')
-}
-
-/**
- * This component is optional and therefore the API will only work if it is installed
- **/
-Selenium.prototype.optionLastDirectory = function () {
-  return this.api.request('/selenium/view/optionLastDirectory/')
-}
-
-/**
- * This component is optional and therefore the API will only work if it is installed
- **/
-Selenium.prototype.optionPhantomJsBinaryPath = function () {
-  return this.api.request('/selenium/view/optionPhantomJsBinaryPath/')
-}
-
-/**
- * Gets the browser arguments.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} browser - The browser, chrome or firefox.
- **/
-Selenium.prototype.getBrowserArguments = function (args) {
-  return this.api.request('/selenium/view/getBrowserArguments/', { browser: args.browser })
-}
-
-/**
- * Sets the current path to Chrome binary
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} string
- **/
-Selenium.prototype.setOptionChromeBinaryPath = function (args) {
-  return this.api.request('/selenium/action/setOptionChromeBinaryPath/', { String: args.string })
-}
-
-/**
- * Sets the current path to ChromeDriver
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} string
- **/
-Selenium.prototype.setOptionChromeDriverPath = function (args) {
-  return this.api.request('/selenium/action/setOptionChromeDriverPath/', { String: args.string })
-}
-
-/**
- * Sets the current path to Firefox binary
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} string
- **/
-Selenium.prototype.setOptionFirefoxBinaryPath = function (args) {
-  return this.api.request('/selenium/action/setOptionFirefoxBinaryPath/', { String: args.string })
-}
-
-/**
- * This component is optional and therefore the API will only work if it is installed
- **/
-Selenium.prototype.setOptionFirefoxDefaultProfile = function (args) {
-  return this.api.request('/selenium/action/setOptionFirefoxDefaultProfile/', { String: args.string })
-}
-
-/**
- * Sets the current path to Firefox driver (geckodriver)
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} string
- **/
-Selenium.prototype.setOptionFirefoxDriverPath = function (args) {
-  return this.api.request('/selenium/action/setOptionFirefoxDriverPath/', { String: args.string })
-}
-
-/**
- * This component is optional and therefore the API will only work if it is installed
- **/
-Selenium.prototype.setOptionIeDriverPath = function (args) {
-  return this.api.request('/selenium/action/setOptionIeDriverPath/', { String: args.string })
-}
-
-/**
- * This component is optional and therefore the API will only work if it is installed
- **/
-Selenium.prototype.setOptionLastDirectory = function (args) {
-  return this.api.request('/selenium/action/setOptionLastDirectory/', { String: args.string })
-}
-
-/**
- * This component is optional and therefore the API will only work if it is installed
- **/
-Selenium.prototype.setOptionPhantomJsBinaryPath = function (args) {
-  return this.api.request('/selenium/action/setOptionPhantomJsBinaryPath/', { String: args.string })
-}
-
-/**
- * Adds a browser argument.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} browser - The browser, chrome or firefox.
- * @param {string} argument - The argument.
- * @param {string} enabled - The enabled state, true or false.
- **/
-Selenium.prototype.addBrowserArgument = function (args) {
-  const params = { browser: args.browser, argument: args.argument }
-  if (args.enabled && args.enabled !== null) {
-    params.enabled = args.enabled
+class SessionManagement {
+  /**
+   * @param {object} clientApi - The API client instance.
+   */
+  constructor(clientApi) {
+    this.api = clientApi;
   }
-  return this.api.request('/selenium/action/addBrowserArgument/', params)
+
+  /**
+   * Gets the names of the supported session management methods.
+   * @returns {Promise<object>} A promise resolving to the session management methods.
+   */
+  getSupportedSessionManagementMethods = () =>
+    this.api.request('/sessionManagement/view/getSupportedSessionManagementMethods');
+
+  /**
+   * Gets the configuration parameters for the specified session management method.
+   * @param {{ methodName: string }} args - Object containing:
+   *   - methodName: The name of the session management method.
+   * @returns {Promise<object>} A promise resolving to the configuration parameters of the method.
+   */
+  getSessionManagementMethodConfigParams = ({ methodName }) =>
+    this.api.request('/sessionManagement/view/getSessionManagementMethodConfigParams', { methodName });
+
+  /**
+   * Gets the session management method configured for a specific context.
+   * @param {{ contextId: string }} args - Object containing:
+   *   - contextId: The ID of the context.
+   * @returns {Promise<object>} A promise resolving to the session management method for the context.
+   */
+  getSessionManagementMethod = ({ contextId }) =>
+    this.api.request('/sessionManagement/view/getSessionManagementMethod', { contextId });
+
+  /**
+   * Sets the session management method for a specified context.
+   * @param {{ contextId: string, methodName: string, methodConfigParams: string }} args - Object containing:
+   *   - contextId: The ID of the context.
+   *   - methodName: The name of the session management method to set.
+   *   - methodConfigParams: A JSON string containing the configuration parameters for the method.
+   * @returns {Promise<object>} A promise resolving to the result of the operation.
+   */
+  setSessionManagementMethod = ({ contextId, methodName, methodConfigParams }) =>
+    this.api.request('/sessionManagement/action/setSessionManagementMethod', {
+      contextId,
+      methodName,
+      methodConfigParams,
+    });
 }
 
-/**
- * Launches a browser proxying through ZAP, for manual usage.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} browser - The browser, chrome or firefox.
- **/
-Selenium.prototype.launchBrowser = function (args) {
-  return this.api.request('/selenium/action/launchBrowser/', { browser: args.browser })
-}
-
-/**
- * Removes a browser argument.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} browser - The browser, chrome or firefox.
- * @param {string} argument - The argument.
- **/
-Selenium.prototype.removeBrowserArgument = function (args) {
-  return this.api.request('/selenium/action/removeBrowserArgument/', { browser: args.browser, argument: args.argument })
-}
-
-/**
- * Sets whether or not a browser argument is enabled.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} browser - The browser, chrome or firefox.
- * @param {string} argument - The argument.
- * @param {string} enabled - The enabled state, true or false.
- **/
-Selenium.prototype.setBrowserArgumentEnabled = function (args) {
-  return this.api.request('/selenium/action/setBrowserArgumentEnabled/', { browser: args.browser, argument: args.argument, enabled: args.enabled })
-}
-
-module.exports = Selenium
+module.exports = SessionManagement;

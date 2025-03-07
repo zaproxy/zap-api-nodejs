@@ -17,673 +17,673 @@
  * limitations under the License.
  */
 
-'use strict'
+'use strict';
 
-/**
- * This file was automatically generated.
- */
-function Spider (clientApi) {
-  this.api = clientApi
-}
-
-/**
- *
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} scanid
- **/
-Spider.prototype.status = function (args) {
-  const params = { }
-  if (args.scanid && args.scanid !== null) {
-    params.scanId = args.scanid
+class Spider {
+  constructor(clientApi) {
+    this.api = clientApi;
   }
-  return this.api.request('/spider/view/status/', params)
-}
-
-/**
- *
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} scanid
- **/
-Spider.prototype.results = function (args) {
-  const params = { }
-  if (args.scanid && args.scanid !== null) {
-    params.scanId = args.scanid
-  }
-  return this.api.request('/spider/view/results/', params)
-}
-
-/**
- *
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} scanid
- **/
-Spider.prototype.fullResults = function (args) {
-  return this.api.request('/spider/view/fullResults/', { scanId: args.scanid })
-}
-
-/**
- *
- * This component is optional and therefore the API will only work if it is installed
- **/
-Spider.prototype.scans = function () {
-  return this.api.request('/spider/view/scans/')
-}
-
-/**
- * Gets the regexes of URLs excluded from the spider scans.
- * This component is optional and therefore the API will only work if it is installed
- **/
-Spider.prototype.excludedFromScan = function () {
-  return this.api.request('/spider/view/excludedFromScan/')
-}
-
-/**
- * Returns a list of unique URLs from the history table based on HTTP messages added by the Spider.
- * This component is optional and therefore the API will only work if it is installed
- **/
-Spider.prototype.allUrls = function () {
-  return this.api.request('/spider/view/allUrls/')
-}
-
-/**
- * Returns a list of the names of the nodes added to the Sites tree by the specified scan.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} scanid
- **/
-Spider.prototype.addedNodes = function (args) {
-  const params = { }
-  if (args.scanid && args.scanid !== null) {
-    params.scanId = args.scanid
-  }
-  return this.api.request('/spider/view/addedNodes/', params)
-}
-
-/**
- * Gets all the domains that are always in scope. For each domain the following are shown: the index, the value (domain), if enabled, and if specified as a regex.
- * This component is optional and therefore the API will only work if it is installed
- **/
-Spider.prototype.domainsAlwaysInScope = function () {
-  return this.api.request('/spider/view/domainsAlwaysInScope/')
-}
-
-/**
- * Use view domainsAlwaysInScope instead.
- * This component is optional and therefore the API will only work if it is installed
- **/
-Spider.prototype.optionDomainsAlwaysInScope = function () {
-  return this.api.request('/spider/view/optionDomainsAlwaysInScope/')
-}
-
-/**
- * Use view domainsAlwaysInScope instead.
- * This component is optional and therefore the API will only work if it is installed
- **/
-Spider.prototype.optionDomainsAlwaysInScopeEnabled = function () {
-  return this.api.request('/spider/view/optionDomainsAlwaysInScopeEnabled/')
-}
-
-/**
- *
- * This component is optional and therefore the API will only work if it is installed
- **/
-Spider.prototype.optionHandleParameters = function () {
-  return this.api.request('/spider/view/optionHandleParameters/')
-}
-
-/**
- * Gets the maximum number of child nodes (per node) that can be crawled, 0 means no limit.
- * This component is optional and therefore the API will only work if it is installed
- **/
-Spider.prototype.optionMaxChildren = function () {
-  return this.api.request('/spider/view/optionMaxChildren/')
-}
-
-/**
- * Gets the maximum depth the spider can crawl, 0 if unlimited.
- * This component is optional and therefore the API will only work if it is installed
- **/
-Spider.prototype.optionMaxDepth = function () {
-  return this.api.request('/spider/view/optionMaxDepth/')
-}
-
-/**
- *
- * This component is optional and therefore the API will only work if it is installed
- **/
-Spider.prototype.optionMaxDuration = function () {
-  return this.api.request('/spider/view/optionMaxDuration/')
-}
-
-/**
- * Gets the maximum size, in bytes, that a response might have to be parsed.
- * This component is optional and therefore the API will only work if it is installed
- **/
-Spider.prototype.optionMaxParseSizeBytes = function () {
-  return this.api.request('/spider/view/optionMaxParseSizeBytes/')
-}
-
-/**
- *
- * This component is optional and therefore the API will only work if it is installed
- **/
-Spider.prototype.optionMaxScansInUI = function () {
-  return this.api.request('/spider/view/optionMaxScansInUI/')
-}
-
-/**
- *
- * This component is optional and therefore the API will only work if it is installed
- **/
-Spider.prototype.optionSkipURLString = function () {
-  return this.api.request('/spider/view/optionSkipURLString/')
-}
-
-/**
- *
- * This component is optional and therefore the API will only work if it is installed
- **/
-Spider.prototype.optionThreadCount = function () {
-  return this.api.request('/spider/view/optionThreadCount/')
-}
-
-/**
- *
- * This component is optional and therefore the API will only work if it is installed
- **/
-Spider.prototype.optionUserAgent = function () {
-  return this.api.request('/spider/view/optionUserAgent/')
-}
-
-/**
- * Gets whether or not a spider process should accept cookies while spidering.
- * This component is optional and therefore the API will only work if it is installed
- **/
-Spider.prototype.optionAcceptCookies = function () {
-  return this.api.request('/spider/view/optionAcceptCookies/')
-}
-
-/**
- *
- * This component is optional and therefore the API will only work if it is installed
- **/
-Spider.prototype.optionHandleODataParametersVisited = function () {
-  return this.api.request('/spider/view/optionHandleODataParametersVisited/')
-}
-
-/**
- *
- * This component is optional and therefore the API will only work if it is installed
- **/
-Spider.prototype.optionParseComments = function () {
-  return this.api.request('/spider/view/optionParseComments/')
-}
-
-/**
- * This component is optional and therefore the API will only work if it is installed
- **/
-Spider.prototype.optionParseDsStore = function () {
-  return this.api.request('/spider/view/optionParseDsStore/')
-}
-
-/**
- *
- * This component is optional and therefore the API will only work if it is installed
- **/
-Spider.prototype.optionParseGit = function () {
-  return this.api.request('/spider/view/optionParseGit/')
-}
-
-/**
- *
- * This component is optional and therefore the API will only work if it is installed
- **/
-Spider.prototype.optionParseRobotsTxt = function () {
-  return this.api.request('/spider/view/optionParseRobotsTxt/')
-}
-
-/**
- *
- * This component is optional and therefore the API will only work if it is installed
- **/
-Spider.prototype.optionParseSVNEntries = function () {
-  return this.api.request('/spider/view/optionParseSVNEntries/')
-}
-
-/**
- *
- * This component is optional and therefore the API will only work if it is installed
- **/
-Spider.prototype.optionParseSitemapXml = function () {
-  return this.api.request('/spider/view/optionParseSitemapXml/')
-}
-
-/**
- *
- * This component is optional and therefore the API will only work if it is installed
- **/
-Spider.prototype.optionPostForm = function () {
-  return this.api.request('/spider/view/optionPostForm/')
-}
-
-/**
- *
- * This component is optional and therefore the API will only work if it is installed
- **/
-Spider.prototype.optionProcessForm = function () {
-  return this.api.request('/spider/view/optionProcessForm/')
-}
-
-/**
- * Gets whether or not the 'Referer' header should be sent while spidering.
- * This component is optional and therefore the API will only work if it is installed
- **/
-Spider.prototype.optionSendRefererHeader = function () {
-  return this.api.request('/spider/view/optionSendRefererHeader/')
-}
-
-/**
- *
- * This component is optional and therefore the API will only work if it is installed
- **/
-Spider.prototype.optionShowAdvancedDialog = function () {
-  return this.api.request('/spider/view/optionShowAdvancedDialog/')
-}
-
-/**
- * Runs the spider against the given URL (or context). Optionally, the 'maxChildren' parameter can be set to limit the number of children scanned, the 'recurse' parameter can be used to prevent the spider from seeding recursively, the parameter 'contextName' can be used to constrain the scan to a Context and the parameter 'subtreeOnly' allows to restrict the spider under a site's subtree (using the specified 'url').
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} url
- * @param {string} maxchildren
- * @param {string} recurse
- * @param {string} contextname
- * @param {string} subtreeonly
- **/
-Spider.prototype.scan = function (args) {
-  const params = { }
-  if (args.url && args.url !== null) {
-    params.url = args.url
-  }
-  if (args.maxchildren && args.maxchildren !== null) {
-    params.maxChildren = args.maxchildren
-  }
-  if (args.recurse && args.recurse !== null) {
-    params.recurse = args.recurse
-  }
-  if (args.contextname && args.contextname !== null) {
-    params.contextName = args.contextname
-  }
-  if (args.subtreeonly && args.subtreeonly !== null) {
-    params.subtreeOnly = args.subtreeonly
-  }
-  return this.api.request('/spider/action/scan/', params)
-}
-
-/**
- * Runs the spider from the perspective of a User, obtained using the given Context ID and User ID. See 'scan' action for more details.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} contextid
- * @param {string} userid
- * @param {string} url
- * @param {string} maxchildren
- * @param {string} recurse
- * @param {string} subtreeonly
- **/
-Spider.prototype.scanAsUser = function (args) {
-  const params = { contextId: args.contextid, userId: args.userid }
-  if (args.url && args.url !== null) {
-    params.url = args.url
-  }
-  if (args.maxchildren && args.maxchildren !== null) {
-    params.maxChildren = args.maxchildren
-  }
-  if (args.recurse && args.recurse !== null) {
-    params.recurse = args.recurse
-  }
-  if (args.subtreeonly && args.subtreeonly !== null) {
-    params.subtreeOnly = args.subtreeonly
-  }
-  return this.api.request('/spider/action/scanAsUser/', params)
-}
-
-/**
- *
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} scanid
- **/
-Spider.prototype.pause = function (args) {
-  return this.api.request('/spider/action/pause/', { scanId: args.scanid })
-}
-
-/**
- *
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} scanid
- **/
-Spider.prototype.resume = function (args) {
-  return this.api.request('/spider/action/resume/', { scanId: args.scanid })
-}
-
-/**
- *
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} scanid
- **/
-Spider.prototype.stop = function (args) {
-  const params = { }
-  if (args.scanid && args.scanid !== null) {
-    params.scanId = args.scanid
-  }
-  return this.api.request('/spider/action/stop/', params)
-}
-
-/**
- *
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} scanid
- **/
-Spider.prototype.removeScan = function (args) {
-  return this.api.request('/spider/action/removeScan/', { scanId: args.scanid })
-}
-
-/**
- *
- * This component is optional and therefore the API will only work if it is installed
- **/
-Spider.prototype.pauseAllScans = function () {
-  return this.api.request('/spider/action/pauseAllScans/')
-}
-
-/**
- *
- * This component is optional and therefore the API will only work if it is installed
- **/
-Spider.prototype.resumeAllScans = function () {
-  return this.api.request('/spider/action/resumeAllScans/')
-}
-
-/**
- *
- * This component is optional and therefore the API will only work if it is installed
- **/
-Spider.prototype.stopAllScans = function () {
-  return this.api.request('/spider/action/stopAllScans/')
-}
-
-/**
- *
- * This component is optional and therefore the API will only work if it is installed
- **/
-Spider.prototype.removeAllScans = function () {
-  return this.api.request('/spider/action/removeAllScans/')
-}
-
-/**
- * Clears the regexes of URLs excluded from the spider scans.
- * This component is optional and therefore the API will only work if it is installed
- **/
-Spider.prototype.clearExcludedFromScan = function () {
-  return this.api.request('/spider/action/clearExcludedFromScan/')
-}
-
-/**
- * Adds a regex of URLs that should be excluded from the spider scans.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} regex
- **/
-Spider.prototype.excludeFromScan = function (args) {
-  return this.api.request('/spider/action/excludeFromScan/', { regex: args.regex })
-}
-
-/**
- * Adds a new domain that's always in scope, using the specified value. Optionally sets if the new entry is enabled (default, true) and whether or not the new value is specified as a regex (default, false).
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} value
- * @param {string} isregex
- * @param {string} isenabled
- **/
-Spider.prototype.addDomainAlwaysInScope = function (args) {
-  const params = { value: args.value }
-  if (args.isregex && args.isregex !== null) {
-    params.isRegex = args.isregex
-  }
-  if (args.isenabled && args.isenabled !== null) {
-    params.isEnabled = args.isenabled
-  }
-  return this.api.request('/spider/action/addDomainAlwaysInScope/', params)
-}
-
-/**
- * Modifies a domain that's always in scope. Allows to modify the value, if enabled or if a regex. The domain is selected with its index, which can be obtained with the view domainsAlwaysInScope.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} idx
- * @param {string} value
- * @param {string} isregex
- * @param {string} isenabled
- **/
-Spider.prototype.modifyDomainAlwaysInScope = function (args) {
-  const params = { idx: args.idx }
-  if (args.value && args.value !== null) {
-    params.value = args.value
-  }
-  if (args.isregex && args.isregex !== null) {
-    params.isRegex = args.isregex
-  }
-  if (args.isenabled && args.isenabled !== null) {
-    params.isEnabled = args.isenabled
-  }
-  return this.api.request('/spider/action/modifyDomainAlwaysInScope/', params)
-}
-
-/**
- * Removes a domain that's always in scope, with the given index. The index can be obtained with the view domainsAlwaysInScope.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} idx
- **/
-Spider.prototype.removeDomainAlwaysInScope = function (args) {
-  return this.api.request('/spider/action/removeDomainAlwaysInScope/', { idx: args.idx })
-}
-
-/**
- * Enables all domains that are always in scope.
- * This component is optional and therefore the API will only work if it is installed
- **/
-Spider.prototype.enableAllDomainsAlwaysInScope = function () {
-  return this.api.request('/spider/action/enableAllDomainsAlwaysInScope/')
-}
-
-/**
- * Disables all domains that are always in scope.
- * This component is optional and therefore the API will only work if it is installed
- **/
-Spider.prototype.disableAllDomainsAlwaysInScope = function () {
-  return this.api.request('/spider/action/disableAllDomainsAlwaysInScope/')
-}
-
-/**
- *
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} string
- **/
-Spider.prototype.setOptionHandleParameters = function (args) {
-  return this.api.request('/spider/action/setOptionHandleParameters/', { String: args.string })
-}
-
-/**
- *
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} string
- **/
-Spider.prototype.setOptionSkipURLString = function (args) {
-  return this.api.request('/spider/action/setOptionSkipURLString/', { String: args.string })
-}
-
-/**
- *
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} string
- **/
-Spider.prototype.setOptionUserAgent = function (args) {
-  return this.api.request('/spider/action/setOptionUserAgent/', { String: args.string })
-}
-
-/**
- * Sets whether or not a spider process should accept cookies while spidering.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} bool
- **/
-Spider.prototype.setOptionAcceptCookies = function (args) {
-  return this.api.request('/spider/action/setOptionAcceptCookies/', { Boolean: args.bool })
-}
-
-/**
- *
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} bool
- **/
-Spider.prototype.setOptionHandleODataParametersVisited = function (args) {
-  return this.api.request('/spider/action/setOptionHandleODataParametersVisited/', { Boolean: args.bool })
-}
-
-/**
- * Sets the maximum number of child nodes (per node) that can be crawled, 0 means no limit.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} integer
- **/
-Spider.prototype.setOptionMaxChildren = function (args) {
-  return this.api.request('/spider/action/setOptionMaxChildren/', { Integer: args.integer })
-}
-
-/**
- * Sets the maximum depth the spider can crawl, 0 for unlimited depth.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} integer
- **/
-Spider.prototype.setOptionMaxDepth = function (args) {
-  return this.api.request('/spider/action/setOptionMaxDepth/', { Integer: args.integer })
-}
-
-/**
- *
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} integer
- **/
-Spider.prototype.setOptionMaxDuration = function (args) {
-  return this.api.request('/spider/action/setOptionMaxDuration/', { Integer: args.integer })
-}
-
-/**
- * Sets the maximum size, in bytes, that a response might have to be parsed. This allows the spider to skip big responses/files.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} integer
- **/
-Spider.prototype.setOptionMaxParseSizeBytes = function (args) {
-  return this.api.request('/spider/action/setOptionMaxParseSizeBytes/', { Integer: args.integer })
-}
-
-/**
- *
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} integer
- **/
-Spider.prototype.setOptionMaxScansInUI = function (args) {
-  return this.api.request('/spider/action/setOptionMaxScansInUI/', { Integer: args.integer })
-}
-
-/**
- *
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} bool
- **/
-Spider.prototype.setOptionParseComments = function (args) {
-  return this.api.request('/spider/action/setOptionParseComments/', { Boolean: args.bool })
-}
-
-/**
- * This component is optional and therefore the API will only work if it is installed
- **/
-Spider.prototype.setOptionParseDsStore = function (args) {
-  return this.api.request('/spider/action/setOptionParseDsStore/', { Boolean: args.bool })
-}
-
-/**
- *
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} bool
- **/
-Spider.prototype.setOptionParseGit = function (args) {
-  return this.api.request('/spider/action/setOptionParseGit/', { Boolean: args.bool })
-}
-
-/**
- *
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} bool
- **/
-Spider.prototype.setOptionParseRobotsTxt = function (args) {
-  return this.api.request('/spider/action/setOptionParseRobotsTxt/', { Boolean: args.bool })
-}
-
-/**
- *
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} bool
- **/
-Spider.prototype.setOptionParseSVNEntries = function (args) {
-  return this.api.request('/spider/action/setOptionParseSVNEntries/', { Boolean: args.bool })
-}
-
-/**
- *
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} bool
- **/
-Spider.prototype.setOptionParseSitemapXml = function (args) {
-  return this.api.request('/spider/action/setOptionParseSitemapXml/', { Boolean: args.bool })
-}
-
-/**
- *
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} bool
- **/
-Spider.prototype.setOptionPostForm = function (args) {
-  return this.api.request('/spider/action/setOptionPostForm/', { Boolean: args.bool })
-}
-
-/**
- *
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} bool
- **/
-Spider.prototype.setOptionProcessForm = function (args) {
-  return this.api.request('/spider/action/setOptionProcessForm/', { Boolean: args.bool })
-}
-
-/**
- * Sets whether or not the 'Referer' header should be sent while spidering.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} bool
- **/
-Spider.prototype.setOptionSendRefererHeader = function (args) {
-  return this.api.request('/spider/action/setOptionSendRefererHeader/', { Boolean: args.bool })
-}
-
-/**
- *
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} bool
- **/
-Spider.prototype.setOptionShowAdvancedDialog = function (args) {
-  return this.api.request('/spider/action/setOptionShowAdvancedDialog/', { Boolean: args.bool })
-}
-
-/**
- *
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} integer
- **/
-Spider.prototype.setOptionThreadCount = function (args) {
-  return this.api.request('/spider/action/setOptionThreadCount/', { Integer: args.integer })
-}
 
-module.exports = Spider
+  /**
+   * Retrieves the status of a specific spider scan.
+   *
+   * @param {{ scanId?: string }} [args={}] - Object containing:
+   *   - scanId: (Optional) The ID of the scan.
+   * @returns {Promise<any>} A promise resolving with the scan status.
+   */
+  status = ({ scanId } = {}) => {
+    const params = {};
+    if (scanId) params.scanId = scanId;
+    return this.api.request('/spider/view/status', params);
+  };
+
+  /**
+   * Retrieves the partial results (URLs found) for a specific spider scan.
+   *
+   * @param {{ scanId?: string }} [args={}] - Object containing:
+   *   - scanId: (Optional) The ID of the scan.
+   * @returns {Promise<any>} A promise resolving with the partial results.
+   */
+  results = ({ scanId } = {}) => {
+    const params = {};
+    if (scanId) params.scanId = scanId;
+    return this.api.request('/spider/view/results', params);
+  };
+
+  /**
+   * Retrieves the full results for a specific spider scan.
+   *
+   * @param {{ scanId: string }} args - Object containing:
+   *   - scanId: The ID of the scan.
+   * @returns {Promise<any>} A promise resolving with the full results.
+   */
+  fullResults = ({ scanId }) =>
+    this.api.request('/spider/view/fullResults', { scanId });
+
+  /**
+   * Retrieves a list of all spider scans.
+   *
+   * @returns {Promise<any>} A promise resolving with the list of scans.
+   */
+  scans = () =>
+    this.api.request('/spider/view/scans');
+
+  /**
+   * Retrieves the regexes of URLs excluded from spider scans.
+   *
+   * @returns {Promise<any>} A promise resolving with the exclusion regexes.
+   */
+  excludedFromScan = () =>
+    this.api.request('/spider/view/excludedFromScan');
+
+  /**
+   * Returns a list of unique URLs from the history table added by the spider.
+   *
+   * @returns {Promise<any>} A promise resolving with the unique URLs.
+   */
+  allUrls = () =>
+    this.api.request('/spider/view/allUrls');
+
+  /**
+   * Returns a list of node names added to the Sites tree by a scan.
+   *
+   * @param {{ scanId?: string }} [args={}] - Object containing:
+   *   - scanId: (Optional) The ID of the scan.
+   * @returns {Promise<any>} A promise resolving with the list of added nodes.
+   */
+  addedNodes = ({ scanId } = {}) => {
+    const params = {};
+    if (scanId) params.scanId = scanId;
+    return this.api.request('/spider/view/addedNodes', params);
+  };
+
+  /**
+   * Gets all domains that are always in scope.
+   *
+   * @returns {Promise<any>} A promise resolving with the domains.
+   */
+  domainsAlwaysInScope = () =>
+    this.api.request('/spider/view/domainsAlwaysInScope');
+
+  /**
+   * Returns the option for domains always in scope.
+   *
+   * @returns {Promise<any>} A promise resolving with the option.
+   */
+  optionDomainsAlwaysInScope = () =>
+    this.api.request('/spider/view/optionDomainsAlwaysInScope');
+
+  /**
+   * Returns whether domains always in scope are enabled.
+   *
+   * @returns {Promise<any>} A promise resolving with the enabled flag.
+   */
+  optionDomainsAlwaysInScopeEnabled = () =>
+    this.api.request('/spider/view/optionDomainsAlwaysInScopeEnabled');
+
+  /**
+   * Gets the parameter handling mode for the spider.
+   *
+   * @returns {Promise<any>} A promise resolving with the parameter handling mode.
+   */
+  optionHandleParameters = () =>
+    this.api.request('/spider/view/optionHandleParameters');
+
+  /**
+   * Gets the maximum number of child nodes per node that can be crawled.
+   *
+   * @returns {Promise<any>} A promise resolving with the maximum children setting.
+   */
+  optionMaxChildren = () =>
+    this.api.request('/spider/view/optionMaxChildren');
+
+  /**
+   * Gets the maximum crawl depth (0 for unlimited).
+   *
+   * @returns {Promise<any>} A promise resolving with the maximum crawl depth.
+   */
+  optionMaxDepth = () =>
+    this.api.request('/spider/view/optionMaxDepth');
+
+  /**
+   * Gets the maximum duration (in minutes) that the spider can run.
+   *
+   * @returns {Promise<any>} A promise resolving with the maximum duration.
+   */
+  optionMaxDuration = () =>
+    this.api.request('/spider/view/optionMaxDuration');
+
+  /**
+   * Gets the maximum parse size in bytes for responses.
+   *
+   * @returns {Promise<any>} A promise resolving with the maximum parse size.
+   */
+  optionMaxParseSizeBytes = () =>
+    this.api.request('/spider/view/optionMaxParseSizeBytes');
+
+  /**
+   * Gets the maximum number of scans that can appear in the UI.
+   *
+   * @returns {Promise<any>} A promise resolving with the maximum UI scans.
+   */
+  optionMaxScansInUI = () =>
+    this.api.request('/spider/view/optionMaxScansInUI');
+
+  /**
+   * Gets the current skip URL string used by the spider.
+   *
+   * @returns {Promise<any>} A promise resolving with the skip URL string.
+   */
+  optionSkipURLString = () =>
+    this.api.request('/spider/view/optionSkipURLString');
+
+  /**
+   * Gets the number of threads the spider is allowed to use.
+   *
+   * @returns {Promise<any>} A promise resolving with the thread count.
+   */
+  optionThreadCount = () =>
+    this.api.request('/spider/view/optionThreadCount');
+
+  /**
+   * Gets the user agent string used by the spider.
+   *
+   * @returns {Promise<any>} A promise resolving with the user agent string.
+   */
+  optionUserAgent = () =>
+    this.api.request('/spider/view/optionUserAgent');
+
+  /**
+   * Checks whether the spider accepts cookies.
+   *
+   * @returns {Promise<any>} A promise resolving with the cookie acceptance flag.
+   */
+  optionAcceptCookies = () =>
+    this.api.request('/spider/view/optionAcceptCookies');
+
+  /**
+   * Checks whether the spider handles OData parameters.
+   *
+   * @returns {Promise<any>} A promise resolving with the OData handling flag.
+   */
+  optionHandleODataParametersVisited = () =>
+    this.api.request('/spider/view/optionHandleODataParametersVisited');
+
+  /**
+   * Checks whether the spider parses comments.
+   *
+   * @returns {Promise<any>} A promise resolving with the parse comments flag.
+   */
+  optionParseComments = () =>
+    this.api.request('/spider/view/optionParseComments');
+
+  /**
+   * Checks whether the spider parses .ds_store files.
+   *
+   * @returns {Promise<any>} A promise resolving with the parse .ds_store flag.
+   */
+  optionParseDsStore = () =>
+    this.api.request('/spider/view/optionParseDsStore');
+
+  /**
+   * Checks whether the spider parses Git metadata.
+   *
+   * @returns {Promise<any>} A promise resolving with the parse Git flag.
+   */
+  optionParseGit = () =>
+    this.api.request('/spider/view/optionParseGit');
+
+  /**
+   * Checks whether the spider parses robots.txt.
+   *
+   * @returns {Promise<any>} A promise resolving with the parse robots.txt flag.
+   */
+  optionParseRobotsTxt = () =>
+    this.api.request('/spider/view/optionParseRobotsTxt');
+
+  /**
+   * Checks whether the spider parses SVN entries.
+   *
+   * @returns {Promise<any>} A promise resolving with the parse SVN entries flag.
+   */
+  optionParseSVNEntries = () =>
+    this.api.request('/spider/view/optionParseSVNEntries');
+
+  /**
+   * Checks whether the spider parses sitemap.xml files.
+   *
+   * @returns {Promise<any>} A promise resolving with the parse sitemap.xml flag.
+   */
+  optionParseSitemapXml = () =>
+    this.api.request('/spider/view/optionParseSitemapXml');
+
+  /**
+   * Checks whether the spider should POST forms.
+   *
+   * @returns {Promise<any>} A promise resolving with the POST form flag.
+   */
+  optionPostForm = () =>
+    this.api.request('/spider/view/optionPostForm');
+
+  /**
+   * Checks whether the spider processes forms.
+   *
+   * @returns {Promise<any>} A promise resolving with the process form flag.
+   */
+  optionProcessForm = () =>
+    this.api.request('/spider/view/optionProcessForm');
+
+  /**
+   * Checks whether the 'Referer' header is sent during spidering.
+   *
+   * @returns {Promise<any>} A promise resolving with the send Referer header flag.
+   */
+  optionSendRefererHeader = () =>
+    this.api.request('/spider/view/optionSendRefererHeader');
+
+  /**
+   * Checks whether the advanced dialog is shown in the spider UI.
+   *
+   * @returns {Promise<any>} A promise resolving with the advanced dialog flag.
+   */
+  optionShowAdvancedDialog = () =>
+    this.api.request('/spider/view/optionShowAdvancedDialog');
+
+  /**
+   * Sets how the spider handles parameters.
+   *
+   * @param {{ string: string }} args - Object containing:
+   *   - string: The parameter handling mode.
+   * @returns {Promise<any>} A promise resolving when the setting is applied.
+   */
+  setOptionHandleParameters = ({ string }) =>
+    this.api.request('/spider/action/setOptionHandleParameters', { String: string });
+
+  /**
+   * Sets the skip URL string for the spider.
+   *
+   * @param {{ string: string }} args - Object containing:
+   *   - string: The skip URL string or pattern.
+   * @returns {Promise<any>} A promise resolving when the setting is applied.
+   */
+  setOptionSkipURLString = ({ string }) =>
+    this.api.request('/spider/action/setOptionSkipURLString', { String: string });
+
+  /**
+   * Sets the user agent string for the spider.
+   *
+   * @param {{ string: string }} args - Object containing:
+   *   - string: The user agent string.
+   * @returns {Promise<any>} A promise resolving when the user agent is set.
+   */
+  setOptionUserAgent = ({ string }) =>
+    this.api.request('/spider/action/setOptionUserAgent', { String: string });
+
+  /**
+   * Sets whether the spider accepts cookies.
+   *
+   * @param {{ bool: boolean }} args - Object containing:
+   *   - bool: True to accept cookies, false otherwise.
+   * @returns {Promise<any>} A promise resolving when the setting is applied.
+   */
+  setOptionAcceptCookies = ({ bool }) =>
+    this.api.request('/spider/action/setOptionAcceptCookies', { Boolean: bool });
+
+  /**
+   * Sets whether the spider handles OData parameters.
+   *
+   * @param {{ bool: boolean }} args - Object containing:
+   *   - bool: True to handle OData parameters, false otherwise.
+   * @returns {Promise<any>} A promise resolving when the setting is applied.
+   */
+  setOptionHandleODataParametersVisited = ({ bool }) =>
+    this.api.request('/spider/action/setOptionHandleODataParametersVisited', { Boolean: bool });
+
+  /**
+   * Sets the maximum number of child nodes per node.
+   *
+   * @param {{ integer: number }} args - Object containing:
+   *   - integer: The maximum number of child nodes.
+   * @returns {Promise<any>} A promise resolving when the setting is applied.
+   */
+  setOptionMaxChildren = ({ integer }) =>
+    this.api.request('/spider/action/setOptionMaxChildren', { Integer: integer });
+
+  /**
+   * Sets the maximum crawl depth (0 for unlimited).
+   *
+   * @param {{ integer: number }} args - Object containing:
+   *   - integer: The maximum crawl depth.
+   * @returns {Promise<any>} A promise resolving when the setting is applied.
+   */
+  setOptionMaxDepth = ({ integer }) =>
+    this.api.request('/spider/action/setOptionMaxDepth', { Integer: integer });
+
+  /**
+   * Sets the maximum duration (in minutes) the spider can run.
+   *
+   * @param {{ integer: number }} args - Object containing:
+   *   - integer: The maximum duration in minutes.
+   * @returns {Promise<any>} A promise resolving when the setting is applied.
+   */
+  setOptionMaxDuration = ({ integer }) =>
+    this.api.request('/spider/action/setOptionMaxDuration', { Integer: integer });
+
+  /**
+   * Sets the maximum parse size in bytes for responses.
+   *
+   * @param {{ integer: number }} args - Object containing:
+   *   - integer: The maximum parse size in bytes.
+   * @returns {Promise<any>} A promise resolving when the setting is applied.
+   */
+  setOptionMaxParseSizeBytes = ({ integer }) =>
+    this.api.request('/spider/action/setOptionMaxParseSizeBytes', { Integer: integer });
+
+  /**
+   * Sets the maximum number of scans in the UI.
+   *
+   * @param {{ integer: number }} args - Object containing:
+   *   - integer: The maximum number of scans.
+   * @returns {Promise<any>} A promise resolving when the setting is applied.
+   */
+  setOptionMaxScansInUI = ({ integer }) =>
+    this.api.request('/spider/action/setOptionMaxScansInUI', { Integer: integer });
+
+  /**
+   * Sets whether the spider parses comments.
+   *
+   * @param {{ bool: boolean }} args - Object containing:
+   *   - bool: True to parse comments, false otherwise.
+   * @returns {Promise<any>} A promise resolving when the setting is applied.
+   */
+  setOptionParseComments = ({ bool }) =>
+    this.api.request('/spider/action/setOptionParseComments', { Boolean: bool });
+
+  /**
+   * Sets whether the spider parses .ds_store files.
+   *
+   * @param {{ bool: boolean }} args - Object containing:
+   *   - bool: True to parse .ds_store files, false otherwise.
+   * @returns {Promise<any>} A promise resolving when the setting is applied.
+   */
+  setOptionParseDsStore = ({ bool }) =>
+    this.api.request('/spider/action/setOptionParseDsStore', { Boolean: bool });
+
+  /**
+   * Sets whether the spider parses Git metadata.
+   *
+   * @param {{ bool: boolean }} args - Object containing:
+   *   - bool: True to parse Git metadata, false otherwise.
+   * @returns {Promise<any>} A promise resolving when the setting is applied.
+   */
+  setOptionParseGit = ({ bool }) =>
+    this.api.request('/spider/action/setOptionParseGit', { Boolean: bool });
+
+  /**
+   * Sets whether the spider parses robots.txt.
+   *
+   * @param {{ bool: boolean }} args - Object containing:
+   *   - bool: True to parse robots.txt, false otherwise.
+   * @returns {Promise<any>} A promise resolving when the setting is applied.
+   */
+  setOptionParseRobotsTxt = ({ bool }) =>
+    this.api.request('/spider/action/setOptionParseRobotsTxt', { Boolean: bool });
+
+  /**
+   * Sets whether the spider parses SVN entries.
+   *
+   * @param {{ bool: boolean }} args - Object containing:
+   *   - bool: True to parse SVN entries, false otherwise.
+   * @returns {Promise<any>} A promise resolving when the setting is applied.
+   */
+  setOptionParseSVNEntries = ({ bool }) =>
+    this.api.request('/spider/action/setOptionParseSVNEntries', { Boolean: bool });
+
+  /**
+   * Sets whether the spider parses sitemap.xml files.
+   *
+   * @param {{ bool: boolean }} args - Object containing:
+   *   - bool: True to parse sitemap.xml files, false otherwise.
+   * @returns {Promise<any>} A promise resolving when the setting is applied.
+   */
+  setOptionParseSitemapXml = ({ bool }) =>
+    this.api.request('/spider/action/setOptionParseSitemapXml', { Boolean: bool });
+
+  /**
+   * Sets whether the spider should POST forms.
+   *
+   * @param {{ bool: boolean }} args - Object containing:
+   *   - bool: True to POST forms, false otherwise.
+   * @returns {Promise<any>} A promise resolving when the setting is applied.
+   */
+  setOptionPostForm = ({ bool }) =>
+    this.api.request('/spider/action/setOptionPostForm', { Boolean: bool });
+
+  /**
+   * Sets whether the spider processes forms.
+   *
+   * @param {{ bool: boolean }} args - Object containing:
+   *   - bool: True to process forms, false otherwise.
+   * @returns {Promise<any>} A promise resolving when the setting is applied.
+   */
+  setOptionProcessForm = ({ bool }) =>
+    this.api.request('/spider/action/setOptionProcessForm', { Boolean: bool });
+
+  /**
+   * Sets whether the 'Referer' header is sent during spidering.
+   *
+   * @param {{ bool: boolean }} args - Object containing:
+   *   - bool: True to send the 'Referer' header, false otherwise.
+   * @returns {Promise<any>} A promise resolving when the setting is applied.
+   */
+  setOptionSendRefererHeader = ({ bool }) =>
+    this.api.request('/spider/action/setOptionSendRefererHeader', { Boolean: bool });
+
+  /**
+   * Sets whether the advanced dialog is shown in the spider UI.
+   *
+   * @param {{ bool: boolean }} args - Object containing:
+   *   - bool: True to show the advanced dialog, false otherwise.
+   * @returns {Promise<any>} A promise resolving when the setting is applied.
+   */
+  setOptionShowAdvancedDialog = ({ bool }) =>
+    this.api.request('/spider/action/setOptionShowAdvancedDialog', { Boolean: bool });
+
+  /**
+   * Sets the number of threads the spider should use.
+   *
+   * @param {{ integer: number }} args - Object containing:
+   *   - integer: The number of threads.
+   * @returns {Promise<any>} A promise resolving when the thread count is set.
+   */
+  setOptionThreadCount = ({ integer }) =>
+    this.api.request('/spider/action/setOptionThreadCount', { Integer: integer });
+
+  /**
+   * Runs the spider from the perspective of a given user in a context.
+   *
+   * @param {{
+   *   contextId: string,
+   *   userId: string,
+   *   url?: string,
+   *   maxChildren?: string,
+   *   recurse?: string,
+   *   subtreeOnly?: string
+   * }} args - Object containing:
+   *   - contextId: The context's ID.
+   *   - userId: The user's ID.
+   *   - url: (Optional) The starting URL.
+   *   - maxChildren: (Optional) Maximum children per node.
+   *   - recurse: (Optional) Whether to recurse.
+   *   - subtreeOnly: (Optional) Whether to limit the scan to a subtree.
+   * @returns {Promise<any>} A promise resolving with the scan result.
+   */
+  scanAsUser = ({ contextId, userId, url, maxChildren, recurse, subtreeOnly }) =>
+    this.api.request('/spider/action/scanAsUser', { contextId, userId, url, maxChildren, recurse, subtreeOnly });
+
+  /**
+   * Runs the spider with the provided options.
+   *
+   * @param {{
+   *   url?: string,
+   *   maxChildren?: string,
+   *   recurse?: string,
+   *   contextName?: string,
+   *   subtreeOnly?: string
+   * }} [args={}] - Object containing spider options.
+   * @returns {Promise<any>} A promise resolving with the scan result.
+   */
+  scan = ({ url, maxChildren, recurse, contextName, subtreeOnly } = {}) =>
+    this.api.request('/spider/action/scan', { url, maxChildren, recurse, contextName, subtreeOnly });
+
+  /**
+   * Pauses a running spider scan.
+   *
+   * @param {{ scanId: string }} args - Object containing the scan ID.
+   * @returns {Promise<any>} A promise resolving when the scan is paused.
+   */
+  pause = ({ scanId }) =>
+    this.api.request('/spider/action/pause', { scanId });
+
+  /**
+   * Resumes a paused spider scan.
+   *
+   * @param {{ scanId: string }} args - Object containing the scan ID.
+   * @returns {Promise<any>} A promise resolving when the scan is resumed.
+   */
+  resume = ({ scanId }) =>
+    this.api.request('/spider/action/resume', { scanId });
+
+  /**
+   * Stops a running spider scan.
+   *
+   * @param {{ scanId?: string }} [args={}] - Object optionally containing the scan ID.
+   * @returns {Promise<any>} A promise resolving when the scan is stopped.
+   */
+  stop = ({ scanId } = {}) => {
+    const params = {};
+    if (scanId) params.scanId = scanId;
+    return this.api.request('/spider/action/stop', params);
+  };
+
+  /**
+   * Removes a spider scan by its ID.
+   *
+   * @param {{ scanId: string }} args - Object containing the scan ID.
+   * @returns {Promise<any>} A promise resolving when the scan is removed.
+   */
+  removeScan = ({ scanId }) =>
+    this.api.request('/spider/action/removeScan', { scanId });
+
+  /**
+   * Pauses all ongoing spider scans.
+   *
+   * @returns {Promise<any>} A promise resolving when all scans are paused.
+   */
+  pauseAllScans = () =>
+    this.api.request('/spider/action/pauseAllScans');
+
+  /**
+   * Resumes all paused spider scans.
+   *
+   * @returns {Promise<any>} A promise resolving when all scans are resumed.
+   */
+  resumeAllScans = () =>
+    this.api.request('/spider/action/resumeAllScans');
+
+  /**
+   * Stops all ongoing spider scans.
+   *
+   * @returns {Promise<any>} A promise resolving when all scans are stopped.
+   */
+  stopAllScans = () =>
+    this.api.request('/spider/action/stopAllScans');
+
+  /**
+   * Removes all spider scans.
+   *
+   * @returns {Promise<any>} A promise resolving when all scans are removed.
+   */
+  removeAllScans = () =>
+    this.api.request('/spider/action/removeAllScans');
+
+  /**
+   * Clears the regexes of URLs excluded from spider scans.
+   *
+   * @returns {Promise<any>} A promise resolving when the exclusions are cleared.
+   */
+  clearExcludedFromScan = () =>
+    this.api.request('/spider/action/clearExcludedFromScan');
+
+  /**
+   * Adds a regex for URLs to be excluded from spider scans.
+   *
+   * @param {{ regex: string }} args - Object containing:
+   *   - regex: The regex pattern.
+   * @returns {Promise<any>} A promise resolving when the exclusion is added.
+   */
+  excludeFromScan = ({ regex }) =>
+    this.api.request('/spider/action/excludeFromScan', { regex });
+
+  /**
+   * Adds a domain to always be in scope.
+   *
+   * @param {{
+   *   value: string,
+   *   isRegex?: boolean,
+   *   isEnabled?: boolean
+   * }} args - Object containing:
+   *   - value: The domain or regex.
+   *   - isRegex: (Optional) True if value is a regex.
+   *   - isEnabled: (Optional) True if the domain is enabled.
+   * @returns {Promise<any>} A promise resolving when the domain is added.
+   */
+  addDomainAlwaysInScope = ({ value, isRegex, isEnabled }) =>
+    this.api.request('/spider/action/addDomainAlwaysInScope', { value, isRegex, isEnabled });
+
+  /**
+   * Modifies a domain that's always in scope.
+   *
+   * @param {{
+   *   idx: number,
+   *   value?: string,
+   *   isRegex?: boolean,
+   *   isEnabled?: boolean
+   * }} args - Object containing:
+   *   - idx: The index of the domain.
+   *   - value: (Optional) The new domain or regex.
+   *   - isRegex: (Optional) True if value is a regex.
+   *   - isEnabled: (Optional) True if the domain should be enabled.
+   * @returns {Promise<any>} A promise resolving when the domain is modified.
+   */
+  modifyDomainAlwaysInScope = ({ idx, value, isRegex, isEnabled }) =>
+    this.api.request('/spider/action/modifyDomainAlwaysInScope', { idx, value, isRegex, isEnabled });
+
+  /**
+   * Removes a domain that's always in scope by its index.
+   *
+   * @param {{ idx: number }} args - Object containing:
+   *   - idx: The index of the domain to remove.
+   * @returns {Promise<any>} A promise resolving when the domain is removed.
+   */
+  removeDomainAlwaysInScope = ({ idx }) =>
+    this.api.request('/spider/action/removeDomainAlwaysInScope', { idx });
+
+  /**
+   * Enables all domains that are always in scope.
+   *
+   * @returns {Promise<any>} A promise resolving when all domains are enabled.
+   */
+  enableAllDomainsAlwaysInScope = () =>
+    this.api.request('/spider/action/enableAllDomainsAlwaysInScope');
+
+  /**
+   * Disables all domains that are always in scope.
+   *
+   * @returns {Promise<any>} A promise resolving when all domains are disabled.
+   */
+  disableAllDomainsAlwaysInScope = () =>
+    this.api.request('/spider/action/disableAllDomainsAlwaysInScope');
+}
+
+module.exports = Spider;

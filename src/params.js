@@ -17,25 +17,22 @@
  * limitations under the License.
  */
 
-'use strict'
+'use strict';
 
-/**
- * This file was automatically generated.
- */
-function Params (clientApi) {
-  this.api = clientApi
-}
-
-/**
- * Shows the parameters for the specified site, or for all sites if the site is not specified
- * @param {string} site
- **/
-Params.prototype.params = function (args) {
-  const params = { }
-  if (args.site && args.site !== null) {
-    params.site = args.site
+class Params {
+  constructor(clientApi) {
+    this.api = clientApi;
   }
-  return this.api.request('/params/view/params/', params)
+
+  /**
+   * Shows the parameters for the specified site, or for all sites if the site is not specified.
+   *
+   * @param {{ site?: string }} [args={}] - Object containing the site (optional).
+   * @returns {Promise<any>} A promise that resolves with the parameters.
+   */
+  params = ({ site } = {}) => {
+    return this.api.request('/params/view/params', { site });
+  };
 }
 
-module.exports = Params
+module.exports = Params;

@@ -17,182 +17,206 @@
  * limitations under the License.
  */
 
-'use strict'
+'use strict';
 
-/**
- * This file was automatically generated.
- */
-function Users (clientApi) {
-  this.api = clientApi
-}
-
-/**
- * Gets a list of users that belong to the context with the given ID, or all users if none provided.
- * @param {string} contextid - The Context ID
- **/
-Users.prototype.usersList = function (args) {
-  const params = { }
-  if (args.contextid && args.contextid !== null) {
-    params.contextId = args.contextid
+class Users {
+  constructor(clientApi) {
+    this.api = clientApi;
   }
-  return this.api.request('/users/view/usersList/', params)
+
+  /**
+   * Gets a list of users that belong to the context with the given ID, or all users if none provided.
+   *
+   * @param {{ contextId?: string }} [args={}] - Object containing:
+   *   - contextId: (Optional) The Context ID.
+   * @returns {Promise<any>} A promise resolving with the users list.
+   */
+  usersList = ({ contextId } = {}) => {
+    const params = {};
+    if (contextId) params.contextId = contextId;
+    return this.api.request('/users/view/usersList', params);
+  };
+
+  /**
+   * Gets the data of the user with the given ID that belongs to the context with the given ID.
+   *
+   * @param {{ contextId: string, userId: string }} args - Object containing:
+   *   - contextId: The Context ID.
+   *   - userId: The User ID.
+   * @returns {Promise<any>} A promise resolving with the user data.
+   */
+  getUserById = ({ contextId, userId }) =>
+    this.api.request('/users/view/getUserById', { contextId, userId: userId });
+
+  /**
+   * Gets the configuration parameters for the credentials of the context with the given ID.
+   *
+   * @param {{ contextId: string }} args - Object containing:
+   *   - contextId: The Context ID.
+   * @returns {Promise<any>} A promise resolving with the authentication credentials config parameters.
+   */
+  getAuthenticationCredentialsConfigParams = ({ contextId }) =>
+    this.api.request('/users/view/getAuthenticationCredentialsConfigParams', { contextId });
+
+  /**
+   * Gets the authentication credentials of the user with given ID that belongs to the context with the given ID.
+   *
+   * @param {{ contextId: string, userId: string }} args - Object containing:
+   *   - contextId: The Context ID.
+   *   - userId: The User ID.
+   * @returns {Promise<any>} A promise resolving with the authentication credentials.
+   */
+  getAuthenticationCredentials = ({ contextId, userId }) =>
+    this.api.request('/users/view/getAuthenticationCredentials', { contextId, userId: userId });
+
+  /**
+   * Gets the authentication state information for the user identified by the Context and User IDs.
+   *
+   * @param {{ contextId: string, userId: string }} args - Object containing:
+   *   - contextId: The Context ID.
+   *   - userId: The User ID.
+   * @returns {Promise<any>} A promise resolving with the authentication state.
+   */
+  getAuthenticationState = ({ contextId, userId }) =>
+    this.api.request('/users/view/getAuthenticationState', { contextId, userId: userId });
+
+  /**
+   * Gets the authentication session information for the user identified by the Context and User IDs.
+   *
+   * @param {{ contextId: string, userId: string }} args - Object containing:
+   *   - contextId: The Context ID.
+   *   - userId: The User ID.
+   * @returns {Promise<any>} A promise resolving with the authentication session.
+   */
+  getAuthenticationSession = ({ contextId, userId }) =>
+    this.api.request('/users/view/getAuthenticationSession', { contextId, userId: userId });
+
+  /**
+   * Creates a new user with the given name for the context with the given ID.
+   *
+   * @param {{ contextId: string, name: string }} args - Object containing:
+   *   - contextId: The Context ID.
+   *   - name: The user name.
+   * @returns {Promise<any>} A promise resolving with the new user.
+   */
+  newUser = ({ contextId, name }) =>
+    this.api.request('/users/action/newUser', { contextId, name });
+
+  /**
+   * Removes the user with the given ID that belongs to the context with the given ID.
+   *
+   * @param {{ contextId: string, userId: string }} args - Object containing:
+   *   - contextId: The Context ID.
+   *   - userId: The User ID.
+   * @returns {Promise<any>} A promise resolving when the user is removed.
+   */
+  removeUser = ({ contextId, userId }) =>
+    this.api.request('/users/action/removeUser', { contextId, userId: userId });
+
+  /**
+   * Sets whether the user, with the given ID that belongs to the context with the given ID, should be enabled.
+   *
+   * @param {{ contextId: string, userId: string, enabled: string }} args - Object containing:
+   *   - contextId: The Context ID.
+   *   - userId: The User ID.
+   *   - enabled: Whether the user should be enabled.
+   * @returns {Promise<any>} A promise resolving when the user is enabled/disabled.
+   */
+  setUserEnabled = ({ contextId, userId, enabled }) =>
+    this.api.request('/users/action/setUserEnabled', { contextId, userId, enabled });
+
+  /**
+   * Renames the user with the given ID that belongs to the context with the given ID.
+   *
+   * @param {{ contextId: string, userId: string, name: string }} args - Object containing:
+   *   - contextId: The Context ID.
+   *   - userId: The User ID.
+   *   - name: The new username.
+   * @returns {Promise<any>} A promise resolving when the user is renamed.
+   */
+  setUserName = ({ contextId, userId, name }) =>
+    this.api.request('/users/action/setUserName', { contextId, userId, name });
+
+  /**
+   * Sets the authentication credentials for the user with the given ID that belongs to the context with the given ID.
+   *
+   * @param {{ contextId: string, userId: string, authCredentialsConfigParams?: string }} args - Object containing:
+   *   - contextId: The Context ID.
+   *   - userId: The User ID.
+   *   - authCredentialsConfigParams: (Optional) The authentication credentials config parameters.
+   * @returns {Promise<any>} A promise resolving when the credentials are set.
+   */
+  setAuthenticationCredentials = ({ contextId, userId, authCredentialsConfigParams }) =>
+    this.api.request('/users/action/setAuthenticationCredentials', { contextId, userId, authCredentialsConfigParams });
+
+
+  /**
+   * Tries to authenticate as the identified user.
+   *
+   * @param {{ contextId: string, userId: string }} args - Object containing:
+   *   - contextId: The Context ID.
+   *   - userId: The User ID.
+   * @returns {Promise<any>} A promise resolving with the authentication results.
+   */
+  authenticateAsUser = ({ contextId, userId }) =>
+    this.api.request('/users/action/authenticateAsUser', { contextId, userId: userId });
+
+  /**
+   * Tries to poll as the identified user.
+   *
+   * @param {{ contextId: string, userId: string }} args - Object containing:
+   *   - contextId: The Context ID.
+   *   - userId: The User ID.
+   * @returns {Promise<any>} A promise resolving with the polling results.
+   */
+  pollAsUser = ({ contextId, userId }) =>
+    this.api.request('/users/action/pollAsUser', { contextId, userId: userId });
+
+  /**
+   * Sets fields in the authentication state for the user identified by the Context and User IDs.
+   *
+   * @param {{
+   *   contextId: string,
+   *   userId: string,
+   *   lastPollResult?: string,
+   *   lastPollTimeInMs?: string,
+   *   requestsSinceLastPoll?: string,
+   * }} args - Object containing:
+   *   - contextId: The Context ID.
+   *   - userId: The User ID.
+   *   - lastPollResult: (Optional) Last Poll Result ('true' or 'false').
+   *   - lastPollTimeInMs: (Optional) Last Poll Time in Milliseconds (long or 'NOW').
+   *   - requestsSinceLastPoll: (Optional) Requests Since Last Poll (integer).
+   * @returns {Promise<any>} A promise resolving when the state is set.
+   */
+  setAuthenticationState = ({ contextId, userId, lastPollResult, lastPollTimeInMs, requestsSinceLastPoll }) =>
+    this.api.request('/users/action/setAuthenticationState', { contextId, userId, lastPollResult, lastPollTimeInMs, requestsSinceLastPoll });
+
+
+  /**
+   * Sets the specified cookie for the user identified by the Context and User IDs.
+   *
+   * @param {{
+   *   contextId: string,
+   *   userId: string,
+   *   domain: string,
+   *   name: string,
+   *   value: string,
+   *   path?: string,
+   *   secure?: string,
+   * }} args - Object containing:
+   *   - contextId: The Context ID.
+   *   - userId: The User ID.
+   *   - domain: The Cookie Domain.
+   *   - name: The Cookie Name.
+   *   - value: The Cookie Value.
+   *   - path: (Optional) The Cookie Path.
+   *   - secure: (Optional) If the Cookie is secure.
+   * @returns {Promise<any>} A promise resolving when the cookie is set.
+   */
+  setCookie = ({ contextId, userId, domain, name, value, path, secure }) =>
+    this.api.request('/users/action/setCookie', { contextId, userId, domain, name, value, path, secure });
+
 }
 
-/**
- * Gets the data of the user with the given ID that belongs to the context with the given ID.
- * @param {string} contextid - The Context ID
- * @param {string} userid - The User ID
- **/
-Users.prototype.getUserById = function (args) {
-  return this.api.request('/users/view/getUserById/', { contextId: args.contextid, userId: args.userid })
-}
-
-/**
- * Gets the configuration parameters for the credentials of the context with the given ID.
- * @param {string} contextid - The Context ID
- **/
-Users.prototype.getAuthenticationCredentialsConfigParams = function (args) {
-  return this.api.request('/users/view/getAuthenticationCredentialsConfigParams/', { contextId: args.contextid })
-}
-
-/**
- * Gets the authentication credentials of the user with given ID that belongs to the context with the given ID.
- * @param {string} contextid - The Context ID
- * @param {string} userid - the User ID
- **/
-Users.prototype.getAuthenticationCredentials = function (args) {
-  return this.api.request('/users/view/getAuthenticationCredentials/', { contextId: args.contextid, userId: args.userid })
-}
-
-/**
- * Gets the authentication state information for the user identified by the Context and User Ids.
- * @param {string} contextid - The Context ID
- * @param {string} userid - The User ID
- **/
-Users.prototype.getAuthenticationState = function (args) {
-  return this.api.request('/users/view/getAuthenticationState/', { contextId: args.contextid, userId: args.userid })
-}
-
-/**
- * Gets the authentication session information for the user identified by the Context and User Ids, e.g. cookies and realm credentials.
- * @param {string} contextid - The Context ID
- * @param {string} userid - The User ID
- **/
-Users.prototype.getAuthenticationSession = function (args) {
-  return this.api.request('/users/view/getAuthenticationSession/', { contextId: args.contextid, userId: args.userid })
-}
-
-/**
- * Creates a new user with the given name for the context with the given ID.
- * @param {string} contextid - The Context ID
- * @param {string} name
- **/
-Users.prototype.newUser = function (args) {
-  return this.api.request('/users/action/newUser/', { contextId: args.contextid, name: args.name })
-}
-
-/**
- * Removes the user with the given ID that belongs to the context with the given ID.
- * @param {string} contextid - The Context ID
- * @param {string} userid - The User ID
- **/
-Users.prototype.removeUser = function (args) {
-  return this.api.request('/users/action/removeUser/', { contextId: args.contextid, userId: args.userid })
-}
-
-/**
- * Sets whether or not the user, with the given ID that belongs to the context with the given ID, should be enabled.
- * @param {string} contextid - The Context ID
- * @param {string} userid - The User ID
- * @param {string} enabled
- **/
-Users.prototype.setUserEnabled = function (args) {
-  return this.api.request('/users/action/setUserEnabled/', { contextId: args.contextid, userId: args.userid, enabled: args.enabled })
-}
-
-/**
- * Renames the user with the given ID that belongs to the context with the given ID.
- * @param {string} contextid - The Context ID
- * @param {string} userid - The User ID
- * @param {string} name
- **/
-Users.prototype.setUserName = function (args) {
-  return this.api.request('/users/action/setUserName/', { contextId: args.contextid, userId: args.userid, name: args.name })
-}
-
-/**
- * Sets the authentication credentials for the user with the given ID that belongs to the context with the given ID.
- * @param {string} contextid - The Context ID
- * @param {string} userid - The User ID
- * @param {string} authcredentialsconfigparams
- **/
-Users.prototype.setAuthenticationCredentials = function (args) {
-  const params = { contextId: args.contextid, userId: args.userid }
-  if (args.authcredentialsconfigparams && args.authcredentialsconfigparams !== null) {
-    params.authCredentialsConfigParams = args.authcredentialsconfigparams
-  }
-  return this.api.request('/users/action/setAuthenticationCredentials/', params)
-}
-
-/**
- * Tries to authenticate as the identified user, returning the authentication request and whether it appears to have succeeded.
- * @param {string} contextid - The Context ID
- * @param {string} userid - The User ID
- **/
-Users.prototype.authenticateAsUser = function (args) {
-  return this.api.request('/users/action/authenticateAsUser/', { contextId: args.contextid, userId: args.userid })
-}
-
-/**
- * Tries to poll as the identified user, returning the authentication request and whether it appears to have succeeded. This will only work if the polling verification strategy has been configured.
- * @param {string} contextid - The Context ID
- * @param {string} userid - The User ID
- **/
-Users.prototype.pollAsUser = function (args) {
-  return this.api.request('/users/action/pollAsUser/', { contextId: args.contextid, userId: args.userid })
-}
-
-/**
- * Sets fields in the authentication state for the user identified by the Context and User Ids.
- * @param {string} contextid - The Context ID
- * @param {string} userid - The User ID
- * @param {string} lastpollresult - Last Poll Result - optional, should be 'true' or 'false'.
- * @param {string} lastpolltimeinms - Last Poll Time in Milliseconds - optional, should be a long or 'NOW' for the current time in ms.
- * @param {string} requestssincelastpoll - Requests Since Last Poll - optional, should be an integer.
- **/
-Users.prototype.setAuthenticationState = function (args) {
-  const params = { contextId: args.contextid, userId: args.userid }
-  if (args.lastpollresult && args.lastpollresult !== null) {
-    params.lastPollResult = args.lastpollresult
-  }
-  if (args.lastpolltimeinms && args.lastpolltimeinms !== null) {
-    params.lastPollTimeInMs = args.lastpolltimeinms
-  }
-  if (args.requestssincelastpoll && args.requestssincelastpoll !== null) {
-    params.requestsSinceLastPoll = args.requestssincelastpoll
-  }
-  return this.api.request('/users/action/setAuthenticationState/', params)
-}
-
-/**
- * Sets the specified cookie for the user identified by the Context and User Ids.
- * @param {string} contextid - The Context ID
- * @param {string} userid - The User ID
- * @param {string} domain - The Cookie Domain
- * @param {string} name - The Cookie Name
- * @param {string} value - The Cookie Value
- * @param {string} path - The Cookie Path - optional default no path
- * @param {string} secure - If the Cookie is secure - optional default false
- **/
-Users.prototype.setCookie = function (args) {
-  const params = { contextId: args.contextid, userId: args.userid, domain: args.domain, name: args.name, value: args.value }
-  if (args.path && args.path !== null) {
-    params.path = args.path
-  }
-  if (args.secure && args.secure !== null) {
-    params.secure = args.secure
-  }
-  return this.api.request('/users/action/setCookie/', params)
-}
-
-module.exports = Users
+module.exports = Users;

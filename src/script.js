@@ -17,250 +17,198 @@
  * limitations under the License.
  */
 
-'use strict'
+'use strict';
 
-/**
- * This file was automatically generated.
- */
-function Script (clientApi) {
-  this.api = clientApi
-}
-
-/**
- * Lists the script engines available
- * This component is optional and therefore the API will only work if it is installed
- **/
-Script.prototype.listEngines = function () {
-  return this.api.request('/script/view/listEngines/')
-}
-
-/**
- * Lists the script types available.
- * This component is optional and therefore the API will only work if it is installed
- **/
-Script.prototype.listTypes = function () {
-  return this.api.request('/script/view/listTypes/')
-}
-
-/**
- * Lists the scripts available, with its engine, name, description, type and error state.
- * This component is optional and therefore the API will only work if it is installed
- **/
-Script.prototype.listScripts = function () {
-  return this.api.request('/script/view/listScripts/')
-}
-
-/**
- * Gets the value of the global variable with the given key. Returns an API error (DOES_NOT_EXIST) if no value was previously set.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} varkey
- **/
-Script.prototype.globalVar = function (args) {
-  return this.api.request('/script/view/globalVar/', { varKey: args.varkey })
-}
-
-/**
- * Gets the value (string representation) of a global custom variable. Returns an API error (DOES_NOT_EXIST) if no value was previously set.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} varkey - The key of the variable.
- **/
-Script.prototype.globalCustomVar = function (args) {
-  return this.api.request('/script/view/globalCustomVar/', { varKey: args.varkey })
-}
-
-/**
- * Gets all the global variables (key/value pairs).
- * This component is optional and therefore the API will only work if it is installed
- **/
-Script.prototype.globalVars = function () {
-  return this.api.request('/script/view/globalVars/')
-}
-
-/**
- * Gets all the global custom variables (key/value pairs, the value is the string representation).
- * This component is optional and therefore the API will only work if it is installed
- **/
-Script.prototype.globalCustomVars = function () {
-  return this.api.request('/script/view/globalCustomVars/')
-}
-
-/**
- * Gets the value of the variable with the given key for the given script. Returns an API error (DOES_NOT_EXIST) if no script with the given name exists or if no value was previously set.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} scriptname
- * @param {string} varkey
- **/
-Script.prototype.scriptVar = function (args) {
-  return this.api.request('/script/view/scriptVar/', { scriptName: args.scriptname, varKey: args.varkey })
-}
-
-/**
- * Gets the value (string representation) of a custom variable. Returns an API error (DOES_NOT_EXIST) if no script with the given name exists or if no value was previously set.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} scriptname - The name of the script.
- * @param {string} varkey - The key of the variable.
- **/
-Script.prototype.scriptCustomVar = function (args) {
-  return this.api.request('/script/view/scriptCustomVar/', { scriptName: args.scriptname, varKey: args.varkey })
-}
-
-/**
- * Gets all the variables (key/value pairs) of the given script. Returns an API error (DOES_NOT_EXIST) if no script with the given name exists.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} scriptname
- **/
-Script.prototype.scriptVars = function (args) {
-  return this.api.request('/script/view/scriptVars/', { scriptName: args.scriptname })
-}
-
-/**
- * Gets all the custom variables (key/value pairs, the value is the string representation) of a script. Returns an API error (DOES_NOT_EXIST) if no script with the given name exists.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} scriptname - The name of the script.
- **/
-Script.prototype.scriptCustomVars = function (args) {
-  return this.api.request('/script/view/scriptCustomVars/', { scriptName: args.scriptname })
-}
-
-/**
- * Enables the script with the given name
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} scriptname
- **/
-Script.prototype.enable = function (args) {
-  return this.api.request('/script/action/enable/', { scriptName: args.scriptname })
-}
-
-/**
- * Disables the script with the given name
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} scriptname
- **/
-Script.prototype.disable = function (args) {
-  return this.api.request('/script/action/disable/', { scriptName: args.scriptname })
-}
-
-/**
- * Loads a script into ZAP from the given local file, with the given name, type and engine, optionally with a description, and a charset name to read the script (the charset name is required if the script is not in UTF-8, for example, in ISO-8859-1).
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} scriptname
- * @param {string} scripttype
- * @param {string} scriptengine
- * @param {string} filename
- * @param {string} scriptdescription
- * @param {string} charset
- **/
-Script.prototype.load = function (args) {
-  const params = { scriptName: args.scriptname, scriptType: args.scripttype, scriptEngine: args.scriptengine, fileName: args.filename }
-  if (args.scriptdescription && args.scriptdescription !== null) {
-    params.scriptDescription = args.scriptdescription
+class Script {
+  constructor(clientApi) {
+    this.api = clientApi;
   }
-  if (args.charset && args.charset !== null) {
-    params.charset = args.charset
-  }
-  return this.api.request('/script/action/load/', params)
+
+  /**
+   * Lists the script engines available.
+   * @returns {Promise<any>} A promise resolving with the list of script engines.
+   */
+  listEngines = () => this.api.request('/script/view/listEngines');
+
+  /**
+   * Lists the script types available.
+   * @returns {Promise<any>} A promise resolving with the list of script types.
+   */
+  listTypes = () => this.api.request('/script/view/listTypes');
+
+  /**
+   * Lists the scripts available with details such as engine, name, description, type, and error state.
+   * @returns {Promise<any>} A promise resolving with the list of scripts.
+   */
+  listScripts = () => this.api.request('/script/view/listScripts');
+
+  /**
+   * Gets the value of the global variable with the given key.
+   * @param {{ varKey: string }} args - Object containing the key.
+   * @returns {Promise<any>} A promise resolving with the global variable value.
+   */
+  globalVar = ({ varKey }) => this.api.request('/script/view/globalVar', { varKey });
+
+  /**
+   * Gets the value (string representation) of a global custom variable.
+   * @param {{ varKey: string }} args - Object containing the key.
+   * @returns {Promise<any>} A promise resolving with the global custom variable value.
+   */
+  globalCustomVar = ({ varKey }) => this.api.request('/script/view/globalCustomVar', { varKey });
+
+  /**
+   * Gets all global variables (key/value pairs).
+   * @returns {Promise<any>} A promise resolving with all global variables.
+   */
+  globalVars = () => this.api.request('/script/view/globalVars');
+
+  /**
+   * Gets all global custom variables (key/value pairs).
+   * @returns {Promise<any>} A promise resolving with all global custom variables.
+   */
+  globalCustomVars = () => this.api.request('/script/view/globalCustomVars');
+
+  /**
+   * Gets the value of a variable for a specific script.
+   * @param {{ scriptName: string, varKey: string }} args - Object containing the script name and variable key.
+   * @returns {Promise<any>} A promise resolving with the script variable value.
+   */
+  scriptVar = ({ scriptName, varKey }) =>
+    this.api.request('/script/view/scriptVar', { scriptName, varKey });
+
+  /**
+   * Gets the value (string representation) of a custom variable for a specific script.
+   * @param {{ scriptName: string, varKey: string }} args - Object containing the script name and variable key.
+   * @returns {Promise<any>} A promise resolving with the script custom variable value.
+   */
+  scriptCustomVar = ({ scriptName, varKey }) =>
+    this.api.request('/script/view/scriptCustomVar', { scriptName, varKey });
+
+  /**
+   * Gets all variables of a given script.
+   * @param {{ scriptName: string }} args - Object containing the script name.
+   * @returns {Promise<any>} A promise resolving with the script variables.
+   */
+  scriptVars = ({ scriptName }) =>
+    this.api.request('/script/view/scriptVars', { scriptName });
+
+  /**
+   * Gets all custom variables of a given script.
+   * @param {{ scriptName: string }} args - Object containing the script name.
+   * @returns {Promise<any>} A promise resolving with the script custom variables.
+   */
+  scriptCustomVars = ({ scriptName }) =>
+    this.api.request('/script/view/scriptCustomVars', { scriptName });
+
+  /**
+   * Enables the script with the given name.
+   * @param {{ scriptName: string }} args - Object containing the script name.
+   * @returns {Promise<any>} A promise resolving when the script is enabled.
+   */
+  enableScript = ({ scriptName }) =>
+    this.api.request('/script/action/enable', { scriptName });
+
+  /**
+   * Disables the script with the given name.
+   * @param {{ scriptName: string }} args - Object containing the script name.
+   * @returns {Promise<any>} A promise resolving when the script is disabled.
+   */
+  disableScript = ({ scriptName }) =>
+    this.api.request('/script/action/disable', { scriptName });
+
+  /**
+   * Loads a script into ZAP from a local file.
+   * @param {{
+   *   scriptName: string,
+   *   scriptType: string,
+   *   scriptEngine: string,
+   *   fileName: string,
+   *   scriptDescription?: string,
+   *   charset?: string
+   * }} args - Object containing script properties.
+   * @returns {Promise<any>} A promise resolving with the load result.
+   */
+  load = ({ scriptName, scriptType, scriptEngine, fileName, scriptDescription, charset }) =>
+    this.api.request('/script/action/load', { scriptName, scriptType, scriptEngine, fileName, scriptDescription, charset });
+
+  /**
+   * Removes the script with the given name.
+   * @param {{ scriptName: string }} args - Object containing the script name.
+   * @returns {Promise<any>} A promise resolving when the script is removed.
+   */
+  remove = ({ scriptName }) =>
+    this.api.request('/script/action/remove', { scriptName });
+
+  /**
+   * Runs the stand-alone script with the given name.
+   * @param {{ scriptName: string }} args - Object containing the script name.
+   * @returns {Promise<any>} A promise resolving with the run result.
+   */
+  runStandAloneScript = ({ scriptName }) =>
+    this.api.request('/script/action/runStandAloneScript', { scriptName });
+
+  /**
+   * Clears the global variable with the given key.
+   * @param {{ varKey: string }} args - Object containing the variable key.
+   * @returns {Promise<any>} A promise resolving when the global variable is cleared.
+   */
+  clearGlobalVar = ({ varKey }) =>
+    this.api.request('/script/action/clearGlobalVar', { varKey });
+
+  /**
+   * Clears a global custom variable.
+   * @param {{ varKey: string }} args - Object containing the variable key.
+   * @returns {Promise<any>} A promise resolving when the global custom variable is cleared.
+   */
+  clearGlobalCustomVar = ({ varKey }) =>
+    this.api.request('/script/action/clearGlobalCustomVar', { varKey });
+
+  /**
+   * Clears all global variables.
+   * @returns {Promise<any>} A promise resolving when all global variables are cleared.
+   */
+  clearGlobalVars = () =>
+    this.api.request('/script/action/clearGlobalVars');
+
+  /**
+   * Clears the variable with the given key for the given script.
+   * @param {{ scriptName: string, varKey: string }} args - Object containing the script name and variable key.
+   * @returns {Promise<any>} A promise resolving when the script variable is cleared.
+   */
+  clearScriptVar = ({ scriptName, varKey }) =>
+    this.api.request('/script/action/clearScriptVar', { scriptName, varKey });
+
+  /**
+   * Clears a script custom variable.
+   * @param {{ scriptName: string, varKey: string }} args - Object containing the script name and variable key.
+   * @returns {Promise<any>} A promise resolving when the script custom variable is cleared.
+   */
+  clearScriptCustomVar = ({ scriptName, varKey }) =>
+    this.api.request('/script/action/clearScriptCustomVar', { scriptName, varKey });
+
+  /**
+   * Clears all variables for the given script.
+   * @param {{ scriptName: string }} args - Object containing the script name.
+   * @returns {Promise<any>} A promise resolving when the script variables are cleared.
+   */
+  clearScriptVars = ({ scriptName }) =>
+    this.api.request('/script/action/clearScriptVars', { scriptName });
+
+  /**
+   * Sets the value of a variable for the given script.
+   * @param {{ scriptName: string, varKey: string, varValue: string }} args - Object containing the script name, variable key, and value.
+   * @returns {Promise<any>} A promise resolving when the variable is set.
+   */
+  setScriptVar = ({ scriptName, varKey, varValue }) =>
+    this.api.request('/script/action/setScriptVar', { scriptName, varKey, varValue });
+
+  /**
+   * Sets the value of a global variable.
+   * @param {{ varKey: string, varValue: string }} args - Object containing the variable key and value.
+   * @returns {Promise<any>} A promise resolving when the global variable is set.
+   */
+  setGlobalVar = ({ varKey, varValue }) =>
+    this.api.request('/script/action/setGlobalVar', { varKey, varValue });
 }
 
-/**
- * Removes the script with the given name
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} scriptname
- **/
-Script.prototype.remove = function (args) {
-  return this.api.request('/script/action/remove/', { scriptName: args.scriptname })
-}
-
-/**
- * Runs the stand alone script with the given name
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} scriptname
- **/
-Script.prototype.runStandAloneScript = function (args) {
-  return this.api.request('/script/action/runStandAloneScript/', { scriptName: args.scriptname })
-}
-
-/**
- * Clears the global variable with the given key.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} varkey
- **/
-Script.prototype.clearGlobalVar = function (args) {
-  return this.api.request('/script/action/clearGlobalVar/', { varKey: args.varkey })
-}
-
-/**
- * Clears a global custom variable.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} varkey - The key of the variable.
- **/
-Script.prototype.clearGlobalCustomVar = function (args) {
-  return this.api.request('/script/action/clearGlobalCustomVar/', { varKey: args.varkey })
-}
-
-/**
- * Clears the global variables.
- * This component is optional and therefore the API will only work if it is installed
- **/
-Script.prototype.clearGlobalVars = function () {
-  return this.api.request('/script/action/clearGlobalVars/')
-}
-
-/**
- * Clears the variable with the given key of the given script. Returns an API error (DOES_NOT_EXIST) if no script with the given name exists.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} scriptname
- * @param {string} varkey
- **/
-Script.prototype.clearScriptVar = function (args) {
-  return this.api.request('/script/action/clearScriptVar/', { scriptName: args.scriptname, varKey: args.varkey })
-}
-
-/**
- * Clears a script custom variable.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} scriptname - The name of the script.
- * @param {string} varkey - The key of the variable.
- **/
-Script.prototype.clearScriptCustomVar = function (args) {
-  return this.api.request('/script/action/clearScriptCustomVar/', { scriptName: args.scriptname, varKey: args.varkey })
-}
-
-/**
- * Clears the variables of the given script. Returns an API error (DOES_NOT_EXIST) if no script with the given name exists.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} scriptname
- **/
-Script.prototype.clearScriptVars = function (args) {
-  return this.api.request('/script/action/clearScriptVars/', { scriptName: args.scriptname })
-}
-
-/**
- * Sets the value of the variable with the given key of the given script. Returns an API error (DOES_NOT_EXIST) if no script with the given name exists.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} scriptname
- * @param {string} varkey
- * @param {string} varvalue
- **/
-Script.prototype.setScriptVar = function (args) {
-  const params = { scriptName: args.scriptname, varKey: args.varkey }
-  if (args.varvalue && args.varvalue !== null) {
-    params.varValue = args.varvalue
-  }
-  return this.api.request('/script/action/setScriptVar/', params)
-}
-
-/**
- * Sets the value of the global variable with the given key.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} varkey
- * @param {string} varvalue
- **/
-Script.prototype.setGlobalVar = function (args) {
-  const params = { varKey: args.varkey }
-  if (args.varvalue && args.varvalue !== null) {
-    params.varValue = args.varvalue
-  }
-  return this.api.request('/script/action/setGlobalVar/', params)
-}
-
-module.exports = Script
+module.exports = Script;

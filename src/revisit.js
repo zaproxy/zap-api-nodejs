@@ -17,34 +17,38 @@
  * limitations under the License.
  */
 
-'use strict'
+'use strict';
 
-/**
- * This file was automatically generated.
- */
-function Revisit (clientApi) {
-  this.api = clientApi
+class Revisit {
+  constructor(clientApi) {
+    this.api = clientApi;
+  }
+
+  /**
+   * Retrieves the list of revisit entries.
+   * @returns {Promise<any>} A promise resolving with the revisit list.
+   */
+  revisitList = () => this.api.request('/revisit/view/revisitList');
+
+  /**
+   * Activates revisit on a site.
+   * @param {{ site: string, startTime: string, endTime: string }} args - Object containing:
+   *   - site: The site to be revisited.
+   *   - startTime: The start time for the revisit.
+   *   - endTime: The end time for the revisit.
+   * @returns {Promise<any>} A promise resolving with the action result.
+   */
+  revisitSiteOn = ({ site, startTime, endTime }) =>
+    this.api.request('/revisit/action/revisitSiteOn', { site, startTime, endTime });
+
+  /**
+   * Deactivates revisit on a site.
+   * @param {{ site: string }} args - Object containing:
+   *   - site: The site for which revisit should be turned off.
+   * @returns {Promise<any>} A promise resolving with the action result.
+   */
+  revisitSiteOff = ({ site }) =>
+    this.api.request('/revisit/action/revisitSiteOff', { site });
 }
 
-/**
- * This component is optional and therefore the API will only work if it is installed
- **/
-Revisit.prototype.revisitList = function () {
-  return this.api.request('/revisit/view/revisitList/')
-}
-
-/**
- * This component is optional and therefore the API will only work if it is installed
- **/
-Revisit.prototype.revisitSiteOn = function (args) {
-  return this.api.request('/revisit/action/revisitSiteOn/', { site: args.site, startTime: args.starttime, endTime: args.endtime })
-}
-
-/**
- * This component is optional and therefore the API will only work if it is installed
- **/
-Revisit.prototype.revisitSiteOff = function (args) {
-  return this.api.request('/revisit/action/revisitSiteOff/', { site: args.site })
-}
-
-module.exports = Revisit
+module.exports = Revisit;

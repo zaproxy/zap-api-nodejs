@@ -17,129 +17,137 @@
  * limitations under the License.
  */
 
-'use strict'
+'use strict';
 
-/**
- * This file was automatically generated.
- */
-function Stats (clientApi) {
-  this.api = clientApi
-}
-
-/**
- * Statistics
- * @param {string} keyprefix
- **/
-Stats.prototype.stats = function (args) {
-  const params = { }
-  if (args.keyprefix && args.keyprefix !== null) {
-    params.keyPrefix = args.keyprefix
+class Stats {
+  constructor(clientApi) {
+    this.api = clientApi;
   }
-  return this.api.request('/stats/view/stats/', params)
+
+  /**
+   * Gets statistics, optionally filtered by a key prefix.
+   *
+   * @param {{ keyPrefix?: string }} [args={}] - Object containing:
+   *   - keyPrefix: (Optional) The key prefix to filter by.
+   * @returns {Promise<any>} A promise resolving with the statistics.
+   */
+  stats = ({ keyPrefix } = {}) => {
+    return this.api.request('/stats/view/stats', { keyPrefix });
+  };
+
+  /**
+   * Gets all the site based statistics, optionally filtered by a key prefix.
+   *
+   * @param {{ keyPrefix?: string }} [args={}] - Object containing:
+   *   - keyPrefix: (Optional) The key prefix to filter by.
+   * @returns {Promise<any>} A promise resolving with all site statistics.
+   */
+  allSitesStats = ({ keyPrefix } = {}) => {
+    return this.api.request('/stats/view/allSitesStats', { keyPrefix });
+  };
+
+  /**
+   * Gets all the statistics for a site, optionally filtered by a key prefix.
+   *
+   * @param {{ site: string, keyPrefix?: string }} args - Object containing:
+   *   - site: The site to get statistics for.
+   *   - keyPrefix: (Optional) The key prefix to filter by.
+   * @returns {Promise<any>} A promise resolving with the site statistics.
+   */
+  siteStats = ({ site, keyPrefix }) => {
+    return this.api.request('/stats/view/siteStats', { site, keyPrefix });
+  };
+
+  /**
+   * Gets the Statsd service hostname.
+   *
+   * @returns {Promise<any>} A promise resolving with the Statsd hostname.
+   */
+  optionStatsdHost = () =>
+    this.api.request('/stats/view/optionStatsdHost');
+
+  /**
+   * Gets the Statsd service port.
+   *
+   * @returns {Promise<any>} A promise resolving with the Statsd port.
+   */
+  optionStatsdPort = () =>
+    this.api.request('/stats/view/optionStatsdPort');
+
+  /**
+   * Gets the prefix to be applied to all stats sent to the configured Statsd service.
+   *
+   * @returns {Promise<any>} A promise resolving with the Statsd prefix.
+   */
+  optionStatsdPrefix = () =>
+    this.api.request('/stats/view/optionStatsdPrefix');
+
+  /**
+   * Checks if in-memory statistics are enabled.
+   *
+   * @returns {Promise<any>} A promise resolving with a boolean indicating if in-memory stats are enabled.
+   */
+  optionInMemoryEnabled = () =>
+    this.api.request('/stats/view/optionInMemoryEnabled');
+
+  /**
+   * Checks if a Statsd server has been correctly configured.
+   *
+   * @returns {Promise<any>} A promise resolving with a boolean indicating if Statsd is enabled.
+   */
+  optionStatsdEnabled = () =>
+    this.api.request('/stats/view/optionStatsdEnabled');
+
+  /**
+   * Clears all of the statistics, optionally filtered by a key prefix.
+   *
+   * @param {{ keyPrefix?: string }} [args={}] - Object containing:
+   *   - keyPrefix: (Optional) The key prefix to filter by.
+   * @returns {Promise<any>} A promise resolving when statistics are cleared.
+   */
+  clearStats = ({ keyPrefix } = {}) => {
+    return this.api.request('/stats/action/clearStats', { keyPrefix });
+  };
+
+  /**
+   * Sets the Statsd service hostname.
+   *
+   * @param {{ string: string }} args - Object containing:
+   *   - string: The hostname (empty string to stop using Statsd).
+   * @returns {Promise<any>} A promise resolving when the hostname is set.
+   */
+  setOptionStatsdHost = ({ string }) =>
+    this.api.request('/stats/action/setOptionStatsdHost', { String: string });
+
+  /**
+   * Sets the prefix to be applied to all stats sent to the configured Statsd service.
+   *
+   * @param {{ string: string }} args - Object containing:
+   *   - string: The prefix string.
+   * @returns {Promise<any>} A promise resolving when the prefix is set.
+   */
+  setOptionStatsdPrefix = ({ string }) =>
+    this.api.request('/stats/action/setOptionStatsdPrefix', { String: string });
+
+  /**
+   * Sets whether in-memory statistics are enabled.
+   *
+   * @param {{ bool: boolean }} args - Object containing:
+   *   - bool: True to enable in-memory statistics, false otherwise.
+   * @returns {Promise<any>} A promise resolving when the setting is applied.
+   */
+  setOptionInMemoryEnabled = ({ bool }) =>
+    this.api.request('/stats/action/setOptionInMemoryEnabled', { Boolean: bool });
+
+  /**
+   * Sets the Statsd service port.
+   *
+   * @param {{ integer: number }} args - Object containing:
+   *   - integer: The port number.
+   * @returns {Promise<any>} A promise resolving when the port is set.
+   */
+  setOptionStatsdPort = ({ integer }) =>
+    this.api.request('/stats/action/setOptionStatsdPort', { Integer: integer });
 }
 
-/**
- * Gets all of the site based statistics, optionally filtered by a key prefix
- * @param {string} keyprefix
- **/
-Stats.prototype.allSitesStats = function (args) {
-  const params = { }
-  if (args.keyprefix && args.keyprefix !== null) {
-    params.keyPrefix = args.keyprefix
-  }
-  return this.api.request('/stats/view/allSitesStats/', params)
-}
-
-/**
- * Gets all of the global statistics, optionally filtered by a key prefix
- * @param {string} site
- * @param {string} keyprefix
- **/
-Stats.prototype.siteStats = function (args) {
-  const params = { site: args.site }
-  if (args.keyprefix && args.keyprefix !== null) {
-    params.keyPrefix = args.keyprefix
-  }
-  return this.api.request('/stats/view/siteStats/', params)
-}
-
-/**
- * Gets the Statsd service hostname
- **/
-Stats.prototype.optionStatsdHost = function () {
-  return this.api.request('/stats/view/optionStatsdHost/')
-}
-
-/**
- * Gets the Statsd service port
- **/
-Stats.prototype.optionStatsdPort = function () {
-  return this.api.request('/stats/view/optionStatsdPort/')
-}
-
-/**
- * Gets the prefix to be applied to all stats sent to the configured Statsd service
- **/
-Stats.prototype.optionStatsdPrefix = function () {
-  return this.api.request('/stats/view/optionStatsdPrefix/')
-}
-
-/**
- * Returns 'true' if in memory statistics are enabled, otherwise returns 'false'
- **/
-Stats.prototype.optionInMemoryEnabled = function () {
-  return this.api.request('/stats/view/optionInMemoryEnabled/')
-}
-
-/**
- * Returns 'true' if a Statsd server has been correctly configured, otherwise returns 'false'
- **/
-Stats.prototype.optionStatsdEnabled = function () {
-  return this.api.request('/stats/view/optionStatsdEnabled/')
-}
-
-/**
- * Clears all of the statistics
- * @param {string} keyprefix
- **/
-Stats.prototype.clearStats = function (args) {
-  const params = { }
-  if (args.keyprefix && args.keyprefix !== null) {
-    params.keyPrefix = args.keyprefix
-  }
-  return this.api.request('/stats/action/clearStats/', params)
-}
-
-/**
- * Sets the Statsd service hostname, supply an empty string to stop using a Statsd service
- * @param {string} string
- **/
-Stats.prototype.setOptionStatsdHost = function (args) {
-  return this.api.request('/stats/action/setOptionStatsdHost/', { String: args.string })
-}
-
-/**
- * Sets the prefix to be applied to all stats sent to the configured Statsd service
- * @param {string} string
- **/
-Stats.prototype.setOptionStatsdPrefix = function (args) {
-  return this.api.request('/stats/action/setOptionStatsdPrefix/', { String: args.string })
-}
-
-/**
- * Sets whether in memory statistics are enabled
- * @param {string} bool
- **/
-Stats.prototype.setOptionInMemoryEnabled = function (args) {
-  return this.api.request('/stats/action/setOptionInMemoryEnabled/', { Boolean: args.bool })
-}
-
-/**
- * Sets the Statsd service port
- * @param {string} integer
- **/
-Stats.prototype.setOptionStatsdPort = function (args) {
-  return this.api.request('/stats/action/setOptionStatsdPort/', { Integer: args.integer })
-}
-
-module.exports = Stats
+module.exports = Stats;

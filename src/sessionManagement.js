@@ -17,50 +17,52 @@
  * limitations under the License.
  */
 
-'use strict'
+'use strict';
 
-/**
- * This file was automatically generated.
- */
-function SessionManagement (clientApi) {
-  this.api = clientApi
-}
-
-/**
- * Gets the name of the session management methods.
- **/
-SessionManagement.prototype.getSupportedSessionManagementMethods = function () {
-  return this.api.request('/sessionManagement/view/getSupportedSessionManagementMethods/')
-}
-
-/**
- * Gets the configuration parameters for the session management method with the given name.
- * @param {string} methodname
- **/
-SessionManagement.prototype.getSessionManagementMethodConfigParams = function (args) {
-  return this.api.request('/sessionManagement/view/getSessionManagementMethodConfigParams/', { methodName: args.methodname })
-}
-
-/**
- * Gets the name of the session management method for the context with the given ID.
- * @param {string} contextid
- **/
-SessionManagement.prototype.getSessionManagementMethod = function (args) {
-  return this.api.request('/sessionManagement/view/getSessionManagementMethod/', { contextId: args.contextid })
-}
-
-/**
- * Sets the session management method for the context with the given ID.
- * @param {string} contextid
- * @param {string} methodname
- * @param {string} methodconfigparams
- **/
-SessionManagement.prototype.setSessionManagementMethod = function (args) {
-  const params = { contextId: args.contextid, methodName: args.methodname }
-  if (args.methodconfigparams && args.methodconfigparams !== null) {
-    params.methodConfigParams = args.methodconfigparams
+class SessionManagement {
+  constructor(clientApi) {
+    this.api = clientApi;
   }
-  return this.api.request('/sessionManagement/action/setSessionManagementMethod/', params)
+
+  /**
+   * Gets the names of the supported session management methods.
+   * @returns {Promise<object>} A promise resolving to the session management methods.
+   */
+  getSupportedSessionManagementMethods = () =>
+    this.api.request('/sessionManagement/view/getSupportedSessionManagementMethods');
+
+  /**
+   * Gets the configuration parameters for the specified session management method.
+   * @param {{ methodName: string }} args - Object containing:
+   *   - methodName: The name of the session management method.
+   * @returns {Promise<object>} A promise resolving to the configuration parameters of the method.
+   */
+  getSessionManagementMethodConfigParams = ({ methodName }) =>
+    this.api.request('/sessionManagement/view/getSessionManagementMethodConfigParams', { methodName });
+
+  /**
+   * Gets the session management method configured for a specific context.
+   * @param {{ contextId: string }} args - Object containing:
+   *   - contextId: The ID of the context.
+   * @returns {Promise<object>} A promise resolving to the session management method for the context.
+   */
+  getSessionManagementMethod = ({ contextId }) =>
+    this.api.request('/sessionManagement/view/getSessionManagementMethod', { contextId });
+
+  /**
+   * Sets the session management method for a specified context.
+   * @param {{ contextId: string, methodName: string, methodConfigParams: string }} args - Object containing:
+   *   - contextId: The ID of the context.
+   *   - methodName: The name of the session management method to set.
+   *   - methodConfigParams: A JSON string containing the configuration parameters for the method.
+   * @returns {Promise<object>} A promise resolving to the result of the operation.
+   */
+  setSessionManagementMethod = ({ contextId, methodName, methodConfigParams }) =>
+    this.api.request('/sessionManagement/action/setSessionManagementMethod', {
+      contextId,
+      methodName,
+      methodConfigParams,
+    });
 }
 
-module.exports = SessionManagement
+module.exports = SessionManagement;

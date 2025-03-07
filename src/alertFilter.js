@@ -17,284 +17,255 @@
  * limitations under the License.
  */
 
-'use strict'
+'use strict';
 
-/**
- * This file was automatically generated.
- */
-function AlertFilter (clientApi) {
-  this.api = clientApi
+class AlertFilter {
+  /**
+   * Manages alert filter-related API requests.
+   * @param {object} clientApi - The client API object for making requests.
+   */
+  constructor(clientApi) {
+    this.api = clientApi;
+  }
+
+  /**
+   * Lists the alert filters of the context with the given ID.
+   * @param {string} contextId
+   * @returns {Promise}
+   */
+  alertFilterList = ({ contextId }) =>
+    this.api.request('/alertFilter/view/alertFilterList', { contextId });
+
+  /**
+   * Lists the global alert filters.
+   * @returns {Promise}
+   */
+  globalAlertFilterList = () =>
+    this.api.request('/alertFilter/view/globalAlertFilterList');
+
+  /**
+   * Adds a new alert filter for the context with the given ID.
+   * @param {{
+   *   contextId: string,
+   *   ruleId: string,
+   *   newLevel: string,
+   *   url: string,
+   *   urlIsRegex: boolean,
+   *   parameter: string,
+   *   enabled: boolean,
+   *   parameterIsRegex: boolean,
+   *   attack: string,
+   *   attackIsRegex: boolean,
+   *   evidence: string,
+   *   evidenceIsRegex: boolean,
+   * }} args
+   * @returns {Promise}
+   */
+  addAlertFilter = ({
+                      contextId,
+                      ruleId,
+                      newLevel,
+                      url,
+                      urlIsRegex,
+                      parameter,
+                      enabled,
+                      parameterIsRegex,
+                      attack,
+                      attackIsRegex,
+                      evidence,
+                      evidenceIsRegex,
+                    }) =>
+    this.api.request('/alertFilter/action/addAlertFilter', {
+      contextId,
+      ruleId,
+      newLevel,
+      url,
+      urlIsRegex: String(urlIsRegex),
+      parameter,
+      enabled: String(enabled),
+      parameterIsRegex: String(parameterIsRegex),
+      attack,
+      attackIsRegex: String(attackIsRegex),
+      evidence,
+      evidenceIsRegex: String(evidenceIsRegex),
+    });
+
+  /**
+   * Removes an alert filter from the context with the given ID.
+   * @param {{
+   *   contextId: string,
+   *   ruleId: string,
+   *   newLevel: string,
+   *   url: string,
+   *   urlIsRegex: boolean,
+   *   parameter: string,
+   *   enabled: boolean,
+   *   parameterIsRegex: boolean,
+   *   attack: string,
+   *   attackIsRegex: boolean,
+   *   evidence: string,
+   *   evidenceIsRegex: boolean,
+   * }} args
+   * @returns {Promise}
+   */
+  removeAlertFilter = ({
+                         contextId,
+                         ruleId,
+                         newLevel,
+                         url,
+                         urlIsRegex,
+                         parameter,
+                         enabled,
+                         parameterIsRegex,
+                         attack,
+                         attackIsRegex,
+                         evidence,
+                         evidenceIsRegex,
+                       }) =>
+    this.api.request('/alertFilter/action/removeAlertFilter', {
+      contextId,
+      ruleId,
+      newLevel,
+      url,
+      urlIsRegex: String(urlIsRegex),
+      parameter,
+      enabled: String(enabled),
+      parameterIsRegex: String(parameterIsRegex),
+      attack,
+      attackIsRegex: String(attackIsRegex),
+      evidence,
+      evidenceIsRegex: String(evidenceIsRegex),
+    });
+
+  /**
+   * Adds a new global alert filter.
+   * @param {{
+   *   ruleId: string,
+   *   newLevel: string,
+   *   url: string,
+   *   urlIsRegex: boolean,
+   *   parameter: string,
+   *   enabled: boolean,
+   *   parameterIsRegex: boolean,
+   *   attack: string,
+   *   attackIsRegex: boolean,
+   *   evidence: string,
+   *   evidenceIsRegex: boolean,
+   * }} args
+   * @returns {Promise}
+   */
+  addGlobalAlertFilter = ({
+                            ruleId,
+                            newLevel,
+                            url,
+                            urlIsRegex,
+                            parameter,
+                            enabled,
+                            parameterIsRegex,
+                            attack,
+                            attackIsRegex,
+                            evidence,
+                            evidenceIsRegex,
+                          }) =>
+    this.api.request('/alertFilter/action/addGlobalAlertFilter', {
+      ruleId,
+      newLevel,
+      url,
+      urlIsRegex: String(urlIsRegex),
+      parameter,
+      enabled: String(enabled),
+      parameterIsRegex: String(parameterIsRegex),
+      attack,
+      attackIsRegex: String(attackIsRegex),
+      evidence,
+      evidenceIsRegex: String(evidenceIsRegex),
+    });
+
+  /**
+   * Removes a global alert filter.
+   * @param {{
+   *   ruleId: string,
+   *   newLevel: string,
+   *   url: string,
+   *   urlIsRegex: boolean,
+   *   parameter: string,
+   *   enabled: boolean,
+   *   parameterIsRegex: boolean,
+   *   attack: string,
+   *   attackIsRegex: boolean,
+   *   evidence: string,
+   *   evidenceIsRegex: boolean,
+   * }} args
+   * @returns {Promise}
+   */
+  removeGlobalAlertFilter = ({
+                               ruleId,
+                               newLevel,
+                               url,
+                               urlIsRegex,
+                               parameter,
+                               enabled,
+                               parameterIsRegex,
+                               attack,
+                               attackIsRegex,
+                               evidence,
+                               evidenceIsRegex,
+                             }) =>
+    this.api.request('/alertFilter/action/removeGlobalAlertFilter', {
+      ruleId,
+      newLevel,
+      url,
+      urlIsRegex: String(urlIsRegex),
+      parameter,
+      enabled: String(enabled),
+      parameterIsRegex: String(parameterIsRegex),
+      attack,
+      attackIsRegex: String(attackIsRegex),
+      evidence,
+      evidenceIsRegex: String(evidenceIsRegex),
+    });
+
+  /**
+   * Applies all currently enabled Global and Context alert filters.
+   * @returns {Promise}
+   */
+  applyAll = () =>
+    this.api.request('/alertFilter/action/applyAll');
+
+  /**
+   * Applies all currently enabled Context alert filters.
+   * @returns {Promise}
+   */
+  applyContext = () =>
+    this.api.request('/alertFilter/action/applyContext');
+
+  /**
+   * Applies all currently enabled Global alert filters.
+   * @returns {Promise}
+   */
+  applyGlobal = () =>
+    this.api.request('/alertFilter/action/applyGlobal');
+
+  /**
+   * Tests all currently enabled Global and Context alert filters.
+   * @returns {Promise}
+   */
+  testAll = () =>
+    this.api.request('/alertFilter/action/testAll');
+
+  /**
+   * Tests all currently enabled Context alert filters.
+   * @returns {Promise}
+   */
+  testContext = () =>
+    this.api.request('/alertFilter/action/testContext');
+
+  /**
+   * Tests all currently enabled Global alert filters.
+   * @returns {Promise}
+   */
+  testGlobal = () =>
+    this.api.request('/alertFilter/action/testGlobal');
 }
 
-/**
- * Lists the alert filters of the context with the given ID.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} contextid
- **/
-AlertFilter.prototype.alertFilterList = function (args) {
-  return this.api.request('/alertFilter/view/alertFilterList/', { contextId: args.contextid })
-}
-
-/**
- * Lists the global alert filters.
- * This component is optional and therefore the API will only work if it is installed
- **/
-AlertFilter.prototype.globalAlertFilterList = function () {
-  return this.api.request('/alertFilter/view/globalAlertFilterList/')
-}
-
-/**
- * Adds a new alert filter for the context with the given ID.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} contextid
- * @param {string} ruleid
- * @param {string} newlevel
- * @param {string} url
- * @param {string} urlisregex
- * @param {string} parameter
- * @param {string} enabled
- * @param {string} parameterisregex
- * @param {string} attack
- * @param {string} attackisregex
- * @param {string} evidence
- * @param {string} evidenceisregex
- * @param {string} methods
- **/
-AlertFilter.prototype.addAlertFilter = function (args) {
-  const params = { contextId: args.contextid, ruleId: args.ruleid, newLevel: args.newlevel }
-  if (args.url && args.url !== null) {
-    params.url = args.url
-  }
-  if (args.urlisregex && args.urlisregex !== null) {
-    params.urlIsRegex = args.urlisregex
-  }
-  if (args.parameter && args.parameter !== null) {
-    params.parameter = args.parameter
-  }
-  if (args.enabled && args.enabled !== null) {
-    params.enabled = args.enabled
-  }
-  if (args.parameterisregex && args.parameterisregex !== null) {
-    params.parameterIsRegex = args.parameterisregex
-  }
-  if (args.attack && args.attack !== null) {
-    params.attack = args.attack
-  }
-  if (args.attackisregex && args.attackisregex !== null) {
-    params.attackIsRegex = args.attackisregex
-  }
-  if (args.evidence && args.evidence !== null) {
-    params.evidence = args.evidence
-  }
-  if (args.evidenceisregex && args.evidenceisregex !== null) {
-    params.evidenceIsRegex = args.evidenceisregex
-  }
-  if (args.methods && args.methods !== null) {
-    params.methods = args.methods
-  }
-  return this.api.request('/alertFilter/action/addAlertFilter/', params)
-}
-
-/**
- * Removes an alert filter from the context with the given ID.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} contextid
- * @param {string} ruleid
- * @param {string} newlevel
- * @param {string} url
- * @param {string} urlisregex
- * @param {string} parameter
- * @param {string} enabled
- * @param {string} parameterisregex
- * @param {string} attack
- * @param {string} attackisregex
- * @param {string} evidence
- * @param {string} evidenceisregex
- * @param {string} methods
- **/
-AlertFilter.prototype.removeAlertFilter = function (args) {
-  const params = { contextId: args.contextid, ruleId: args.ruleid, newLevel: args.newlevel }
-  if (args.url && args.url !== null) {
-    params.url = args.url
-  }
-  if (args.urlisregex && args.urlisregex !== null) {
-    params.urlIsRegex = args.urlisregex
-  }
-  if (args.parameter && args.parameter !== null) {
-    params.parameter = args.parameter
-  }
-  if (args.enabled && args.enabled !== null) {
-    params.enabled = args.enabled
-  }
-  if (args.parameterisregex && args.parameterisregex !== null) {
-    params.parameterIsRegex = args.parameterisregex
-  }
-  if (args.attack && args.attack !== null) {
-    params.attack = args.attack
-  }
-  if (args.attackisregex && args.attackisregex !== null) {
-    params.attackIsRegex = args.attackisregex
-  }
-  if (args.evidence && args.evidence !== null) {
-    params.evidence = args.evidence
-  }
-  if (args.evidenceisregex && args.evidenceisregex !== null) {
-    params.evidenceIsRegex = args.evidenceisregex
-  }
-  if (args.methods && args.methods !== null) {
-    params.methods = args.methods
-  }
-  return this.api.request('/alertFilter/action/removeAlertFilter/', params)
-}
-
-/**
- * Adds a new global alert filter.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} ruleid
- * @param {string} newlevel
- * @param {string} url
- * @param {string} urlisregex
- * @param {string} parameter
- * @param {string} enabled
- * @param {string} parameterisregex
- * @param {string} attack
- * @param {string} attackisregex
- * @param {string} evidence
- * @param {string} evidenceisregex
- * @param {string} methods
- **/
-AlertFilter.prototype.addGlobalAlertFilter = function (args) {
-  const params = { ruleId: args.ruleid, newLevel: args.newlevel }
-  if (args.url && args.url !== null) {
-    params.url = args.url
-  }
-  if (args.urlisregex && args.urlisregex !== null) {
-    params.urlIsRegex = args.urlisregex
-  }
-  if (args.parameter && args.parameter !== null) {
-    params.parameter = args.parameter
-  }
-  if (args.enabled && args.enabled !== null) {
-    params.enabled = args.enabled
-  }
-  if (args.parameterisregex && args.parameterisregex !== null) {
-    params.parameterIsRegex = args.parameterisregex
-  }
-  if (args.attack && args.attack !== null) {
-    params.attack = args.attack
-  }
-  if (args.attackisregex && args.attackisregex !== null) {
-    params.attackIsRegex = args.attackisregex
-  }
-  if (args.evidence && args.evidence !== null) {
-    params.evidence = args.evidence
-  }
-  if (args.evidenceisregex && args.evidenceisregex !== null) {
-    params.evidenceIsRegex = args.evidenceisregex
-  }
-  if (args.methods && args.methods !== null) {
-    params.methods = args.methods
-  }
-  return this.api.request('/alertFilter/action/addGlobalAlertFilter/', params)
-}
-
-/**
- * Removes a global alert filter.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} ruleid
- * @param {string} newlevel
- * @param {string} url
- * @param {string} urlisregex
- * @param {string} parameter
- * @param {string} enabled
- * @param {string} parameterisregex
- * @param {string} attack
- * @param {string} attackisregex
- * @param {string} evidence
- * @param {string} evidenceisregex
- * @param {string} methods
- **/
-AlertFilter.prototype.removeGlobalAlertFilter = function (args) {
-  const params = { ruleId: args.ruleid, newLevel: args.newlevel }
-  if (args.url && args.url !== null) {
-    params.url = args.url
-  }
-  if (args.urlisregex && args.urlisregex !== null) {
-    params.urlIsRegex = args.urlisregex
-  }
-  if (args.parameter && args.parameter !== null) {
-    params.parameter = args.parameter
-  }
-  if (args.enabled && args.enabled !== null) {
-    params.enabled = args.enabled
-  }
-  if (args.parameterisregex && args.parameterisregex !== null) {
-    params.parameterIsRegex = args.parameterisregex
-  }
-  if (args.attack && args.attack !== null) {
-    params.attack = args.attack
-  }
-  if (args.attackisregex && args.attackisregex !== null) {
-    params.attackIsRegex = args.attackisregex
-  }
-  if (args.evidence && args.evidence !== null) {
-    params.evidence = args.evidence
-  }
-  if (args.evidenceisregex && args.evidenceisregex !== null) {
-    params.evidenceIsRegex = args.evidenceisregex
-  }
-  if (args.methods && args.methods !== null) {
-    params.methods = args.methods
-  }
-  return this.api.request('/alertFilter/action/removeGlobalAlertFilter/', params)
-}
-
-/**
- * Applies all currently enabled Global and Context alert filters.
- * This component is optional and therefore the API will only work if it is installed
- **/
-AlertFilter.prototype.applyAll = function () {
-  return this.api.request('/alertFilter/action/applyAll/')
-}
-
-/**
- * Applies all currently enabled Context alert filters.
- * This component is optional and therefore the API will only work if it is installed
- **/
-AlertFilter.prototype.applyContext = function () {
-  return this.api.request('/alertFilter/action/applyContext/')
-}
-
-/**
- * Applies all currently enabled Global alert filters.
- * This component is optional and therefore the API will only work if it is installed
- **/
-AlertFilter.prototype.applyGlobal = function () {
-  return this.api.request('/alertFilter/action/applyGlobal/')
-}
-
-/**
- * Tests all currently enabled Global and Context alert filters.
- * This component is optional and therefore the API will only work if it is installed
- **/
-AlertFilter.prototype.testAll = function () {
-  return this.api.request('/alertFilter/action/testAll/')
-}
-
-/**
- * Tests all currently enabled Context alert filters.
- * This component is optional and therefore the API will only work if it is installed
- **/
-AlertFilter.prototype.testContext = function () {
-  return this.api.request('/alertFilter/action/testContext/')
-}
-
-/**
- * Tests all currently enabled Global alert filters.
- * This component is optional and therefore the API will only work if it is installed
- **/
-AlertFilter.prototype.testGlobal = function () {
-  return this.api.request('/alertFilter/action/testGlobal/')
-}
-
-module.exports = AlertFilter
+module.exports = AlertFilter;

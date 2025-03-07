@@ -17,20 +17,21 @@
  * limitations under the License.
  */
 
-'use strict'
+'use strict';
 
-/**
- * This file was automatically generated.
- */
-function Retest (clientApi) {
-  this.api = clientApi
+class Retest {
+  constructor(clientApi) {
+    this.api = clientApi;
+  }
+
+  /**
+   * Retests alerts with the specified IDs.
+   *
+   * @param {{ alertIds: string }} args - Object containing the IDs of the alerts to retest.
+   * @returns {Promise<any>} A promise that resolves with the retest result.
+   */
+  retest = ({ alertIds }) =>
+    this.api.request('/retest/action/retest', { alertIds });
 }
 
-/**
- * This component is optional and therefore the API will only work if it is installed
- **/
-Retest.prototype.retest = function (args) {
-  return this.api.request('/retest/action/retest/', { alertIds: args.alertids })
-}
-
-module.exports = Retest
+module.exports = Retest;

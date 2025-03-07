@@ -17,85 +17,81 @@
  * limitations under the License.
  */
 
-'use strict'
+'use strict';
 
-/**
- * This file was automatically generated.
- */
-function Websocket (clientApi) {
-  this.api = clientApi
-}
-
-/**
- * Returns all of the registered web socket channels
- * This component is optional and therefore the API will only work if it is installed
- **/
-Websocket.prototype.channels = function () {
-  return this.api.request('/websocket/view/channels/')
-}
-
-/**
- * Returns full details of the message specified by the channelId and messageId
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} channelid
- * @param {string} messageid
- **/
-Websocket.prototype.message = function (args) {
-  return this.api.request('/websocket/view/message/', { channelId: args.channelid, messageId: args.messageid })
-}
-
-/**
- * Returns a list of all of the messages that meet the given criteria (all optional), where channelId is a channel identifier, start is the offset to start returning messages from (starting from 0), count is the number of messages to return (default no limit) and payloadPreviewLength is the maximum number bytes to return for the payload contents
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} channelid
- * @param {string} start
- * @param {string} count
- * @param {string} payloadpreviewlength
- **/
-Websocket.prototype.messages = function (args) {
-  const params = { }
-  if (args.channelid && args.channelid !== null) {
-    params.channelId = args.channelid
+class Websocket {
+  constructor(clientApi) {
+    this.api = clientApi;
   }
-  if (args.start && args.start !== null) {
-    params.start = args.start
-  }
-  if (args.count && args.count !== null) {
-    params.count = args.count
-  }
-  if (args.payloadpreviewlength && args.payloadpreviewlength !== null) {
-    params.payloadPreviewLength = args.payloadpreviewlength
-  }
-  return this.api.request('/websocket/view/messages/', params)
+
+  /**
+   * Returns all the registered web socket channels.
+   * This component is optional and therefore the API will only work if it is installed.
+   *
+   * @returns {Promise<any>} A promise resolving with the registered channels.
+   */
+  channels = () =>
+    this.api.request('/websocket/view/channels');
+
+  /**
+   * Returns full details of the message specified by the channelId and messageId.
+   * This component is optional and therefore the API will only work if it is installed.
+   *
+   * @param {{ channelId: string, messageId: string }} args - Object containing:
+   *   - channelId: The channel identifier.
+   *   - messageId: The message identifier.
+   * @returns {Promise<any>} A promise resolving with the message details.
+   */
+  message = ({ channelId, messageId }) =>
+    this.api.request('/websocket/view/message', { channelId, messageId });
+
+  /**
+   * Returns a list of all the messages that meet the given criteria.
+   * This component is optional and therefore the API will only work if it is installed.
+   *
+   * @param {{ channelId?: string, start?: string, count?: string, payloadPreviewLength?: string }} [args={}] - Object containing:
+   *   - channelId: (Optional) The channel identifier.
+   *   - start: (Optional) The offset to start returning messages from.
+   *   - count: (Optional) The number of messages to return.
+   *   - payloadPreviewLength: (Optional) The maximum number of bytes to return for payload contents.
+   * @returns {Promise<any>} A promise resolving with the messages.
+   */
+  messages = ({ channelId, start, count, payloadPreviewLength } = {}) =>
+    this.api.request('/websocket/view/messages', { channelId, start, count, payloadPreviewLength });
+
+  /**
+   * Returns a text representation of an intercepted websockets message.
+   * This component is optional and therefore the API will only work if it is installed.
+   *
+   * @returns {Promise<any>} A promise resolving with the intercepted message.
+   */
+  breakTextMessage = () =>
+    this.api.request('/websocket/view/breakTextMessage');
+
+  /**
+   * Sends the specified message on the channel specified by channelId.
+   * This component is optional and therefore the API will only work if it is installed.
+   *
+   * @param {{ channelId: string, outgoing: string, message: string }} args - Object containing:
+   *   - channelId: The channel identifier.
+   *   - outgoing: 'True' to send to server, 'False' to send to client.
+   *   - message: The message to send.
+   * @returns {Promise<any>} A promise resolving when the message is sent.
+   */
+  sendTextMessage = ({ channelId, outgoing, message }) =>
+    this.api.request('/websocket/action/sendTextMessage', { channelId, outgoing, message });
+
+  /**
+   * Sets the text message for an intercepted websockets message.
+   * This component is optional and therefore the API will only work if it is installed.
+   *
+   * @param {{ message: string, outgoing: string }} args - Object containing:
+   *   - message: The message text.
+   *   - outgoing: Whether the message is outgoing.
+   * @returns {Promise<any>} A promise resolving when the message is set.
+   */
+  setBreakTextMessage = ({ message, outgoing }) =>
+    this.api.request('/websocket/action/setBreakTextMessage', { message, outgoing });
 }
 
-/**
- * Returns a text representation of an intercepted websockets message
- * This component is optional and therefore the API will only work if it is installed
- **/
-Websocket.prototype.breakTextMessage = function () {
-  return this.api.request('/websocket/view/breakTextMessage/')
-}
-
-/**
- * Sends the specified message on the channel specified by channelId, if outgoing is 'True' then the message will be sent to the server and if it is 'False' then it will be sent to the client
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} channelid
- * @param {string} outgoing
- * @param {string} message
- **/
-Websocket.prototype.sendTextMessage = function (args) {
-  return this.api.request('/websocket/action/sendTextMessage/', { channelId: args.channelid, outgoing: args.outgoing, message: args.message })
-}
-
-/**
- * Sets the text message for an intercepted websockets message
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} message
- * @param {string} outgoing
- **/
-Websocket.prototype.setBreakTextMessage = function (args) {
-  return this.api.request('/websocket/action/setBreakTextMessage/', { message: args.message, outgoing: args.outgoing })
-}
-
-module.exports = Websocket
+module.exports = Websocket;

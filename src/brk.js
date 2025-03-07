@@ -17,113 +17,115 @@
  * limitations under the License.
  */
 
-'use strict'
-
-/**
- * This file was automatically generated.
- */
-function Break (clientApi) {
-  this.api = clientApi
-}
-
-/**
- * Returns True if ZAP will break on both requests and responses
- **/
-Break.prototype.isBreakAll = function () {
-  return this.api.request('/break/view/isBreakAll/')
-}
-
-/**
- * Returns True if ZAP will break on requests
- **/
-Break.prototype.isBreakRequest = function () {
-  return this.api.request('/break/view/isBreakRequest/')
-}
-
-/**
- * Returns True if ZAP will break on responses
- **/
-Break.prototype.isBreakResponse = function () {
-  return this.api.request('/break/view/isBreakResponse/')
-}
-
-/**
- * Returns the HTTP message currently intercepted (if any)
- **/
-Break.prototype.httpMessage = function () {
-  return this.api.request('/break/view/httpMessage/')
-}
-
-/**
- * Controls the global break functionality. The type may be one of: http-all, http-request or http-response. The state may be true (for turning break on for the specified type) or false (for turning break off). Scope is not currently used.
- * @param {string} type
- * @param {string} state
- * @param {string} scope
- **/
-Break.prototype.brk = function (args) {
-  const params = { type: args.type, state: args.state }
-  if (args.scope && args.scope !== null) {
-    params.scope = args.scope
+class Break {
+  constructor(clientApi) {
+    this.api = clientApi;
   }
-  return this.api.request('/break/action/break/', params)
-}
 
-/**
- * Overwrites the currently intercepted message with the data provided
- * @param {string} httpheader
- * @param {string} httpbody
- **/
-Break.prototype.setHttpMessage = function (args) {
-  const params = { httpHeader: args.httpheader }
-  if (args.httpbody && args.httpbody !== null) {
-    params.httpBody = args.httpbody
+  /**
+   * Returns true if ZAP is set to break on both requests and responses.
+   * @returns {Promise}
+   */
+  isBreakAll() {
+    return this.api.request('/break/view/isBreakAll');
   }
-  return this.api.request('/break/action/setHttpMessage/', params)
+
+  /**
+   * Returns true if ZAP is set to break on requests.
+   * @returns {Promise}
+   */
+  isBreakRequest() {
+    return this.api.request('/break/view/isBreakRequest');
+  }
+
+  /**
+   * Returns true if ZAP is set to break on responses.
+   * @returns {Promise}
+   */
+  isBreakResponse() {
+    return this.api.request('/break/view/isBreakResponse');
+  }
+
+  /**
+   * Returns the currently intercepted HTTP message (if any).
+   * @returns {Promise}
+   */
+  httpMessage() {
+    return this.api.request('/break/view/httpMessage');
+  }
+
+  /**
+   * Controls the global break functionality.
+   *
+   * @param {{ type: string, state: string, scope: string }} args - Object with properties:
+   *   - type: The break type ('http-all', 'http-request', or 'http-response').
+   *   - state: 'true' to enable breaking, 'false' to disable.
+   *   - scope: Scope value (currently not used).
+   * @returns {Promise}
+   */
+  brk({ type, state, scope }) {
+    return this.api.request('/break/action/break', { type, state, scope });
+  }
+
+  /**
+   * Overwrites the currently intercepted HTTP message with new data.
+   *
+   * @param {{ httpheader: string, httpbody?: string }} args - Object with properties:
+   *   - httpheader: The new HTTP header.
+   *   - httpbody: The new HTTP body (optional).
+   * @returns {Promise}
+   */
+  setHttpMessage(args) {
+    const params = { httpHeader: args.httpheader };
+    if (args.httpbody) {
+      params.httpBody = args.httpbody;
+    }
+    return this.api.request('/break/action/setHttpMessage', params);
+  }
+
+  /**
+   * Submits the intercepted message and clears the global breakpoints.
+   * @returns {Promise}
+   */
+  cont() {
+    return this.api.request('/break/action/continue');
+  }
+
+  /**
+   * Submits the intercepted message and enables interception for the next message.
+   * @returns {Promise}
+   */
+  step() {
+    return this.api.request('/break/action/step');
+  }
+
+  /**
+   * Drops the currently intercepted message.
+   * @returns {Promise}
+   */
+  drop() {
+    return this.api.request('/break/action/drop');
+  }
+
+  /**
+   * Adds a custom HTTP breakpoint.
+   *
+   * @param {{ string: string, location: string, match: string, inverse: string, ignorecase: string }} args - HTTP Breakpoint properties.
+   * @returns {Promise}
+   */
+  addHttpBreakpoint({ string, location, match, inverse, ignorecase }) {
+    return this.api.request('/break/action/addHttpBreakpoint', { string, location, match, inverse, ignorecase });
+  }
+
+  /**
+   * Removes a custom HTTP breakpoint.
+   *
+   * @param {{ string: string, location: string, match: string, inverse: string, ignorecase: string }} args - HTTP Breakpoint properties.
+   * @returns {Promise}
+   */
+  removeHttpBreakpoint({ string, location, match, inverse, ignorecase }) {
+    return this.api.request('/break/action/removeHttpBreakpoint', { string, location, match, inverse, ignorecase });
+  }
 }
 
-/**
- * Submits the currently intercepted message and unsets the global request/response breakpoints
- **/
-Break.prototype.cont = function () {
-  return this.api.request('/break/action/continue/')
-}
-
-/**
- * Submits the currently intercepted message, the next request or response will automatically be intercepted
- **/
-Break.prototype.step = function () {
-  return this.api.request('/break/action/step/')
-}
-
-/**
- * Drops the currently intercepted message
- **/
-Break.prototype.drop = function () {
-  return this.api.request('/break/action/drop/')
-}
-
-/**
- * Adds a custom HTTP breakpoint. The string is the string to match. Location may be one of: url, request_header, request_body, response_header or response_body. Match may be: contains or regex. Inverse (match) may be true or false. Lastly, ignorecase (when matching the string) may be true or false.
- * @param {string} string
- * @param {string} location
- * @param {string} match
- * @param {string} inverse
- * @param {string} ignorecase
- **/
-Break.prototype.addHttpBreakpoint = function (args) {
-  return this.api.request('/break/action/addHttpBreakpoint/', { string: args.string, location: args.location, match: args.match, inverse: args.inverse, ignorecase: args.ignorecase })
-}
-
-/**
- * Removes the specified breakpoint
- * @param {string} string
- * @param {string} location
- * @param {string} match
- * @param {string} inverse
- * @param {string} ignorecase
- **/
-Break.prototype.removeHttpBreakpoint = function (args) {
-  return this.api.request('/break/action/removeHttpBreakpoint/', { string: args.string, location: args.location, match: args.match, inverse: args.inverse, ignorecase: args.ignorecase })
-}
-
-module.exports = Break
+module.exports = Break;

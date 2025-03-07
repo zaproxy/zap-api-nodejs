@@ -17,64 +17,50 @@
  * limitations under the License.
  */
 
-'use strict'
+'use strict';
 
-/**
- * This file was automatically generated.
- */
-function AccessControl (clientApi) {
-  this.api = clientApi
-}
-
-/**
- * Gets the Access Control scan progress (percentage integer) for the given context ID.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} contextid
- **/
-AccessControl.prototype.getScanProgress = function (args) {
-  return this.api.request('/accessControl/view/getScanProgress/', { contextId: args.contextid })
-}
-
-/**
- * Gets the Access Control scan status (description string) for the given context ID.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} contextid
- **/
-AccessControl.prototype.getScanStatus = function (args) {
-  return this.api.request('/accessControl/view/getScanStatus/', { contextId: args.contextid })
-}
-
-/**
- * Starts an Access Control scan with the given context ID and user ID. (Optional parameters: user ID for Unauthenticated user, boolean identifying whether or not Alerts are raised, and the Risk level for the Alerts.) [This assumes the Access Control rules were previously established via ZAP gui and the necessary Context exported/imported.]
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} contextid
- * @param {string} userid
- * @param {string} scanasunauthuser
- * @param {string} raisealert
- * @param {string} alertrisklevel
- **/
-AccessControl.prototype.scan = function (args) {
-  const params = { contextId: args.contextid, userId: args.userid }
-  if (args.scanasunauthuser && args.scanasunauthuser !== null) {
-    params.scanAsUnAuthUser = args.scanasunauthuser
+class AccessControl {
+  constructor(clientApi) {
+    this.api = clientApi;
   }
-  if (args.raisealert && args.raisealert !== null) {
-    params.raiseAlert = args.raisealert
-  }
-  if (args.alertrisklevel && args.alertrisklevel !== null) {
-    params.alertRiskLevel = args.alertrisklevel
-  }
-  return this.api.request('/accessControl/action/scan/', params)
+
+  /**
+   * Gets the Access Control scan progress (percentage integer) for the given context ID.
+   * @param {{ contextId: string }} args
+   * @returns {Promise}
+   */
+  getScanProgress = ({ contextId }) =>
+    this.api.request('/accessControl/view/getScanProgress', { contextId });
+
+  /**
+   * Gets the Access Control scan status (description string) for the given context ID.
+   * @param {{ contextId: string }} args
+   * @returns {Promise}
+   */
+  getScanStatus = ({ contextId }) =>
+    this.api.request('/accessControl/view/getScanStatus', { contextId });
+
+  /**
+   * Starts an Access Control scan with the given context ID and user ID.
+   * @param {{
+   *   contextId: string,
+   *   userId: string,
+   *   scanAsUnAuthUser: string,
+   *   raiseAlert: string,
+   *   alertRiskLevel: string,
+   * }} args
+   * @returns {Promise}
+   */
+  scan = ({ contextId, userId, scanAsUnAuthUser, raiseAlert, alertRiskLevel }) =>
+    this.api.request('/accessControl/action/scan', { contextId, userId, scanAsUnAuthUser, raiseAlert, alertRiskLevel });
+
+  /**
+   * Generates an Access Control report for the given context ID and saves it based on the provided filename.
+   * @param {{ contextId: string, fileName: string }} args
+   * @returns {Promise}
+   */
+  writeHTMLreport = ({ contextId, fileName }) =>
+    this.api.request('/accessControl/action/writeHTMLreport', { contextId, fileName });
 }
 
-/**
- * Generates an Access Control report for the given context ID and saves it based on the provided filename (path).
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} contextid
- * @param {string} filename
- **/
-AccessControl.prototype.writeHTMLreport = function (args) {
-  return this.api.request('/accessControl/action/writeHTMLreport/', { contextId: args.contextid, fileName: args.filename })
-}
-
-module.exports = AccessControl
+module.exports = AccessControl;

@@ -16,85 +16,107 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-'use strict'
-
 /**
- * This file was automatically generated.
+ * Class for managing authentication-related API requests for ZAP Proxy.
+ * @param {object} clientApi - The client API object for making requests.
  */
-function Authentication (clientApi) {
-  this.api = clientApi
-}
-
-/**
- * Gets the name of the authentication methods.
- **/
-Authentication.prototype.getSupportedAuthenticationMethods = function () {
-  return this.api.request('/authentication/view/getSupportedAuthenticationMethods/')
-}
-
-/**
- * Gets the configuration parameters for the authentication method with the given name.
- * @param {string} authmethodname
- **/
-Authentication.prototype.getAuthenticationMethodConfigParams = function (args) {
-  return this.api.request('/authentication/view/getAuthenticationMethodConfigParams/', { authMethodName: args.authmethodname })
-}
-
-/**
- * Gets the name of the authentication method for the context with the given ID.
- * @param {string} contextid
- **/
-Authentication.prototype.getAuthenticationMethod = function (args) {
-  return this.api.request('/authentication/view/getAuthenticationMethod/', { contextId: args.contextid })
-}
-
-/**
- * Gets the logged in indicator for the context with the given ID.
- * @param {string} contextid
- **/
-Authentication.prototype.getLoggedInIndicator = function (args) {
-  return this.api.request('/authentication/view/getLoggedInIndicator/', { contextId: args.contextid })
-}
-
-/**
- * Gets the logged out indicator for the context with the given ID.
- * @param {string} contextid
- **/
-Authentication.prototype.getLoggedOutIndicator = function (args) {
-  return this.api.request('/authentication/view/getLoggedOutIndicator/', { contextId: args.contextid })
-}
-
-/**
- * Sets the authentication method for the context with the given ID.
- * @param {string} contextid
- * @param {string} authmethodname
- * @param {string} authmethodconfigparams
- **/
-Authentication.prototype.setAuthenticationMethod = function (args) {
-  const params = { contextId: args.contextid, authMethodName: args.authmethodname }
-  if (args.authmethodconfigparams && args.authmethodconfigparams !== null) {
-    params.authMethodConfigParams = args.authmethodconfigparams
+class Authentication {
+  constructor(clientApi) {
+    this.api = clientApi;
   }
-  return this.api.request('/authentication/action/setAuthenticationMethod/', params)
+
+  /**
+   * Gets the names of the supported authentication methods.
+   * @returns {Promise}
+   */
+  getSupportedAuthenticationMethods = () =>
+    this.api.request('/authentication/view/getSupportedAuthenticationMethods');
+
+  /**
+   * Gets the configuration parameters for the specified authentication method.
+   * @param {{ authMethodName: string }} args - Object containing the authentication method name.
+   * @returns {Promise}
+   */
+  getAuthenticationMethodConfigParams = ({ authMethodName }) =>
+    this.api.request('/authentication/view/getAuthenticationMethodConfigParams', { authMethodName });
+
+  /**
+   * Gets the authentication method for the context with the given ID.
+   * @param {{ contextId: string }} args - Object containing the context ID.
+   * @returns {Promise}
+   */
+  getAuthenticationMethod = ({ contextId }) =>
+    this.api.request('/authentication/view/getAuthenticationMethod', { contextId });
+
+  /**
+   * Gets the logged in indicator for the context with the given ID.
+   * @param {{ contextId: string }} args - Object containing the context ID.
+   * @returns {Promise}
+   */
+  getLoggedInIndicator = ({ contextId }) =>
+    this.api.request('/authentication/view/getLoggedInIndicator', { contextId });
+
+  /**
+   * Gets the logged out indicator for the context with the given ID.
+   * @param {{ contextId: string }} args - Object containing the context ID.
+   * @returns {Promise}
+   */
+  getLoggedOutIndicator = ({ contextId }) =>
+    this.api.request('/authentication/view/getLoggedOutIndicator', { contextId });
+
+  /**
+   * Sets the authentication method for the context.
+   * @param {{
+   *   contextId: string,
+   *   authmethodname: string,
+   *   authmethodconfigparams?: string
+   * }} args - Object containing contextId, authentication method name, and optional configuration parameters.
+   * @returns {Promise}
+   */
+  setAuthenticationMethod = (args) => {
+    const params = {
+      contextId: args.contextId,
+      authMethodName: args.authmethodname,
+    };
+    if (args.authmethodconfigparams) {
+      params.authMethodConfigParams = args.authmethodconfigparams;
+    }
+    return this.api.request('/authentication/action/setAuthenticationMethod', params);
+  };
+
+  /**
+   * Sets the logged in indicator for the context.
+   * @param {{
+   *   contextId: string,
+   *   loggedinindicatorregex: string
+   * }} args - Object containing the context ID and logged in indicator regex.
+   * @returns {Promise}
+   */
+  setLoggedInIndicator = ({
+                            contextId,
+                            loggedInIndicatorRegex,
+                          }) =>
+    this.api.request('/authentication/action/setLoggedInIndicator', {
+      contextId,
+      loggedInIndicatorRegex,
+    });
+
+  /**
+   * Sets the logged out indicator for the context.
+   * @param {{
+   *   contextId: string,
+   *   loggedoutindicatorregex: string
+   * }} args - Object containing the context ID and logged out indicator regex.
+   * @returns {Promise}
+   */
+  setLoggedOutIndicator = ({
+                             contextId,
+                             loggedOutIndicatorRegex,
+                           }) =>
+    this.api.request('/authentication/action/setLoggedOutIndicator', {
+      contextId,
+      loggedOutIndicatorRegex,
+    });
 }
 
-/**
- * Sets the logged in indicator for the context with the given ID.
- * @param {string} contextid
- * @param {string} loggedinindicatorregex
- **/
-Authentication.prototype.setLoggedInIndicator = function (args) {
-  return this.api.request('/authentication/action/setLoggedInIndicator/', { contextId: args.contextid, loggedInIndicatorRegex: args.loggedinindicatorregex })
-}
-
-/**
- * Sets the logged out indicator for the context with the given ID.
- * @param {string} contextid
- * @param {string} loggedoutindicatorregex
- **/
-Authentication.prototype.setLoggedOutIndicator = function (args) {
-  return this.api.request('/authentication/action/setLoggedOutIndicator/', { contextId: args.contextid, loggedOutIndicatorRegex: args.loggedoutindicatorregex })
-}
-
-module.exports = Authentication
+module.exports = Authentication;

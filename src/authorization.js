@@ -16,47 +16,42 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-'use strict'
-
 /**
- * This file was automatically generated.
+ * Class representing the Authorization API for ZAP Proxy.
+ * Provides methods to get and set the authorization detection method for a context.
+ *
+ * @param {object} clientApi - The client API instance for making HTTP requests.
  */
-function Authorization (clientApi) {
-  this.api = clientApi
+class Authorization {
+  constructor(clientApi) {
+    this.api = clientApi;
+  }
+
+  /**
+   * Obtains all the configuration of the authorization detection method for a given context.
+   *
+   * @param {{ contextId: string }} args - Object containing the context ID.
+   * @returns {Promise} - A promise that resolves with the configuration details.
+   */
+  getAuthorizationDetectionMethod = ({ contextId }) =>
+    this.api.request('/authorization/view/getAuthorizationDetectionMethod', { contextId });
+
+  /**
+   * Sets the basic authorization detection method for a context.
+   * This method configures detection based on the response's header, body regex patterns,
+   * status code, and logical operator ("AND" or "OR") to determine unauthorized messages.
+   *
+   * @param {{
+   *   contextId: string,
+   *   headerRegex: string,
+   *   bodyRegex: string,
+   *   statusCode: string,
+   *   logicalOperator: string
+   * }} args - Object containing the configuration parameters.
+   * @returns {Promise} - A promise that resolves when the method is set.
+   */
+  setBasicAuthorizationDetectionMethod = ({ contextId, headerRegex, bodyRegex, statusCode, logicalOperator }) =>
+    this.api.request('/authorization/action/setBasicAuthorizationDetectionMethod', { contextId, headerRegex, bodyRegex, statusCode, logicalOperator });
 }
 
-/**
- * Obtains all the configuration of the authorization detection method that is currently set for a context.
- * @param {string} contextid
- **/
-Authorization.prototype.getAuthorizationDetectionMethod = function (args) {
-  return this.api.request('/authorization/view/getAuthorizationDetectionMethod/', { contextId: args.contextid })
-}
-
-/**
- * Sets the authorization detection method for a context as one that identifies un-authorized messages based on: the message's status code or a regex pattern in the response's header or body. Also, whether all conditions must match or just some can be specified via the logicalOperator parameter, which accepts two values: "AND" (default), "OR".
- * @param {string} contextid
- * @param {string} headerregex
- * @param {string} bodyregex
- * @param {string} statuscode
- * @param {string} logicaloperator
- **/
-Authorization.prototype.setBasicAuthorizationDetectionMethod = function (args) {
-  const params = { contextId: args.contextid }
-  if (args.headerregex && args.headerregex !== null) {
-    params.headerRegex = args.headerregex
-  }
-  if (args.bodyregex && args.bodyregex !== null) {
-    params.bodyRegex = args.bodyregex
-  }
-  if (args.statuscode && args.statuscode !== null) {
-    params.statusCode = args.statuscode
-  }
-  if (args.logicaloperator && args.logicaloperator !== null) {
-    params.logicalOperator = args.logicaloperator
-  }
-  return this.api.request('/authorization/action/setBasicAuthorizationDetectionMethod/', params)
-}
-
-module.exports = Authorization
+module.exports = Authorization;

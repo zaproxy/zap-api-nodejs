@@ -17,69 +17,72 @@
  * limitations under the License.
  */
 
-'use strict'
+'use strict';
 
-/**
- * This file was automatically generated.
- */
-function Pnh (clientApi) {
-  this.api = clientApi
+class Pnh {
+  constructor(clientApi) {
+    this.api = clientApi;
+  }
+
+  /**
+   * Sends a monitor message.
+   * @param {{ id: string, message: string }} args - Object containing the monitor ID and message.
+   * @returns {Promise<any>} A promise resolving with the response.
+   */
+  monitor = ({ id, message }) =>
+    this.api.request('/pnh/action/monitor', { id, message });
+
+  /**
+   * Sends an oracle command for the specified monitor.
+   * @param {{ id: string }} args - Object containing the monitor ID.
+   * @returns {Promise<any>} A promise resolving with the response.
+   */
+  oracle = ({ id }) =>
+    this.api.request('/pnh/action/oracle', { id });
+
+  /**
+   * Starts monitoring for the specified URL.
+   * @param {{ url: string }} args - Object containing the URL.
+   * @returns {Promise<any>} A promise resolving with the response.
+   */
+  startMonitoring = ({ url }) =>
+    this.api.request('/pnh/action/startMonitoring', { url });
+
+  /**
+   * Stops monitoring for the specified monitor.
+   * @param {{ id: string }} args - Object containing the monitor ID.
+   * @returns {Promise<any>} A promise resolving with the response.
+   */
+  stopMonitoring = ({ id }) =>
+    this.api.request('/pnh/action/stopMonitoring', { id });
+
+  /**
+   * Retrieves Pnh data.
+   * @returns {Promise<any>} A promise resolving with the Pnh data.
+   */
+  pnh = () =>
+    this.api.request('/pnh/other/pnh/');
+
+  /**
+   * Retrieves the manifest.
+   * @returns {Promise<any>} A promise resolving with the manifest data.
+   */
+  manifest = () =>
+    this.api.request('/pnh/other/manifest/');
+
+  /**
+   * Retrieves service data.
+   * @returns {Promise<any>} A promise resolving with the service data.
+   */
+  service = () =>
+    this.api.request('/pnh/other/service/');
+
+  /**
+   * Retrieves the Firefox XPI file for Pnh.
+   * @returns {Promise<any>} A promise resolving with the XPI file data.
+   */
+  fxPnhXpi = () =>
+    this.api.request('/pnh/other/fx_pnh.xpi/');
 }
 
-/**
- * This component is optional and therefore the API will only work if it is installed
- **/
-Pnh.prototype.monitor = function (args) {
-  return this.api.request('/pnh/action/monitor/', { id: args.id, message: args.message })
-}
-
-/**
- * This component is optional and therefore the API will only work if it is installed
- **/
-Pnh.prototype.oracle = function (args) {
-  return this.api.request('/pnh/action/oracle/', { id: args.id })
-}
-
-/**
- * This component is optional and therefore the API will only work if it is installed
- **/
-Pnh.prototype.startMonitoring = function (args) {
-  return this.api.request('/pnh/action/startMonitoring/', { url: args.url })
-}
-
-/**
- * This component is optional and therefore the API will only work if it is installed
- **/
-Pnh.prototype.stopMonitoring = function (args) {
-  return this.api.request('/pnh/action/stopMonitoring/', { id: args.id })
-}
-
-/**
- * This component is optional and therefore the API will only work if it is installed
- **/
-Pnh.prototype.pnh = function () {
-  return this.api.request('/pnh/other/pnh/', 'other')
-}
-
-/**
- * This component is optional and therefore the API will only work if it is installed
- **/
-Pnh.prototype.manifest = function () {
-  return this.api.request('/pnh/other/manifest/', 'other')
-}
-
-/**
- * This component is optional and therefore the API will only work if it is installed
- **/
-Pnh.prototype.service = function () {
-  return this.api.request('/pnh/other/service/', 'other')
-}
-
-/**
- * This component is optional and therefore the API will only work if it is installed
- **/
-Pnh.prototype.fx_pnhxpi = function () {
-  return this.api.request('/pnh/other/fx_pnh.xpi/', 'other')
-}
-
-module.exports = Pnh
+module.exports = Pnh;

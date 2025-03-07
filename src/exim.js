@@ -17,111 +17,110 @@
  * limitations under the License.
  */
 
-'use strict'
+'use strict';
 
-/**
- * This file was automatically generated.
- */
-function Exim (clientApi) {
-  this.api = clientApi
-}
-
-/**
- * Imports a HAR file.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} filepath
- **/
-Exim.prototype.importHar = function (args) {
-  return this.api.request('/exim/action/importHar/', { filePath: args.filepath })
-}
-
-/**
- * Imports URLs (one per line) from the file with the given file system path.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} filepath
- **/
-Exim.prototype.importUrls = function (args) {
-  return this.api.request('/exim/action/importUrls/', { filePath: args.filepath })
-}
-
-/**
- * Imports previously exported ZAP messages from the file with the given file system path.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} filepath
- **/
-Exim.prototype.importZapLogs = function (args) {
-  return this.api.request('/exim/action/importZapLogs/', { filePath: args.filepath })
-}
-
-/**
- * Imports ModSecurity2 logs from the file with the given file system path.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} filepath
- **/
-Exim.prototype.importModsec2Logs = function (args) {
-  return this.api.request('/exim/action/importModsec2Logs/', { filePath: args.filepath })
-}
-
-/**
- * Exports the Sites Tree in the Sites Tree YAML format.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} filepath
- **/
-Exim.prototype.exportSitesTree = function (args) {
-  return this.api.request('/exim/action/exportSitesTree/', { filePath: args.filepath })
-}
-
-/**
- * Prunes the Sites Tree based on a file in the Sites Tree YAML format.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} filepath
- **/
-Exim.prototype.pruneSitesTree = function (args) {
-  return this.api.request('/exim/action/pruneSitesTree/', { filePath: args.filepath })
-}
-
-/**
- * Gets the HTTP messages sent through/by ZAP, in HAR format, optionally filtered by URL and paginated with 'start' position and 'count' of messages
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} baseurl - The URL below which messages should be included.
- * @param {string} start - The position (or offset) within the results to use as a starting position for the information returned.
- * @param {string} count - The number of results to return.
- **/
-Exim.prototype.exportHar = function (args) {
-  const params = { }
-  if (args.baseurl && args.baseurl !== null) {
-    params.baseurl = args.baseurl
+class Exim {
+  /**
+   * Creates an instance of Exim.
+   * @param {object} clientApi - The client API instance.
+   */
+  constructor(clientApi) {
+    this.api = clientApi;
   }
-  if (args.start && args.start !== null) {
-    params.start = args.start
-  }
-  if (args.count && args.count !== null) {
-    params.count = args.count
-  }
-  return this.api.request('/exim/other/exportHar/', params, 'other')
+
+  /**
+   * Imports a HAR file.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @param {{ filepath: string }} args - Object containing the file path.
+   * @returns {Promise<any>} A promise that resolves with the response.
+   */
+  importHar = ({ filepath }) =>
+    this.api.request('/exim/action/importHar', { filePath: filepath });
+
+  /**
+   * Imports URLs (one per line) from the file with the given file system path.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @param {{ filepath: string }} args - Object containing the file path.
+   * @returns {Promise<any>} A promise that resolves with the response.
+   */
+  importUrls = ({ filepath }) =>
+    this.api.request('/exim/action/importUrls', { filePath: filepath });
+
+  /**
+   * Imports previously exported ZAP messages from the specified file.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @param {{ filepath: string }} args - Object containing the file path.
+   * @returns {Promise<any>} A promise that resolves with the response.
+   */
+  importZapLogs = ({ filepath }) =>
+    this.api.request('/exim/action/importZapLogs', { filePath: filepath });
+
+  /**
+   * Imports ModSecurity2 logs from the specified file.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @param {{ filepath: string }} args - Object containing the file path.
+   * @returns {Promise<any>} A promise that resolves with the response.
+   */
+  importModsec2Logs = ({ filepath }) =>
+    this.api.request('/exim/action/importModsec2Logs', { filePath: filepath });
+
+  /**
+   * Exports the Sites Tree in YAML format.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @param {{ filepath: string }} args - Object containing the file path.
+   * @returns {Promise<any>} A promise that resolves with the response.
+   */
+  exportSitesTree = ({ filepath }) =>
+    this.api.request('/exim/action/exportSitesTree/', { filePath: filepath });
+
+  /**
+   * Prunes the Sites Tree based on a YAML file.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @param {{ filepath: string }} args - Object containing the file path.
+   * @returns {Promise<any>} A promise that resolves with the response.
+   */
+  pruneSitesTree = ({ filepath }) =>
+    this.api.request('/exim/action/pruneSitesTree/', { filePath: filepath });
+
+  /**
+   * Exports HTTP messages in HAR format, optionally filtered by URL and paginated.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @param {{ baseurl?: string, start?: string, count?: string }} [args={}] - Object containing filter parameters.
+   * @returns {Promise<any>} A promise that resolves with the HAR data.
+   */
+  exportHar = ({ baseurl, start, count } = {}) =>
+    this.api.request('/exim/other/exportHar/', { baseurl, start, count });
+
+  /**
+   * Exports HAR-formatted HTTP messages by their IDs.
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @param {{ ids: string }} args - Object containing comma-separated message IDs.
+   * @returns {Promise<any>} A promise that resolves with the HAR data.
+   */
+  exportHarById = ({ ids }) =>
+    this.api.request('/exim/other/exportHarById/', { ids });
+
+  /**
+   * Sends the first HAR request entry, optionally following redirections.
+   * Returns the request sent and response received (in HAR format).
+   * This component is optional and the API will only work if it is installed.
+   *
+   * @param {{ request: string, followredirects?: string }} args - Object containing the HAR request and optional followRedirects flag.
+   * @returns {Promise<any>} A promise that resolves with the HAR response.
+   */
+  sendHarRequest = ({ request, followredirects }) => {
+    const params = { request };
+    if (followredirects) params.followRedirects = followredirects;
+    return this.api.request('/exim/other/sendHarRequest/', params);
+  };
 }
 
-/**
- * Gets the HTTP messages with the given IDs, in HAR format.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} ids - The ID (number(s)) of the message(s) to be returned.
- **/
-Exim.prototype.exportHarById = function (args) {
-  return this.api.request('/exim/other/exportHarById/', { ids: args.ids }, 'other')
-}
-
-/**
- * Sends the first HAR request entry, optionally following redirections. Returns, in HAR format, the request sent and response received and followed redirections, if any. The Mode is enforced when sending the request (and following redirections), custom manual requests are not allowed in 'Safe' mode nor in 'Protected' mode if out of scope.
- * This component is optional and therefore the API will only work if it is installed
- * @param {string} request - The raw JSON of a HAR request.
- * @param {string} followredirects - True if redirects should be followed, false otherwise.
- **/
-Exim.prototype.sendHarRequest = function (args) {
-  const params = { request: args.request }
-  if (args.followredirects && args.followredirects !== null) {
-    params.followRedirects = args.followredirects
-  }
-  return this.api.request('/exim/other/sendHarRequest/', params, 'other')
-}
-
-module.exports = Exim
+module.exports = Exim;
