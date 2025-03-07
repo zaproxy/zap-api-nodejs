@@ -19,56 +19,198 @@
 
 'use strict';
 
-/**
- * Class representing the SessionManagement API for ZAProxy.
- */
-class SessionManagement {
-  /**
-   * @param {object} clientApi - The API client instance.
-   */
+class Selenium {
   constructor(clientApi) {
     this.api = clientApi;
   }
 
   /**
-   * Gets the names of the supported session management methods.
-   * @returns {Promise<object>} A promise resolving to the session management methods.
+   * Returns the browser extensions option.
+   * @returns {Promise<any>} A promise that resolves with the option.
    */
-  getSupportedSessionManagementMethods = () =>
-    this.api.request('/sessionManagement/view/getSupportedSessionManagementMethods');
+  optionBrowserExtensions = () =>
+    this.api.request('/selenium/view/optionBrowserExtensions');
 
   /**
-   * Gets the configuration parameters for the specified session management method.
-   * @param {{ methodName: string }} args - Object containing:
-   *   - methodName: The name of the session management method.
-   * @returns {Promise<object>} A promise resolving to the configuration parameters of the method.
+   * Returns the current path to the Chrome binary.
+   * @returns {Promise<any>} A promise that resolves with the Chrome binary path.
    */
-  getSessionManagementMethodConfigParams = ({ methodName }) =>
-    this.api.request('/sessionManagement/view/getSessionManagementMethodConfigParams', { methodName });
+  optionChromeBinaryPath = () =>
+    this.api.request('/selenium/view/optionChromeBinaryPath');
 
   /**
-   * Gets the session management method configured for a specific context.
-   * @param {{ contextId: string }} args - Object containing:
-   *   - contextId: The ID of the context.
-   * @returns {Promise<object>} A promise resolving to the session management method for the context.
+   * Returns the current path to ChromeDriver.
+   * @returns {Promise<any>} A promise that resolves with the ChromeDriver path.
    */
-  getSessionManagementMethod = ({ contextId }) =>
-    this.api.request('/sessionManagement/view/getSessionManagementMethod', { contextId });
+  optionChromeDriverPath = () =>
+    this.api.request('/selenium/view/optionChromeDriverPath');
 
   /**
-   * Sets the session management method for a specified context.
-   * @param {{ contextId: string, methodName: string, methodConfigParams: string }} args - Object containing:
-   *   - contextId: The ID of the context.
-   *   - methodName: The name of the session management method to set.
-   *   - methodConfigParams: A JSON string containing the configuration parameters for the method.
-   * @returns {Promise<object>} A promise resolving to the result of the operation.
+   * Returns the current path to the Firefox binary.
+   * @returns {Promise<any>} A promise that resolves with the Firefox binary path.
    */
-  setSessionManagementMethod = ({ contextId, methodName, methodConfigParams }) =>
-    this.api.request('/sessionManagement/action/setSessionManagementMethod', {
-      contextId,
-      methodName,
-      methodConfigParams,
-    });
+  optionFirefoxBinaryPath = () =>
+    this.api.request('/selenium/view/optionFirefoxBinaryPath');
+
+  /**
+   * Returns the current default Firefox profile name.
+   * @returns {Promise<any>} A promise that resolves with the default Firefox profile.
+   */
+  optionFirefoxDefaultProfile = () =>
+    this.api.request('/selenium/view/optionFirefoxDefaultProfile');
+
+  /**
+   * Returns the current path to the Firefox driver (geckodriver).
+   * @returns {Promise<any>} A promise that resolves with the Firefox driver path.
+   */
+  optionFirefoxDriverPath = () =>
+    this.api.request('/selenium/view/optionFirefoxDriverPath');
+
+  /**
+   * Returns the current path to the IEDriverServer.
+   * @returns {Promise<any>} A promise that resolves with the IEDriverServer path.
+   */
+  optionIeDriverPath = () =>
+    this.api.request('/selenium/view/optionIeDriverPath');
+
+  /**
+   * Returns the last used directory path.
+   * @returns {Promise<any>} A promise that resolves with the last used directory.
+   */
+  optionLastDirectory = () =>
+    this.api.request('/selenium/view/optionLastDirectory');
+
+  /**
+   * Returns the current path to the PhantomJS binary.
+   * @returns {Promise<any>} A promise that resolves with the PhantomJS binary path.
+   */
+  optionPhantomJsBinaryPath = () =>
+    this.api.request('/selenium/view/optionPhantomJsBinaryPath');
+
+  /**
+   * Gets the browser arguments.
+   * @param {{ browser: string }} args - Object containing:
+   *   - browser: The browser name, e.g. "chrome" or "firefox".
+   * @returns {Promise<any>} A promise that resolves with the browser arguments.
+   */
+  getBrowserArguments = ({ browser }) =>
+    this.api.request('/selenium/view/getBrowserArguments', { browser });
+
+  /**
+   * Sets the current path to the Chrome binary.
+   * @param {{ string: string }} args - Object containing:
+   *   - string: The path to the Chrome binary.
+   * @returns {Promise<any>} A promise that resolves when the path is set.
+   */
+  setOptionChromeBinaryPath = ({ string }) =>
+    this.api.request('/selenium/action/setOptionChromeBinaryPath', { String: string });
+
+  /**
+   * Sets the current path to ChromeDriver.
+   * @param {{ string: string }} args - Object containing:
+   *   - string: The path to ChromeDriver.
+   * @returns {Promise<any>} A promise that resolves when the path is set.
+   */
+  setOptionChromeDriverPath = ({ string }) =>
+    this.api.request('/selenium/action/setOptionChromeDriverPath', { String: string });
+
+  /**
+   * Sets the current path to the Firefox binary.
+   * @param {{ string: string }} args - Object containing:
+   *   - string: The path to the Firefox binary.
+   * @returns {Promise<any>} A promise that resolves when the path is set.
+   */
+  setOptionFirefoxBinaryPath = ({ string }) =>
+    this.api.request('/selenium/action/setOptionFirefoxBinaryPath', { String: string });
+
+  /**
+   * Sets the default Firefox profile.
+   * @param {{ string: string }} args - Object containing:
+   *   - string: The default Firefox profile name.
+   * @returns {Promise<any>} A promise that resolves when the profile is set.
+   */
+  setOptionFirefoxDefaultProfile = ({ string }) =>
+    this.api.request('/selenium/action/setOptionFirefoxDefaultProfile', { String: string });
+
+  /**
+   * Sets the current path to the Firefox driver (geckodriver).
+   * @param {{ string: string }} args - Object containing:
+   *   - string: The path to the Firefox driver.
+   * @returns {Promise<any>} A promise that resolves when the path is set.
+   */
+  setOptionFirefoxDriverPath = ({ string }) =>
+    this.api.request('/selenium/action/setOptionFirefoxDriverPath', { String: string });
+
+  /**
+   * Sets the current path to IEDriverServer.
+   * @param {{ string: string }} args - Object containing:
+   *   - string: The path to the IEDriverServer.
+   * @returns {Promise<any>} A promise that resolves when the path is set.
+   */
+  setOptionIeDriverPath = ({ string }) =>
+    this.api.request('/selenium/action/setOptionIeDriverPath', { String: string });
+
+  /**
+   * Sets the last used directory path.
+   * @param {{ string: string }} args - Object containing:
+   *   - string: The directory path.
+   * @returns {Promise<any>} A promise that resolves when the directory is set.
+   */
+  setOptionLastDirectory = ({ string }) =>
+    this.api.request('/selenium/action/setOptionLastDirectory', { String: string });
+
+  /**
+   * Sets the current path to the PhantomJS binary.
+   * @param {{ string: string }} args - Object containing:
+   *   - string: The path to the PhantomJS binary.
+   * @returns {Promise<any>} A promise that resolves when the path is set.
+   */
+  setOptionPhantomJsBinaryPath = ({ string }) =>
+    this.api.request('/selenium/action/setOptionPhantomJsBinaryPath', { String: string });
+
+  /**
+   * Adds a browser argument.
+   * @param {{ browser: string, argument: string, enabled?: string }} args - Object containing:
+   *   - browser: The browser, e.g. "chrome" or "firefox".
+   *   - argument: The argument to add.
+   *   - enabled: (Optional) The enabled state ("true" or "false").
+   * @returns {Promise<any>} A promise that resolves when the argument is added.
+   */
+  addBrowserArgument = ({ browser, argument, enabled }) => {
+    const params = { browser, argument };
+    if (enabled) params.enabled = enabled;
+    return this.api.request('/selenium/action/addBrowserArgument', params);
+  };
+
+  /**
+   * Launches a browser proxying through ZAP.
+   * @param {{ browser: string }} args - Object containing:
+   *   - browser: The browser to launch (e.g. "chrome" or "firefox").
+   * @returns {Promise<any>} A promise that resolves when the browser is launched.
+   */
+  launchBrowser = ({ browser }) =>
+    this.api.request('/selenium/action/launchBrowser', { browser });
+
+  /**
+   * Removes a browser argument.
+   * @param {{ browser: string, argument: string }} args - Object containing:
+   *   - browser: The browser (e.g. "chrome" or "firefox").
+   *   - argument: The argument to remove.
+   * @returns {Promise<any>} A promise that resolves when the argument is removed.
+   */
+  removeBrowserArgument = ({ browser, argument }) =>
+    this.api.request('/selenium/action/removeBrowserArgument', { browser, argument });
+
+  /**
+   * Sets whether a browser argument is enabled.
+   * @param {{ browser: string, argument: string, enabled: string }} args - Object containing:
+   *   - browser: The browser (e.g. "chrome" or "firefox").
+   *   - argument: The argument.
+   *   - enabled: The enabled state ("true" or "false").
+   * @returns {Promise<any>} A promise that resolves when the setting is applied.
+   */
+  setBrowserArgumentEnabled = ({ browser, argument, enabled }) =>
+    this.api.request('/selenium/action/setBrowserArgumentEnabled', { browser, argument, enabled });
 }
 
-module.exports = SessionManagement;
+module.exports = Selenium;
