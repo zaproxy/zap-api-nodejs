@@ -155,7 +155,7 @@ Spider.prototype.optionMaxDuration = function () {
 }
 
 /**
- * Gets the maximum size, in bytes, that a response might have to be parsed.
+ * Gets the maximum size, in bytes, that a response might have to be parsed, or 0 for unlimited.
  * This component is optional and therefore the API will only work if it is installed
  **/
 Spider.prototype.optionMaxParseSizeBytes = function () {
@@ -208,6 +208,14 @@ Spider.prototype.optionAcceptCookies = function () {
  **/
 Spider.prototype.optionHandleODataParametersVisited = function () {
   return this.api.request('/spider/view/optionHandleODataParametersVisited/')
+}
+
+/**
+ * Gets whether or not the spider should attempt to avoid logout related paths/functionality.
+ * This component is optional and therefore the API will only work if it is installed
+ **/
+Spider.prototype.optionLogoutAvoidance = function () {
+  return this.api.request('/spider/view/optionLogoutAvoidance/')
 }
 
 /**
@@ -545,6 +553,15 @@ Spider.prototype.setOptionHandleODataParametersVisited = function (args) {
 }
 
 /**
+ * Sets whether or not the Spider should attempt to avoid logout related paths/functionality.
+ * This component is optional and therefore the API will only work if it is installed
+ * @param {string} bool - A boolean (true/false) indicating if seeming logout paths/functionality should be avoided (default is false).
+ **/
+Spider.prototype.setOptionLogoutAvoidance = function (args) {
+  return this.api.request('/spider/action/setOptionLogoutAvoidance/', { Boolean: args.bool })
+}
+
+/**
  * Sets the maximum number of child nodes (per node) that can be crawled, 0 means no limit.
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} integer
@@ -574,7 +591,7 @@ Spider.prototype.setOptionMaxDuration = function (args) {
 /**
  * Sets the maximum size, in bytes, that a response might have to be parsed. This allows the spider to skip big responses/files.
  * This component is optional and therefore the API will only work if it is installed
- * @param {string} integer
+ * @param {string} integer - The maximum size or 0 for unlimited.
  **/
 Spider.prototype.setOptionMaxParseSizeBytes = function (args) {
   return this.api.request('/spider/action/setOptionMaxParseSizeBytes/', { Integer: args.integer })

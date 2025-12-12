@@ -41,6 +41,7 @@ Alert.prototype.alert = function (args) {
  * @param {string} count
  * @param {string} riskid
  * @param {string} contextname - Optionally, the Context name which the Alerts' URLs are associated with.
+ * @param {string} falsepositive - Optionally, a boolean indicating whether the results should include False Positive alerts.
  **/
 Alert.prototype.alerts = function (args) {
   const params = { }
@@ -58,6 +59,9 @@ Alert.prototype.alerts = function (args) {
   }
   if (args.contextname && args.contextname !== null) {
     params.contextName = args.contextname
+  }
+  if (args.falsepositive && args.falsepositive !== null) {
+    params.falsePositive = args.falsepositive
   }
   return this.api.request('/alert/view/alerts/', params)
 }

@@ -29,7 +29,7 @@ function AlertFilter (clientApi) {
 /**
  * Lists the alert filters of the context with the given ID.
  * This component is optional and therefore the API will only work if it is installed
- * @param {string} contextid
+ * @param {string} contextid - The numeric ID of the context for which the filters should be listed.
  **/
 AlertFilter.prototype.alertFilterList = function (args) {
   return this.api.request('/alertFilter/view/alertFilterList/', { contextId: args.contextid })
@@ -46,19 +46,19 @@ AlertFilter.prototype.globalAlertFilterList = function () {
 /**
  * Adds a new alert filter for the context with the given ID.
  * This component is optional and therefore the API will only work if it is installed
- * @param {string} contextid
- * @param {string} ruleid
- * @param {string} newlevel
- * @param {string} url
- * @param {string} urlisregex
- * @param {string} parameter
- * @param {string} enabled
- * @param {string} parameterisregex
- * @param {string} attack
- * @param {string} attackisregex
- * @param {string} evidence
- * @param {string} evidenceisregex
- * @param {string} methods
+ * @param {string} contextid - The numeric ID of the context for which the filter should be added.
+ * @param {string} ruleid - The numeric ID of the rule for which the filter should apply.
+ * @param {string} newlevel - The numeric risk representation ('0 - Informational' through '3 - High') ['-1 - False Positive'].
+ * @param {string} url - The URL for which the filter should apply (can be regex).
+ * @param {string} urlisregex - A boolean indicating whether or not the URL is a regex.
+ * @param {string} parameter - The parameter name for which the filter should apply (can be regex).
+ * @param {string} enabled - A boolean indicating whether or not the filter should be enabled.
+ * @param {string} parameterisregex - A boolean indicating whether or not the parameter name is a regex.
+ * @param {string} attack - The attack value for which the filter should apply (can be regex).
+ * @param {string} attackisregex - A boolean indicating whether or not the attack value is a regex.
+ * @param {string} evidence - The evidence value for which the filter should apply (can be regex).
+ * @param {string} evidenceisregex - A boolean indicating whether or not the evidence value is a regex.
+ * @param {string} methods - The HTTP methods (comma separated) for which the filter should apply.
  **/
 AlertFilter.prototype.addAlertFilter = function (args) {
   const params = { contextId: args.contextid, ruleId: args.ruleid, newLevel: args.newlevel }
@@ -98,19 +98,19 @@ AlertFilter.prototype.addAlertFilter = function (args) {
 /**
  * Removes an alert filter from the context with the given ID.
  * This component is optional and therefore the API will only work if it is installed
- * @param {string} contextid
- * @param {string} ruleid
- * @param {string} newlevel
- * @param {string} url
- * @param {string} urlisregex
- * @param {string} parameter
- * @param {string} enabled
- * @param {string} parameterisregex
- * @param {string} attack
- * @param {string} attackisregex
- * @param {string} evidence
- * @param {string} evidenceisregex
- * @param {string} methods
+ * @param {string} contextid - The numeric ID of the context for which the filter should be removed.
+ * @param {string} ruleid - The numeric ID of the rule for which the filter applies.
+ * @param {string} newlevel - The numeric risk representation ('0 - Informational' through '3 - High') ['-1 - False Positive'].
+ * @param {string} url - The URL for which the filter applies (can be regex).
+ * @param {string} urlisregex - A boolean indicating whether or not the URL is a regex.
+ * @param {string} parameter - The parameter name for which the filter applies (can be regex).
+ * @param {string} enabled - A boolean indicating whether or not the filter should be enabled.
+ * @param {string} parameterisregex - A boolean indicating whether or not the parameter name is a regex.
+ * @param {string} attack - The attack value for which the filter applies (can be regex).
+ * @param {string} attackisregex - A boolean indicating whether or not the attack value is a regex.
+ * @param {string} evidence - The evidence value for which the filter applies (can be regex).
+ * @param {string} evidenceisregex - A boolean indicating whether or not the evidence value is a regex.
+ * @param {string} methods - The HTTP methods (comma separated) for which the filter applies.
  **/
 AlertFilter.prototype.removeAlertFilter = function (args) {
   const params = { contextId: args.contextid, ruleId: args.ruleid, newLevel: args.newlevel }
@@ -150,18 +150,18 @@ AlertFilter.prototype.removeAlertFilter = function (args) {
 /**
  * Adds a new global alert filter.
  * This component is optional and therefore the API will only work if it is installed
- * @param {string} ruleid
- * @param {string} newlevel
- * @param {string} url
- * @param {string} urlisregex
- * @param {string} parameter
- * @param {string} enabled
- * @param {string} parameterisregex
- * @param {string} attack
- * @param {string} attackisregex
- * @param {string} evidence
- * @param {string} evidenceisregex
- * @param {string} methods
+ * @param {string} ruleid - The numeric ID of the rule for which the filter should apply.
+ * @param {string} newlevel - The numeric risk representation ('0 - Informational' through '3 - High') ['-1 - False Positive'].
+ * @param {string} url - The URL for which the filter should apply (can be regex).
+ * @param {string} urlisregex - A boolean indicating whether or not the URL is a regex.
+ * @param {string} parameter - The parameter name for which the filter should apply (can be regex).
+ * @param {string} enabled - A boolean indicating whether or not the filter should be enabled.
+ * @param {string} parameterisregex - A boolean indicating whether or not the parameter name is a regex.
+ * @param {string} attack - The attack value for which the filter should apply (can be regex).
+ * @param {string} attackisregex - A boolean indicating whether or not the attack value is a regex.
+ * @param {string} evidence - The evidence value for which the filter should apply (can be regex).
+ * @param {string} evidenceisregex - A boolean indicating whether or not the evidence value is a regex.
+ * @param {string} methods - The HTTP methods (comma separated) for which the filter should apply.
  **/
 AlertFilter.prototype.addGlobalAlertFilter = function (args) {
   const params = { ruleId: args.ruleid, newLevel: args.newlevel }
@@ -201,18 +201,18 @@ AlertFilter.prototype.addGlobalAlertFilter = function (args) {
 /**
  * Removes a global alert filter.
  * This component is optional and therefore the API will only work if it is installed
- * @param {string} ruleid
- * @param {string} newlevel
- * @param {string} url
- * @param {string} urlisregex
- * @param {string} parameter
- * @param {string} enabled
- * @param {string} parameterisregex
- * @param {string} attack
- * @param {string} attackisregex
- * @param {string} evidence
- * @param {string} evidenceisregex
- * @param {string} methods
+ * @param {string} ruleid - The numeric ID of the rule for which the filter applies.
+ * @param {string} newlevel - The numeric risk representation ('0 - Informational' through '3 - High') ['-1 - False Positive'].
+ * @param {string} url - The URL for which the filter applies (can be regex).
+ * @param {string} urlisregex - A boolean indicating whether or not the URL is a regex.
+ * @param {string} parameter - The parameter name for which the filter applies (can be regex).
+ * @param {string} enabled - A boolean indicating whether or not the filter should be enabled.
+ * @param {string} parameterisregex - A boolean indicating whether or not the parameter name is a regex.
+ * @param {string} attack - The attack value for which the filter applies (can be regex).
+ * @param {string} attackisregex - A boolean indicating whether or not the attack value is a regex.
+ * @param {string} evidence - The evidence value for which the filter applies (can be regex).
+ * @param {string} evidenceisregex - A boolean indicating whether or not the evidence value is a regex.
+ * @param {string} methods - The HTTP methods (comma separated) for which the filter applies.
  **/
 AlertFilter.prototype.removeGlobalAlertFilter = function (args) {
   const params = { ruleId: args.ruleid, newLevel: args.newlevel }

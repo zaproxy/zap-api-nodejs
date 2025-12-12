@@ -50,6 +50,22 @@ Selenium.prototype.optionChromeDriverPath = function () {
 }
 
 /**
+ * Returns the current path to Edge binary
+ * This component is optional and therefore the API will only work if it is installed
+ **/
+Selenium.prototype.optionEdgeBinaryPath = function () {
+  return this.api.request('/selenium/view/optionEdgeBinaryPath/')
+}
+
+/**
+ * Returns the current path to EdgeDriver
+ * This component is optional and therefore the API will only work if it is installed
+ **/
+Selenium.prototype.optionEdgeDriverPath = function () {
+  return this.api.request('/selenium/view/optionEdgeDriverPath/')
+}
+
+/**
  * Returns the current path to Firefox binary
  * This component is optional and therefore the API will only work if it is installed
  **/
@@ -96,7 +112,7 @@ Selenium.prototype.optionPhantomJsBinaryPath = function () {
 /**
  * Gets the browser arguments.
  * This component is optional and therefore the API will only work if it is installed
- * @param {string} browser - The browser, chrome or firefox.
+ * @param {string} browser - The browser, chrome, edge, or firefox.
  **/
 Selenium.prototype.getBrowserArguments = function (args) {
   return this.api.request('/selenium/view/getBrowserArguments/', { browser: args.browser })
@@ -118,6 +134,24 @@ Selenium.prototype.setOptionChromeBinaryPath = function (args) {
  **/
 Selenium.prototype.setOptionChromeDriverPath = function (args) {
   return this.api.request('/selenium/action/setOptionChromeDriverPath/', { String: args.string })
+}
+
+/**
+ * Sets the current path to Edge binary
+ * This component is optional and therefore the API will only work if it is installed
+ * @param {string} string
+ **/
+Selenium.prototype.setOptionEdgeBinaryPath = function (args) {
+  return this.api.request('/selenium/action/setOptionEdgeBinaryPath/', { String: args.string })
+}
+
+/**
+ * Sets the current path to EdgeDriver
+ * This component is optional and therefore the API will only work if it is installed
+ * @param {string} string
+ **/
+Selenium.prototype.setOptionEdgeDriverPath = function (args) {
+  return this.api.request('/selenium/action/setOptionEdgeDriverPath/', { String: args.string })
 }
 
 /**
@@ -169,7 +203,7 @@ Selenium.prototype.setOptionPhantomJsBinaryPath = function (args) {
 /**
  * Adds a browser argument.
  * This component is optional and therefore the API will only work if it is installed
- * @param {string} browser - The browser, chrome or firefox.
+ * @param {string} browser - The browser, chrome, edge, or firefox.
  * @param {string} argument - The argument.
  * @param {string} enabled - The enabled state, true or false.
  **/
@@ -184,7 +218,7 @@ Selenium.prototype.addBrowserArgument = function (args) {
 /**
  * Launches a browser proxying through ZAP, for manual usage.
  * This component is optional and therefore the API will only work if it is installed
- * @param {string} browser - The browser, chrome or firefox.
+ * @param {string} browser - The browser, chrome, edge, or firefox.
  **/
 Selenium.prototype.launchBrowser = function (args) {
   return this.api.request('/selenium/action/launchBrowser/', { browser: args.browser })
@@ -193,7 +227,7 @@ Selenium.prototype.launchBrowser = function (args) {
 /**
  * Removes a browser argument.
  * This component is optional and therefore the API will only work if it is installed
- * @param {string} browser - The browser, chrome or firefox.
+ * @param {string} browser - The browser, chrome, edge, or firefox.
  * @param {string} argument - The argument.
  **/
 Selenium.prototype.removeBrowserArgument = function (args) {
@@ -203,7 +237,7 @@ Selenium.prototype.removeBrowserArgument = function (args) {
 /**
  * Sets whether or not a browser argument is enabled.
  * This component is optional and therefore the API will only work if it is installed
- * @param {string} browser - The browser, chrome or firefox.
+ * @param {string} browser - The browser, chrome, edge, or firefox.
  * @param {string} argument - The argument.
  * @param {string} enabled - The enabled state, true or false.
  **/

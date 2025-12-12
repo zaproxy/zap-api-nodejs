@@ -2,7 +2,7 @@
  *
  * ZAP is an HTTP/HTTPS proxy for assessing web application security.
  *
- * Copyright 2023 the ZAP development team
+ * Copyright 2025 the ZAP development team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,43 +22,45 @@
 /**
  * This file was automatically generated.
  */
-function Automation (clientApi) {
+function Client (clientApi) {
   this.api = clientApi
 }
 
 /**
- * Returns the progress details for the specified planId
  * This component is optional and therefore the API will only work if it is installed
- * @param {string} planid
  **/
-Automation.prototype.planProgress = function (args) {
-  return this.api.request('/automation/view/planProgress/', { planId: args.planid })
+Client.prototype.reportObject = function (args) {
+  return this.api.request('/client/action/reportObject/', { objectJson: args.objectjson })
 }
 
 /**
- * Loads and asynchronously runs the plan in the specified file, returning a planId
  * This component is optional and therefore the API will only work if it is installed
- * @param {string} filepath
  **/
-Automation.prototype.runPlan = function (args) {
-  return this.api.request('/automation/action/runPlan/', { filePath: args.filepath })
+Client.prototype.reportEvent = function (args) {
+  return this.api.request('/client/action/reportEvent/', { eventJson: args.eventjson })
 }
 
 /**
- * Stops the running plan identified by the planId
  * This component is optional and therefore the API will only work if it is installed
- * @param {string} planid
  **/
-Automation.prototype.stopPlan = function (args) {
-  return this.api.request('/automation/action/stopPlan/', { planId: args.planid })
+Client.prototype.reportZestStatement = function (args) {
+  return this.api.request('/client/action/reportZestStatement/', { statementJson: args.statementjson })
 }
 
 /**
- * Ends the currently running delay job, if any
  * This component is optional and therefore the API will only work if it is installed
  **/
-Automation.prototype.endDelayJob = function () {
-  return this.api.request('/automation/action/endDelayJob/')
+Client.prototype.reportZestScript = function (args) {
+  return this.api.request('/client/action/reportZestScript/', { scriptJson: args.scriptjson })
 }
 
-module.exports = Automation
+/**
+ * Exports the Client Map to a file.
+ * This component is optional and therefore the API will only work if it is installed
+ * @param {string} pathyaml - The file system path to the file.
+ **/
+Client.prototype.exportClientMap = function (args) {
+  return this.api.request('/client/action/exportClientMap/', { pathYaml: args.pathyaml })
+}
+
+module.exports = Client
