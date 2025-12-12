@@ -75,6 +75,14 @@ Pscan.prototype.maxAlertsPerRule = function () {
 }
 
 /**
+ * Gets the maximum body size in bytes that the passive scanner will scan.
+ * This component is optional and therefore the API will only work if it is installed
+ **/
+Pscan.prototype.maxBodySizeInBytes = function () {
+  return this.api.request('/pscan/view/maxBodySizeInBytes/')
+}
+
+/**
  * Sets whether or not the passive scanning is enabled (Note: the enabled state is not persisted).
  * This component is optional and therefore the API will only work if it is installed
  * @param {string} enabled - The enabled state, true or false.
@@ -143,6 +151,15 @@ Pscan.prototype.setScannerAlertThreshold = function (args) {
  **/
 Pscan.prototype.setMaxAlertsPerRule = function (args) {
   return this.api.request('/pscan/action/setMaxAlertsPerRule/', { maxAlerts: args.maxalerts })
+}
+
+/**
+ * Sets the maximum body size in bytes that the passive scanner will scan.
+ * This component is optional and therefore the API will only work if it is installed
+ * @param {string} maxsize - The maximum size in bytes, 0 to unset.
+ **/
+Pscan.prototype.setMaxBodySizeInBytes = function (args) {
+  return this.api.request('/pscan/action/setMaxBodySizeInBytes/', { maxSize: args.maxsize })
 }
 
 /**

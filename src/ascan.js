@@ -267,10 +267,24 @@ Ascan.prototype.optionEncodeCookieValues = function () {
 }
 
 /**
+ * Tells whether or not the active scanner should exclude anti-csrf tokens from the scan.
+ **/
+Ascan.prototype.optionExcludeAntiCsrfTokens = function () {
+  return this.api.request('/ascan/view/optionExcludeAntiCsrfTokens/')
+}
+
+/**
  * Tells whether or not the active scanner should inject the HTTP request header X-ZAP-Scan-ID, with the ID of the scan rule that's sending the requests.
  **/
 Ascan.prototype.optionInjectPluginIdInHeader = function () {
   return this.api.request('/ascan/view/optionInjectPluginIdInHeader/')
+}
+
+/**
+ * Tells whether or not the temporary HTTP messages sent while active scanning should be persisted.
+ **/
+Ascan.prototype.optionPersistTemporaryMessages = function () {
+  return this.api.request('/ascan/view/optionPersistTemporaryMessages/')
 }
 
 /**
@@ -735,6 +749,14 @@ Ascan.prototype.setOptionEncodeCookieValues = function (args) {
 }
 
 /**
+ * Sets whether or not the active scanner should exclude anti-csrf tokens from the scan.
+ * @param {string} bool - true if anti-csrf tokens should be excluded, false otherwise.
+ **/
+Ascan.prototype.setOptionExcludeAntiCsrfTokens = function (args) {
+  return this.api.request('/ascan/action/setOptionExcludeAntiCsrfTokens/', { Boolean: args.bool })
+}
+
+/**
  *
  * @param {string} bool
  **/
@@ -804,6 +826,14 @@ Ascan.prototype.setOptionMaxScanDurationInMins = function (args) {
  **/
 Ascan.prototype.setOptionMaxScansInUI = function (args) {
   return this.api.request('/ascan/action/setOptionMaxScansInUI/', { Integer: args.integer })
+}
+
+/**
+ * Sets whether or not the temporary HTTP messages sent while active scanning should be persisted.
+ * @param {string} bool - true if the temporary HTTP messages should be persisted, false otherwise.
+ **/
+Ascan.prototype.setOptionPersistTemporaryMessages = function (args) {
+  return this.api.request('/ascan/action/setOptionPersistTemporaryMessages/', { Boolean: args.bool })
 }
 
 /**
