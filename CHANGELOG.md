@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
-## [Unreleased]
+## [2.0.0-rc.7] - 2025-12-15
 ### Added
 - Add the APIs of the following add-ons:
   - Client Side Integration version 0.20.0;
@@ -135,7 +135,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 ## 0.3.0 - 2017-12-04
 
 
-[Unreleased]: https://github.com/zaproxy/zap-api-nodejs/compare/v2.0.0-rc.6...HEAD
+[2.0.0-rc.7]: https://github.com/zaproxy/zap-api-nodejs/compare/v2.0.0-rc.6...v2.0.0-rc.7
 [2.0.0-rc.6]: https://github.com/zaproxy/zap-api-nodejs/compare/v2.0.0-rc.5...v2.0.0-rc.6
 [2.0.0-rc.5]: https://github.com/zaproxy/zap-api-nodejs/compare/v2.0.0-rc.4...v2.0.0-rc.5
 [2.0.0-rc.4]: https://github.com/zaproxy/zap-api-nodejs/compare/v2.0.0-rc.3...v2.0.0-rc.4
